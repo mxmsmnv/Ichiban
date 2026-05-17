@@ -426,11 +426,34 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 	}
 
 	public function pageHttpUrl(Page $page, ?Language $language = null, bool $includeSegments = true): string {
-		$url = $language ? $page->localHttpUrl($language) : $page->httpUrl();
+		$url = $language ? $this->pageLanguageHttpUrl($page, $language) : $page->httpUrl();
 		if (!$includeSegments || !$this->shouldPreserveUrlSegments($page)) return $url;
 		$segments = $this->currentUrlSegmentString($page);
 		if ($segments === '') return $url;
 		return rtrim($url, '/') . '/' . $segments . '/';
+	}
+
+	protected function pageLanguageHttpUrl(Page $page, Language $language): string {
+		if (is_callable([$page, 'localHttpUrl'])) {
+			try {
+				$url = (string)$page->localHttpUrl($language);
+				if ($url !== '') return $url;
+			} catch (\Throwable $e) {
+				// Fall through for ProcessWire versions without Page::localHttpUrl().
+			}
+		}
+
+		if (is_callable([$page, 'localUrl'])) {
+			$localUrl = (string)$page->localUrl($language);
+			if ($localUrl !== '') {
+				if (preg_match('{^https?://}i', $localUrl)) return $localUrl;
+				if (preg_match('{^https?://[^/]+}i', (string)$page->httpUrl(), $matches)) {
+					return rtrim($matches[0], '/') . '/' . ltrim($localUrl, '/');
+				}
+			}
+		}
+
+		return (string)$page->httpUrl();
 	}
 
 	protected function shouldPreserveUrlSegments(Page $page): bool {

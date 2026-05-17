@@ -174,7 +174,7 @@ class IchibanSitemap {
 				if ($s['respect_noindex'] && $this->pageHasNoindex($page)) continue;
 				if (!$this->pageIncludedInSitemap($page)) continue;
 
-				$pageUrl = $page->httpUrl();
+				$pageUrl = method_exists($this->ichiban, 'pageHttpUrl') ? $this->ichiban->pageHttpUrl($page, null, false) : $page->httpUrl();
 				if (!$pageUrl) continue;
 				if ($this->matchesExcludePattern($pageUrl, (string)$s['exclude_url_patterns'])) continue;
 
@@ -301,7 +301,7 @@ class IchibanSitemap {
 		if (!$languages) return $out;
 		foreach ($languages as $lang) {
 			if (!$page->viewable($lang)) continue;
-			$url = $page->localHttpUrl($lang);
+			$url = method_exists($this->ichiban, 'pageHttpUrl') ? $this->ichiban->pageHttpUrl($page, $lang, false) : $page->httpUrl();
 			if ($url) $out[] = ['hreflang' => $lang->name === 'default' ? 'x-default' : $lang->name, 'href' => $url];
 		}
 		return $out;

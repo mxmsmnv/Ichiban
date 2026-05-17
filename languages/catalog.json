@@ -1,0 +1,5285 @@
+[
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "f4c6f851b00d5518bf888815de279aba",
+        "text": "Notes",
+        "context": "",
+        "plural": "",
+        "line": 831
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "c9c5c65fb4af9cf90eb99b3b84424189",
+        "text": "Identity",
+        "context": "",
+        "plural": "",
+        "line": 847
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "cde2ad3993452d48164bac03fd7ff2ea",
+        "text": "Used for Organization/Person JSON-LD and sameAs profile links. Leave fields empty if the identity node should stay minimal.",
+        "context": "",
+        "plural": "",
+        "line": 849
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "0aabf727ab0a83c5f5d078e8b18445e0",
+        "text": "Defaults",
+        "context": "",
+        "plural": "",
+        "line": 876
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "33bdc3ae43a21121f7dce26d5197dd44",
+        "text": "JSON defaults are resolved before page-level values. Use field:title, field:summary|truncate:160, custom text, or inherit.",
+        "context": "",
+        "plural": "",
+        "line": 879
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "53e3b5312941b09573dc3f9186159072",
+        "text": "Global defaults JSON",
+        "context": "",
+        "plural": "",
+        "line": 881
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "5115e3fe37e3ad25f334f010f8c5b38e",
+        "text": "Template defaults JSON",
+        "context": "",
+        "plural": "",
+        "line": 882
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "82ccb8f28eb5731a03cf696ad3f72648",
+        "text": "Use typed source values like field:title, field:summary|truncate:160, custom text, or inherit.",
+        "context": "",
+        "plural": "",
+        "line": 887
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "a6e8f9aed2ac6481dc25a18a33342d03",
+        "text": "Rendering",
+        "context": "",
+        "plural": "",
+        "line": 897
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "fb1b9b3b0133275b95ccaf96bd704d4a",
+        "text": "By default Ichiban only renders tags when your template outputs $page->seo. Automatic injection is opt-in.",
+        "context": "",
+        "plural": "",
+        "line": 900
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "55e90fc94d051339268c8cea22d211ff",
+        "text": "Automatically inject SEO tags into page <head>",
+        "context": "",
+        "plural": "",
+        "line": 904
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "83d3719feac098415326b3ef32ef1fb2",
+        "text": "Enable only if your templates do not output $page->seo.",
+        "context": "",
+        "plural": "",
+        "line": 905
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "e16aace7feb4c4c815b9f9acbf072815",
+        "text": "Webmaster Verification",
+        "context": "",
+        "plural": "",
+        "line": 913
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "a9c50cdbf2ad228624b2017ab78c7438",
+        "text": "Verification tags and Meta Pixel are rendered on the home page only. Google Search Console verification is intentionally omitted here because current Google setup should use DNS TXT or CNAME verification.",
+        "context": "",
+        "plural": "",
+        "line": 916
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "fbe1774e9a77f9f92b4b96bf4c64585a",
+        "text": "Microsoft Bing, Yahoo, and DuckDuckGo visibility often starts from Bing Webmaster Tools.",
+        "context": "",
+        "plural": "",
+        "line": 918
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "76f540135e80a474de70e3583a54dc45",
+        "text": "Yandex meta verification token.",
+        "context": "",
+        "plural": "",
+        "line": 919
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "a95ed1f87dde1518d8b49008ebb77dbb",
+        "text": "China: renders baidu-site-verification meta tag.",
+        "context": "",
+        "plural": "",
+        "line": 920
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "9d4aa8d584f94eac913b6201afac6730",
+        "text": "China: renders sogou_site_verification meta tag.",
+        "context": "",
+        "plural": "",
+        "line": 921
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "d0a0430a9f737934f21aa4303c7edab1",
+        "text": "China: renders 360-site-verification meta tag.",
+        "context": "",
+        "plural": "",
+        "line": 922
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "eacbd24ca94cad724c6f391d472638ba",
+        "text": "Pinterest domain verification token.",
+        "context": "",
+        "plural": "",
+        "line": 923
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "db13ec584f9633e6751535d17824e79e",
+        "text": "Meta domain verification token.",
+        "context": "",
+        "plural": "",
+        "line": 924
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "9219a1dab2e3eebf88becf2f14e80d01",
+        "text": "Numeric Pixel ID. Renders the standard PageView pixel on the home page.",
+        "context": "",
+        "plural": "",
+        "line": 925
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "e7d88f3cf0b8b671959e10fe014e8fd2",
+        "text": "Additional verification meta tags",
+        "context": "",
+        "plural": "",
+        "line": 937
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "76f0c578ce00ff37d7e990f91b0953d3",
+        "text": "One per line as meta-name=token. Use for regional tools that provide a meta verification tag.",
+        "context": "",
+        "plural": "",
+        "line": 938
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "3cd39c0bf9c68bf909c01310e7dfa0ef",
+        "text": "Example: example-site-verification=abc123. Only simple meta names are rendered.",
+        "context": "",
+        "plural": "",
+        "line": 939
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "4243784eac7728b8e6339bdafe240e01",
+        "text": "Google Search Console",
+        "context": "",
+        "plural": "",
+        "line": 947
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "43a85ff63755f87a7ccd5056ba6c38c6",
+        "text": "Enable the Google Search Console API, create an OAuth Web application client, add this authorized redirect URI: %s, publish the OAuth app to production, then paste the Client ID and Client Secret below. Existing tokens are preserved when settings are saved.",
+        "context": "",
+        "plural": "",
+        "line": 953
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "1714ef7e843e7735ce68bebe872f33e5",
+        "text": "Connection status",
+        "context": "",
+        "plural": "",
+        "line": 968
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "ba85dd89d299ed46b9c8a5948542f99c",
+        "text": "Access token expires %s.",
+        "context": "",
+        "plural": "",
+        "line": 974
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "f3802e32cd6d09d7c1af945c4f5943d6",
+        "text": "Access token expired; refresh token is saved.",
+        "context": "",
+        "plural": "",
+        "line": 975
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "1de31a3258bc607d52b41ee216c7d72f",
+        "text": "Client ID saved",
+        "context": "",
+        "plural": "",
+        "line": 980
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "42b44c19ef8327c019c9ad9f78d67aee",
+        "text": "Client Secret saved",
+        "context": "",
+        "plural": "",
+        "line": 981
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "d760203bbcc492353c8b31b14d9ffbf7",
+        "text": "Google account connected",
+        "context": "",
+        "plural": "",
+        "line": 982
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "7f1baa2a21ced2b2e130215f4bafd5f4",
+        "text": "Open Insights",
+        "context": "",
+        "plural": "",
+        "line": 985
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "239ee60095ca0138f335744cf3894216",
+        "text": "Enter the Search Console domain, for example lqrs.uk. Ichiban will query it as a Domain property. You can still enter a URL-prefix property like https://example.com/ when needed.",
+        "context": "",
+        "plural": "",
+        "line": 999
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "c5841c295217e694ae9814ae1de70f4e",
+        "text": "Examples: lqrs.uk or https://example.com/",
+        "context": "",
+        "plural": "",
+        "line": 1000
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "148a3c9e93041db9e3a92077aa62487a",
+        "text": "Backlinks / Moz API",
+        "context": "",
+        "plural": "",
+        "line": 1010
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "3934fe34546dadc9006bc189343d76f2",
+        "text": "Moz Links API is used by the Backlinks section for inbound links, linking root domains, and anchor text. Use the new Moz API token when possible; legacy Access ID and Secret Key are only a fallback. Start with a small row limit to control monthly usage.",
+        "context": "",
+        "plural": "",
+        "line": 1013
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "b9fa8d034ac4e37eaf215fe66737b851",
+        "text": "Default target",
+        "context": "",
+        "plural": "",
+        "line": 1016
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "607e064d5ce603ed00fcaf852c19c94b",
+        "text": "Moz API token",
+        "context": "",
+        "plural": "",
+        "line": 1017
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "9b8ce27d60235026df35f7d5cbca4530",
+        "text": "Legacy Moz Access ID",
+        "context": "",
+        "plural": "",
+        "line": 1018
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "c8ee8763358100831a05c85657874e72",
+        "text": "Legacy Moz Secret Key",
+        "context": "",
+        "plural": "",
+        "line": 1019
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "3a6253c05602eb8d3bd204c6116b429d",
+        "text": "Moz API base URL",
+        "context": "",
+        "plural": "",
+        "line": 1020
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "ad470cb6dbb8dc939f06c96e7b0ab4fb",
+        "text": "Rows per request",
+        "context": "",
+        "plural": "",
+        "line": 1035
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "7c7dd953919a36c2613a5cbdb05ce96c",
+        "text": "Used by the Backlinks preview tables.",
+        "context": "",
+        "plural": "",
+        "line": 1036
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "ef8e3c27bc823b5dcf6164fb9f2823de",
+        "text": "Timeout (sec)",
+        "context": "",
+        "plural": "",
+        "line": 1045
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "352d399e1a48f6097e5ba56506f05233",
+        "text": "AI / OpenRouter",
+        "context": "",
+        "plural": "",
+        "line": 1054
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "cfc3cf84b322e9ae90482456eeb3bd38",
+        "text": "OpenRouter connection used by the Ichiban AI section. This follows the same OpenAI-compatible pattern as the Context module: provider, API key, model, limits, and OpenRouter attribution headers.",
+        "context": "",
+        "plural": "",
+        "line": 1057
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "3148562cec18808d8b30b9ee29e0f94e",
+        "text": "Enable AI features",
+        "context": "",
+        "plural": "",
+        "line": 1061
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "27703c8f150ac4bb0a3a83a7857353af",
+        "text": "Provider",
+        "context": "",
+        "plural": "",
+        "line": 1068
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "3f887aa03ecf4b1f9927b54999f9f425",
+        "text": "OpenRouter API key",
+        "context": "",
+        "plural": "",
+        "line": 1087
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "4737a7f3850d0474f3335ad3d0f213fa",
+        "text": "Get a key at openrouter.ai/keys.",
+        "context": "",
+        "plural": "",
+        "line": 1088
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "b8821dd93fc369a07b7e9be00bd71b10",
+        "text": "Default model",
+        "context": "",
+        "plural": "",
+        "line": 1098
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "f14be682d566283dc93e3af760bc8720",
+        "text": "OpenRouter format: provider/model, for example anthropic/claude-sonnet-4-6 or openai/gpt-4o-mini.",
+        "context": "",
+        "plural": "",
+        "line": 1099
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "ebd6c027329f58c7a56ddb68035e623a",
+        "text": "Max tokens",
+        "context": "",
+        "plural": "",
+        "line": 1107
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "ee7a8e262285ed49ea1b4e4ae11525bd",
+        "text": "Temperature",
+        "context": "",
+        "plural": "",
+        "line": 1117
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "e9c19aa21f310410427aed8cf273ee5e",
+        "text": "0 = deterministic, 1 = more creative.",
+        "context": "",
+        "plural": "",
+        "line": 1118
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "dc80dfae1022d8c1f3a4424589c3947f",
+        "text": "Global system prompt",
+        "context": "",
+        "plural": "",
+        "line": 1126
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "ac60eb790e862f3f993590931849b81f",
+        "text": "Prepended to Ichiban AI requests.",
+        "context": "",
+        "plural": "",
+        "line": 1127
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "75146a303e87f5716fce1a6a506185cf",
+        "text": "You are a helpful SEO assistant for ProcessWire websites.",
+        "context": "",
+        "plural": "",
+        "line": 1128
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "24d92b3277066f6e0f59081c85224a28",
+        "text": "Site URL (OpenRouter attribution)",
+        "context": "",
+        "plural": "",
+        "line": 1137
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "abdfdf90ffdff8c9d2aa53a5e0c0e5ae",
+        "text": "Sent as HTTP-Referer header.",
+        "context": "",
+        "plural": "",
+        "line": 1138
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "42adc4749d3e4cad8dab5d6caaefb002",
+        "text": "Site / app name (OpenRouter attribution)",
+        "context": "",
+        "plural": "",
+        "line": 1146
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "d5d1de4439d5925614911c6ece8274dd",
+        "text": "Sent as X-Title header.",
+        "context": "",
+        "plural": "",
+        "line": 1147
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "86c81580cb61ca8b8b36e1eb8791e413",
+        "text": "Publishing & URLs",
+        "context": "",
+        "plural": "",
+        "line": 1156
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "6ba02b19032039de34d471bc54d181ad",
+        "text": "IndexNow keys are simple verification strings, not keys from an account. Generate one here or use any 8-128 character key containing letters, numbers, and hyphens. A public key file named {key}.txt must exist at the site root and contain the key.",
+        "context": "",
+        "plural": "",
+        "line": 1162
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "f3fa4b8b953f520859f0c214f66d9bae",
+        "text": "Current key file URL: %s",
+        "context": "",
+        "plural": "",
+        "line": 1164
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "cf092d7f265535840a7191bfcde56ce6",
+        "text": "Index Now API Key",
+        "context": "",
+        "plural": "",
+        "line": 1172
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "b84b5ee761e789d69ce9c7be24f60152",
+        "text": "Used when Ichiban pings IndexNow after a public page is saved.",
+        "context": "",
+        "plural": "",
+        "line": 1173
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "d41067de431a8f0e6afc4d55afe9a674",
+        "text": "Click Save to write/update the public key file if the site root is writable.",
+        "context": "",
+        "plural": "",
+        "line": 1174
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "ad9fdbcb00b1dd7da69fbcdf723973f4",
+        "text": "Twitter/X Site Handle (global default)",
+        "context": "",
+        "plural": "",
+        "line": 1181
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "554f29fd1e15440cc34dbaa8a1b3cadc",
+        "text": "Example: @example",
+        "context": "",
+        "plural": "",
+        "line": 1182
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "9556ac4044ecb6e06b7b429847b0a7ab",
+        "text": "URL segments in SEO URLs",
+        "context": "",
+        "plural": "",
+        "line": 1189
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "17b32f4acfd38a4071740901071cc050",
+        "text": "Controls canonical, og:url, twitter:url, and hreflang on pages that use ProcessWire URL segments.",
+        "context": "",
+        "plural": "",
+        "line": 1190
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "83d8e9e795d8952cd83396209ba9a48f",
+        "text": "Preserve current URL segments",
+        "context": "",
+        "plural": "",
+        "line": 1191
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "fe2bdcd2792e9da25e6ea86d111b4c97",
+        "text": "Collapse to the page URL",
+        "context": "",
+        "plural": "",
+        "line": 1192
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "5813ce0ec7196c492c97596718f71969",
+        "text": "Sitemap",
+        "context": "",
+        "plural": "",
+        "line": 1199
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "55b9475f53a07c7d5196f4c71a398dbb",
+        "text": "Public index: %s. Use the Sitemap tab for generation status and manual actions.",
+        "context": "",
+        "plural": "",
+        "line": 1206
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "569a85acaf40ac1f92443e0decb42c95",
+        "text": "Enable XML sitemap",
+        "context": "",
+        "plural": "",
+        "line": 1212
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "b0f475614b773ce993fe45c9ef8b6329",
+        "text": "Sitemap directory",
+        "context": "",
+        "plural": "",
+        "line": 1219
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "ba69c62563d8fcaa5bc70e618ad9686c",
+        "text": "Relative to the ProcessWire web root.",
+        "context": "",
+        "plural": "",
+        "line": 1221
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "ae11a7f6039f458bb3417a74af2a2a22",
+        "text": "URLs per file",
+        "context": "",
+        "plural": "",
+        "line": 1227
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "42daa8924f722774b292a26353574ae1",
+        "text": "Respect noindex",
+        "context": "",
+        "plural": "",
+        "line": 1235
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "42fdbb35b46ad8e66130cc690f8d2e84",
+        "text": "Include hidden pages",
+        "context": "",
+        "plural": "",
+        "line": 1236
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "f10bf91385c456e865e24520b8c3249a",
+        "text": "Include unpublished pages",
+        "context": "",
+        "plural": "",
+        "line": 1237
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "bae90c7f5f8ba4caf46f4d33748af032",
+        "text": "Include image entries",
+        "context": "",
+        "plural": "",
+        "line": 1238
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "a3f0a766c142dca615feb89b2fcf8e4f",
+        "text": "Include hreflang alternates",
+        "context": "",
+        "plural": "",
+        "line": 1239
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "f395869cfdc0ad94b539257b0822f0b9",
+        "text": "Auto-regenerate with LazyCron",
+        "context": "",
+        "plural": "",
+        "line": 1240
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "1ebbf846450960ea27ce5d8a47e2ee28",
+        "text": "Default priority",
+        "context": "",
+        "plural": "",
+        "line": 1251
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "7c7455bca9481ec96e91524395bd37a6",
+        "text": "Default change frequency",
+        "context": "",
+        "plural": "",
+        "line": 1252
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "49e0d8d486d9112f21ba54742fe55be5",
+        "text": "Homepage priority",
+        "context": "",
+        "plural": "",
+        "line": 1253
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "c7e60025101e69e09853c4ac2718519b",
+        "text": "Homepage change frequency",
+        "context": "",
+        "plural": "",
+        "line": 1254
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "950bad0a29a72ff00fb288b1f071d3ca",
+        "text": "Only include templates",
+        "context": "",
+        "plural": "",
+        "line": 1255
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "c7ea296376dd22a7d17f04efffe8ed27",
+        "text": "Exclude templates",
+        "context": "",
+        "plural": "",
+        "line": 1256
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "31f0035ae8deafc50c1a884e22a2c851",
+        "text": "Lastmod date format",
+        "context": "",
+        "plural": "",
+        "line": 1257
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "6b7ef7337d0424ec1eaae0becea77bc2",
+        "text": "Regenerate interval seconds",
+        "context": "",
+        "plural": "",
+        "line": 1258
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "7b2a2bf0e015b564de9d30ec757db7cc",
+        "text": "Exclude URL patterns",
+        "context": "",
+        "plural": "",
+        "line": 1270
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "205b33cf81fcdb5e601655a6dfdd6641",
+        "text": "One substring or regex per line.",
+        "context": "",
+        "plural": "",
+        "line": 1271
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "ab6d16c877b80ef4bcaa140978b45722",
+        "text": "Custom URLs",
+        "context": "",
+        "plural": "",
+        "line": 1278
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "cd635d3759f05d2a6653958ea84baa87",
+        "text": "One CSV row per URL: loc,lastmod,changefreq,priority. JSON array is also accepted.",
+        "context": "",
+        "plural": "",
+        "line": 1279
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "06df33001c1d7187fdd81ea1f5b277aa",
+        "text": "Actions",
+        "context": "",
+        "plural": "",
+        "line": 1285
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "b61224e27f0e9c1e2ea56427ab9df646",
+        "text": "Open Sitemap dashboard",
+        "context": "",
+        "plural": "",
+        "line": 1286
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "e22314499074693a6db3ad3ad84009d7",
+        "text": "Open sitemap.xml",
+        "context": "",
+        "plural": "",
+        "line": 1287
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "f7f3595cfd911fe0f32b2d5ed2d6ec94",
+        "text": "robots.txt / llms.txt",
+        "context": "",
+        "plural": "",
+        "line": 1292
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "61485a8a151dfd94bbad3951bd85db78",
+        "text": "RobotsTxt companion module is installed. Use Setup > Robots.txt for the physical robots.txt editor and presets, or enable Ichiban robots.txt only when you want Ichiban to serve it dynamically. Avoid managing robots.txt in both places at once.",
+        "context": "",
+        "plural": "",
+        "line": 1297
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "8ce9d35f1632ad55a9b6fb6c83fdea06",
+        "text": "Install the companion RobotsTxt module if you want a full physical robots.txt editor with presets, rules overview, file status, and a View file action. Ichiban can still serve a simple dynamic robots.txt when enabled below.",
+        "context": "",
+        "plural": "",
+        "line": 1298
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "ebbcbe25e55e17e08420c46e56b9b72b",
+        "text": "Open Robots.txt editor",
+        "context": "",
+        "plural": "",
+        "line": 1304
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "6319ecca224596dd462c8d70e5de251e",
+        "text": "Open robots.txt",
+        "context": "",
+        "plural": "",
+        "line": 1305
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "3adf7437341bc34c9a419562a915cb4b",
+        "text": "Serve robots.txt from Ichiban",
+        "context": "",
+        "plural": "",
+        "line": 1311
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "06007cedde4f915ae8a13b0bbce0565f",
+        "text": "robots.txt content",
+        "context": "",
+        "plural": "",
+        "line": 1317
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "74650062ba06bfbf447668866a3a3760",
+        "text": "Ichiban appends Sitemap automatically when no Sitemap line is present.",
+        "context": "",
+        "plural": "",
+        "line": 1320
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "3df918c49ac03e882a2eee6e1b2f3377",
+        "text": "Serve llms.txt from Ichiban",
+        "context": "",
+        "plural": "",
+        "line": 1325
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "80c866323cb12b94221dff80bb9cf554",
+        "text": "llms.txt mode",
+        "context": "",
+        "plural": "",
+        "line": 1331
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "06b9281e396db002010bde1de57262eb",
+        "text": "Auto",
+        "context": "",
+        "plural": "",
+        "line": 1332
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "e1ba155a9f2e8c3be94020eef32a0301",
+        "text": "Manual",
+        "context": "",
+        "plural": "",
+        "line": 1333
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "25ee8a7254ee5db849a6b5e5255e4b18",
+        "text": "Auto mode templates",
+        "context": "",
+        "plural": "",
+        "line": 1339
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "74cf4d53a6a97044875cad78893856fa",
+        "text": "Comma-separated template names. Leave empty for all published pages.",
+        "context": "",
+        "plural": "",
+        "line": 1340
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "c65f8a4c0f1b072037bcd4e12d6ead1c",
+        "text": "Manual llms.txt lines",
+        "context": "",
+        "plural": "",
+        "line": 1346
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "dba285a1c9da947474171d57c08d9f74",
+        "text": "One Markdown link or plain URL per line.",
+        "context": "",
+        "plural": "",
+        "line": 1347
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "2f33b05b959e88dac60b3ade4c27982c",
+        "text": "Crawl & Search Cleanup",
+        "context": "",
+        "plural": "",
+        "line": 1355
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "25f9bdac879109e698c3eeea78382965",
+        "text": "Use cleanup options carefully on production. Blocked search queries are recorded in the Cleanup log.",
+        "context": "",
+        "plural": "",
+        "line": 1358
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "3ca11db7ae6adf6b9fc55bf1e49f9111",
+        "text": "Block spam search queries",
+        "context": "",
+        "plural": "",
+        "line": 1360
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "e78db2fa2f930ca7eb95d4fe519b1079",
+        "text": "Remove RSD link",
+        "context": "",
+        "plural": "",
+        "line": 1361
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "af4faf4b93a20e008a2a44d6afda6e5e",
+        "text": "Remove WLW manifest",
+        "context": "",
+        "plural": "",
+        "line": 1362
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "fba5ed320cbabb98e15b1d51ee8917b5",
+        "text": "Remove shortlink",
+        "context": "",
+        "plural": "",
+        "line": 1363
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "11e2216ecf0699ef40a37d563256f587",
+        "text": "Remove prev/next links",
+        "context": "",
+        "plural": "",
+        "line": 1364
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "da6d4ea0cd2bf158595a2f0e44c0afcb",
+        "text": "Remove generator meta",
+        "context": "",
+        "plural": "",
+        "line": 1365
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "84eea49868e62884a2b1691d7cddcdc1",
+        "text": "Blocked query action",
+        "context": "",
+        "plural": "",
+        "line": 1376
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "0499b7aaa6d121d7bece90c4109317b2",
+        "text": "Redirect to homepage",
+        "context": "",
+        "plural": "",
+        "line": 1377
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "d7c0a219f529812b6e4b637d7b61475f",
+        "text": "Return 400",
+        "context": "",
+        "plural": "",
+        "line": 1378
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "2a055d063bf3d4633b9178510c96e149",
+        "text": "Custom block regex patterns",
+        "context": "",
+        "plural": "",
+        "line": 1384
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "711561b4befca537ab5d6186def421ed",
+        "text": "One regular expression per line.",
+        "context": "",
+        "plural": "",
+        "line": 1385
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "2938c7f7e560ed972f8a4f68e80ff834",
+        "text": "Dashboard",
+        "context": "",
+        "plural": "",
+        "line": 53
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "9f4d395b3e4af46f092a4b462b8ea473",
+        "text": "SEO Dashboard",
+        "context": "",
+        "plural": "",
+        "line": 54
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "5ded7cfc24996854da04760043ba6190",
+        "text": "A quick overview of metadata health, crawl cleanup activity, redirects, and recent SEO changes.",
+        "context": "",
+        "plural": "",
+        "line": 88
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "d696bd75a309953bf613eb851cdee09a",
+        "text": "Open Audit",
+        "context": "",
+        "plural": "",
+        "line": 89
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "3e37d6888c657624030bcc638dadcc13",
+        "text": "Site SEO Score",
+        "context": "",
+        "plural": "",
+        "line": 93
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "416798f0b25aeb1beb087b8a33e932a5",
+        "text": "Review score",
+        "context": "",
+        "plural": "",
+        "line": 95
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "c6f04a5a6afe09939cab1dc1b9a8d078",
+        "text": "Pages without a meta title.",
+        "context": "",
+        "plural": "",
+        "line": 100
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "bfb42942a405eac62ad0e92738a5c4f3",
+        "text": "Pages without a search snippet.",
+        "context": "",
+        "plural": "",
+        "line": 101
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "e0ee926486f6ca48f8b405f1c383f634",
+        "text": "Pages that may share poorly on social networks.",
+        "context": "",
+        "plural": "",
+        "line": 102
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "926a9f5a5e0668125a66753533fd5404",
+        "text": "Published pages hidden from search engines.",
+        "context": "",
+        "plural": "",
+        "line": 103
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "a38d889a69652729428cd6a8d98fac2d",
+        "text": "Schemas",
+        "context": "",
+        "plural": "",
+        "line": 108
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "2a0256449a43fc299bc7b07f07cc2f2e",
+        "text": "GSC clicks",
+        "context": "",
+        "plural": "",
+        "line": 110
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "b8529a719da70101b02721a9b1a13ca8",
+        "text": "Indexing issues",
+        "context": "",
+        "plural": "",
+        "line": 111
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "ff9b4fbc51b2f0812cc38cd1178f6c26",
+        "text": "Index last rebuilt: %s",
+        "context": "",
+        "plural": "",
+        "line": 118
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "7a7b7a0b739647a0aa6bb1875ffee650",
+        "text": "Rebuild Index",
+        "context": "",
+        "plural": "",
+        "line": 119
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "d8d1e8296464e0d102b685ca5740f12e",
+        "text": "Recent redirects",
+        "context": "",
+        "plural": "",
+        "line": 121
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "4a38edfeaacb03b63ea7ff7c01e36aba",
+        "text": "No redirects have been created yet.",
+        "context": "",
+        "plural": "",
+        "line": 130
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "33b539e75111e7b300ec05d15c784435",
+        "text": "Manage redirects",
+        "context": "",
+        "plural": "",
+        "line": 132
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "09c0d35fcf533a857f668781e02c37a3",
+        "text": "Structured data",
+        "context": "",
+        "plural": "",
+        "line": 133
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "2f0a76f2e289332c22015e8c0ee86b74",
+        "text": "schema mappings",
+        "context": "",
+        "plural": "",
+        "line": 134
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "9d87b77d119da75e9586d9057706c800",
+        "text": "missing OG images",
+        "context": "",
+        "plural": "",
+        "line": 135
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "ecfc2dffe568c10a67dbc6d3724cfde2",
+        "text": "Activity",
+        "context": "",
+        "plural": "",
+        "line": 137
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "706f859724b8b0e099e5a827252e1c5d",
+        "text": "SEO revisions",
+        "context": "",
+        "plural": "",
+        "line": 138
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "d496583a9ae5fba1751e1b28d90365bc",
+        "text": "blocked searches",
+        "context": "",
+        "plural": "",
+        "line": 139
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "cc8d2364a9b575d533f8c432813ccc99",
+        "text": "Bulk Editor",
+        "context": "",
+        "plural": "",
+        "line": 147
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "5495968a5bfdd8010f0954e3b2a87a7e",
+        "text": "Bulk SEO Editor",
+        "context": "",
+        "plural": "",
+        "line": 148
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "21d758a9b0de9421b3ffcf59609efcf9",
+        "text": "Index not built yet. Please run Audit → Rebuild Index first.",
+        "context": "",
+        "plural": "",
+        "line": 168
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "5e309239cbc253988a2993a068b4d5b1",
+        "text": "Edit meta titles and descriptions across indexed pages without opening each page individually.",
+        "context": "",
+        "plural": "",
+        "line": 191
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "a56fd997e2cb45dea02c0840095525cb",
+        "text": "Recommended lengths",
+        "context": "",
+        "plural": "",
+        "line": 192
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "cb14c4ede1a6260bcfd3480fe4cf3093",
+        "text": "indexed pages",
+        "context": "",
+        "plural": "",
+        "line": 195
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "2da049b3f6efb55b71c1727f3b47e57b",
+        "text": "missing titles",
+        "context": "",
+        "plural": "",
+        "line": 196
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "91ceefea6d67966f3ca6fbf9af223147",
+        "text": "missing descriptions",
+        "context": "",
+        "plural": "",
+        "line": 197
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "fed36e93a0509e20f2dc96cbbd85b678",
+        "text": "templates",
+        "context": "",
+        "plural": "",
+        "line": 198
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "bb232c3f8d4bb560c17c9fd7a762860d",
+        "text": "Filter by template name",
+        "context": "",
+        "plural": "",
+        "line": 201
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "d7778d0c64b6ba21494c97f77a66885a",
+        "text": "Filter",
+        "context": "",
+        "plural": "",
+        "line": 202
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "dc30bc0c7914db5918da4263fce93ad2",
+        "text": "Clear",
+        "context": "",
+        "plural": "",
+        "line": 203
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "7d6bb3ee47544b7a9a0acbc6cecd0031",
+        "text": "Showing %1$d of %2$d indexed pages",
+        "context": "",
+        "plural": "",
+        "line": 204
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "e12077245fbed3db5f2324ea4b08e717",
+        "text": "Changes are saved as custom SEO values for each page.",
+        "context": "",
+        "plural": "",
+        "line": 208
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "c527f91b9b314bfaf3dca41af2afe629",
+        "text": "No indexed pages match this filter",
+        "context": "",
+        "plural": "",
+        "line": 210
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "193cfc9be3b995831c6af2fea6650e60",
+        "text": "Page",
+        "context": "",
+        "plural": "",
+        "line": 215
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "278d01e5af56273bae1bb99a98b370cd",
+        "text": "Critical",
+        "context": "",
+        "plural": "",
+        "line": 217
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "e17fdb615452f440c793b5ddad90dd5e",
+        "text": "Warnings",
+        "context": "",
+        "plural": "",
+        "line": 218
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "396d45b57c2fbe3318e7b93272a2686b",
+        "text": "Healthy",
+        "context": "",
+        "plural": "",
+        "line": 219
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "207ab96f9895f87f78f6c6162f323a4f",
+        "text": "%d pages",
+        "context": "",
+        "plural": "",
+        "line": 231
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "3e008941ac5579d625d326af1afc25f8",
+        "text": "Missing title",
+        "context": "",
+        "plural": "",
+        "line": 246
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "82d3598a151f16cf11970def5e70d3f0",
+        "text": "Missing description",
+        "context": "",
+        "plural": "",
+        "line": 247
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "3fa4031425bbfdb55a03849422d8d9dc",
+        "text": "Edit page",
+        "context": "",
+        "plural": "",
+        "line": 250
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "ac18571e9ba027153475530499ea7dbe",
+        "text": "target 30–70",
+        "context": "",
+        "plural": "",
+        "line": 251
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "89ce3028dd71ed591e3f85751ad1d819",
+        "text": "target 50–160",
+        "context": "",
+        "plural": "",
+        "line": 252
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "7d029cf2a87929c1475558f15bccb182",
+        "text": "Review changed fields, then save all visible edits together.",
+        "context": "",
+        "plural": "",
+        "line": 258
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "bfe7a0be98b1d60a62b2709498d2607d",
+        "text": "Saved SEO fields for %d pages.",
+        "context": "",
+        "plural": "",
+        "line": 302
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "a794b63a31efb5723afeed37052d139a",
+        "text": "%d submitted pages were skipped because they no longer have an Ichiban SEO field.",
+        "context": "",
+        "plural": "",
+        "line": 304
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "eda63b570db82e05c2fd7b5f0c3bb20f",
+        "text": "Audit",
+        "context": "",
+        "plural": "",
+        "line": 311
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "1c7ca5ddf8a2d26c346059d4c5e7240f",
+        "text": "SEO Audit Report",
+        "context": "",
+        "plural": "",
+        "line": 312
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "19a1a4cfb28f06ec77fc25a6ba9b2165",
+        "text": "Index not built yet. Please rebuild the index first.",
+        "context": "",
+        "plural": "",
+        "line": 342
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "644065a5487d2a525bde830fd4b46bfe",
+        "text": "Every page must have a meta title. Missing titles prevent search engines from identifying page content.",
+        "context": "",
+        "plural": "",
+        "line": 346
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "9438f3922e54caabdf1d0ee6aa423705",
+        "text": "Meta title should be 30–70 characters. Too short lacks context; too long gets truncated in search results.",
+        "context": "",
+        "plural": "",
+        "line": 347
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "a552e12f62256f54e82c2cc3c80637f1",
+        "text": "Each page should have a unique meta title. Duplicate titles confuse search engines about which page to rank.",
+        "context": "",
+        "plural": "",
+        "line": 348
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "b533c9143b51b1bd4691be7bb6a1582c",
+        "text": "Meta description should be set on every page. It appears as the snippet in search results and affects click-through rate.",
+        "context": "",
+        "plural": "",
+        "line": 349
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "a5e2f0705b313bf7664cd244360a1813",
+        "text": "Meta description should be 50–160 characters. Longer descriptions get cut off in search results.",
+        "context": "",
+        "plural": "",
+        "line": 350
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "8a9f8ec515416f8bbb98f56ab4f20a26",
+        "text": "Each page should have a unique meta description. Duplicates reduce the value of individual pages in search rankings.",
+        "context": "",
+        "plural": "",
+        "line": 351
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "fd2c15562e2d7980c5db43f62e0a4a87",
+        "text": "Open Graph image should be set so shared links look rich on social media.",
+        "context": "",
+        "plural": "",
+        "line": 352
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "3fce513fb1e80242956eeeb8aa7e20f1",
+        "text": "Canonical URL must be an absolute URL starting with http. Invalid canonicals can cause indexing issues.",
+        "context": "",
+        "plural": "",
+        "line": 353
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "ac9886e9d3f4822a6d7125906552eef3",
+        "text": "Published pages should not have noindex set unless intentionally hidden from search engines.",
+        "context": "",
+        "plural": "",
+        "line": 354
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "c475f4454daccec66bb17ec4974c3240",
+        "text": "URLs should use hyphens instead of underscores. Google treats hyphens as word separators, underscores as word joiners.",
+        "context": "",
+        "plural": "",
+        "line": 355
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "dc01859480d28257fe0e168d1969dd4a",
+        "text": "Schema.org type should be set to help search engines understand page content and enable rich results.",
+        "context": "",
+        "plural": "",
+        "line": 356
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "50a4ea5886e9b74d699c47349f5ccc6f",
+        "text": "Review technical SEO signals, metadata coverage, social sharing readiness, and schema basics across indexed pages.",
+        "context": "",
+        "plural": "",
+        "line": 391
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "c04f1e4841a6af78088d6ccf6f3a8a76",
+        "text": "Export CSV",
+        "context": "",
+        "plural": "",
+        "line": 393
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "cae9866f9e8b1261df35e8798b48dac6",
+        "text": "Audit score",
+        "context": "",
+        "plural": "",
+        "line": 396
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "92b6e620a025aab6d868bcabf9a44545",
+        "text": "open issues",
+        "context": "",
+        "plural": "",
+        "line": 398
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "7e85bcb66fb9a809d5ab4f62a8b8bea8",
+        "text": "critical",
+        "context": "",
+        "plural": "",
+        "line": 399
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "3879149292f9af4469cec013785d6dfd",
+        "text": "warnings",
+        "context": "",
+        "plural": "",
+        "line": 400
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "db07a988ebbbfbcc460b1e5a7db57d4a",
+        "text": "Last indexed:",
+        "context": "",
+        "plural": "",
+        "line": 403
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "3c1b1b069cbe9f09d78b1bea80405e93",
+        "text": "Rebuild the index after large content, template, or SEO field changes.",
+        "context": "",
+        "plural": "",
+        "line": 404
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "a18c078ea2b94f24f12cef2609fb14da",
+        "text": "Fix first",
+        "context": "",
+        "plural": "",
+        "line": 407
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "566682b91df13af6a414f4de03a19961",
+        "text": "%d pages affected",
+        "context": "",
+        "plural": "",
+        "line": 428
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "f57eacbb01d1146684945f3d443f611c",
+        "text": "No active audit issues",
+        "context": "",
+        "plural": "",
+        "line": 434
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "9da625131759cd8facbc3977ad3896c4",
+        "text": "Rule details",
+        "context": "",
+        "plural": "",
+        "line": 439
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "ab7a485ebe75b6dd7243ad719f23c7de",
+        "text": "Rule",
+        "context": "",
+        "plural": "",
+        "line": 441
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "007cc9547ae8884ad597cd92ba505422",
+        "text": "Severity",
+        "context": "",
+        "plural": "",
+        "line": 442
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "b5a7adde1af5c87d7fd797b6245c2a39",
+        "text": "Description",
+        "context": "",
+        "plural": "",
+        "line": 443
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "80b768b15c3693e345a436b9dc0ea36f",
+        "text": "Issues",
+        "context": "",
+        "plural": "",
+        "line": 444
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "877175f1d8ba6c5429e96ea65d3a5997",
+        "text": "Pages Affected",
+        "context": "",
+        "plural": "",
+        "line": 445
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "2b1ff48f58fcac978f51ef768d59bf83",
+        "text": "Open first affected page",
+        "context": "",
+        "plural": "",
+        "line": 452
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "08635c4f0bf6edbca5d2a8bd0da24a6c",
+        "text": "Redirects",
+        "context": "",
+        "plural": "",
+        "line": 467
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "95ef4929dd3563b677d3d1873bc08461",
+        "text": "Redirect Manager",
+        "context": "",
+        "plural": "",
+        "line": 468
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "b6e4d6c15b322b2def36969349edc2fe",
+        "text": "Imported %d redirects.",
+        "context": "",
+        "plural": "",
+        "line": 486
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "23f86049f85992c0d1ee5a70ce8b6db6",
+        "text": "Manage manual, imported, and automatic redirects from one place.",
+        "context": "",
+        "plural": "",
+        "line": 501
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "3fdec1ddf038c12af81ea185ed8c8083",
+        "text": "shown",
+        "context": "",
+        "plural": "",
+        "line": 502
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "739946d849ed2c606613dd6b9f01426e",
+        "text": "Search by source, target, or note",
+        "context": "",
+        "plural": "",
+        "line": 505
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "13348442cc6a27032d2b4aa28b75a5d3",
+        "text": "Search",
+        "context": "",
+        "plural": "",
+        "line": 506
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "be52536ce2456f133c611e523f95701c",
+        "text": "Add redirect",
+        "context": "",
+        "plural": "",
+        "line": 512
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "5da618e8e4b89c66fe86e32cdafde142",
+        "text": "From",
+        "context": "",
+        "plural": "",
+        "line": 514
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "e12167aa0a7698e6ebc92b4ce3909b53",
+        "text": "To",
+        "context": "",
+        "plural": "",
+        "line": 515
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "a1fa27779242b4902f7ae3bdd5c6d508",
+        "text": "Type",
+        "context": "",
+        "plural": "",
+        "line": 516
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "3b0649c72650c313a357338dcdfb64ec",
+        "text": "Note",
+        "context": "",
+        "plural": "",
+        "line": 518
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "433e3597944060ed606dd1ee4d116158",
+        "text": "Treat From as a regular expression pattern.",
+        "context": "",
+        "plural": "",
+        "line": 519
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "29d916d0db37747ddb65923756bafbf0",
+        "text": "Add Redirect",
+        "context": "",
+        "plural": "",
+        "line": 520
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "28ec2d08ef97978d3e7776c33a75592a",
+        "text": "Import CSV",
+        "context": "",
+        "plural": "",
+        "line": 523
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "59bcc5f531966f982541ced1e3717b8c",
+        "text": "CSV format",
+        "context": "",
+        "plural": "",
+        "line": 525
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "3b3e761b1c8361b6494955de5c27179e",
+        "text": "Allowed types: 301, 302, 307, 410, 451. Use 1 for regex patterns and 0 for plain paths.",
+        "context": "",
+        "plural": "",
+        "line": 527
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "81eeab9506186e2dca8faefa78d54067",
+        "text": "Example:",
+        "context": "",
+        "plural": "",
+        "line": 528
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "72d6d7a1885885bb55a565fd1070581a",
+        "text": "Import",
+        "context": "",
+        "plural": "",
+        "line": 531
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "93dad7633866331169afa8aafb5ad2d0",
+        "text": "Redirect list",
+        "context": "",
+        "plural": "",
+        "line": 534
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "b69df945ae986e6b1882cdc87ad19617",
+        "text": "Hits",
+        "context": "",
+        "plural": "",
+        "line": 537
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "06b9281e396db002010bde1de57262eb",
+        "text": "Auto",
+        "context": "",
+        "plural": "",
+        "line": 549
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "c3bf447eabe632720a3aa1a7ce401274",
+        "text": "Open",
+        "context": "",
+        "plural": "",
+        "line": 555
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "485386096fd4a3fa1f7e00836dbd0827",
+        "text": "Created automatically after a page path change.",
+        "context": "",
+        "plural": "",
+        "line": 566
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "c9cc8cce247e49bae79f15173ce97354",
+        "text": "Save",
+        "context": "",
+        "plural": "",
+        "line": 568
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "f2a6c498fb90ee345d997f888fce3b18",
+        "text": "Delete",
+        "context": "",
+        "plural": "",
+        "line": 571
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "f1c9e9af80bb533618f5bdefe333747d",
+        "text": "Insights",
+        "context": "",
+        "plural": "",
+        "line": 579
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "c8edfd442a49de54b51cfd1c5a4196e3",
+        "text": "SEO Insights",
+        "context": "",
+        "plural": "",
+        "line": 580
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "9916baf62a5906addf6905ede7103eb2",
+        "text": "Add Google OAuth Client ID and Client Secret in Settings before connecting Search Console.",
+        "context": "",
+        "plural": "",
+        "line": 585
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "833357916696a9b5644b32cd37a3ac94",
+        "text": "Google Search Console disconnected. Cached Insights and Page Indexing scan data were cleared.",
+        "context": "",
+        "plural": "",
+        "line": 594
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "38382341df23fe264a3257768af0ccbd",
+        "text": "Security token expired. Reload the page and click Disconnect GSC again.",
+        "context": "",
+        "plural": "",
+        "line": 596
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "1fc136b08e93155b636e08daf9b1948a",
+        "text": "Checked %d URLs with URL Inspection API.",
+        "context": "",
+        "plural": "",
+        "line": 617
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "f8539786a365d791d4078ebfadf0f598",
+        "text": "URL Inspection scan did not return results: %s",
+        "context": "",
+        "plural": "",
+        "line": 620
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "de148e0c29d2a0be01cb28cd3e73f1c9",
+        "text": "Security token expired. Reload the page and run Scan indexing issues again.",
+        "context": "",
+        "plural": "",
+        "line": 623
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "a269a9f699ef592ea53da37e53549875",
+        "text": "Review Google Search Console performance, page indexing checks, and search breakdowns from cached API data.",
+        "context": "",
+        "plural": "",
+        "line": 631
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "7b11b8df59ea4ca8a06e8750a4681332",
+        "text": "Open Search Console",
+        "context": "",
+        "plural": "",
+        "line": 632
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "2ec0d16e4ca169baedb9b2d50ec5c6d7",
+        "text": "Connected",
+        "context": "",
+        "plural": "",
+        "line": 633
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "cbdb553aaace16e77bb205e9bc3375ef",
+        "text": "Clicks",
+        "context": "",
+        "plural": "",
+        "line": 637
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "cbba0bb582f974795b6ae71047cc8d90",
+        "text": "Top Pages",
+        "context": "",
+        "plural": "",
+        "line": 645
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "64abc290660b16254eec82793814b751",
+        "text": "Top Queries",
+        "context": "",
+        "plural": "",
+        "line": 647
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "790d59ef178acbc75d233bf4211763c6",
+        "text": "Countries",
+        "context": "",
+        "plural": "",
+        "line": 655
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "c03ca67dda321195d74c951097f240c6",
+        "text": "Devices",
+        "context": "",
+        "plural": "",
+        "line": 656
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "c43ac5e20d34bdfa4bb127e8cc09e1e0",
+        "text": "Search Appearance",
+        "context": "",
+        "plural": "",
+        "line": 657
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "2fa3dc62790aa53d151200a8164fc11c",
+        "text": "Backlinks",
+        "context": "",
+        "plural": "",
+        "line": 666
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "e00226a7bc383b84f1e44d6c20d53467",
+        "text": "Moz quota snapshot saved.",
+        "context": "",
+        "plural": "",
+        "line": 689
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "00d38bdf70c9338041d07a7887e7b117",
+        "text": "Moz quota lookup did not return data.",
+        "context": "",
+        "plural": "",
+        "line": 691
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "44d1cb2adcaeef51af410fad1c19e7e6",
+        "text": "Saved backlink snapshot with %d rows.",
+        "context": "",
+        "plural": "",
+        "line": 703
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "4aff4e57b7209847ccc41bcc2745d359",
+        "text": "Monitor inbound links, linking domains, and anchor text through the Moz Links API.",
+        "context": "",
+        "plural": "",
+        "line": 714
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "a9ee4eb721c82c6210503745244dba47",
+        "text": "Moz Settings",
+        "context": "",
+        "plural": "",
+        "line": 715
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "46df3f0a3c175030638f99c4a80e9322",
+        "text": "No saved snapshot yet",
+        "context": "",
+        "plural": "",
+        "line": 730
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "64170782ace1493528730415d670055e",
+        "text": "saved rows",
+        "context": "",
+        "plural": "",
+        "line": 733
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "42aefbae01d2dfd981f7da7d823d689e",
+        "text": "target",
+        "context": "",
+        "plural": "",
+        "line": 734
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "0bf5ccdba5d874d59f5bf75cd486b294",
+        "text": "last refresh",
+        "context": "",
+        "plural": "",
+        "line": 735
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "bd908db5ccb07777ced8023dffc802f4",
+        "text": "Links",
+        "context": "",
+        "plural": "",
+        "line": 750
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "5ababd603b22780302dd8d83498e5172",
+        "text": "example.com",
+        "context": "",
+        "plural": "",
+        "line": 755
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "33bccc4998d30e02ad8f530b01971083",
+        "text": "Root domain",
+        "context": "",
+        "plural": "",
+        "line": 757
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "7f717ba9da26c27a23e86cb1ffe05fe7",
+        "text": "Refresh from Moz",
+        "context": "",
+        "plural": "",
+        "line": 763
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "c425d6b0af823d3510061a1faefa995c",
+        "text": "How to connect Moz",
+        "context": "",
+        "plural": "",
+        "line": 782
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "ce7beab1a382dacfeea47b70ce8ec1f6",
+        "text": "Create or open a Moz API account.",
+        "context": "",
+        "plural": "",
+        "line": 784
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "c014ee7db3d11af8bc7a712d229c1cb5",
+        "text": "During signup, Moz asks for a debit or credit card even on the free plan. This is part of their security and abuse-prevention flow.",
+        "context": "",
+        "plural": "",
+        "line": 785
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "af568a58e1da41bcf051aaa57e49561d",
+        "text": "Create an API token in the Moz API dashboard.",
+        "context": "",
+        "plural": "",
+        "line": 786
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "c7c2eb8550b06c6b7f0be3a3439d299c",
+        "text": "Paste the token into the Moz API token field in %s, then save.",
+        "context": "",
+        "plural": "",
+        "line": 787
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "13288d7bafe020026c4e633fda1c9f50",
+        "text": "Fallback: if token auth does not work for your account, open Show Legacy Credentials for the token and paste the Access ID and Secret Key instead.",
+        "context": "",
+        "plural": "",
+        "line": 788
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "29a2d2682f58a85045b1b2ba82b05cb5",
+        "text": "Return here, keep the default 5-row limit, and click Refresh from Moz. The free plan quota is tiny, so avoid repeated refreshes.",
+        "context": "",
+        "plural": "",
+        "line": 789
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "4a0f41574e0169b9cbf7b620597abc52",
+        "text": "Ichiban sends the new token as the x-moz-token header. Every refresh is saved as a backlink snapshot and reused from cache on page reload. Default API base URL: https://lsapi.seomoz.com/v2. Change it only if Moz gives you a different endpoint.",
+        "context": "",
+        "plural": "",
+        "line": 791
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "66d1b2c330002299e4c522e06c2c4a43",
+        "text": "Moz quota",
+        "context": "",
+        "plural": "",
+        "line": 802
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "21417fddb0e37af1c5d7beb2572242aa",
+        "text": "%1$d / %2$d rows used (%3$d%%)",
+        "context": "",
+        "plural": "",
+        "line": 812
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "c1adb60088c38d4edb700b294f2c8c1c",
+        "text": "Quota resets",
+        "context": "",
+        "plural": "",
+        "line": 816
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "712bd563f4ec14a3e9f63cd426a8f515",
+        "text": "Last checked",
+        "context": "",
+        "plural": "",
+        "line": 819
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "a4a65810608be9f8be842570900e8393",
+        "text": "No quota snapshot saved yet",
+        "context": "",
+        "plural": "",
+        "line": 823
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "ad52f8b657f7285100ec4f09b0626ecc",
+        "text": "Click Refresh quota to save current Moz usage inside Ichiban.",
+        "context": "",
+        "plural": "",
+        "line": 824
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "97159fe7a75f98584a2e2462ca3d4bcc",
+        "text": "Refresh quota",
+        "context": "",
+        "plural": "",
+        "line": 829
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "6e236b19e47f6132a9d7b49f8d1f1d3e",
+        "text": "Backlinks are not working yet",
+        "context": "",
+        "plural": "",
+        "line": 837
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "495ad14ba4b703b846af2573472f2eab",
+        "text": "Moz credentials are missing. Add your API token, or legacy Access ID and Secret Key, then return to this page to fetch backlink data.",
+        "context": "",
+        "plural": "",
+        "line": 838
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "638c05f4f159a403e04aebe94b46a2a8",
+        "text": "Open Settings",
+        "context": "",
+        "plural": "",
+        "line": 839
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "919a978ebc6e0a13726a609e1d592641",
+        "text": "No rows returned",
+        "context": "",
+        "plural": "",
+        "line": 845
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "870db953ccec85fe6fe4d81b24d5e276",
+        "text": "Saved history",
+        "context": "",
+        "plural": "",
+        "line": 890
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "3b878279a04dc47d60932cb294d96259",
+        "text": "Overview",
+        "context": "",
+        "plural": "",
+        "line": 939
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "08ee10c9fa141c53ae44667dcc1adf1e",
+        "text": "Date range",
+        "context": "",
+        "plural": "",
+        "line": 943
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "cdca48ec5dde79b84b395c0c557bb290",
+        "text": "%d days",
+        "context": "",
+        "plural": "",
+        "line": 947
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "1de31a3258bc607d52b41ee216c7d72f",
+        "text": "Client ID saved",
+        "context": "",
+        "plural": "",
+        "line": 973
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "42b44c19ef8327c019c9ad9f78d67aee",
+        "text": "Client Secret saved",
+        "context": "",
+        "plural": "",
+        "line": 974
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "4243784eac7728b8e6339bdafe240e01",
+        "text": "Google Search Console",
+        "context": "",
+        "plural": "",
+        "line": 981
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "4d9f46c179352d5b2d38589555a217bf",
+        "text": "Connect search performance data",
+        "context": "",
+        "plural": "",
+        "line": 982
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "d5ad36a5c11aa3bfcd6490071960510a",
+        "text": "After connecting, Ichiban will show Search Console metrics for 7, 28, 90, 180, and 365 days, including daily trends, top pages, top queries, countries, devices, search appearance, and cached Page Indexing scans.",
+        "context": "",
+        "plural": "",
+        "line": 983
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "5169a3e73c792b659bf7ea3ebcf90d2a",
+        "text": "Connect GSC",
+        "context": "",
+        "plural": "",
+        "line": 986
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "380619beb0f00818c369ec13a9649649",
+        "text": "Use these values",
+        "context": "",
+        "plural": "",
+        "line": 994
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "443d5d24c0964c6c49c5f81670d37624",
+        "text": "Authorized redirect URI",
+        "context": "",
+        "plural": "",
+        "line": 995
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "2271a30c6775a2b462687d705c876d30",
+        "text": "Search Console property",
+        "context": "",
+        "plural": "",
+        "line": 997
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "a786f0cf80cfb5d5d10abf81ce3a6838",
+        "text": "Enter the exact Search Console property you use. For Domain properties, use only the bare domain, for example lqrs.uk. Ichiban automatically sends it to Google as a sc-domain property. Use https://example.com/ only for URL-prefix properties.",
+        "context": "",
+        "plural": "",
+        "line": 999
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "84d1dfd4219bd088fcf71f136fd6b604",
+        "text": "How to connect",
+        "context": "",
+        "plural": "",
+        "line": 1005
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "93aac15bf6a45d37a5a7bc4ffe7e8e2e",
+        "text": "Create or choose a Google Cloud project.",
+        "context": "",
+        "plural": "",
+        "line": 1007
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "6237e1dab705b80dca50dd7791bca8a9",
+        "text": "Create OAuth credentials.",
+        "context": "",
+        "plural": "",
+        "line": 1008
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "56cc2183e22b64a8393c94666179c05d",
+        "text": "Publish the OAuth app.",
+        "context": "",
+        "plural": "",
+        "line": 1009
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "dac233cae924b8d77e260ec9cf5dc33b",
+        "text": "Save credentials in Ichiban.",
+        "context": "",
+        "plural": "",
+        "line": 1010
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "7b89353113f03e281ea7e3d43c50658a",
+        "text": "Connect your Google account.",
+        "context": "",
+        "plural": "",
+        "line": 1011
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "cb468820ea79505bed3bd0deee6600b7",
+        "text": "Run optional indexing scan.",
+        "context": "",
+        "plural": "",
+        "line": 1012
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "f121c1352efd213144968c77f03fd8ba",
+        "text": "Enable Search Console API",
+        "context": "",
+        "plural": "",
+        "line": 1015
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "ba9213abcc9cca89ead1239782c52a0d",
+        "text": "OAuth client setup",
+        "context": "",
+        "plural": "",
+        "line": 1016
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "1a5dec6593f3a1fd20673ea7830c8f9c",
+        "text": "What appears after connection",
+        "context": "",
+        "plural": "",
+        "line": 1021
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "b719f89abe2683830aa364c642fa393a",
+        "text": "Date ranges",
+        "context": "",
+        "plural": "",
+        "line": 1023
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "e81292f7a544bdf1ab7316beefd13be3",
+        "text": "Daily trend",
+        "context": "",
+        "plural": "",
+        "line": 1024
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "239eaebc34634cca9787fc149972746c",
+        "text": "Rows per detail",
+        "context": "",
+        "plural": "",
+        "line": 1025
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "da47ac89c1a3597ba4b513b7c2fa4ca7",
+        "text": "Page Indexing",
+        "context": "",
+        "plural": "",
+        "line": 1026
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "d2c24d59e0baff4d0155fbdf62590867",
+        "text": "Section",
+        "context": "",
+        "plural": "",
+        "line": 1028
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "ff1cc00548a7265a8600c7ea86675f39",
+        "text": "Breakdowns",
+        "context": "",
+        "plural": "",
+        "line": 1030
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "fd88b11cfde6aa5e3c7ff0553b534885",
+        "text": "Revisions",
+        "context": "",
+        "plural": "",
+        "line": 1039
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "91c51ab91c24548fd5427de8a0e7f31f",
+        "text": "SEO Revisions",
+        "context": "",
+        "plural": "",
+        "line": 1040
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "a1aac973a63feb1fd57f355743594c90",
+        "text": "Review tracked SEO field changes and restore previous values when a page edit needs to be rolled back.",
+        "context": "",
+        "plural": "",
+        "line": 1050
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "530945749366f603712bd4d24e0111e1",
+        "text": "recent revisions",
+        "context": "",
+        "plural": "",
+        "line": 1051
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "02855514ddbae9c70d07f449379222a0",
+        "text": "What is tracked?",
+        "context": "",
+        "plural": "",
+        "line": 1052
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "6bf3a349304b11418b6a2f280da6a678",
+        "text": "No SEO revisions yet",
+        "context": "",
+        "plural": "",
+        "line": 1054
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "44749712dbec183e983dcd78a7736c41",
+        "text": "Date",
+        "context": "",
+        "plural": "",
+        "line": 1058
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "49aea55a61e372375780c2356ff3c9ca",
+        "text": "%d more changes",
+        "context": "",
+        "plural": "",
+        "line": 1070
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "c91c7b93c28cd18741b71f727ee81ee3",
+        "text": "Reports",
+        "context": "",
+        "plural": "",
+        "line": 1087
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "81ba12f30d83c378af285a0371230353",
+        "text": "SEO Reports",
+        "context": "",
+        "plural": "",
+        "line": 1088
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "15f016ff5c23d5df2b3f38a408b5edf5",
+        "text": "Report settings saved.",
+        "context": "",
+        "plural": "",
+        "line": 1098
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "07225234b62f106f4bcec15723b1891c",
+        "text": "Report JSON generated.",
+        "context": "",
+        "plural": "",
+        "line": 1105
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "bb14575c101749a7c485e4a2969d1a25",
+        "text": "Enter a valid recipient email address for the test.",
+        "context": "",
+        "plural": "",
+        "line": 1112
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "86c9c8aedf1b4156d0df0827e5fcc95e",
+        "text": "Test report sent to %s.",
+        "context": "",
+        "plural": "",
+        "line": 1114
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "9a4b615ca2f061284e2f889a5e0406a7",
+        "text": "Test report could not be sent. Check the selected WireMail provider and sender settings.",
+        "context": "",
+        "plural": "",
+        "line": 1116
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "9030e39f00132d583da4122532e509e9",
+        "text": "Monthly",
+        "context": "",
+        "plural": "",
+        "line": 1124
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "be78895889e8bb7c29f2b40b8b9027ce",
+        "text": "In development",
+        "context": "",
+        "plural": "",
+        "line": 1125
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "6e7b34fa59e1bd229b207892956dc41c",
+        "text": "Never",
+        "context": "",
+        "plural": "",
+        "line": 1130
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "555c449850a679d325c002d6081e9373",
+        "text": "Email reports",
+        "context": "",
+        "plural": "",
+        "line": 1137
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "9f209867ef413cf433f09d82c8d3728e",
+        "text": "Reports are in development",
+        "context": "",
+        "plural": "",
+        "line": 1138
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "db19324b69e6523d959f877cc425ae59",
+        "text": "LazyCron will generate the report as JSON, store the latest snapshot here, and send the same report by email. DOCX export is available for printing or sharing with a client.",
+        "context": "",
+        "plural": "",
+        "line": 1139
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "c9d0f684bd8afe89509359f6f64af465",
+        "text": "Current schedule: %s",
+        "context": "",
+        "plural": "",
+        "line": 1143
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "f5ea5a57edff2817de95a4a680310939",
+        "text": "Email delivery is enabled in settings.",
+        "context": "",
+        "plural": "",
+        "line": 1144
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "c20ff854937e5b0fa34512a7281f0eb5",
+        "text": "Last generated: %s",
+        "context": "",
+        "plural": "",
+        "line": 1145
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "3d142456f4594a65bf0328b48c3ea3cb",
+        "text": "Recipients: %s",
+        "context": "",
+        "plural": "",
+        "line": 1146
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "ef526c8948e5024b155827fe4d6ab441",
+        "text": "A short operational digest: current SEO score, new critical issues, pages that need attention, Search Console movement, and indexing warnings from the latest cached scan.",
+        "context": "",
+        "plural": "",
+        "line": 1152
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "672d04b68f6e2446736244f5394f33a1",
+        "text": "A broader trend summary: score change, issue totals, top winning and losing pages, query visibility, cleanup activity, redirect hits, and recommendations for the next month.",
+        "context": "",
+        "plural": "",
+        "line": 1153
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "3c60f8a18255c43f46adf559658e9469",
+        "text": "Planned report data",
+        "context": "",
+        "plural": "",
+        "line": 1160
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "ba95ccf5ff1e3c1e123d72d3b5839600",
+        "text": "SEO health score and critical audit issues",
+        "context": "",
+        "plural": "",
+        "line": 1162
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "5514beefa3cf9fb90a5aab1b5635fe39",
+        "text": "Missing titles, descriptions, OG images, and noindex pages",
+        "context": "",
+        "plural": "",
+        "line": 1163
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "0d08eb3c00cf5df40cebd7cd903d9ef4",
+        "text": "Search Console clicks, impressions, CTR, and average position",
+        "context": "",
+        "plural": "",
+        "line": 1164
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "c941e3e28d391260d0ab99b8eae0543f",
+        "text": "Top pages, top queries, countries, devices, and search appearance",
+        "context": "",
+        "plural": "",
+        "line": 1165
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "7489962f8f744553c84540b49cdfe252",
+        "text": "Page Indexing sample scan issues",
+        "context": "",
+        "plural": "",
+        "line": 1166
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "65c0c6e55aebd2915fcf247e41d31324",
+        "text": "Recent redirects, cleanup blocks, and SEO revisions",
+        "context": "",
+        "plural": "",
+        "line": 1167
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "adbf210d8192e10cdb1b48623db1bc0a",
+        "text": "Latest JSON report",
+        "context": "",
+        "plural": "",
+        "line": 1172
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "2d6f6e522bfa1c678f32eaafac824604",
+        "text": "Generate report JSON",
+        "context": "",
+        "plural": "",
+        "line": 1174
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "7346caa5c044baf6fa89eef9027e0dc2",
+        "text": "Download DOCX",
+        "context": "",
+        "plural": "",
+        "line": 1175
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "6371fb284d0f3d642f925706554074a4",
+        "text": "No report JSON has been generated yet.",
+        "context": "",
+        "plural": "",
+        "line": 1180
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "074b37a1f8c8d097db329269306dc82a",
+        "text": "SEO score",
+        "context": "",
+        "plural": "",
+        "line": 1183
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "511f2908daccf3e43e3b2aadb757c69f",
+        "text": "priority issues",
+        "context": "",
+        "plural": "",
+        "line": 1184
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "2d8413ae32cda5259e93d4f3666f1235",
+        "text": "redirects",
+        "context": "",
+        "plural": "",
+        "line": 1185
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "d7ef833eef4eab6e04dae7e2d02281e2",
+        "text": "Report settings",
+        "context": "",
+        "plural": "",
+        "line": 1214
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "02aeff7b30592ea88903bc067d53d785",
+        "text": "Enable scheduled SEO email reports",
+        "context": "",
+        "plural": "",
+        "line": 1219
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "7cf395303ce3665a9834721d4b748e4b",
+        "text": "Frequency",
+        "context": "",
+        "plural": "",
+        "line": 1220
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "5959cf158e76f7c6f27bff2917ee05b1",
+        "text": "Recipients",
+        "context": "",
+        "plural": "",
+        "line": 1221
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "b738447fc9dae2d3887e9c28dfb6dab1",
+        "text": "Include Google Search Console summary",
+        "context": "",
+        "plural": "",
+        "line": 1222
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "ab7cdc2b180fc58564cd06e2e1507977",
+        "text": "Mailer",
+        "context": "",
+        "plural": "",
+        "line": 1223
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "3b4d5020b407b2eae50b456767d206b3",
+        "text": "From email",
+        "context": "",
+        "plural": "",
+        "line": 1224
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "c3a7ea0c38bac179a545dbfaf4ebb013",
+        "text": "From name",
+        "context": "",
+        "plural": "",
+        "line": 1225
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "ee6194f4ccfdbe7933961e43d6f90d76",
+        "text": "Save report settings",
+        "context": "",
+        "plural": "",
+        "line": 1227
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "36919f04baddfe13a8f360fab4d3b8c6",
+        "text": "Send Test Mail",
+        "context": "",
+        "plural": "",
+        "line": 1231
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "a7cdc8690b95d29021411bc235e02e00",
+        "text": "Save your settings first, then test. The email is sent through the currently selected WireMail provider.",
+        "context": "",
+        "plural": "",
+        "line": 1232
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "718ab67ab696216232f873a816b4c3ae",
+        "text": "Recipient email address",
+        "context": "",
+        "plural": "",
+        "line": 1233
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "77583b688213cdb648ab7259d4b743da",
+        "text": "PHP ZipArchive extension is required to generate DOCX reports.",
+        "context": "",
+        "plural": "",
+        "line": 1264
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "22b68561382eae5a367978df7489a588",
+        "text": "Default (site WireMail setting)",
+        "context": "",
+        "plural": "",
+        "line": 1275
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "8c6384dda98d8864d00e29dc96179970",
+        "text": "Cleanup",
+        "context": "",
+        "plural": "",
+        "line": 1286
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "2f33b05b959e88dac60b3ade4c27982c",
+        "text": "Crawl & Search Cleanup",
+        "context": "",
+        "plural": "",
+        "line": 1287
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "5b710bb3eabf36b0fd2fad5981e4c49d",
+        "text": "Cleanup log table is not available yet.",
+        "context": "",
+        "plural": "",
+        "line": 1292
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "8fbde3592f3d8a4f25335e0eb1131b15",
+        "text": "Monitor spam search queries and lightweight crawl-surface cleanup that keeps low-value URLs out of public search paths.",
+        "context": "",
+        "plural": "",
+        "line": 1301
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "521c36a31c2762741cf0f8890cbe05e3",
+        "text": "On",
+        "context": "",
+        "plural": "",
+        "line": 1303
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "cc25395c697bda6b15d8c719c91305c9",
+        "text": "recent blocks",
+        "context": "",
+        "plural": "",
+        "line": 1304
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "9a9938cc7d9d0bb27617530349ebe7f2",
+        "text": "unique IPs",
+        "context": "",
+        "plural": "",
+        "line": 1305
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "84ba93e6ab6d556b08280bfe7ed8c5c8",
+        "text": "custom patterns",
+        "context": "",
+        "plural": "",
+        "line": 1306
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "43f46ad0a6a808aa9c365af10603d239",
+        "text": "Current action",
+        "context": "",
+        "plural": "",
+        "line": 1308
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "b505562d3d31085f4552c94d6e6d5d48",
+        "text": "No blocked queries logged yet",
+        "context": "",
+        "plural": "",
+        "line": 1310
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "5813ce0ec7196c492c97596718f71969",
+        "text": "Sitemap",
+        "context": "",
+        "plural": "",
+        "line": 1325
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "7036538ac2854b23d072ec99da8f5b0a",
+        "text": "XML Sitemap",
+        "context": "",
+        "plural": "",
+        "line": 1326
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "77cef957a2ef87caa1adff97fe75dfed",
+        "text": "Generated %d sitemap file(s), %s URLs in %.2fs.",
+        "context": "",
+        "plural": "",
+        "line": 1338
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "aa4d6eca815f814ae8d66b7a0e9ace89",
+        "text": "Sitemap generation failed: ",
+        "context": "",
+        "plural": "",
+        "line": 1341
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "bef940614944b349e06fa81bd9d62db6",
+        "text": "Sitemap files deleted.",
+        "context": "",
+        "plural": "",
+        "line": 1353
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "2c4ef09ebfa180f06b1d4ac5a6bbaa13",
+        "text": "Sitemap directory created.",
+        "context": "",
+        "plural": "",
+        "line": 1361
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "d15305d7a4e34e02489c74a5ef542f36",
+        "text": "Off",
+        "context": "",
+        "plural": "",
+        "line": 1383
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "200a4445b971d7a768a8f3f6efd283ba",
+        "text": "Generate and inspect the XML sitemap files served by Ichiban.",
+        "context": "",
+        "plural": "",
+        "line": 1386
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "7af59ca1298bf39877eea71c7450924c",
+        "text": "Open Sitemap Settings",
+        "context": "",
+        "plural": "",
+        "line": 1387
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "45b963397aa40d4a0063e0d85e4fe7a1",
+        "text": "files",
+        "context": "",
+        "plural": "",
+        "line": 1389
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "6f0118397671d5cdea6c525a67f4753c",
+        "text": "URLs",
+        "context": "",
+        "plural": "",
+        "line": 1390
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "9093525a73c1e95a729e1392e4ede0c6",
+        "text": "total size",
+        "context": "",
+        "plural": "",
+        "line": 1391
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "e0aa021e21dddbd6d8cecec71e9cf564",
+        "text": "OK",
+        "context": "",
+        "plural": "",
+        "line": 1392
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "30d7a80090e845f560b7784238e85969",
+        "text": "LazyCron",
+        "context": "",
+        "plural": "",
+        "line": 1393
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "0742c642fa68e53b7605f135544a243f",
+        "text": "Public index",
+        "context": "",
+        "plural": "",
+        "line": 1395
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "aa9053ec771f1c66b14089ff8b2be89b",
+        "text": "Last generated",
+        "context": "",
+        "plural": "",
+        "line": 1396
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "e73cda510e8bb947f7e61089e5581494",
+        "text": "Directory",
+        "context": "",
+        "plural": "",
+        "line": 1397
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "8958c951653a6c1ba525bf7232d20caa",
+        "text": "Auto regeneration",
+        "context": "",
+        "plural": "",
+        "line": 1398
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "1d9c6da96b457bdd5259ae38c86cc080",
+        "text": "Sitemap auto-regeneration is enabled, but LazyCron is not installed. Install the core LazyCron module or use Generate Now manually.",
+        "context": "",
+        "plural": "",
+        "line": 1401
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "3511021951e6cabe1ef6547dfaacbcaa",
+        "text": "The sitemap directory does not exist yet.",
+        "context": "",
+        "plural": "",
+        "line": 1405
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "1a66ebe97638ee1c7c8f277aacb01e5e",
+        "text": "Create Directory",
+        "context": "",
+        "plural": "",
+        "line": 1406
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "5eefd5c32b1e8ae11379ede114ef4ead",
+        "text": "The sitemap directory is not writable.",
+        "context": "",
+        "plural": "",
+        "line": 1408
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "530a6ed46ff9e1aa707e0af48a465be7",
+        "text": "Generating...",
+        "context": "",
+        "plural": "",
+        "line": 1412
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "9e58e0e2c85e2f645c34af266791657c",
+        "text": "Delete Files",
+        "context": "",
+        "plural": "",
+        "line": 1415
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "16ee2ae1c432ef5c40d9b4ac537491dc",
+        "text": "No sitemap files yet",
+        "context": "",
+        "plural": "",
+        "line": 1419
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "0b27918290ff5323bea1e3b78a9cf04e",
+        "text": "File",
+        "context": "",
+        "plural": "",
+        "line": 1423
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "6a992d5529f459a44fee58c733255e86",
+        "text": "index",
+        "context": "",
+        "plural": "",
+        "line": 1429
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "b9f5c797ebbf55adccdd8539a65a0241",
+        "text": "Disabled",
+        "context": "",
+        "plural": "",
+        "line": 1437
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "1527913f2df3d5298c0648cd8b52e90e",
+        "text": "Waiting for LazyCron module",
+        "context": "",
+        "plural": "",
+        "line": 1438
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "2c450a87221f73b6299b349f0eebdbfb",
+        "text": "%s, minimum interval %d seconds",
+        "context": "",
+        "plural": "",
+        "line": 1440
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "19f59b74448f6a27519db281a44e4b12",
+        "text": "Migration",
+        "context": "",
+        "plural": "",
+        "line": 1455
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "d65d3e75a29453ce407a987b950ea6bf",
+        "text": "SEO Migration",
+        "context": "",
+        "plural": "",
+        "line": 1456
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "9fbd0aa4cbdcb9a0592cd0f899d7ce45",
+        "text": "Repaired duplicate Ichiban fields. Kept %s, removed %s from %d template(s), copied %d row(s). Backups: %s.",
+        "context": "",
+        "plural": "",
+        "line": 1464
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "e7b762ae23ff58d931eae481c208f566",
+        "text": "Converted field %s. Backup table: %s. Rows migrated: %d.",
+        "context": "",
+        "plural": "",
+        "line": 1475
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "e657b03d129c75fe7906187a5aab9166",
+        "text": "Convert existing SeoMaestro fields to Ichiban without deleting the field or losing per-page SEO data.",
+        "context": "",
+        "plural": "",
+        "line": 1488
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "a745e6adcf5830f34bd49d67a4615509",
+        "text": "SeoMaestro reference",
+        "context": "",
+        "plural": "",
+        "line": 1489
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "878ef99969f24c1bb0b091ea84391c43",
+        "text": "Find SeoMaestro fields",
+        "context": "",
+        "plural": "",
+        "line": 1491
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "79061263518514152c480906a1677e4d",
+        "text": "Create a table backup",
+        "context": "",
+        "plural": "",
+        "line": 1492
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "797fa1d3ee920c779c2bf520017431ad",
+        "text": "Convert data and switch type",
+        "context": "",
+        "plural": "",
+        "line": 1493
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "9b913bfac7efd6b6a3e6301ae4156cee",
+        "text": "FieldtypeIchiban is not installed yet. Install it from Modules before running a migration.",
+        "context": "",
+        "plural": "",
+        "line": 1498
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "2e7bfb05187020c3ff85b53ec5a64901",
+        "text": "No SeoMaestro fields found",
+        "context": "",
+        "plural": "",
+        "line": 1502
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "6f16a5f8ff5d75ab84c018adacdfcbb7",
+        "text": "Field",
+        "context": "",
+        "plural": "",
+        "line": 1507
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "6adf97f83acf6453d4a6a4b1070f3754",
+        "text": "None",
+        "context": "",
+        "plural": "",
+        "line": 1511
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "683bbabbc942967ecf2d819ad6b230f0",
+        "text": "Create a backup and convert this field to Ichiban?",
+        "context": "",
+        "plural": "",
+        "line": 1518
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "6c4a12988eee52faf677b0ba81a0d60f",
+        "text": "Before you run it",
+        "context": "",
+        "plural": "",
+        "line": 1522
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "c81ce93ae3b85794289232491c159941",
+        "text": "Field tokens like {title} become Ichiban field sources; custom text stays custom text.",
+        "context": "",
+        "plural": "",
+        "line": 1528
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "b5d6c6f7b7366b52649bd3d0599a4c32",
+        "text": "Field tokens become sources, custom copy is preserved.",
+        "context": "",
+        "plural": "",
+        "line": 1529
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "01f0daf761da2a9bedbf32f5c6c038e6",
+        "text": "Copied as the page canonical override when it is not inherited.",
+        "context": "",
+        "plural": "",
+        "line": 1530
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "80596546abff1f2d450e7364efc1987b",
+        "text": "Field tokens become sources for social title output.",
+        "context": "",
+        "plural": "",
+        "line": 1531
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "2d370202ef1621a980a4720fa4cfc741",
+        "text": "Field tokens become sources for social description output.",
+        "context": "",
+        "plural": "",
+        "line": 1532
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "6de748487fb10d7bb6401237d3089fd2",
+        "text": "Copied as the selected OG image source. Ichiban resolves image output at render time.",
+        "context": "",
+        "plural": "",
+        "line": 1533
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "235b78afb8eb5097f7ac022c1794ebba",
+        "text": "Copied as alternate text for the OG image.",
+        "context": "",
+        "plural": "",
+        "line": 1534
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "db63810c354e9cbc7a45c3346f27378f",
+        "text": "Copied when SeoMaestro stored an explicit type.",
+        "context": "",
+        "plural": "",
+        "line": 1535
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "1df72f56060ebb5e833fd2cb7789d10b",
+        "text": "Copied as the page Twitter/X card mode.",
+        "context": "",
+        "plural": "",
+        "line": 1536
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "cd7881e988df3f0df6969b714476611a",
+        "text": "Copied as the page creator handle.",
+        "context": "",
+        "plural": "",
+        "line": 1537
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "26f5e971c7d642983712af156444ddc7",
+        "text": "Copied only when the value is not inherit.",
+        "context": "",
+        "plural": "",
+        "line": 1538
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "b47fedd4584c551ec79be26f71ff7f9f",
+        "text": "Copied only when the value is not inherit; otherwise Ichiban defaults to included.",
+        "context": "",
+        "plural": "",
+        "line": 1540
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "2612b522c46c4a297a91f7a0b466d9bc",
+        "text": "Copied as the page-level sitemap priority.",
+        "context": "",
+        "plural": "",
+        "line": 1541
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "ba173a09bd5663626abf06d1d17c0bf9",
+        "text": "Copied as the page-level change frequency.",
+        "context": "",
+        "plural": "",
+        "line": 1542
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "e4ba3304db42b31af4707c0c3d7b332b",
+        "text": "Data mapping",
+        "context": "",
+        "plural": "",
+        "line": 1546
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "55b011f515642256f8b7b158ca540931",
+        "text": "Schema type defaults to WebPage",
+        "context": "",
+        "plural": "",
+        "line": 1547
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "8af23e5c696200bada06372ecbc8f832",
+        "text": "What moves",
+        "context": "",
+        "plural": "",
+        "line": 1549
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "677b1ea8ae4decc1f5986dd983248cde",
+        "text": "Field tokens",
+        "context": "",
+        "plural": "",
+        "line": 1558
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "3500ba09d0538297440ca620c9dd46bf",
+        "text": "Backup",
+        "context": "",
+        "plural": "",
+        "line": 1559
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "d6fb57faa1c48b0de3719ef0cf38ce65",
+        "text": "Duplicate Ichiban fields detected",
+        "context": "",
+        "plural": "",
+        "line": 1581
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "ecc74abd82c584b28d88e3e469a62273",
+        "text": "This site has more than one FieldtypeIchiban field. Ichiban will keep %s as the canonical SEO field and can remove %s from templates after backing up both tables.",
+        "context": "",
+        "plural": "",
+        "line": 1582
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "5f8e2d56c22060808c3d63f7dd43246e",
+        "text": "Backup both tables, copy missing rows into seo, and remove the duplicate field from templates?",
+        "context": "",
+        "plural": "",
+        "line": 1587
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "4be02862798fb8a7f780a94f2c62cf7c",
+        "text": "Schema Builder",
+        "context": "",
+        "plural": "",
+        "line": 1593
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "9b6769725cbc5375769b5e538b2fe18e",
+        "text": "Schema builder mappings saved.",
+        "context": "",
+        "plural": "",
+        "line": 1626
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "7886b38e0032a933dba52f031169d272",
+        "text": "Create Schema.org nodes in a database-backed builder. Pick a type, choose templates, then map schema properties to ProcessWire fields or source expressions.",
+        "context": "",
+        "plural": "",
+        "line": 1652
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "4b90b6f8b5e78d0d81048d52869b7318",
+        "text": "Save Schemas",
+        "context": "",
+        "plural": "",
+        "line": 1667
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "0a40e3c91a3a55c9a37428c6d194d0e5",
+        "text": "AI",
+        "context": "",
+        "plural": "",
+        "line": 1675
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "a94745b00e5ed823953a8c28ff741c2d",
+        "text": "SEO AI",
+        "context": "",
+        "plural": "",
+        "line": 1676
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "58638440f29a5990eb547152e33298c6",
+        "text": "AI workspace is in development",
+        "context": "",
+        "plural": "",
+        "line": 1704
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "ca9926f3094e9ef1e35e66768b217ab3",
+        "text": "This page will become the AI area for SEO suggestions, metadata drafts, schema help, and report summaries. It uses Context AI Gateway when available, with Ichiban OpenRouter settings as fallback, and attaches exported Context files to test requests.",
+        "context": "",
+        "plural": "",
+        "line": 1705
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "61aa63eb3ac1c3408640463ee5fe8aa3",
+        "text": "Configured",
+        "context": "",
+        "plural": "",
+        "line": 1707
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "4c2d04983cfbca7ad6fad0bae11b7618",
+        "text": "Provider: %s",
+        "context": "",
+        "plural": "",
+        "line": 1708
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "33d0e5d99493052d203cd308fb3604df",
+        "text": "Model: %s",
+        "context": "",
+        "plural": "",
+        "line": 1709
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "2f86fdbafdbb907d769846547ecf8695",
+        "text": "Context files: %s",
+        "context": "",
+        "plural": "",
+        "line": 1710
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "a15876382b98ed526e73a6678d66c5fc",
+        "text": "Open AI settings",
+        "context": "",
+        "plural": "",
+        "line": 1711
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "b9b6387278ff7b8ea04568bdc5725fa3",
+        "text": "Test AI request",
+        "context": "",
+        "plural": "",
+        "line": 1715
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "0b9171fc5e063b1e00b222d6b63bf733",
+        "text": "Run test",
+        "context": "",
+        "plural": "",
+        "line": 1729
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "87ad7e70a6d54017a933389a756211ed",
+        "text": "AI request failed",
+        "context": "",
+        "plural": "",
+        "line": 1733
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "3b158020fa009a28c258d3e9b625c4be",
+        "text": "Model: %s · %d ms",
+        "context": "",
+        "plural": "",
+        "line": 1741
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "d8113f4d1f649caa4b106d7991e41488",
+        "text": "The provider returned an empty message body. Try another model, increase Max tokens, or reduce the Context files sent with the request.",
+        "context": "",
+        "plural": "",
+        "line": 1745
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "81670a3d543b3cb8d20b73590dd404ae",
+        "text": "Audit suggestions",
+        "context": "",
+        "plural": "",
+        "line": 1757
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "bc3f46852275ab8a7da99fc77f4ecb83",
+        "text": "Find practical SEO fixes from Context data.",
+        "context": "",
+        "plural": "",
+        "line": 1758
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "e8ae2b3c6a0a742b12adc05ec70eabd6",
+        "text": "Using the attached Context export, give me 5 practical SEO improvements for the current site in concise bullets. Mention which pages, templates, or fields you used.",
+        "context": "",
+        "plural": "",
+        "line": 1759
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "e0009b3babfad929a1e79a3fde429cfb",
+        "text": "Metadata drafts",
+        "context": "",
+        "plural": "",
+        "line": 1762
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "5b4cfeb5da3859b0aaa72a2a2c5b4dfb",
+        "text": "Draft titles and descriptions for priority pages.",
+        "context": "",
+        "plural": "",
+        "line": 1763
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "9c68d8f6810e4440651644cf7d230f9a",
+        "text": "Using the attached Context export, choose 5 priority pages or templates that need stronger metadata. For each one, draft an SEO title under 60 characters and a meta description under 155 characters.",
+        "context": "",
+        "plural": "",
+        "line": 1764
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "b89e539ac27b0832f7e028f4406d7fc8",
+        "text": "Schema help",
+        "context": "",
+        "plural": "",
+        "line": 1767
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "ab3d845693af768bda668c493bfa6b18",
+        "text": "Recommend Schema.org mappings.",
+        "context": "",
+        "plural": "",
+        "line": 1768
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "695eec73706fbfb2558272a701fc0ca5",
+        "text": "Using the attached Context export and the existing ProcessWire templates/fields, suggest Schema.org types and field mappings for the most important page templates. Include source fields such as field:title or field:summary when possible.",
+        "context": "",
+        "plural": "",
+        "line": 1769
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "5031d2669ceb39cf9e3c5bd8071b3ae6",
+        "text": "Report summary",
+        "context": "",
+        "plural": "",
+        "line": 1772
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "cf7924d73a558815529be20b2e23e192",
+        "text": "Prepare a client-friendly report brief.",
+        "context": "",
+        "plural": "",
+        "line": 1773
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "91dca7d21d99ef20ce8c18e05e1fef82",
+        "text": "Using the attached Context export, write a concise client-friendly SEO report summary: current site structure, biggest opportunities, risks, and next actions. Keep it suitable for a monthly report.",
+        "context": "",
+        "plural": "",
+        "line": 1774
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "28b80975b6641681ee6985abaf438677",
+        "text": "No templates",
+        "context": "",
+        "plural": "",
+        "line": 1796
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "00d23a76e43b46dae9ec7aa9dcbebb32",
+        "text": "Enabled",
+        "context": "",
+        "plural": "",
+        "line": 1828
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "1063e38cb53d94d386f21227fcd84717",
+        "text": "Remove",
+        "context": "",
+        "plural": "",
+        "line": 1829
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "49ee3087348e8d44e1feda1917443987",
+        "text": "Name",
+        "context": "",
+        "plural": "",
+        "line": 1832
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "6cb6f90e022d55db3527e3a1dfc8938c",
+        "text": "Schema type",
+        "context": "",
+        "plural": "",
+        "line": 1833
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "a1e88efea9b9183d6eda122b47621799",
+        "text": "Custom type",
+        "context": "",
+        "plural": "",
+        "line": 1834
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "7df96b18c230f90ada0a9e2307226338",
+        "text": "Templates",
+        "context": "",
+        "plural": "",
+        "line": 1835
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "5ad234cb2cde4266195252a23ca7d84e",
+        "text": "Property",
+        "context": "",
+        "plural": "",
+        "line": 1837
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "9820ade036bf1bdf80c0b7da24a4ce0a",
+        "text": "Add property",
+        "context": "",
+        "plural": "",
+        "line": 1839
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "5d5850034cd862f5ad9ac01d88e8737a",
+        "text": "Use sources like field:title, field:summary|truncate:160, {legacy_field}, custom text, or empty string.",
+        "context": "",
+        "plural": "",
+        "line": 1841
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "832f6c69c10f614bfc3f39fca3fa79a3",
+        "text": "Choose property",
+        "context": "",
+        "plural": "",
+        "line": 1848
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "f4f70727dc34561dfde1a3c529b6205c",
+        "text": "Settings",
+        "context": "",
+        "plural": "",
+        "line": 1956
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "f4569fc50347e757f158413dff3a219a",
+        "text": "SEO Settings",
+        "context": "",
+        "plural": "",
+        "line": 1957
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "9a7e58ee13cb727cb7c4acc68f4cafe5",
+        "text": "Settings saved.",
+        "context": "",
+        "plural": "",
+        "line": 1997
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "bbe9cac2bd7214dd42fa87c1d3310cca",
+        "text": "IndexNow key file written to the site root.",
+        "context": "",
+        "plural": "",
+        "line": 2000
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "6dae63cfd122c66d6dc9c80f8e71e0c3",
+        "text": "IndexNow key saved, but the key file could not be written. Create {key}.txt in the site root with the key as file content.",
+        "context": "",
+        "plural": "",
+        "line": 2002
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "fba9358e873c7da283059409a1aa5af4",
+        "text": "Generate IndexNow key",
+        "context": "",
+        "plural": "",
+        "line": 2011
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "d72eeb9fd15cc6d09c7489cc5aaa2611",
+        "text": "Index not built.",
+        "context": "",
+        "plural": "",
+        "line": 2072
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "0041723d30b258f7a5cbe7fda42a95b6",
+        "text": "No duplicate Ichiban fields were found.",
+        "context": "",
+        "plural": "",
+        "line": 2142
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "32b4780ab052a71a880cf77376d3b32c",
+        "text": "Could not determine which Ichiban fields to repair.",
+        "context": "",
+        "plural": "",
+        "line": 2147
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "bf2df6ddc3f272967c57ed6ea1e41651",
+        "text": "Unsafe table name.",
+        "context": "",
+        "plural": "",
+        "line": 2192
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "9cc245e7bd7598fb5b60e2de1879597e",
+        "text": "Missing field name.",
+        "context": "",
+        "plural": "",
+        "line": 2226
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "326a81e081d9f0197c9a82f2ae686307",
+        "text": "Field \"%s\" was not found.",
+        "context": "",
+        "plural": "",
+        "line": 2228
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "9ecc4264a15d5ee8894b4622e57655e1",
+        "text": "Field \"%s\" is not a SeoMaestro field.",
+        "context": "",
+        "plural": "",
+        "line": 2230
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "ddf369cb3c27c74e216cc807db87a695",
+        "text": "FieldtypeIchiban is not installed.",
+        "context": "",
+        "plural": "",
+        "line": 2234
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "5dd135d1bcfa7f63c3b7f25425c2a4a1",
+        "text": "Score",
+        "context": "",
+        "plural": "",
+        "line": 2356
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "532e811ecb99fabbb6d886d61b01be55",
+        "text": "Daily Trend",
+        "context": "",
+        "plural": "",
+        "line": 2454
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "2b70900b3b0412f3e007cd806380a683",
+        "text": "No Search Console rows available yet.",
+        "context": "",
+        "plural": "",
+        "line": 2457
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "a3ca6ea2e8305187403c445ea575b44f",
+        "text": "Never checked",
+        "context": "",
+        "plural": "",
+        "line": 2476
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "dfef1b773586997dd81ab60a2891da12",
+        "text": "Checks a URL sample with Google URL Inspection API and groups non-indexed / problematic pages by coverage reason. Ichiban first uses Top Pages from Search Console for the last 28 days, then fills the sample with public ProcessWire pages sorted by path. This is a cached site scan, not Google’s full Page indexing aggregate report.",
+        "context": "",
+        "plural": "",
+        "line": 2482
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "ac5bd2bb3ce576b744c2be7db31222c0",
+        "text": "Scan indexing issues",
+        "context": "",
+        "plural": "",
+        "line": 2488
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "e3847e7954abcf7cf678e942167aedec",
+        "text": "Open Page Indexing",
+        "context": "",
+        "plural": "",
+        "line": 2490
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "cccd5fd8c8f59fe9373c56b1b951780c",
+        "text": "Indexed",
+        "context": "",
+        "plural": "",
+        "line": 2494
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "904dbbd89baa6d1d2446e23cef059d50",
+        "text": "Checked URLs",
+        "context": "",
+        "plural": "",
+        "line": 2495
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "5eb0c210307a8c254e190ca67c030910",
+        "text": "Last scan",
+        "context": "",
+        "plural": "",
+        "line": 2496
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "a10e2f97cdadc6e270037d18558d0c27",
+        "text": "No indexing scan yet. Click Scan indexing issues to inspect Top Pages from Search Console first, then public ProcessWire pages if more URLs are needed.",
+        "context": "",
+        "plural": "",
+        "line": 2500
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "b756b124b0fad1cc25ca1133b192d724",
+        "text": "No indexing issues found in the checked URL sample.",
+        "context": "",
+        "plural": "",
+        "line": 2503
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "3a3f4c0161d295393accbecac2bc428b",
+        "text": "Page / query",
+        "context": "",
+        "plural": "",
+        "line": 2519
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "0b4db271fc4624853e634ef6882ea8be",
+        "text": "View all",
+        "context": "",
+        "plural": "",
+        "line": 2524
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "6cdec37eda6ac1eec892e4bf19aaa78c",
+        "text": "Impressions",
+        "context": "",
+        "plural": "",
+        "line": 2535
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "ff2a7a5418a49af64a57ef3cf31d7721",
+        "text": "CTR",
+        "context": "",
+        "plural": "",
+        "line": 2536
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "52f5e0bc3859bc5f5e25130b6c7e8881",
+        "text": "Position",
+        "context": "",
+        "plural": "",
+        "line": 2537
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "7dce122004969d56ae2e0245cb754d35",
+        "text": "Edit",
+        "context": "",
+        "plural": "",
+        "line": 2539
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "274b68192b056e268f128ff63bfcd4a4",
+        "text": "n/a",
+        "context": "",
+        "plural": "",
+        "line": 2556
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "4a79f8950c64f34c7a1775ba32a63c33",
+        "text": "%s rows",
+        "context": "",
+        "plural": "",
+        "line": 2572
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "8ce8cbf23b58eb6bd25d8f6656ccb3c7",
+        "text": "Last updated %s",
+        "context": "",
+        "plural": "",
+        "line": 2605
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "bcb32f4e876af737c79fdfe0d0604b4e",
+        "text": "Last updated unavailable",
+        "context": "",
+        "plural": "",
+        "line": 2606
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "a87147a0aa4632b246a3373c114f35e3",
+        "text": "Disconnect GSC",
+        "context": "",
+        "plural": "",
+        "line": 2610
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "59716c97497eb9694541f7c3d37b1a4d",
+        "text": "Country",
+        "context": "",
+        "plural": "",
+        "line": 2621
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "e0ac20adce6ffee48c7151b070aa5737",
+        "text": "Device",
+        "context": "",
+        "plural": "",
+        "line": 2625
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "f431e17ea0081a3c9e51fc240221ee21",
+        "text": "Social",
+        "context": "",
+        "plural": "",
+        "line": 59
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "50ddcee6d670e0f82652c53fe4ee846d",
+        "text": "Search result fields",
+        "context": "",
+        "plural": "",
+        "line": 70
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "c4144f455327c502b8916e1556478ad7",
+        "text": "Meta Title",
+        "context": "",
+        "plural": "",
+        "line": 71
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "81a35ec1dc4a194f938b211a86a57826",
+        "text": "Meta Description",
+        "context": "",
+        "plural": "",
+        "line": 72
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "ee096b45f2e0dcd83771ea27b049c76a",
+        "text": "Canonical URL",
+        "context": "",
+        "plural": "",
+        "line": 73
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "0b2b0b3a80422bcea6470d347d39ae5b",
+        "text": "Noindex",
+        "context": "",
+        "plural": "",
+        "line": 75
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "ded50d13cb30cf23b301590bd0d1605a",
+        "text": "Nofollow",
+        "context": "",
+        "plural": "",
+        "line": 76
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "9d003c21ab5fb8409c51e901aed5576d",
+        "text": "Open Graph",
+        "context": "",
+        "plural": "",
+        "line": 85
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "81df20e18c231f5d495009c42749d511",
+        "text": "OG Type",
+        "context": "",
+        "plural": "",
+        "line": 86
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "97087059c324ab1880fe4c87e022b3ae",
+        "text": "Controls the Open Graph object type shared to social networks.",
+        "context": "",
+        "plural": "",
+        "line": 87
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "d99b661dd6dc723e9a1e70b594155cac",
+        "text": "OG Title",
+        "context": "",
+        "plural": "",
+        "line": 88
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "ba6f9c249f327d5a9c5583435db25fe4",
+        "text": "OG Description",
+        "context": "",
+        "plural": "",
+        "line": 89
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "516ef25bab3cd7ec09e6bd057ca4ac36",
+        "text": "OG Image URL",
+        "context": "",
+        "plural": "",
+        "line": 90
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "8dcac293ef065a190312745716f1949b",
+        "text": "OG Image Alt",
+        "context": "",
+        "plural": "",
+        "line": 91
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "d7408a4f398e73504921481b9e3ba03d",
+        "text": "Twitter / X",
+        "context": "",
+        "plural": "",
+        "line": 93
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "379c80c789f0f3e0165b5e6d5df839ca",
+        "text": "Card Type",
+        "context": "",
+        "plural": "",
+        "line": 94
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "73c2d1e0aa38e6714fe6825753c36c43",
+        "text": "Large image cards usually perform better for editorial and marketing pages.",
+        "context": "",
+        "plural": "",
+        "line": 95
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "050dfaab05f8bd1f430f7ddb1ab9063b",
+        "text": "Twitter Creator Handle",
+        "context": "",
+        "plural": "",
+        "line": 96
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "09c0d35fcf533a857f668781e02c37a3",
+        "text": "Structured data",
+        "context": "",
+        "plural": "",
+        "line": 107
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "7c326ab5625a20ebb1aae5587445df0c",
+        "text": "Schema Type",
+        "context": "",
+        "plural": "",
+        "line": 108
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "abd3083eb1a2c4a52cc5ddc596ae0b5d",
+        "text": "Use a standard Schema.org type or pick one of the custom schemas created in SEO > Schemas.",
+        "context": "",
+        "plural": "",
+        "line": 109
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "2cfad7e59fdae5fdfa5dcf1e7d1e3547",
+        "text": "Generated output",
+        "context": "",
+        "plural": "",
+        "line": 110
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "2fa7940a68a52311fe8cda9dceca0ace",
+        "text": "Sitemap entry",
+        "context": "",
+        "plural": "",
+        "line": 115
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "7eee18c19b6134e236eaf0f746d85dbc",
+        "text": "Include in sitemap",
+        "context": "",
+        "plural": "",
+        "line": 116
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "502996d9790340c5fd7b86a5b93b1c9f",
+        "text": "Priority",
+        "context": "",
+        "plural": "",
+        "line": 117
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "8eef456badfbc68db9f93710dae19027",
+        "text": "Relative importance within this site. Most pages should stay around 0.5.",
+        "context": "",
+        "plural": "",
+        "line": 118
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "97c92636698e4eabcdf690f54f635736",
+        "text": "Change Frequency",
+        "context": "",
+        "plural": "",
+        "line": 119
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "a8f0d926093b7abc9cc1985af59b6867",
+        "text": "Crawler hint for how often the content usually changes.",
+        "context": "",
+        "plural": "",
+        "line": 120
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "7ca5fec96962e7f4af3cc632aee6e528",
+        "text": "Advanced overrides",
+        "context": "",
+        "plural": "",
+        "line": 126
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "44338653285d0c8c995a04d0a03c0244",
+        "text": "Custom robots meta value",
+        "context": "",
+        "plural": "",
+        "line": 127
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "e529aba5e4a658374492d899d3946ba5",
+        "text": "JSON-LD Override (raw)",
+        "context": "",
+        "plural": "",
+        "line": 128
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "c49484faf79e2388b580e49444d6ac11",
+        "text": "Inherit",
+        "context": "",
+        "plural": "",
+        "line": 151
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "d37a38eba893a152b803c75f1c6c67ce",
+        "text": "Resolved value:",
+        "context": "",
+        "plural": "",
+        "line": 159
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "d7264a6cb9bb2c41ef3429d62bea5751",
+        "text": "Resolved image:",
+        "context": "",
+        "plural": "",
+        "line": 223
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "44a9f9fb0401514013da912151aea276",
+        "text": "Standard types",
+        "context": "",
+        "plural": "",
+        "line": 262
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "6adf97f83acf6453d4a6a4b1070f3754",
+        "text": "None",
+        "context": "",
+        "plural": "",
+        "line": 267
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "fa1cfd16c02fcf7dcdc1a89d1797a180",
+        "text": "Untitled page",
+        "context": "",
+        "plural": "",
+        "line": 330
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "988fc1f9d539c60940b54c2109ea8cb7",
+        "text": "Google preview",
+        "context": "",
+        "plural": "",
+        "line": 334
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "2310408a63388fe57e3a4177168a8798",
+        "text": "Desktop",
+        "context": "",
+        "plural": "",
+        "line": 336
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "87d17f4624a514e81dc7c8e016a7405c",
+        "text": "Mobile",
+        "context": "",
+        "plural": "",
+        "line": 337
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "b92fa9bb09c164e16236195681e21eea",
+        "text": "Social preview",
+        "context": "",
+        "plural": "",
+        "line": 396
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "f2f3931d6ecf4e9a1f56bd7ed0963ce8",
+        "text": "Add a meta description to preview the search result snippet.",
+        "context": "",
+        "plural": "",
+        "line": 405
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "ae1984b085f99a9075b018a76d61758c",
+        "text": "SEO Revision History",
+        "context": "",
+        "plural": "",
+        "line": 425
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "44749712dbec183e983dcd78a7736c41",
+        "text": "Date",
+        "context": "",
+        "plural": "",
+        "line": 427
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "2bd339d85ee3b33e513359ce781b60cc",
+        "text": "Restore",
+        "context": "",
+        "plural": "",
+        "line": 435
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "a3d2707eb9827cf51524254b7592563e",
+        "text": "Search Performance",
+        "context": "",
+        "plural": "",
+        "line": 446
+    },
+    {
+        "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
+        "textdomain": "site--modules--ichiban--inputfieldichiban-module-php",
+        "hash": "5f02f05c744a0f875aebb8625ae1486f",
+        "text": "Loading…",
+        "context": "",
+        "plural": "",
+        "line": 447
+    },
+    {
+        "file": "site/modules/Ichiban/src/Ai/OpenRouter.php",
+        "textdomain": "site--modules--ichiban--src--ai--openrouter-php",
+        "hash": "a7f69b7b79cba57ca64958adecdc3d09",
+        "text": "AI is not configured. Configure Context AI Gateway or enable Ichiban OpenRouter settings.",
+        "context": "",
+        "plural": "",
+        "line": 63
+    },
+    {
+        "file": "site/modules/Ichiban/src/Ai/OpenRouter.php",
+        "textdomain": "site--modules--ichiban--src--ai--openrouter-php",
+        "hash": "1f578f56e436249918ecae91aba4ef00",
+        "text": "PHP cURL extension is required for OpenRouter requests.",
+        "context": "",
+        "plural": "",
+        "line": 65
+    },
+    {
+        "file": "site/modules/Ichiban/src/Ai/OpenRouter.php",
+        "textdomain": "site--modules--ichiban--src--ai--openrouter-php",
+        "hash": "b53008ced2d9f60aafa257d62da576ba",
+        "text": "AI request has no messages.",
+        "context": "",
+        "plural": "",
+        "line": 68
+    },
+    {
+        "file": "site/modules/Ichiban/src/Ai/OpenRouter.php",
+        "textdomain": "site--modules--ichiban--src--ai--openrouter-php",
+        "hash": "07b1c46ba1964bc7e6e2e2055be44f0c",
+        "text": "OpenRouter returned no visible text before the output token limit was reached. Increase Max tokens or shorten the Context export sent with the request.",
+        "context": "",
+        "plural": "",
+        "line": 157
+    },
+    {
+        "file": "site/modules/Ichiban/src/Ai/OpenRouter.php",
+        "textdomain": "site--modules--ichiban--src--ai--openrouter-php",
+        "hash": "7014e5abd75742d344a16417650f7350",
+        "text": "OpenRouter returned an empty message body. Finish reason: %s. Output tokens: %d.",
+        "context": "",
+        "plural": "",
+        "line": 160
+    },
+    {
+        "file": "site/modules/Ichiban/src/Ai/OpenRouter.php",
+        "textdomain": "site--modules--ichiban--src--ai--openrouter-php",
+        "hash": "fb49455c629e0ba082d078aef3dee2c0",
+        "text": "OpenRouter returned an empty message body with no finish reason. Output tokens: %d.",
+        "context": "",
+        "plural": "",
+        "line": 162
+    }
+]
