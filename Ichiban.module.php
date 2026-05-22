@@ -7,7 +7,7 @@ require_once __DIR__ . '/IchibanAutoload.php';
  *
  * @author Maxim Semenov <maxim@smnv.org>
  * @license MIT
- * @version 0.1.0-alpha
+ * @version 0.1.1-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
 
@@ -19,7 +19,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'title'    => 'Ichiban',
 			'summary'  => 'Comprehensive SEO module: meta/OG/schema, audit, redirects, revisions, email reports.',
 			'author'   => 'Maxim Semenov',
-			'version'  => 10,
+			'version'  => 11,
 			'href'     => 'https://smnv.org',
 			'singular' => true,
 			'autoload' => true,
@@ -208,10 +208,11 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		          'twitter_creator', 'schema_type', 'sitemap_priority', 'sitemap_changefreq', 'robots_meta'] as $key) {
 			if (array_key_exists($key, $post)) $data[$key] = $san->text($post[$key]);
 		}
-		foreach (['canonical_url', 'og_image'] as $key) {
-			if (array_key_exists($key, $post)) {
-				$data[$key] = $san->url($post[$key], ['allowRelative' => true, 'allowSchemes' => ['http', 'https']]);
-			}
+		if (array_key_exists('canonical_url', $post)) {
+			$data['canonical_url'] = $san->url($post['canonical_url'], ['allowRelative' => true, 'allowSchemes' => ['http', 'https']]);
+		}
+		if (array_key_exists('og_image', $post)) {
+			$data['og_image'] = $this->sanitizeUrlOrSourceExpression($post['og_image']);
 		}
 		foreach (['meta_noindex', 'meta_nofollow', 'sitemap_include'] as $key) {
 			$data[$key] = !empty($post[$key]);
@@ -220,6 +221,18 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			$data['jsonld_override'] = $san->textarea($post['jsonld_override']);
 		}
 		return $data;
+	}
+
+	protected function sanitizeUrlOrSourceExpression(mixed $value): string {
+		$value = trim((string)$value);
+		if ($value === '') return '';
+
+		$fieldPath = '[A-Za-z0-9_][A-Za-z0-9_:.]*(?:\|[A-Za-z0-9_:-]+)*';
+		if (preg_match('/^(?:field:)?' . $fieldPath . '$/', $value) || preg_match('/^\{' . $fieldPath . '\}$/', $value)) {
+			return $this->wire('sanitizer')->text($value);
+		}
+
+		return $this->wire('sanitizer')->url($value, ['allowRelative' => true, 'allowSchemes' => ['http', 'https']]);
 	}
 
 	/** Capture seo data snapshot before page save for revision diff. */

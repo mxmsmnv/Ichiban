@@ -11,7 +11,7 @@ class InputfieldIchiban extends Inputfield {
 			'title'   => 'Inputfield Ichiban',
 			'summary' => 'Admin UI for Ichiban SEO fieldtype.',
 			'author'  => 'Maxim Semenov',
-			'version' => 10,
+			'version' => 11,
 		];
 	}
 
@@ -87,7 +87,7 @@ class InputfieldIchiban extends Inputfield {
 			['website' => 'website', 'article' => 'article', 'product' => 'product'], __('Controls the Open Graph object type shared to social networks.'));
 		$out .= $this->renderSourceField($name, 'og_title',       __('OG Title'),       $data['og_title']       ?? [], 60,  80, $resolved['og_title'], __('Falls back to the meta title when empty. You can also use title, headline, or {headline}.'), __('title'));
 		$out .= $this->renderSourceField($name, 'og_description', __('OG Description'), $data['og_description'] ?? [], 120, 200, $resolved['og_description'], __('Falls back to the meta description when empty. You can also use summary|truncate:200.'), __('summary|truncate:200'));
-		$out .= $this->renderTextInput($name, 'og_image',     __('OG Image URL'), $data['og_image']     ?? '', __('Use an absolute image URL, field expression like field:splash, or SeoMaestro-style token like {splash}. Image fields are cropped to 1200×630 for Open Graph.'), '', 'og_image', $resolved['og_image']);
+		$out .= $this->renderTextInput($name, 'og_image',     __('OG Image URL'), $data['og_image']     ?? '', __('Use an absolute image URL, field expression like field:splash, or ProFields dot notation like field:combo.image, field:matrix.type.image, or {combo.image}. Image fields are cropped to 1200×630 for Open Graph.'), '', 'og_image', $resolved['og_image']);
 		$out .= $this->renderTextInput($name, 'og_image_alt', __('OG Image Alt'), $data['og_image_alt'] ?? '', __('Short accessible description of the social image.'));
 		$out .= "</div>\n";
 		$out .= "<div class='ichiban-panel'><div class='ichiban-panel-heading'><h3>" . __('Twitter / X') . "</h3><p>" . __('Choose the card format and optional creator attribution.') . "</p></div>\n";
@@ -503,10 +503,11 @@ class InputfieldIchiban extends Inputfield {
 			if (array_key_exists($key, $post)) $data[$key] = $san->text($post[$key]);
 		}
 		// URL fields — use sanitizer->url() to preserve query strings and fragments
-		foreach (['canonical_url', 'og_image'] as $key) {
-			if (array_key_exists($key, $post)) {
-				$data[$key] = $san->url($post[$key], ['allowRelative' => true, 'allowSchemes' => ['http', 'https']]);
-			}
+		if (array_key_exists('canonical_url', $post)) {
+			$data['canonical_url'] = $san->url($post['canonical_url'], ['allowRelative' => true, 'allowSchemes' => ['http', 'https']]);
+		}
+		if (array_key_exists('og_image', $post)) {
+			$data['og_image'] = $this->sanitizeUrlOrSourceExpression($post['og_image']);
 		}
 
 		foreach (['meta_noindex', 'meta_nofollow', 'sitemap_include'] as $key) {
@@ -525,6 +526,18 @@ class InputfieldIchiban extends Inputfield {
 		}
 		$this->trackChange('value');
 		return $this;
+	}
+
+	protected function sanitizeUrlOrSourceExpression(mixed $value): string {
+		$value = trim((string)$value);
+		if ($value === '') return '';
+
+		$fieldPath = '[A-Za-z0-9_][A-Za-z0-9_:.]*(?:\|[A-Za-z0-9_:-]+)*';
+		if (preg_match('/^(?:field:)?' . $fieldPath . '$/', $value) || preg_match('/^\{' . $fieldPath . '\}$/', $value)) {
+			return $this->wire('sanitizer')->text($value);
+		}
+
+		return $this->wire('sanitizer')->url($value, ['allowRelative' => true, 'allowSchemes' => ['http', 'https']]);
 	}
 
 	public function isEmpty(): bool { return false; }

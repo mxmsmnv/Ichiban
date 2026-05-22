@@ -58,9 +58,13 @@ field:title
 field:summary|truncate:160
 {headline}
 {splash}
+field:combo.image
+{combo.image}
+field:blocks.hero.image
+field:prices.*.image
 ```
 
-For image fields, `field:splash` and `{splash}` resolve the first image. For Open Graph images, Ichiban creates a `1200x630` image variation when possible.
+For image fields, `field:splash` and `{splash}` resolve the first image. For image fields nested inside ProFields, use the same dot notation as Collections: `field:combo.image`, `field:blocks.hero.image` for a Repeater Matrix type, or `field:prices.*.image` for the first non-empty Table row. For Open Graph images, Ichiban creates a `1200x630` image variation when possible.
 
 ## Rendering
 

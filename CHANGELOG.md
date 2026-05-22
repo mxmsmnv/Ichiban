@@ -4,6 +4,17 @@ All notable changes to Ichiban will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.1-alpha] - 2026-05-22
+
+### Added
+- Open Graph image sources now support ProFields-style dot notation for nested fields, including Combo, Table, Repeater Matrix, Matrix-to-Repeater paths, and wildcard Table/Matrix lookups.
+
+### Changed
+- Documented nested image source examples for `field:combo.image`, `{combo.image}`, `field:blocks.hero.image`, and `field:prices.*.image`.
+
+### Fixed
+- `og_image` source expressions are preserved on save instead of being sanitized as plain URLs, so nested field tokens resolve correctly at render time.
+
 ## [0.1.0-alpha] - 2026-05-16
 
 ### Added
