@@ -249,10 +249,18 @@
     const el = wrap.querySelector(`[name$="[${key}]"]`);
     if (!el) return '';
     const value = el.value.trim();
-    if (el.dataset.resolved && (value.match(/^\{[A-Za-z0-9_]+\}$/) || value.startsWith('field:'))) {
+    if (el.dataset.resolved && isSourceExpression(value)) {
       return el.dataset.resolved.trim();
     }
     return value;
+  }
+
+  function isSourceExpression(value) {
+    if (!value) return false;
+    const fieldPath = '[A-Za-z0-9_][A-Za-z0-9_:.]*(?:\\|[A-Za-z0-9_:-]+)*';
+    return new RegExp('^\\{' + fieldPath + '\\}$').test(value)
+      || new RegExp('^field:' + fieldPath + '$').test(value)
+      || new RegExp('^[A-Za-z0-9_]+[.:][A-Za-z0-9_:.]*(?:\\|[A-Za-z0-9_:-]+)*$').test(value);
   }
 
   function initResolvedHints(wrap) {
@@ -264,7 +272,7 @@
         const resolved = input.dataset.resolved || '';
         const field = input.closest('.ichiban-source-field');
         const mode = field ? field.querySelector('.ichiban-source-mode')?.value : '';
-        const show = resolved && (mode === 'field' || mode === 'inherit' || value.match(/^\{[A-Za-z0-9_]+\}$/) || value.startsWith('field:'));
+        const show = resolved && resolved !== value && (mode === 'field' || mode === 'inherit' || isSourceExpression(value));
         hint.hidden = !show;
         const link = hint.querySelector('a');
         if (link && show) {
