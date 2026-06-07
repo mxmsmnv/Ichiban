@@ -457,12 +457,16 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		}
 
 		if (is_callable([$page, 'localUrl'])) {
-			$localUrl = (string)$page->localUrl($language);
-			if ($localUrl !== '') {
-				if (preg_match('{^https?://}i', $localUrl)) return $localUrl;
-				if (preg_match('{^https?://[^/]+}i', (string)$page->httpUrl(), $matches)) {
-					return rtrim($matches[0], '/') . '/' . ltrim($localUrl, '/');
+			try {
+				$localUrl = (string)$page->localUrl($language);
+				if ($localUrl !== '') {
+					if (preg_match('{^https?://}i', $localUrl)) return $localUrl;
+					if (preg_match('{^https?://[^/]+}i', (string)$page->httpUrl(), $matches)) {
+						return rtrim($matches[0], '/') . '/' . ltrim($localUrl, '/');
+					}
 				}
+			} catch (\Throwable $e) {
+				// Fall through when LanguageSupportPageNames is not installed.
 			}
 		}
 
