@@ -516,6 +516,30 @@ body.dark-theme {
   margin: 6px 0 0;
   color: var(--ichiban-muted);
 }
+.ichiban-bulk-score-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  padding: 12px 14px;
+  background: var(--ichiban-muted-surface);
+  border: 1px solid var(--ichiban-border);
+  border-bottom: 0;
+  color: var(--ichiban-muted);
+  font-size: 12px;
+}
+.ichiban-bulk-score-legend strong {
+  color: var(--ichiban-text);
+}
+.ichiban-bulk-score-legend span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 3px 8px;
+  background: var(--ichiban-surface);
+  border: 1px solid var(--ichiban-border);
+  font-weight: 700;
+}
 .ichiban-score-badge {
   display: inline-flex;
   align-items: center;
@@ -539,6 +563,21 @@ body.dark-theme {
 .ichiban-score-poor {
   background: var(--pw-error-inline-text-color, #cd0a0a);
   color: #fff;
+}
+.ichiban-bulk-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 14px;
+}
+.ichiban-bulk-pagination .uk-button {
+  min-width: 140px;
+}
+.ichiban-bulk-pagination span {
+  color: var(--ichiban-muted);
+  font-weight: 700;
 }
 @media (max-width: 959px) {
   .ichiban-bulk-header,

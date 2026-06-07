@@ -260,6 +260,15 @@ class ProcessIchiban extends Process {
 			$out .= "</form>\n</div>\n";
 			return $out;
 		}
+		$out .= "<div class='ichiban-bulk-score-legend'>"
+			. "<strong>" . __('Score legend') . "</strong>"
+			. "<span>" . __('Missing title: -30') . "</span>"
+			. "<span>" . __('Missing description: -20') . "</span>"
+			. "<span>" . __('Missing OG image: -15') . "</span>"
+			. "<span>" . __('Title length: -10') . "</span>"
+			. "<span>" . __('Description length: -10') . "</span>"
+			. "<span>" . __('Noindex: -15') . "</span>"
+			. "</div>\n";
 		$out .= "<div class='ichiban-bulk-table-wrap uk-overflow-auto'><table class='ichiban-bulk-table AdminDataTable AdminDataTable--noSorting uk-table uk-table-divider uk-table-hover'>\n";
 		$out .= "<thead><tr><th>" . __('Page') . "</th><th>" . __('Meta Title') . "</th><th>" . __('Meta Description') . "</th><th>" . __('Score') . "</th></tr></thead>\n<tbody>\n";
 		$groups = [
@@ -292,7 +301,7 @@ class ProcessIchiban extends Process {
 					$descLen = (int)($row['meta_desc_len'] ?? strlen((string)($row['meta_description'] ?? '')));
 					$score = (int)$row['_ichiban_score'];
 					$scoreClass = $score >= 80 ? 'ichiban-score-good' : ($score >= 60 ? 'ichiban-score-warning' : 'ichiban-score-poor');
-					$scoreReasons = implode(' · ', $this->rowScoreReasons($row));
+					$scoreReasons = $san->entities(implode(' · ', $this->rowScoreReasons($row)));
 					$titleHint = $titleLen === 0 ? __('Missing title') : sprintf(__('%d characters'), $titleLen);
 					$descHint = $descLen === 0 ? __('Missing description') : sprintf(__('%d characters'), $descLen);
 					$out  .= "<tr>"
@@ -300,7 +309,7 @@ class ProcessIchiban extends Process {
 						. "<div class='ichiban-bulk-page-actions'><span>{$template}</span>" . ($editUrl !== '' ? "<a href='{$editUrl}'>" . __('Edit page') . "</a>" : '') . "</div></div></td>"
 						. "<td><div class='ichiban-bulk-field'><input class='uk-input' type='text' name='meta_title[{$pid}]' value=\"{$title}\" maxlength='70'><span>{$titleHint} · " . __('target 30–70') . "</span></div></td>"
 						. "<td><div class='ichiban-bulk-field'><input class='uk-input' type='text' name='meta_description[{$pid}]' value=\"{$desc}\" maxlength='160'><span>{$descHint} · " . __('target 50–160') . "</span></div></td>"
-						. "<td><span class='ichiban-score-badge {$scoreClass}' data-score='{$score}'>{$score}</span><small>" . $san->entities($scoreReasons) . "</small></td>"
+						. "<td><span class='ichiban-score-badge {$scoreClass}' data-score='{$score}' title='{$scoreReasons}'>{$score}</span></td>"
 						. "</tr>\n";
 				}
 		}
@@ -308,7 +317,7 @@ class ProcessIchiban extends Process {
 		if ($pageCount > 1) {
 			$prev = $page > 1 ? $queryBase + ['p' => $page - 1] : null;
 			$next = $page < $pageCount ? $queryBase + ['p' => $page + 1] : null;
-			$out .= "<div class='ichiban-bulk-toolbar'>"
+			$out .= "<div class='ichiban-bulk-pagination'>"
 				. ($prev ? "<a class='uk-button uk-button-default' href='" . $san->entities($this->adminUrl('bulk/') . '?' . http_build_query($prev)) . "'>" . __('Previous') . "</a>" : "")
 				. "<span>" . sprintf(__('Page %1$d of %2$d'), $page, $pageCount) . "</span>"
 				. ($next ? "<a class='uk-button uk-button-default' href='" . $san->entities($this->adminUrl('bulk/') . '?' . http_build_query($next)) . "'>" . __('Next') . "</a>" : "")
