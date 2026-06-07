@@ -97,8 +97,8 @@ class ProcessIchiban extends Process {
 		// Quick stats
 		$out .= "<div class='ichiban-quick-stats'>\n";
 		foreach ([
-			'pages_missing_title'       => [__('Missing Title'), __('Pages without a meta title.'), $this->adminUrl('bulk/')],
-			'pages_missing_description' => [__('Missing Description'), __('Pages without a search snippet.'), $this->adminUrl('bulk/')],
+			'pages_missing_title'       => [__('Missing Title'), __('Pages without a meta title.'), $this->adminUrl('bulk/') . '?issue=missing_title'],
+			'pages_missing_description' => [__('Missing Description'), __('Pages without a search snippet.'), $this->adminUrl('bulk/') . '?issue=missing_description'],
 			'pages_missing_og_image'    => [__('Missing OG Image'), __('Pages that may share poorly on social networks.'), $this->adminUrl('audit/')],
 			'pages_noindex'             => [__('Noindex'), __('Published pages hidden from search engines.'), $this->adminUrl('audit/')],
 		] as $key => [$label, $note, $url]) {
@@ -150,15 +150,39 @@ class ProcessIchiban extends Process {
 		$san  = $this->wire('sanitizer');
 		$db   = $this->wire('database');
 		$tpl  = $san->text($this->wire('input')->get('template') ?? '');
+		$issue = $san->text($this->wire('input')->get('issue') ?? '');
+		$issueFilters = [
+			''                    => __('All issue types'),
+			'missing_title'       => __('Missing titles'),
+			'missing_description' => __('Missing descriptions'),
+			'title_length'        => __('Title length issues'),
+			'description_length'  => __('Description length issues'),
+		];
+		if (!array_key_exists($issue, $issueFilters)) $issue = '';
 		$page = max(1, (int)$this->wire('input')->get('p'));
 		$perPage = 50;
 		$offset  = ($page - 1) * $perPage;
 
-		$where = $tpl ? " WHERE template_name=:tpl" : "";
+		$whereParts = [];
+		$params = [];
+		if ($tpl) {
+			$whereParts[] = 'template_name=:tpl';
+			$params[':tpl'] = $tpl;
+		}
+		if ($issue === 'missing_title') {
+			$whereParts[] = "meta_title=''";
+		} elseif ($issue === 'missing_description') {
+			$whereParts[] = "meta_description=''";
+		} elseif ($issue === 'title_length') {
+			$whereParts[] = "meta_title!='' AND NOT (meta_title_len BETWEEN 30 AND 70)";
+		} elseif ($issue === 'description_length') {
+			$whereParts[] = "meta_description!='' AND NOT (meta_desc_len BETWEEN 50 AND 160)";
+		}
+		$where = $whereParts ? ' WHERE ' . implode(' AND ', $whereParts) : '';
 		try {
-			if ($tpl) {
+			if ($where) {
 				$cStmt = $db->prepare("SELECT COUNT(*) FROM `ichiban_index`{$where}");
-				$cStmt->execute([':tpl' => $tpl]);
+				$cStmt->execute($params);
 			} else {
 				$cStmt = $db->prepare("SELECT COUNT(*) FROM `ichiban_index`");
 				$cStmt->execute();
@@ -167,7 +191,7 @@ class ProcessIchiban extends Process {
 		} catch (\Throwable $ex) {
 			return "<div class='uk-alert uk-alert-warning'>" . __('Index not built yet. Please run Audit → Rebuild Index first.') . "</div>";
 		}
-		$statParams = $tpl ? [':tpl' => $tpl] : [];
+		$statParams = $params;
 		$missingTitleStmt = $db->prepare("SELECT COUNT(*) FROM `ichiban_index`{$where}" . ($where ? " AND" : " WHERE") . " meta_title=''");
 		$missingTitleStmt->execute($statParams);
 		$missingTitles = (int)$missingTitleStmt->fetchColumn();
@@ -178,17 +202,36 @@ class ProcessIchiban extends Process {
 		$templateStmt->execute($statParams);
 		$templateCount = (int)$templateStmt->fetchColumn();
 
-		$stmt = $db->prepare("SELECT * FROM ichiban_index{$where} ORDER BY template_name, url LIMIT :lim OFFSET :off");
-		if ($tpl) $stmt->bindValue(':tpl', $tpl);
+		$stmt = $db->prepare("SELECT * FROM ichiban_index{$where}
+			ORDER BY
+				(meta_title='') DESC,
+				(meta_description='') DESC,
+				(has_og_image=0) DESC,
+				NOT (meta_title_len BETWEEN 30 AND 70) DESC,
+				NOT (meta_desc_len BETWEEN 50 AND 160) DESC,
+				is_noindex DESC,
+				template_name,
+				url
+			LIMIT :lim OFFSET :off");
+		foreach ($params as $name => $value) {
+			$stmt->bindValue($name, $value);
+		}
 		$stmt->bindValue(':lim', $perPage, \PDO::PARAM_INT);
 		$stmt->bindValue(':off', $offset, \PDO::PARAM_INT);
 		$stmt->execute();
 		$rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+		$firstShown = $total ? $offset + 1 : 0;
+		$lastShown = min($offset + count($rows), $total);
+		$pageCount = max(1, (int)ceil($total / $perPage));
+		$queryBase = [];
+		if ($tpl) $queryBase['template'] = $tpl;
+		if ($issue !== '') $queryBase['issue'] = $issue;
+		$filterSummary = $issue !== '' ? sprintf(__('Filtered to %s.'), $issueFilters[$issue]) : __('Showing all indexed pages.');
 
 		$out  = $this->renderAdminNav('bulk');
 		$out .= "<div class='ichiban-bulk'>\n";
 		$out .= "<div class='ichiban-bulk-header'>"
-			. "<div><p>" . __('Edit meta titles and descriptions across indexed pages without opening each page individually.') . "</p></div>"
+			. "<div><p>" . __('Edit meta titles and descriptions across indexed pages without opening each page individually.') . "</p><small>" . $san->entities($filterSummary) . "</small></div>"
 			. "<div class='ichiban-bulk-guidance'><strong>" . __('Recommended lengths') . "</strong><span>" . __('Title: 30–70 characters') . "</span><span>" . __('Description: 50–160 characters') . "</span></div>"
 			. "</div>\n";
 		$out .= "<div class='ichiban-bulk-stats'>"
@@ -199,9 +242,15 @@ class ProcessIchiban extends Process {
 			. "</div>\n";
 		$out .= "<form method='get' class='ichiban-bulk-toolbar'>"
 			. "<input class='uk-input' type='text' name='template' value='" . $san->entities($tpl) . "' placeholder='" . __('Filter by template name') . "'>"
+			. "<select class='uk-select' name='issue'>";
+		foreach ($issueFilters as $value => $label) {
+			$selected = $issue === $value ? " selected" : "";
+			$out .= "<option value='" . $san->entities($value) . "'{$selected}>" . $san->entities($label) . "</option>";
+		}
+		$out .= "</select>"
 			. "<button class='uk-button uk-button-default'>" . __('Filter') . "</button>"
-			. ($tpl ? "<a class='uk-button uk-button-secondary' href='" . $this->adminUrl('bulk/') . "'>" . __('Clear') . "</a>" : '')
-			. "<span>" . sprintf(__('Showing %1$d of %2$d indexed pages'), count($rows), $total) . "</span>"
+			. ($tpl || $issue !== '' ? "<a class='uk-button uk-button-secondary' href='" . $this->adminUrl('bulk/') . "'>" . __('Clear') . "</a>" : '')
+			. "<span>" . sprintf(__('Showing %1$d-%2$d of %3$d matching indexed pages'), $firstShown, $lastShown, $total) . "</span>"
 			. "</form>\n";
 		$out .= "<form method='post' action='" . $this->adminUrl('bulk-save/') . "' class='ichiban-bulk-form'>\n";
 		$out .= $this->wire('session')->CSRF->renderInput();
@@ -228,7 +277,7 @@ class ProcessIchiban extends Process {
 			if (!$group['rows']) continue;
 			$out .= "<tr class='ichiban-bulk-section ichiban-bulk-section-{$groupKey}'><td colspan='4'>"
 				. "<strong>" . $this->wire('sanitizer')->entities($group['label']) . "</strong>"
-				. "<span>" . sprintf(__('%d pages'), count($group['rows'])) . "</span>"
+				. "<span>" . sprintf(__('%d visible pages'), count($group['rows'])) . "</span>"
 				. "<small>" . $this->wire('sanitizer')->entities($group['note']) . "</small>"
 				. "</td></tr>\n";
 				foreach ($group['rows'] as $row) {
@@ -243,6 +292,7 @@ class ProcessIchiban extends Process {
 					$descLen = (int)($row['meta_desc_len'] ?? strlen((string)($row['meta_description'] ?? '')));
 					$score = (int)$row['_ichiban_score'];
 					$scoreClass = $score >= 80 ? 'ichiban-score-good' : ($score >= 60 ? 'ichiban-score-warning' : 'ichiban-score-poor');
+					$scoreReasons = implode(' · ', $this->rowScoreReasons($row));
 					$titleHint = $titleLen === 0 ? __('Missing title') : sprintf(__('%d characters'), $titleLen);
 					$descHint = $descLen === 0 ? __('Missing description') : sprintf(__('%d characters'), $descLen);
 					$out  .= "<tr>"
@@ -250,11 +300,20 @@ class ProcessIchiban extends Process {
 						. "<div class='ichiban-bulk-page-actions'><span>{$template}</span>" . ($editUrl !== '' ? "<a href='{$editUrl}'>" . __('Edit page') . "</a>" : '') . "</div></div></td>"
 						. "<td><div class='ichiban-bulk-field'><input class='uk-input' type='text' name='meta_title[{$pid}]' value=\"{$title}\" maxlength='70'><span>{$titleHint} · " . __('target 30–70') . "</span></div></td>"
 						. "<td><div class='ichiban-bulk-field'><input class='uk-input' type='text' name='meta_description[{$pid}]' value=\"{$desc}\" maxlength='160'><span>{$descHint} · " . __('target 50–160') . "</span></div></td>"
-						. "<td><span class='ichiban-score-badge {$scoreClass}' data-score='{$score}'>{$score}</span></td>"
+						. "<td><span class='ichiban-score-badge {$scoreClass}' data-score='{$score}'>{$score}</span><small>" . $san->entities($scoreReasons) . "</small></td>"
 						. "</tr>\n";
 				}
 		}
 		$out .= "</tbody></table></div>\n";
+		if ($pageCount > 1) {
+			$prev = $page > 1 ? $queryBase + ['p' => $page - 1] : null;
+			$next = $page < $pageCount ? $queryBase + ['p' => $page + 1] : null;
+			$out .= "<div class='ichiban-bulk-toolbar'>"
+				. ($prev ? "<a class='uk-button uk-button-default' href='" . $san->entities($this->adminUrl('bulk/') . '?' . http_build_query($prev)) . "'>" . __('Previous') . "</a>" : "")
+				. "<span>" . sprintf(__('Page %1$d of %2$d'), $page, $pageCount) . "</span>"
+				. ($next ? "<a class='uk-button uk-button-default' href='" . $san->entities($this->adminUrl('bulk/') . '?' . http_build_query($next)) . "'>" . __('Next') . "</a>" : "")
+				. "</div>\n";
+		}
 		$out .= "<div class='ichiban-bulk-actionbar ichiban-bulk-actionbar-bottom'><span>" . __('Review changed fields, then save all visible edits together.') . "</span><button type='submit' class='uk-button uk-button-primary'>" . __('Save Changes') . "</button></div>\n";
 		$out .= "</form>\n</div>\n";
 		return $out;
@@ -2447,6 +2506,17 @@ class ProcessIchiban extends Process {
 		if ($row['meta_desc_len'] > 160 || $row['meta_desc_len'] < 50)  $score -= 10;
 		if ($row['is_noindex'])        $score -= 15;
 		return max(0, $score);
+	}
+
+	protected function rowScoreReasons(array $row): array {
+		$reasons = [];
+		if (!$row['meta_title']) $reasons[] = __('Missing title');
+		if (!$row['meta_description']) $reasons[] = __('Missing description');
+		if (!$row['has_og_image']) $reasons[] = __('Missing OG image');
+		if ($row['meta_title_len'] > 70 || $row['meta_title_len'] < 30) $reasons[] = __('Title length outside target');
+		if ($row['meta_desc_len'] > 160 || $row['meta_desc_len'] < 50) $reasons[] = __('Description length outside target');
+		if ($row['is_noindex']) $reasons[] = __('Noindex');
+		return $reasons ?: [__('All row checks pass')];
 	}
 
 	protected function renderGscTrendChart(array $rows): string {
