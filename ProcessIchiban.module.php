@@ -2043,7 +2043,7 @@ class ProcessIchiban extends Process {
 			             'verify_facebook_domain','verify_custom_meta','facebook_pixel_id',
 			             'entity_logo','social_twitter','social_linkedin',
 			             'social_facebook','social_github','social_instagram','gsc_site_url',
-			             'gsc_client_id','gsc_client_secret','indexnow_key','twitter_site','global_defaults',
+			             'gsc_client_id','gsc_client_secret','indexnow_key','twitter_site','title_format','global_defaults',
 			             'moz_target','moz_api_token','moz_access_id','moz_secret_key','moz_api_base_url','moz_row_limit','moz_timeout',
 			             'template_defaults','url_segments_mode','robots_enabled','robots_text','llms_enabled','auto_render_head',
 			             'llms_mode','llms_templates','llms_manual_urls',
