@@ -120,6 +120,7 @@ class IchibanAuditEngine {
 
 		$seo = $page->get($fieldName);
 		$title = $seo ? (string)$seo->meta->title : (string)$page->title;
+		$renderedTitle = method_exists($this->ichiban, 'formatMetaTitle') ? $this->ichiban->formatMetaTitle($title) : $title;
 		$desc = $seo ? (string)$seo->meta->description : '';
 		$seoData = $seo && method_exists($seo, 'getData') ? $seo->getData() : [];
 		$schema = $seoData['schema_type'] ?? 'WebPage';
@@ -133,7 +134,7 @@ class IchibanAuditEngine {
 			':canonical' => $canonical ?: (string)$page->httpUrl(),
 			':title'     => $title,
 			':desc'      => $desc,
-			':title_len' => mb_strlen($title),
+			':title_len' => mb_strlen($renderedTitle),
 			':desc_len'  => mb_strlen($desc),
 			':noindex'   => !empty($seoData['meta_noindex']) ? 1 : 0,
 			':og_image'  => $ogImg ? 1 : 0,

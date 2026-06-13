@@ -340,7 +340,8 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$out .= '<meta charset="utf-8">' . "\n";
 		// Meta title
 		$title = $seo->meta->title;
-		$out .= '<title>' . $this->wire('sanitizer')->entities($title) . '</title>' . "\n";
+		$renderedTitle = $this->formatMetaTitle((string)$title);
+		$out .= '<title>' . $this->wire('sanitizer')->entities($renderedTitle) . '</title>' . "\n";
 		$out .= '<meta name="description" content="' . $this->wire('sanitizer')->entities($seo->meta->description) . '">' . "\n";
 		// Robots
 		$robotsParts = [];
@@ -436,6 +437,22 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 	protected function localeForLanguage(Language $lang): string {
 		// Try to get ISO locale from language field, fall back to language name
 		return $lang->get('locale') ?: str_replace('_', '-', $lang->name);
+	}
+
+	public function formatMetaTitle(string $title): string {
+		$format = trim((string)$this->get('title_format'));
+		if ($format === '') return $title;
+		if (!str_contains($format, '{meta_title}')) {
+			$format = '{meta_title}' . $format;
+		}
+		$siteName = (string)($this->get('entity_name') ?: $this->wire('config')->httpHost);
+		$replacements = [
+			'{meta_title}' => $title,
+			'{site_name}' => $siteName,
+			'{entity_name}' => (string)$this->get('entity_name'),
+			'{host}' => (string)$this->wire('config')->httpHost,
+		];
+		return trim(strtr($format, $replacements));
 	}
 
 	public function pageHttpUrl(Page $page, ?Language $language = null, bool $includeSegments = true): string {
@@ -935,7 +952,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 
 		$fsRendering = $modules->get('InputfieldFieldset');
 		$fsRendering->label = __('Rendering');
-		$fsRendering->collapsed = $collapsedFor(['auto_render_head']);
+		$fsRendering->collapsed = $collapsedFor(['auto_render_head', 'title_format']);
 		$fsRendering->columnWidth = 50;
 		$addNotes($fsRendering, __('By default Ichiban only renders tags when your template outputs $page->seo. Automatic injection is opt-in.'));
 
@@ -944,6 +961,15 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$f->label = __('Automatically inject SEO tags into page <head>');
 		$f->description = __('Enable only if your templates do not output $page->seo.');
 		$f->checked = !empty($data['auto_render_head']);
+		$f->columnWidth = 100;
+		$fsRendering->add($f);
+
+		$f = $modules->get('InputfieldText');
+		$f->name = 'title_format';
+		$f->label = __('Title Format');
+		$f->description = __('Optionally format the rendered <title>. Use {meta_title} for the resolved page title, for example {meta_title} | {site_name}. Leave blank to render the title unchanged.');
+		$f->notes = __('Supported placeholders: {meta_title}, {site_name}, {entity_name}, {host}. Title length checks include this format.');
+		$f->value = $data['title_format'] ?? '';
 		$f->columnWidth = 100;
 		$fsRendering->add($f);
 		$wrapper->add($fsRendering);
