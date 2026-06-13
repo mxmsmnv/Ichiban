@@ -437,6 +437,24 @@ wire()->addHookAfter('Ichiban::resolveSourceValue', function(HookEvent $e) {
     $expression = $e->arguments(3);
 });
 
+// Adjust final SEO values after all defaults and fallbacks resolve.
+// Audit, Dashboard stats, Bulk Editor, previews, and rendered tags all see this value.
+wire()->addHookAfter('Ichiban::resolvedSeoValue', function(HookEvent $e) {
+    $page  = $e->arguments(0);
+    $group = $e->arguments(1);
+    $key   = $e->arguments(2);
+    $value = $e->return;
+
+    if (in_array($page->template->name, ['person', 'blog-post'], true) && $group === 'meta' && $key === 'description') {
+        $source = $value !== '' ? $value : wire('sanitizer')->textarea($page->get('summary|body'));
+        $e->return = wire('sanitizer')->truncate($source, 155);
+    }
+
+    if ($group === 'og' && $key === 'image' && $value === '' && $page->template->name === 'blog-post' && $page->images->count()) {
+        $e->return = $page->images->first()->httpUrl;
+    }
+});
+
 // Add or modify audit rules.
 wire()->addHookAfter('Ichiban::auditRules', function(HookEvent $e) {
     $rules = $e->return;
