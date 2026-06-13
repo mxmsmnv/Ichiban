@@ -626,6 +626,18 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		return $resolver->resolve($page, $group, $key, $expression);
 	}
 
+	/**
+	 * Hookable: customize the final resolved SEO value.
+	 *
+	 * Runs after page/template/global defaults and built-in fallbacks, so Audit,
+	 * Bulk Editor, previews, and rendered tags all see the adjusted value.
+	 *
+	 * @hook Ichiban::resolvedSeoValue
+	 */
+	public function ___resolvedSeoValue(Page $page, string $group, string $key, string $value): string {
+		return $value;
+	}
+
 	/** Hookable: customize audit rules before report/index checks run. */
 	public function ___auditRules(array $rules): array {
 		return $rules;

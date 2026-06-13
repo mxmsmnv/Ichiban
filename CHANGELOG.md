@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 - Global Title Format setting for appending site-level text to rendered `<title>` values with `{meta_title}`, `{site_name}`, `{entity_name}`, and `{host}` placeholders.
+- `Ichiban::resolvedSeoValue` hook for adjusting final resolved SEO values before previews, rendering, audit, Dashboard stats, and Bulk Editor use them.
 
 ### Fixed
 - Admin social preview and resolved image hints now recognize dotted source expressions such as `{combo.image}` and `combo.image`, matching the backend Open Graph image resolver.
