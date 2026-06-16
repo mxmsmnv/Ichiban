@@ -5,7 +5,7 @@ require_once __DIR__ . '/IchibanAutoload.php';
 /**
  * Ichiban (一番) — ProcessWire SEO Module
  *
- * @author Maxim Semenov <maxim@smnv.org>
+ * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
  * @version 0.1.2-alpha
  */

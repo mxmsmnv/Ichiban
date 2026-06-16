@@ -10,11 +10,11 @@ Ichiban adds a page SEO field, live previews, structured data, audits, redirects
 
 Ichiban is built and maintained by **Maxim Semenov**.
 
-- Website: [smnv.org](https://smnv.org)
+**Author:** Maxim Semenov  
+**Website:** [smnv.org](https://smnv.org)  
+**Email:** [maxim@smnv.org](mailto:maxim@smnv.org)
 
 If this project helps your work, consider supporting future development: [GitHub Sponsors](https://github.com/sponsors/mxmsmnv) or [smnv.org/sponsor](https://smnv.org/sponsor/).
-
-- Email: [maxim@smnv.org](mailto:maxim@smnv.org)
 
 ## Requirements
 
