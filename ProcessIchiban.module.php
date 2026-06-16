@@ -17,7 +17,7 @@ class ProcessIchiban extends Process {
 			'summary'  => 'Admin panel for Ichiban SEO module.',
 			'author'   => 'Maxim Semenov',
 			'href'     => 'https://smnv.org',
-			'version'  => 12,
+			'version'  => 13,
 			
 			'page'     => [
 				'name'   => 'ichiban',
@@ -227,8 +227,6 @@ class ProcessIchiban extends Process {
 		$queryBase = [];
 		if ($tpl) $queryBase['template'] = $tpl;
 		if ($issue !== '') $queryBase['issue'] = $issue;
-		$currentQuery = $queryBase + ($page > 1 ? ['p' => $page] : []);
-		$bulkSaveUrl = $this->adminUrl('bulk-save/') . ($currentQuery ? '?' . http_build_query($currentQuery) : '');
 		$filterSummary = $issue !== '' ? sprintf(__('Filtered to %s.'), $issueFilters[$issue]) : __('Showing all indexed pages.');
 
 		$out  = $this->renderAdminNav('bulk');
@@ -255,7 +253,7 @@ class ProcessIchiban extends Process {
 			. ($tpl || $issue !== '' ? "<a class='uk-button uk-button-secondary' href='" . $this->adminUrl('bulk/') . "'>" . __('Clear') . "</a>" : '')
 			. "<span>" . sprintf(__('Showing %1$d-%2$d of %3$d matching indexed pages'), $firstShown, $lastShown, $total) . "</span>"
 			. "</form>\n";
-		$out .= "<form method='post' action='" . $san->entities($bulkSaveUrl) . "' class='ichiban-bulk-form'>\n";
+		$out .= "<form method='post' action='" . $this->adminUrl('bulk-save/') . "' class='ichiban-bulk-form'>\n";
 		$out .= $this->wire('session')->CSRF->renderInput();
 		$out .= "<div class='ichiban-bulk-actionbar'><span>" . __('Changes are saved as custom SEO values for each page.') . "</span><button type='submit' class='uk-button uk-button-primary'>" . __('Save Changes') . "</button></div>\n";
 		if (!$rows) {
@@ -374,14 +372,7 @@ class ProcessIchiban extends Process {
 		if ($skipped > 0) {
 			$this->wire('session')->warning(sprintf(__('%d submitted pages were skipped because they no longer have an Ichiban SEO field.'), $skipped));
 		}
-		$returnQuery = [];
-		$template = $san->text((string)$this->wire('input')->get('template'));
-		$issue = $san->text((string)$this->wire('input')->get('issue'));
-		$page = max(1, (int)$this->wire('input')->get('p'));
-		if ($template !== '') $returnQuery['template'] = $template;
-		if (in_array($issue, ['missing_title', 'missing_description', 'title_length', 'description_length'], true)) $returnQuery['issue'] = $issue;
-		if ($page > 1) $returnQuery['p'] = $page;
-		$this->wire('session')->redirect($this->adminUrl('bulk/') . ($returnQuery ? '?' . http_build_query($returnQuery) : ''));
+		$this->wire('session')->redirect($this->adminUrl('bulk/'));
 		return '';
 	}
 
@@ -2044,7 +2035,7 @@ class ProcessIchiban extends Process {
 			             'verify_facebook_domain','verify_custom_meta','facebook_pixel_id',
 			             'entity_logo','social_twitter','social_linkedin',
 			             'social_facebook','social_github','social_instagram','gsc_site_url',
-			             'gsc_client_id','gsc_client_secret','indexnow_key','twitter_site','title_format','global_defaults',
+			             'gsc_client_id','gsc_client_secret','indexnow_key','twitter_site','global_defaults',
 			             'moz_target','moz_api_token','moz_access_id','moz_secret_key','moz_api_base_url','moz_row_limit','moz_timeout',
 			             'template_defaults','url_segments_mode','robots_enabled','robots_text','llms_enabled','auto_render_head',
 			             'llms_mode','llms_templates','llms_manual_urls',
@@ -2064,7 +2055,7 @@ class ProcessIchiban extends Process {
 			foreach (['robots_enabled','llms_enabled','sitemap_enabled','sitemap_respect_noindex','sitemap_include_hidden',
 			          'sitemap_include_unpublished','sitemap_include_images','sitemap_multilang_hreflang','sitemap_auto_regenerate',
 			          'search_cleanup_enabled','remove_rsd','remove_wlw','remove_shortlink',
-			          'remove_prev_next','remove_generator','auto_render_head'] as $key) {
+			          'remove_prev_next','remove_generator','auto_render_head','render_hreflang','render_jsonld'] as $key) {
 				$save[$key] = $input->post($key) !== null ? 1 : 0;
 			}
 			$save['ai_enabled'] = $input->post('ai_enabled') !== null ? 1 : 0;

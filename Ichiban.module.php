@@ -7,7 +7,7 @@ require_once __DIR__ . '/IchibanAutoload.php';
  *
  * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
- * @version 0.1.2-alpha
+ * @version 0.1.3-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
 
@@ -19,7 +19,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'title'    => 'Ichiban',
 			'summary'  => 'Comprehensive SEO module: meta/OG/schema, audit, redirects, revisions, email reports.',
 			'author'   => 'Maxim Semenov',
-			'version'  => 12,
+			'version'  => 13,
 			'href'     => 'https://smnv.org',
 			'singular' => true,
 			'autoload' => true,
@@ -340,8 +340,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$out .= '<meta charset="utf-8">' . "\n";
 		// Meta title
 		$title = $seo->meta->title;
-		$renderedTitle = $this->formatMetaTitle((string)$title);
-		$out .= '<title>' . $this->wire('sanitizer')->entities($renderedTitle) . '</title>' . "\n";
+		$out .= '<title>' . $this->wire('sanitizer')->entities($title) . '</title>' . "\n";
 		$out .= '<meta name="description" content="' . $this->wire('sanitizer')->entities($seo->meta->description) . '">' . "\n";
 		// Robots
 		$robotsParts = [];
@@ -374,7 +373,9 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			}
 		}
 		// hreflang (multilingual)
-		$out .= $this->renderHreflang($page);
+		if ($this->isHeadFeatureEnabled('render_hreflang')) {
+			$out .= $this->renderHreflang($page);
+		}
 		// Twitter/X
 		$twitterCard = $seo->twitter->card ?: 'summary_large_image';
 		$out .= '<meta name="twitter:card" content="' . $this->wire('sanitizer')->entities($twitterCard) . '">' . "\n";
@@ -395,6 +396,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 	 * @hook Ichiban::renderSchemaGraph
 	 */
 	public function ___renderSchemaGraph(Page $page): string {
+		if (!$this->isHeadFeatureEnabled('render_jsonld')) return '';
 		$fn = $this->getSeoFieldName();
 		if (!$page->hasField($fn)) return '';
 		$seo = $page->get($fn);
@@ -434,25 +436,15 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		return $out;
 	}
 
+	protected function isHeadFeatureEnabled(string $key): bool {
+		$value = $this->get($key);
+		if ($value === null || $value === '') return true;
+		return (bool)$value;
+	}
+
 	protected function localeForLanguage(Language $lang): string {
 		// Try to get ISO locale from language field, fall back to language name
 		return $lang->get('locale') ?: str_replace('_', '-', $lang->name);
-	}
-
-	public function formatMetaTitle(string $title): string {
-		$format = trim((string)$this->get('title_format'));
-		if ($format === '') return $title;
-		if (!str_contains($format, '{meta_title}')) {
-			$format = '{meta_title}' . $format;
-		}
-		$siteName = (string)($this->get('entity_name') ?: $this->wire('config')->httpHost);
-		$replacements = [
-			'{meta_title}' => $title,
-			'{site_name}' => $siteName,
-			'{entity_name}' => (string)$this->get('entity_name'),
-			'{host}' => (string)$this->wire('config')->httpHost,
-		];
-		return trim(strtr($format, $replacements));
 	}
 
 	public function pageHttpUrl(Page $page, ?Language $language = null, bool $includeSegments = true): string {
@@ -624,18 +616,6 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 	public function ___resolveSourceValue(Page $page, string $group, string $key, string $expression): string {
 		$resolver = new \IchibanSourceResolver($this);
 		return $resolver->resolve($page, $group, $key, $expression);
-	}
-
-	/**
-	 * Hookable: customize the final resolved SEO value.
-	 *
-	 * Runs after page/template/global defaults and built-in fallbacks, so Audit,
-	 * Bulk Editor, previews, and rendered tags all see the adjusted value.
-	 *
-	 * @hook Ichiban::resolvedSeoValue
-	 */
-	public function ___resolvedSeoValue(Page $page, string $group, string $key, string $value): string {
-		return $value;
 	}
 
 	/** Hookable: customize audit rules before report/index checks run. */
@@ -964,7 +944,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 
 		$fsRendering = $modules->get('InputfieldFieldset');
 		$fsRendering->label = __('Rendering');
-		$fsRendering->collapsed = $collapsedFor(['auto_render_head', 'title_format']);
+		$fsRendering->collapsed = $collapsedFor(['auto_render_head', 'render_hreflang', 'render_jsonld']);
 		$fsRendering->columnWidth = 50;
 		$addNotes($fsRendering, __('By default Ichiban only renders tags when your template outputs $page->seo. Automatic injection is opt-in.'));
 
@@ -976,13 +956,20 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$f->columnWidth = 100;
 		$fsRendering->add($f);
 
-		$f = $modules->get('InputfieldText');
-		$f->name = 'title_format';
-		$f->label = __('Title Format');
-		$f->description = __('Optionally format the rendered <title>. Use {meta_title} for the resolved page title, for example {meta_title} | {site_name}. Leave blank to render the title unchanged.');
-		$f->notes = __('Supported placeholders: {meta_title}, {site_name}, {entity_name}, {host}. Title length checks include this format.');
-		$f->value = $data['title_format'] ?? '';
-		$f->columnWidth = 100;
+		$f = $modules->get('InputfieldCheckbox');
+		$f->name = 'render_hreflang';
+		$f->label = __('Render hreflang alternate links');
+		$f->description = __('Disable this when ProcessWire languages are used internally but the public site should not advertise language alternates.');
+		$f->checked = !array_key_exists('render_hreflang', $data) || !empty($data['render_hreflang']);
+		$f->columnWidth = 50;
+		$fsRendering->add($f);
+
+		$f = $modules->get('InputfieldCheckbox');
+		$f->name = 'render_jsonld';
+		$f->label = __('Render JSON-LD schema');
+		$f->description = __('Disable this when templates or another module generate custom structured data.');
+		$f->checked = !array_key_exists('render_jsonld', $data) || !empty($data['render_jsonld']);
+		$f->columnWidth = 50;
 		$fsRendering->add($f);
 		$wrapper->add($fsRendering);
 

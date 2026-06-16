@@ -33,26 +33,23 @@ class IchibanCascade {
 		// 1. Page-level value
 		$pageData = $this->getPageData($group, $key);
 		if ($pageData !== null && $pageData !== 'inherit') {
-			$value = $this->ichiban->resolveSourceValue($this->page, $group, $key, $pageData);
-			return $this->ichiban->resolvedSeoValue($this->page, $group, $key, $value);
+			return $this->ichiban->resolveSourceValue($this->page, $group, $key, $pageData);
 		}
 
 		// 2. Template-level default
 		$tplData = $this->getTemplateDefault($group, $key);
 		if ($tplData !== null && $tplData !== 'inherit') {
-			$value = $this->ichiban->resolveSourceValue($this->page, $group, $key, $tplData);
-			return $this->ichiban->resolvedSeoValue($this->page, $group, $key, $value);
+			return $this->ichiban->resolveSourceValue($this->page, $group, $key, $tplData);
 		}
 
 		// 3. Global default
 		$globalData = $this->getGlobalDefault($group, $key);
 		if ($globalData !== null) {
-			$value = $this->ichiban->resolveSourceValue($this->page, $group, $key, $globalData);
-			return $this->ichiban->resolvedSeoValue($this->page, $group, $key, $value);
+			return $this->ichiban->resolveSourceValue($this->page, $group, $key, $globalData);
 		}
 
 		// Built-in fallbacks
-		return $this->ichiban->resolvedSeoValue($this->page, $group, $key, $this->builtinFallback($group, $key));
+		return $this->builtinFallback($group, $key);
 	}
 
 	// -------------------------------------------------------------------------

@@ -4,15 +4,16 @@ All notable changes to Ichiban will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [0.1.2-alpha] - 2026-05-22
+## [0.1.3-alpha] - 2026-06-16
 
 ### Added
-- Global Title Format setting for appending site-level text to rendered `<title>` values with `{meta_title}`, `{site_name}`, `{entity_name}`, and `{host}` placeholders.
-- `Ichiban::resolvedSeoValue` hook for adjusting final resolved SEO values before previews, rendering, audit, Dashboard stats, and Bulk Editor use them.
+- Rendering settings can now disable frontend hreflang alternate links independently from the rest of the head output.
+- Rendering settings can now disable frontend JSON-LD schema output completely for sites that generate their own structured data.
+
+## [0.1.2-alpha] - 2026-05-22
 
 ### Fixed
 - Admin social preview and resolved image hints now recognize dotted source expressions such as `{combo.image}` and `combo.image`, matching the backend Open Graph image resolver.
-- Audit and Bulk Editor title length checks now include the configured Title Format.
 
 ## [0.1.1-alpha] - 2026-05-22
 

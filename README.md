@@ -89,6 +89,8 @@ Do not use automatic injection together with theme-level SEO tags. If your templ
 
 Ichiban outputs meta tags, canonical URL, Open Graph, Twitter/X, robots directives, verification tags, hreflang links, optional Meta Pixel, and JSON-LD schema.
 
+The module settings include separate Rendering toggles for frontend hreflang links and JSON-LD schema. Disable hreflang when ProcessWire languages are used internally but the public site should not advertise alternate language URLs. Disable JSON-LD when templates or another SEO layer already generate custom structured data.
+
 For templates with URL segments enabled, canonical, `og:url`, `twitter:url`, and hreflang URLs preserve the current segment string by default. This can be changed in module settings.
 
 ## Admin Sections
@@ -338,7 +340,7 @@ Example:
 }
 ```
 
-When a page uses a matching template, Ichiban adds a JSON-LD node to the page graph. Page-level raw JSON-LD override still takes precedence over generated schema output.
+When a page uses a matching template, Ichiban adds a JSON-LD node to the page graph. Page-level raw JSON-LD override still takes precedence over generated schema output. The global Rendering setting can disable all frontend JSON-LD output when structured data is handled elsewhere.
 
 ## Webmaster Verification and Pixels
 
@@ -438,24 +440,6 @@ The AI test page shows the model, request duration, finish reason, output token 
 wire()->addHookAfter('Ichiban::resolveSourceValue', function(HookEvent $e) {
     $page = $e->arguments(0);
     $expression = $e->arguments(3);
-});
-
-// Adjust final SEO values after all defaults and fallbacks resolve.
-// Audit, Dashboard stats, Bulk Editor, previews, and rendered tags all see this value.
-wire()->addHookAfter('Ichiban::resolvedSeoValue', function(HookEvent $e) {
-    $page  = $e->arguments(0);
-    $group = $e->arguments(1);
-    $key   = $e->arguments(2);
-    $value = $e->return;
-
-    if (in_array($page->template->name, ['person', 'blog-post'], true) && $group === 'meta' && $key === 'description') {
-        $source = $value !== '' ? $value : wire('sanitizer')->textarea($page->get('summary|body'));
-        $e->return = wire('sanitizer')->truncate($source, 155);
-    }
-
-    if ($group === 'og' && $key === 'image' && $value === '' && $page->template->name === 'blog-post' && $page->images->count()) {
-        $e->return = $page->images->first()->httpUrl;
-    }
 });
 
 // Add or modify audit rules.
