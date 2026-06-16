@@ -70,29 +70,50 @@ class IchibanCascade {
 		$fieldKey = "{$group}_{$key}";
 		$fieldKey = $this->aliasFieldKey($group, $key, $fieldKey);
 		if (!isset($data[$fieldKey])) return null;
-		$entry = $data[$fieldKey];
+		$entry = $this->normalizeSourceEntry($data[$fieldKey], $group, $key);
+		if ($entry === 'inherit') return 'inherit';
+		if ($entry === null) return null;
+		return $entry;
+	}
+
+	protected function normalizeSourceEntry(mixed $entry, string $group, string $key): ?string {
 		if (is_array($entry)) {
 			$mode = $entry['mode'] ?? 'inherit';
 			if ($mode === 'inherit') return 'inherit';
-			if ($mode === 'custom')  return $entry['value'] ?? '';
-			if ($mode === 'field')   return 'field:' . ($entry['value'] ?? '');
+			$value = trim((string)($entry['value'] ?? ''));
+			if ($value === '' && $this->isSourceField($group, $key)) return 'inherit';
+			if ($mode === 'custom')  return $value;
+			if ($mode === 'field')   return 'field:' . $value;
 		}
-		return is_string($entry) ? $entry : null;
+		return is_string($entry) ? trim($entry) : null;
 	}
 
 	protected function getTemplateDefault(string $group, string $key): ?string {
 		$tplName   = $this->page->template ? $this->page->template->name : '';
 		$defaults  = $this->ichiban->get('template_defaults') ?: [];
 		if (is_string($defaults)) $defaults = json_decode($defaults, true) ?: [];
-		$fieldKey = $this->aliasFieldKey($group, $key, "{$group}_{$key}");
-		return $defaults[$tplName][$fieldKey] ?? null;
+		$entry = is_array($defaults[$tplName] ?? null) ? $this->defaultEntry($defaults[$tplName], $group, $key) : null;
+		if ($entry === null || $entry === '' || $entry === 'inherit') return null;
+		return $entry;
 	}
 
 	protected function getGlobalDefault(string $group, string $key): ?string {
 		$defaults = $this->ichiban->get('global_defaults') ?: [];
 		if (is_string($defaults)) $defaults = json_decode($defaults, true) ?: [];
+		$entry = $this->defaultEntry(is_array($defaults) ? $defaults : [], $group, $key);
+		if ($entry === null || $entry === '' || $entry === 'inherit') return null;
+		return $entry;
+	}
+
+	protected function defaultEntry(array $defaults, string $group, string $key): ?string {
 		$fieldKey = $this->aliasFieldKey($group, $key, "{$group}_{$key}");
-		return $defaults[$fieldKey] ?? null;
+		if (array_key_exists($fieldKey, $defaults)) return $this->normalizeSourceEntry($defaults[$fieldKey], $group, $key);
+		$dotKey = "{$group}.{$key}";
+		if (array_key_exists($dotKey, $defaults)) return $this->normalizeSourceEntry($defaults[$dotKey], $group, $key);
+		if (isset($defaults[$group]) && is_array($defaults[$group]) && array_key_exists($key, $defaults[$group])) {
+			return $this->normalizeSourceEntry($defaults[$group][$key], $group, $key);
+		}
+		return null;
 	}
 
 	protected function aliasFieldKey(string $group, string $key, string $default): string {
@@ -104,6 +125,10 @@ class IchibanCascade {
 			'advanced.jsonld_override' => 'jsonld_override',
 			default => $default,
 		};
+	}
+
+	protected function isSourceField(string $group, string $key): bool {
+		return in_array("{$group}.{$key}", ['meta.title', 'meta.description', 'og.title', 'og.description'], true);
 	}
 
 	protected function builtinFallback(string $group, string $key): string {

@@ -17,7 +17,7 @@ class ProcessIchiban extends Process {
 			'summary'  => 'Admin panel for Ichiban SEO module.',
 			'author'   => 'Maxim Semenov',
 			'href'     => 'https://smnv.org',
-			'version'  => 13,
+			'version'  => 14,
 			
 			'page'     => [
 				'name'   => 'ichiban',
@@ -356,8 +356,14 @@ class ProcessIchiban extends Process {
 				continue;
 			}
 			$data = $seo->getData();
-			$data['meta_title']       = ['mode' => 'custom', 'value' => $san->text($title)];
-			$data['meta_description'] = ['mode' => 'custom', 'value' => $san->text($descs[$pageId] ?? '')];
+			$title = $san->text($title);
+			$desc = $san->text($descs[$pageId] ?? '');
+			$data['meta_title'] = $title === ''
+				? ['mode' => 'inherit', 'value' => '']
+				: ['mode' => 'custom', 'value' => $title];
+			$data['meta_description'] = $desc === ''
+				? ['mode' => 'inherit', 'value' => '']
+				: ['mode' => 'custom', 'value' => $desc];
 			$seo->setData($data);
 			$p->set($fn, $seo);
 			$p->trackChange($fn);

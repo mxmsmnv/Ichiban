@@ -4,6 +4,13 @@ All notable changes to Ichiban will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.4-alpha] - 2026-06-16
+
+### Fixed
+- Global and template defaults now resolve flat keys such as `meta_title` and `meta_description`, dot keys such as `meta.title`, and nested structures such as `{ "meta": { "title": "field:title" } }`.
+- Empty page-level source fields now inherit from template and global defaults instead of blocking them with an empty custom value.
+- Empty Bulk Editor title and description fields are now saved as inherited values instead of empty custom overrides.
+
 ## [0.1.3-alpha] - 2026-06-16
 
 ### Added

@@ -51,6 +51,17 @@ The Google preview uses the resolved title, URL, and description. It is an appro
 
 Title and description fields can be entered as custom text or resolved from ProcessWire fields.
 
+Global and template defaults can use the same flat keys as Ichiban page data, for example:
+
+```json
+{
+  "meta_title": "field:title",
+  "meta_description": "field:summary|truncate:160"
+}
+```
+
+The resolver also accepts dot or nested notation such as `meta.title` or `{ "meta": { "title": "field:title" } }`. Empty page-level source fields inherit from template and global defaults.
+
 Supported examples:
 
 ```text
