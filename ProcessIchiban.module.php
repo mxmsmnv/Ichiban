@@ -294,13 +294,18 @@ class ProcessIchiban extends Process {
 				. "</td></tr>\n";
 				foreach ($group['rows'] as $row) {
 					$pid   = (int)$row['page_id'];
-					$title = htmlspecialchars($row['meta_title'] ?? '', ENT_QUOTES, 'UTF-8');
+					$rawTitle = (string)($row['meta_title'] ?? '');
+					$title = htmlspecialchars($rawTitle, ENT_QUOTES, 'UTF-8');
 					$desc  = htmlspecialchars($row['meta_description'] ?? '', ENT_QUOTES, 'UTF-8');
 					$url   = $san->entities($row['url']);
 					$template = $san->entities($row['template_name'] ?? '');
 					$pageObj = $this->wire('pages')->get($pid);
 					$editUrl = ($pageObj && $pageObj->id) ? $san->entities($pageObj->editUrl) : '';
-					$titleLen = (int)($row['meta_title_len'] ?? strlen((string)($row['meta_title'] ?? '')));
+					$renderedTitle = method_exists($this->ichiban, 'formatMetaTitle') ? $this->ichiban->formatMetaTitle($rawTitle) : $rawTitle;
+					$renderedTitleHtml = $renderedTitle !== $rawTitle
+						? "<span class='ichiban-bulk-rendered-title'><strong>" . __('Rendered title') . ":</strong> " . $san->entities($renderedTitle) . "</span>"
+						: "";
+					$titleLen = (int)($row['meta_title_len'] ?? mb_strlen($renderedTitle));
 					$descLen = (int)($row['meta_desc_len'] ?? strlen((string)($row['meta_description'] ?? '')));
 					$score = (int)$row['_ichiban_score'];
 					$scoreClass = $score >= 80 ? 'ichiban-score-good' : ($score >= 60 ? 'ichiban-score-warning' : 'ichiban-score-poor');
@@ -310,7 +315,7 @@ class ProcessIchiban extends Process {
 					$out  .= "<tr>"
 						. "<td><div class='ichiban-bulk-page'><a href='{$url}' target='_blank' rel='noopener'>{$url}</a>"
 						. "<div class='ichiban-bulk-page-actions'><span>{$template}</span>" . ($editUrl !== '' ? "<a href='{$editUrl}'>" . __('Edit page') . "</a>" : '') . "</div></div></td>"
-						. "<td><div class='ichiban-bulk-field'><input class='uk-input' type='text' name='meta_title[{$pid}]' value=\"{$title}\" maxlength='70'><span>{$titleHint} · " . __('target 30–70') . "</span></div></td>"
+						. "<td><div class='ichiban-bulk-field'><input class='uk-input' type='text' name='meta_title[{$pid}]' value=\"{$title}\" maxlength='70'><span>{$titleHint} · " . __('target 30–70') . "</span>{$renderedTitleHtml}</div></td>"
 						. "<td><div class='ichiban-bulk-field'><input class='uk-input' type='text' name='meta_description[{$pid}]' value=\"{$desc}\" maxlength='160'><span>{$descHint} · " . __('target 50–160') . "</span></div></td>"
 						. "<td><span class='ichiban-score-badge {$scoreClass}' data-score='{$score}' title='{$scoreReasons}'>{$score}</span></td>"
 						. "</tr>\n";

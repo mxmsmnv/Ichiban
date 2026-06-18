@@ -503,6 +503,12 @@ body.dark-theme {
   display: grid;
   gap: 6px;
 }
+.ichiban-bulk-rendered-title {
+  line-height: 1.35;
+}
+.ichiban-bulk-rendered-title strong {
+  color: var(--ichiban-text);
+}
 .ichiban-bulk-empty {
   padding: 22px;
   background: var(--ichiban-surface);

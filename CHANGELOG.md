@@ -26,6 +26,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 - Admin social preview and resolved image hints now recognize dotted source expressions such as `{combo.image}` and `combo.image`, matching the backend Open Graph image resolver.
 - Audit and Bulk Editor title length checks now include the configured Title Format.
+- Bulk Editor now shows the formatted rendered title below the editable raw meta title when Title Format adds a suffix or other text.
 
 ## [0.1.1-alpha] - 2026-05-22
 
