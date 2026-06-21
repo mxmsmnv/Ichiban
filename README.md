@@ -4,6 +4,8 @@
 
 Ichiban adds a page SEO field and a full SEO workspace to the ProcessWire admin. It handles meta tags, social previews, structured data, audits, redirects, sitemap generation, Search Console insights, backlink snapshots, revisions, cleanup tools, reports, migration from SeoMaestro, and AI-assisted SEO prompts.
 
+![Ichiban](assets/Ichiban.png)
+
 ## Requirements
 
 - ProcessWire 3.0.200+
