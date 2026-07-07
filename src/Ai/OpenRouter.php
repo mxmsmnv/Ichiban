@@ -35,7 +35,7 @@ class IchibanOpenRouter {
 	}
 
 	public function settingsUrl(): string {
-		return rtrim(\ProcessWire\wire('config')->urls->admin, '/') . '/ichiban/settings/';
+		return \ProcessWire\Ichiban::adminPageUrl(false, 'settings/');
 	}
 
 	public function chat(array $options): array {

@@ -6,6 +6,17 @@
 (function() {
   'use strict';
 
+  // Base URL of the ProcessIchiban admin page. Read from ProcessWire.config
+  // (set server-side via $config->js('Ichiban', ...), resolved from the actual
+  // page so it survives the admin page being renamed or moved), falling back to
+  // the default path.
+  function ichibanBase() {
+    const cfg = (typeof ProcessWire !== 'undefined' && ProcessWire.config && ProcessWire.config.Ichiban) || {};
+    if (cfg.adminUrl) return cfg.adminUrl.replace(/\/$/, '');
+    const baseHref = document.querySelector('base')?.href || window.location.origin + '/';
+    return baseHref.replace(/\/$/, '') + '/ichiban';
+  }
+
   // Init after DOM is ready (UIkit may load after DOMContentLoaded)
   function init() {
     document.querySelectorAll('.ichiban-wrap').forEach(wrap => {
@@ -75,8 +86,7 @@
   function initGscWidget(widget) {
     const pageId = widget.dataset.pageId || '';
     if (!pageId) return;
-    const adminUrl = document.querySelector('base')?.href || window.location.origin + '/';
-    const endpoint = adminUrl.replace(/\/$/, '') + '/ichiban/ajax-gsc-page/?page_id=' + encodeURIComponent(pageId);
+    const endpoint = ichibanBase() + '/ajax-gsc-page/?page_id=' + encodeURIComponent(pageId);
     fetch(endpoint)
       .then(r => r.ok ? r.json() : Promise.reject(r.status))
       .then(data => {
@@ -209,9 +219,7 @@
     const csrfName  = csrf ? csrf.name  : (typeof ProcessWire !== 'undefined' && ProcessWire.config ? ProcessWire.config.csrfTokenName : '_post_token');
     const csrfValue = csrf ? csrf.value : (typeof ProcessWire !== 'undefined' && ProcessWire.config ? ProcessWire.config.csrfTokenValue : '');
 
-    const adminUrl = document.querySelector('base')?.href
-                  || window.location.origin + '/';
-    const endpoint = adminUrl.replace(/\/$/, '') + '/ichiban/ajax-restore-revision/';
+    const endpoint = ichibanBase() + '/ajax-restore-revision/';
 
     fetch(endpoint, {
       method: 'POST',

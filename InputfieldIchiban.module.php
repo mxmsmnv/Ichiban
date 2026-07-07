@@ -27,6 +27,9 @@ class InputfieldIchiban extends Inputfield {
 		$url = $this->wire('config')->urls->Ichiban;
 		$this->wire('config')->styles->add($url . 'assets/css/inputfield.css');
 		$this->wire('config')->scripts->add($url . 'assets/js/inputfield.js');
+		// Expose the resolved admin page URL to JS as ProcessWire.config.Ichiban.adminUrl
+		// so AJAX endpoints survive the admin page being renamed or moved.
+		$this->wire('config')->js('Ichiban', ['adminUrl' => Ichiban::adminPageUrl(false)]);
 	}
 
 	public function ___render(): string {

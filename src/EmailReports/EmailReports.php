@@ -106,7 +106,7 @@ class IchibanEmailReports {
 				'revisions' => $countTable('ichiban_revisions'),
 			],
 			'gsc' => $gsc,
-			'admin_url' => rtrim((string)$this->ichiban->wire('config')->urls->httpAdmin, '/') . '/ichiban/reports/',
+			'admin_url' => \ProcessWire\Ichiban::adminPageUrl(true, 'reports/'),
 		];
 	}
 
