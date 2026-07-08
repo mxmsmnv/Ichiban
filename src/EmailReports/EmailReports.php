@@ -106,7 +106,7 @@ class IchibanEmailReports {
 				'revisions' => $countTable('ichiban_revisions'),
 			],
 			'gsc' => $gsc,
-			'admin_url' => rtrim((string)$this->ichiban->wire('config')->urls->httpAdmin, '/') . '/ichiban/reports/',
+			'admin_url' => \ProcessWire\Ichiban::adminPageUrl(true, 'reports/'),
 		];
 	}
 
@@ -197,7 +197,7 @@ class IchibanEmailReports {
 				. "<li>CTR: " . $san->entities((string)($gsc['ctr'] ?? '0%')) . "</li><li>Avg Position: " . $san->entities((string)($gsc['position'] ?? 0)) . "</li></ul>\n";
 		}
 
-		$adminUrl = $san->entities((string)($data['admin_url'] ?? ($this->ichiban->wire('config')->urls->httpAdmin . 'ichiban/reports/')));
+		$adminUrl = $san->entities((string)($data['admin_url'] ?? \ProcessWire\Ichiban::adminPageUrl(true, 'reports/')));
 		$html .= "<p><a href='{$adminUrl}'>View full report in admin</a></p>\n";
 		return $html;
 	}

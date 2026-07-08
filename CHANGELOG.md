@@ -4,6 +4,13 @@ All notable changes to Ichiban will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.5-alpha] - 2026-07-07
+
+### Fixed
+- Text values resolved from rich-text fields are now converted to plain text before being used in meta descriptions, Open Graph descriptions, and Schema.org properties.
+- Schema.org type resolution now honors template/global defaults in rendering, audit indexing, and the page-edit preview, including older pages that only stored the previous default `WebPage` value.
+- Ichiban admin URLs are now resolved from the actual Process page, so links and AJAX endpoints keep working if the admin page is renamed or moved.
+
 ## [0.1.4-alpha] - 2026-06-16
 
 ### Fixed

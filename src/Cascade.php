@@ -32,6 +32,9 @@ class IchibanCascade {
 	public function resolve(string $group, string $key): string {
 		// 1. Page-level value
 		$pageData = $this->getPageData($group, $key);
+		if ($this->shouldIgnoreStoredDefaultSchemaType($group, $key, $pageData)) {
+			$pageData = 'inherit';
+		}
 		if ($pageData !== null && $pageData !== 'inherit') {
 			$value = $this->ichiban->resolveSourceValue($this->page, $group, $key, $pageData);
 			return $this->ichiban->resolvedSeoValue($this->page, $group, $key, $value);
@@ -134,7 +137,7 @@ class IchibanCascade {
 	protected function builtinFallback(string $group, string $key): string {
 		return match ("{$group}.{$key}") {
 			'meta.title'       => (string)$this->page->get('title'),
-			'meta.description' => (string)($this->page->get('summary') ?: ''),
+			'meta.description' => $this->plainText((string)($this->page->get('summary') ?: '')),
 			'meta.canonical'   => $this->page->id && method_exists($this->ichiban, 'pageHttpUrl') ? $this->ichiban->pageHttpUrl($this->page) : ($this->page->id ? $this->page->httpUrl() : ''),
 			'og.title'         => $this->resolve('meta', 'title'),
 			'og.description'   => $this->resolve('meta', 'description'),
@@ -145,5 +148,21 @@ class IchibanCascade {
 			'sitemap.changefreq' => 'weekly',
 			default            => '',
 		};
+	}
+
+	protected function shouldIgnoreStoredDefaultSchemaType(string $group, string $key, ?string $pageData): bool {
+		if ($group !== 'schema' || $key !== 'type' || $pageData !== 'WebPage') return false;
+		$templateDefault = $this->getTemplateDefault($group, $key);
+		if ($templateDefault !== null && $templateDefault !== '' && $templateDefault !== 'WebPage') return true;
+		$globalDefault = $this->getGlobalDefault($group, $key);
+		return $globalDefault !== null && $globalDefault !== '' && $globalDefault !== 'WebPage';
+	}
+
+	protected function plainText(string $value): string {
+		if ($value === '') return '';
+		$value = html_entity_decode($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+		$value = preg_replace('/<[^>]*>/u', ' ', $value) ?? $value;
+		$value = preg_replace('/\s+/u', ' ', $value) ?? $value;
+		return trim($value);
 	}
 }

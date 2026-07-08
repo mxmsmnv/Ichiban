@@ -93,6 +93,7 @@ $ichiban->getSeoFieldName();
 $ichiban->renderRobotsTxt();
 $ichiban->renderLlmsTxt();
 $ichiban->getSitemapUrl();
+Ichiban::adminPageUrl(false, 'audit/');
 ```
 
 Service accessors:
@@ -165,7 +166,7 @@ Use hooks for project-specific behavior instead of editing module internals.
 
 ## Admin Workspace
 
-The Process module creates `/admin/ichiban/` with permission `ichiban-manage`.
+The Process module creates an admin page with permission `ichiban-manage`. The default path is `/admin/ichiban/`, but agents should resolve the actual URL through `Ichiban::adminPageUrl()` because the Process page may be renamed or moved.
 
 Expected sections:
 

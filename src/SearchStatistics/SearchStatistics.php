@@ -77,8 +77,7 @@ class IchibanSearchStatistics {
 	}
 
 	protected function getRedirectUri(): string {
-		$adminUrl = $this->ichiban->wire('config')->urls->httpAdmin;
-		return rtrim($adminUrl, '/') . '/ichiban/search-statistics/';
+		return \ProcessWire\Ichiban::adminPageUrl(true, 'search-statistics/');
 	}
 
 	// -------------------------------------------------------------------------

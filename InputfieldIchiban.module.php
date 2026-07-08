@@ -12,7 +12,7 @@ class InputfieldIchiban extends Inputfield {
 			'summary' => 'Admin UI for Ichiban SEO fieldtype.',
 			'author'  => 'Maxim Semenov',
 			'href'     => 'https://smnv.org',
-			'version' => 14,
+			'version' => 15,
 		];
 	}
 
@@ -27,6 +27,7 @@ class InputfieldIchiban extends Inputfield {
 		$url = $this->wire('config')->urls->Ichiban;
 		$this->wire('config')->styles->add($url . 'assets/css/inputfield.css');
 		$this->wire('config')->scripts->add($url . 'assets/js/inputfield.js');
+		$this->wire('config')->js('Ichiban', ['adminUrl' => Ichiban::adminPageUrl(false)]);
 	}
 
 	public function ___render(): string {
@@ -100,7 +101,7 @@ class InputfieldIchiban extends Inputfield {
 
 		// SCHEMA
 		$schemaOptions = $this->schemaTypeOptions();
-		$currentSchemaType = (string)($data['schema_type'] ?? 'WebPage');
+		$currentSchemaType = (string)($value->schema->type ?: 'WebPage');
 		$schemaPreviewType = str_starts_with($currentSchemaType, 'builder:')
 			? ($this->builderSchemaLabel($currentSchemaType) ?: $currentSchemaType)
 			: $currentSchemaType;

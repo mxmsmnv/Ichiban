@@ -35,7 +35,8 @@ class IchibanSchemaGraph {
 		$fn      = $this->ichiban->getSeoFieldName();
 		$seoRaw  = $page->hasField($fn) ? $page->getUnformatted($fn) : null;
 		$seoData = ($seoRaw instanceof \IchibanPageFieldValue) ? $seoRaw->getData() : [];
-		$schemaType = $seoData['schema_type'] ?? 'WebPage';
+		$seo = $page->hasField($fn) ? $page->get($fn) : null;
+		$schemaType = $seo instanceof \IchibanPageFieldValue ? (string)$seo->schema->type : 'WebPage';
 		$selectedBuilderSchemaId = $this->selectedBuilderSchemaId((string)$schemaType);
 		if ($schemaType !== 'none' && $selectedBuilderSchemaId === 0) {
 			$graph[] = $this->buildWebPage($page, $schemaType, $siteUrl);

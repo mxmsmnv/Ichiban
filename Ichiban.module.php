@@ -7,7 +7,7 @@ require_once __DIR__ . '/IchibanAutoload.php';
  *
  * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
- * @version 0.1.4-alpha
+ * @version 0.1.5-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
 
@@ -19,7 +19,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'title'    => 'Ichiban',
 			'summary'  => 'Comprehensive SEO module: meta/OG/schema, audit, redirects, revisions, email reports.',
 			'author'   => 'Maxim Semenov',
-			'version'  => 14,
+			'version'  => 15,
 			'href'     => 'https://smnv.org',
 			'singular' => true,
 			'autoload' => true,
@@ -897,6 +897,28 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
 		}
 
+	/**
+	 * URL to the ProcessIchiban admin page.
+	 *
+	 * Resolved from the actual admin page so links keep working when the page is
+	 * renamed or moved. Falls back to the default admin/ichiban/ location when
+	 * the page cannot be found.
+	 */
+	public static function adminPageUrl(bool $http = false, string $path = ''): string {
+		static $base = [];
+		$key = $http ? 1 : 0;
+		if (!isset($base[$key])) {
+			$page = wire('pages')->get('process=ProcessIchiban, include=all');
+			if ($page && $page->id) {
+				$base[$key] = $http ? $page->httpUrl : $page->url;
+			} else {
+				$adminBase = $http ? wire('config')->urls->httpAdmin : wire('config')->urls->admin;
+				$base[$key] = rtrim($adminBase, '/') . '/ichiban/';
+			}
+		}
+		return rtrim($base[$key], '/') . '/' . ltrim($path, '/');
+	}
+
 	// -------------------------------------------------------------------------
 	// Module config
 	// -------------------------------------------------------------------------
@@ -1050,7 +1072,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$fsGsc->label = __('Google Search Console');
 		$fsGsc->collapsed = $collapsedFor(['gsc_site_url', 'gsc_client_id', 'gsc_client_secret', 'gsc_access_token', 'gsc_refresh_token']);
 		$fsGsc->columnWidth = 100;
-		$gscRedirectUri = rtrim(wire('config')->urls->httpAdmin, '/') . '/ichiban/search-statistics/';
+		$gscRedirectUri = self::adminPageUrl(true, 'search-statistics/');
 		$addNotes($fsGsc,
 			sprintf(
 				__('Enable the Google Search Console API, create an OAuth Web application client, add this authorized redirect URI: %s, publish the OAuth app to production, then paste the Client ID and Client Secret below. Existing tokens are preserved when settings are saved.'),
@@ -1070,7 +1092,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$gscStatus = $modules->get('InputfieldMarkup');
 		$gscStatus->label = __('Connection status');
 		$gscStatus->columnWidth = 100;
-		$gscStatusUrl = rtrim(wire('config')->urls->admin, '/') . '/ichiban/search-statistics/';
+		$gscStatusUrl = self::adminPageUrl(false, 'search-statistics/');
 		$gscTokenText = '';
 		if ($gscConnected && $gscTokenExpiry > 0) {
 			$gscTokenText = $gscTokenExpiry > time()
@@ -1386,7 +1408,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 
 		$f = $modules->get('InputfieldMarkup');
 		$f->label = __('Actions');
-		$f->value = '<p><a class="uk-button uk-button-default uk-button-small" href="' . rtrim(wire('config')->urls->admin, '/') . '/ichiban/sitemap/">' . __('Open Sitemap dashboard') . '</a> '
+		$f->value = '<p><a class="uk-button uk-button-default uk-button-small" href="' . self::adminPageUrl(false, 'sitemap/') . '">' . __('Open Sitemap dashboard') . '</a> '
 			. '<a class="uk-button uk-button-default uk-button-small" href="' . wire('sanitizer')->entities($sitemapUrl) . '" target="_blank" rel="noopener">' . __('Open sitemap.xml') . '</a></p>';
 		$fsSitemap->add($f);
 		$wrapper->add($fsSitemap);

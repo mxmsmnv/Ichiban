@@ -17,7 +17,7 @@ class ProcessIchiban extends Process {
 			'summary'  => 'Admin panel for Ichiban SEO module.',
 			'author'   => 'Maxim Semenov',
 			'href'     => 'https://smnv.org',
-			'version'  => 14,
+			'version'  => 15,
 			
 			'page'     => [
 				'name'   => 'ichiban',
@@ -1044,7 +1044,7 @@ class ProcessIchiban extends Process {
 
 	protected function renderGscEmptyState(): string {
 		$san = $this->wire('sanitizer');
-		$redirectUri = rtrim($this->wire('config')->urls->httpAdmin, '/') . '/ichiban/search-statistics/';
+		$redirectUri = Ichiban::adminPageUrl(true, 'search-statistics/');
 		$propertyUrl = trim((string)($this->ichiban->get('gsc_site_url') ?: ''));
 		if ($propertyUrl === '') {
 			$propertyUrl = rtrim($this->wire('config')->urls->httpRoot, '/') . '/';
@@ -2477,7 +2477,7 @@ class ProcessIchiban extends Process {
 	}
 
 	protected function adminUrl(string $path = ''): string {
-		return rtrim($this->wire('config')->urls->admin, '/') . '/ichiban/' . ltrim($path, '/');
+		return Ichiban::adminPageUrl(false, $path);
 	}
 
 	protected function auditRuleAffectedPages(string $ruleName, int $limit = 5): array {

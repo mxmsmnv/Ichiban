@@ -45,11 +45,11 @@ class IchibanSourceResolver {
 
 		// custom: prefix (legacy compat)
 		if (str_starts_with($expression, 'custom:')) {
-			return substr($expression, 7);
+			return $this->normalizeLiteral(substr($expression, 7), $group, $key);
 		}
 
 		// Literal
-		return $expression;
+		return $this->normalizeLiteral($expression, $group, $key);
 	}
 
 	protected function resolveField(\ProcessWire\Page $page, string $spec, string $group = '', string $key = ''): string {
@@ -61,6 +61,9 @@ class IchibanSourceResolver {
 		$imageHeight = ($group === 'og' && $key === 'image') ? 630 : 0;
 
 		$value = $this->stringValue($value, $imageWidth, $imageHeight);
+		if ($this->shouldResolveAsPlainText($group, $key)) {
+			$value = $this->plainText($value);
+		}
 
 		// Apply modifiers
 		foreach ($parts as $mod) {
@@ -233,6 +236,26 @@ class IchibanSourceResolver {
 		}
 		if (is_object($value)) return '';
 		return (string)($value ?? '');
+	}
+
+	protected function shouldResolveAsPlainText(string $group, string $key): bool {
+		if (in_array("{$group}.{$key}", ['meta.title', 'meta.description', 'og.title', 'og.description'], true)) {
+			return true;
+		}
+		if ($group !== 'schema') return false;
+		return !in_array($key, ['image', 'logo', 'photo'], true);
+	}
+
+	protected function plainText(string $value): string {
+		if ($value === '') return '';
+		$value = html_entity_decode($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+		$value = preg_replace('/<[^>]*>/u', ' ', $value) ?? $value;
+		$value = preg_replace('/\s+/u', ' ', $value) ?? $value;
+		return trim($value);
+	}
+
+	protected function normalizeLiteral(string $value, string $group, string $key): string {
+		return $this->shouldResolveAsPlainText($group, $key) ? $this->plainText($value) : $value;
 	}
 
 	protected function resolveRepeater(mixed $item, string $fieldName): mixed {

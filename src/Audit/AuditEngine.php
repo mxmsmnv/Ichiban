@@ -123,7 +123,7 @@ class IchibanAuditEngine {
 		$renderedTitle = method_exists($this->ichiban, 'formatMetaTitle') ? $this->ichiban->formatMetaTitle($title) : $title;
 		$desc = $seo ? (string)$seo->meta->description : '';
 		$seoData = $seo && method_exists($seo, 'getData') ? $seo->getData() : [];
-		$schema = $seoData['schema_type'] ?? 'WebPage';
+		$schema = $seo ? (string)$seo->schema->type : 'WebPage';
 		$canonical = $seo ? (string)$seo->meta->canonical : $page->httpUrl();
 		$ogImg = $seo ? (string)$seo->og->image : '';
 
