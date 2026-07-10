@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [0.1.5-alpha] - 2026-07-07
 
+### Added
+- Added Cookie/Collections-style CSV translation files for 32 European languages covering the Ichiban admin interface.
+- Added a generator for rebuilding the European CSV translation set from `languages/catalog.json`.
+
 ### Fixed
 - Text values resolved from rich-text fields are now converted to plain text before being used in meta descriptions, Open Graph descriptions, and Schema.org properties.
 - Schema.org type resolution now honors template/global defaults in rendering, audit indexing, and the page-edit preview, including older pages that only stored the previous default `WebPage` value.

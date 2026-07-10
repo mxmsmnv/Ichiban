@@ -6,7 +6,7 @@
         "text": "Notes",
         "context": "",
         "plural": "",
-        "line": 831
+        "line": 931
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -15,7 +15,7 @@
         "text": "Identity",
         "context": "",
         "plural": "",
-        "line": 847
+        "line": 947
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -24,7 +24,7 @@
         "text": "Used for Organization/Person JSON-LD and sameAs profile links. Leave fields empty if the identity node should stay minimal.",
         "context": "",
         "plural": "",
-        "line": 849
+        "line": 949
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -33,7 +33,7 @@
         "text": "Defaults",
         "context": "",
         "plural": "",
-        "line": 876
+        "line": 976
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -42,7 +42,7 @@
         "text": "JSON defaults are resolved before page-level values. Use field:title, field:summary|truncate:160, custom text, or inherit.",
         "context": "",
         "plural": "",
-        "line": 879
+        "line": 979
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -51,7 +51,7 @@
         "text": "Global defaults JSON",
         "context": "",
         "plural": "",
-        "line": 881
+        "line": 981
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -60,7 +60,7 @@
         "text": "Template defaults JSON",
         "context": "",
         "plural": "",
-        "line": 882
+        "line": 982
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -69,7 +69,7 @@
         "text": "Use typed source values like field:title, field:summary|truncate:160, custom text, or inherit.",
         "context": "",
         "plural": "",
-        "line": 887
+        "line": 987
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -78,7 +78,7 @@
         "text": "Rendering",
         "context": "",
         "plural": "",
-        "line": 897
+        "line": 997
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -87,7 +87,7 @@
         "text": "By default Ichiban only renders tags when your template outputs $page->seo. Automatic injection is opt-in.",
         "context": "",
         "plural": "",
-        "line": 900
+        "line": 1000
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -96,7 +96,7 @@
         "text": "Automatically inject SEO tags into page <head>",
         "context": "",
         "plural": "",
-        "line": 904
+        "line": 1004
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -105,7 +105,70 @@
         "text": "Enable only if your templates do not output $page->seo.",
         "context": "",
         "plural": "",
-        "line": 905
+        "line": 1005
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "0c21f0be6bc0d9e2fa13c59acfa65223",
+        "text": "Title Format",
+        "context": "",
+        "plural": "",
+        "line": 1012
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "9d60b7ae07e266ce90621e229f337618",
+        "text": "Optionally format the rendered <title>. Use {meta_title} for the resolved page title, for example {meta_title} | {site_name}. Leave blank to render the title unchanged.",
+        "context": "",
+        "plural": "",
+        "line": 1013
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "08debe1ddbe5e86837f27f89a8b4c15d",
+        "text": "Supported placeholders: {meta_title}, {site_name}, {entity_name}, {host}. Title length checks include this format.",
+        "context": "",
+        "plural": "",
+        "line": 1014
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "dd27ad837fa55751efc91ce4322806d2",
+        "text": "Render hreflang alternate links",
+        "context": "",
+        "plural": "",
+        "line": 1021
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "a0f50a879725bc755d76fcc71dbebc9c",
+        "text": "Disable this when ProcessWire languages are used internally but the public site should not advertise language alternates.",
+        "context": "",
+        "plural": "",
+        "line": 1022
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "093f286865020e6e4762d54b968f4e18",
+        "text": "Render JSON-LD schema",
+        "context": "",
+        "plural": "",
+        "line": 1029
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "4c61b25b55b63f2ab8fa34b40ae0d612",
+        "text": "Disable this when templates or another module generate custom structured data.",
+        "context": "",
+        "plural": "",
+        "line": 1030
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -114,7 +177,7 @@
         "text": "Webmaster Verification",
         "context": "",
         "plural": "",
-        "line": 913
+        "line": 1038
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -123,7 +186,7 @@
         "text": "Verification tags and Meta Pixel are rendered on the home page only. Google Search Console verification is intentionally omitted here because current Google setup should use DNS TXT or CNAME verification.",
         "context": "",
         "plural": "",
-        "line": 916
+        "line": 1041
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -132,7 +195,7 @@
         "text": "Microsoft Bing, Yahoo, and DuckDuckGo visibility often starts from Bing Webmaster Tools.",
         "context": "",
         "plural": "",
-        "line": 918
+        "line": 1043
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -141,7 +204,7 @@
         "text": "Yandex meta verification token.",
         "context": "",
         "plural": "",
-        "line": 919
+        "line": 1044
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -150,7 +213,7 @@
         "text": "China: renders baidu-site-verification meta tag.",
         "context": "",
         "plural": "",
-        "line": 920
+        "line": 1045
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -159,7 +222,7 @@
         "text": "China: renders sogou_site_verification meta tag.",
         "context": "",
         "plural": "",
-        "line": 921
+        "line": 1046
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -168,7 +231,7 @@
         "text": "China: renders 360-site-verification meta tag.",
         "context": "",
         "plural": "",
-        "line": 922
+        "line": 1047
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -177,7 +240,7 @@
         "text": "Pinterest domain verification token.",
         "context": "",
         "plural": "",
-        "line": 923
+        "line": 1048
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -186,7 +249,7 @@
         "text": "Meta domain verification token.",
         "context": "",
         "plural": "",
-        "line": 924
+        "line": 1049
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -195,7 +258,7 @@
         "text": "Numeric Pixel ID. Renders the standard PageView pixel on the home page.",
         "context": "",
         "plural": "",
-        "line": 925
+        "line": 1050
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -204,7 +267,7 @@
         "text": "Additional verification meta tags",
         "context": "",
         "plural": "",
-        "line": 937
+        "line": 1062
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -213,7 +276,7 @@
         "text": "One per line as meta-name=token. Use for regional tools that provide a meta verification tag.",
         "context": "",
         "plural": "",
-        "line": 938
+        "line": 1063
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -222,7 +285,7 @@
         "text": "Example: example-site-verification=abc123. Only simple meta names are rendered.",
         "context": "",
         "plural": "",
-        "line": 939
+        "line": 1064
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -231,7 +294,7 @@
         "text": "Google Search Console",
         "context": "",
         "plural": "",
-        "line": 947
+        "line": 1072
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -240,7 +303,7 @@
         "text": "Enable the Google Search Console API, create an OAuth Web application client, add this authorized redirect URI: %s, publish the OAuth app to production, then paste the Client ID and Client Secret below. Existing tokens are preserved when settings are saved.",
         "context": "",
         "plural": "",
-        "line": 953
+        "line": 1078
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -249,7 +312,7 @@
         "text": "Connection status",
         "context": "",
         "plural": "",
-        "line": 968
+        "line": 1093
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -258,7 +321,7 @@
         "text": "Access token expires %s.",
         "context": "",
         "plural": "",
-        "line": 974
+        "line": 1099
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -267,7 +330,7 @@
         "text": "Access token expired; refresh token is saved.",
         "context": "",
         "plural": "",
-        "line": 975
+        "line": 1100
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -276,7 +339,7 @@
         "text": "Client ID saved",
         "context": "",
         "plural": "",
-        "line": 980
+        "line": 1105
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -285,7 +348,7 @@
         "text": "Client Secret saved",
         "context": "",
         "plural": "",
-        "line": 981
+        "line": 1106
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -294,7 +357,7 @@
         "text": "Google account connected",
         "context": "",
         "plural": "",
-        "line": 982
+        "line": 1107
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -303,7 +366,7 @@
         "text": "Open Insights",
         "context": "",
         "plural": "",
-        "line": 985
+        "line": 1110
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -312,7 +375,7 @@
         "text": "Enter the Search Console domain, for example lqrs.uk. Ichiban will query it as a Domain property. You can still enter a URL-prefix property like https://example.com/ when needed.",
         "context": "",
         "plural": "",
-        "line": 999
+        "line": 1124
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -321,7 +384,7 @@
         "text": "Examples: lqrs.uk or https://example.com/",
         "context": "",
         "plural": "",
-        "line": 1000
+        "line": 1125
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -330,7 +393,7 @@
         "text": "Backlinks / Moz API",
         "context": "",
         "plural": "",
-        "line": 1010
+        "line": 1135
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -339,7 +402,7 @@
         "text": "Moz Links API is used by the Backlinks section for inbound links, linking root domains, and anchor text. Use the new Moz API token when possible; legacy Access ID and Secret Key are only a fallback. Start with a small row limit to control monthly usage.",
         "context": "",
         "plural": "",
-        "line": 1013
+        "line": 1138
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -348,7 +411,7 @@
         "text": "Default target",
         "context": "",
         "plural": "",
-        "line": 1016
+        "line": 1141
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -357,7 +420,7 @@
         "text": "Moz API token",
         "context": "",
         "plural": "",
-        "line": 1017
+        "line": 1142
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -366,7 +429,7 @@
         "text": "Legacy Moz Access ID",
         "context": "",
         "plural": "",
-        "line": 1018
+        "line": 1143
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -375,7 +438,7 @@
         "text": "Legacy Moz Secret Key",
         "context": "",
         "plural": "",
-        "line": 1019
+        "line": 1144
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -384,7 +447,7 @@
         "text": "Moz API base URL",
         "context": "",
         "plural": "",
-        "line": 1020
+        "line": 1145
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -393,7 +456,7 @@
         "text": "Rows per request",
         "context": "",
         "plural": "",
-        "line": 1035
+        "line": 1160
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -402,7 +465,7 @@
         "text": "Used by the Backlinks preview tables.",
         "context": "",
         "plural": "",
-        "line": 1036
+        "line": 1161
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -411,7 +474,7 @@
         "text": "Timeout (sec)",
         "context": "",
         "plural": "",
-        "line": 1045
+        "line": 1170
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -420,7 +483,7 @@
         "text": "AI / OpenRouter",
         "context": "",
         "plural": "",
-        "line": 1054
+        "line": 1179
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -429,7 +492,7 @@
         "text": "OpenRouter connection used by the Ichiban AI section. This follows the same OpenAI-compatible pattern as the Context module: provider, API key, model, limits, and OpenRouter attribution headers.",
         "context": "",
         "plural": "",
-        "line": 1057
+        "line": 1182
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -438,7 +501,7 @@
         "text": "Enable AI features",
         "context": "",
         "plural": "",
-        "line": 1061
+        "line": 1186
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -447,7 +510,7 @@
         "text": "Provider",
         "context": "",
         "plural": "",
-        "line": 1068
+        "line": 1193
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -456,7 +519,7 @@
         "text": "OpenRouter API key",
         "context": "",
         "plural": "",
-        "line": 1087
+        "line": 1212
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -465,7 +528,7 @@
         "text": "Get a key at openrouter.ai/keys.",
         "context": "",
         "plural": "",
-        "line": 1088
+        "line": 1213
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -474,7 +537,7 @@
         "text": "Default model",
         "context": "",
         "plural": "",
-        "line": 1098
+        "line": 1223
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -483,7 +546,7 @@
         "text": "OpenRouter format: provider/model, for example anthropic/claude-sonnet-4-6 or openai/gpt-4o-mini.",
         "context": "",
         "plural": "",
-        "line": 1099
+        "line": 1224
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -492,7 +555,7 @@
         "text": "Max tokens",
         "context": "",
         "plural": "",
-        "line": 1107
+        "line": 1232
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -501,7 +564,7 @@
         "text": "Temperature",
         "context": "",
         "plural": "",
-        "line": 1117
+        "line": 1242
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -510,7 +573,7 @@
         "text": "0 = deterministic, 1 = more creative.",
         "context": "",
         "plural": "",
-        "line": 1118
+        "line": 1243
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -519,7 +582,7 @@
         "text": "Global system prompt",
         "context": "",
         "plural": "",
-        "line": 1126
+        "line": 1251
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -528,7 +591,7 @@
         "text": "Prepended to Ichiban AI requests.",
         "context": "",
         "plural": "",
-        "line": 1127
+        "line": 1252
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -537,7 +600,7 @@
         "text": "You are a helpful SEO assistant for ProcessWire websites.",
         "context": "",
         "plural": "",
-        "line": 1128
+        "line": 1253
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -546,7 +609,7 @@
         "text": "Site URL (OpenRouter attribution)",
         "context": "",
         "plural": "",
-        "line": 1137
+        "line": 1262
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -555,7 +618,7 @@
         "text": "Sent as HTTP-Referer header.",
         "context": "",
         "plural": "",
-        "line": 1138
+        "line": 1263
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -564,7 +627,7 @@
         "text": "Site / app name (OpenRouter attribution)",
         "context": "",
         "plural": "",
-        "line": 1146
+        "line": 1271
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -573,7 +636,7 @@
         "text": "Sent as X-Title header.",
         "context": "",
         "plural": "",
-        "line": 1147
+        "line": 1272
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -582,7 +645,7 @@
         "text": "Publishing & URLs",
         "context": "",
         "plural": "",
-        "line": 1156
+        "line": 1281
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -591,7 +654,7 @@
         "text": "IndexNow keys are simple verification strings, not keys from an account. Generate one here or use any 8-128 character key containing letters, numbers, and hyphens. A public key file named {key}.txt must exist at the site root and contain the key.",
         "context": "",
         "plural": "",
-        "line": 1162
+        "line": 1287
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -600,7 +663,7 @@
         "text": "Current key file URL: %s",
         "context": "",
         "plural": "",
-        "line": 1164
+        "line": 1289
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -609,7 +672,7 @@
         "text": "Index Now API Key",
         "context": "",
         "plural": "",
-        "line": 1172
+        "line": 1297
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -618,7 +681,7 @@
         "text": "Used when Ichiban pings IndexNow after a public page is saved.",
         "context": "",
         "plural": "",
-        "line": 1173
+        "line": 1298
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -627,7 +690,7 @@
         "text": "Click Save to write/update the public key file if the site root is writable.",
         "context": "",
         "plural": "",
-        "line": 1174
+        "line": 1299
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -636,7 +699,7 @@
         "text": "Twitter/X Site Handle (global default)",
         "context": "",
         "plural": "",
-        "line": 1181
+        "line": 1306
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -645,7 +708,7 @@
         "text": "Example: @example",
         "context": "",
         "plural": "",
-        "line": 1182
+        "line": 1307
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -654,7 +717,7 @@
         "text": "URL segments in SEO URLs",
         "context": "",
         "plural": "",
-        "line": 1189
+        "line": 1314
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -663,7 +726,7 @@
         "text": "Controls canonical, og:url, twitter:url, and hreflang on pages that use ProcessWire URL segments.",
         "context": "",
         "plural": "",
-        "line": 1190
+        "line": 1315
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -672,7 +735,7 @@
         "text": "Preserve current URL segments",
         "context": "",
         "plural": "",
-        "line": 1191
+        "line": 1316
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -681,7 +744,7 @@
         "text": "Collapse to the page URL",
         "context": "",
         "plural": "",
-        "line": 1192
+        "line": 1317
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -690,7 +753,7 @@
         "text": "Sitemap",
         "context": "",
         "plural": "",
-        "line": 1199
+        "line": 1324
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -699,7 +762,7 @@
         "text": "Public index: %s. Use the Sitemap tab for generation status and manual actions.",
         "context": "",
         "plural": "",
-        "line": 1206
+        "line": 1331
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -708,7 +771,7 @@
         "text": "Enable XML sitemap",
         "context": "",
         "plural": "",
-        "line": 1212
+        "line": 1337
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -717,7 +780,7 @@
         "text": "Sitemap directory",
         "context": "",
         "plural": "",
-        "line": 1219
+        "line": 1344
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -726,7 +789,7 @@
         "text": "Relative to the ProcessWire web root.",
         "context": "",
         "plural": "",
-        "line": 1221
+        "line": 1346
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -735,7 +798,7 @@
         "text": "URLs per file",
         "context": "",
         "plural": "",
-        "line": 1227
+        "line": 1352
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -744,7 +807,7 @@
         "text": "Respect noindex",
         "context": "",
         "plural": "",
-        "line": 1235
+        "line": 1360
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -753,7 +816,7 @@
         "text": "Include hidden pages",
         "context": "",
         "plural": "",
-        "line": 1236
+        "line": 1361
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -762,7 +825,7 @@
         "text": "Include unpublished pages",
         "context": "",
         "plural": "",
-        "line": 1237
+        "line": 1362
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -771,7 +834,7 @@
         "text": "Include image entries",
         "context": "",
         "plural": "",
-        "line": 1238
+        "line": 1363
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -780,7 +843,7 @@
         "text": "Include hreflang alternates",
         "context": "",
         "plural": "",
-        "line": 1239
+        "line": 1364
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -789,7 +852,7 @@
         "text": "Auto-regenerate with LazyCron",
         "context": "",
         "plural": "",
-        "line": 1240
+        "line": 1365
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -798,7 +861,7 @@
         "text": "Default priority",
         "context": "",
         "plural": "",
-        "line": 1251
+        "line": 1376
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -807,7 +870,7 @@
         "text": "Default change frequency",
         "context": "",
         "plural": "",
-        "line": 1252
+        "line": 1377
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -816,7 +879,7 @@
         "text": "Homepage priority",
         "context": "",
         "plural": "",
-        "line": 1253
+        "line": 1378
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -825,7 +888,7 @@
         "text": "Homepage change frequency",
         "context": "",
         "plural": "",
-        "line": 1254
+        "line": 1379
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -834,7 +897,7 @@
         "text": "Only include templates",
         "context": "",
         "plural": "",
-        "line": 1255
+        "line": 1380
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -843,7 +906,7 @@
         "text": "Exclude templates",
         "context": "",
         "plural": "",
-        "line": 1256
+        "line": 1381
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -852,7 +915,7 @@
         "text": "Lastmod date format",
         "context": "",
         "plural": "",
-        "line": 1257
+        "line": 1382
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -861,7 +924,7 @@
         "text": "Regenerate interval seconds",
         "context": "",
         "plural": "",
-        "line": 1258
+        "line": 1383
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -870,7 +933,7 @@
         "text": "Exclude URL patterns",
         "context": "",
         "plural": "",
-        "line": 1270
+        "line": 1395
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -879,7 +942,7 @@
         "text": "One substring or regex per line.",
         "context": "",
         "plural": "",
-        "line": 1271
+        "line": 1396
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -888,7 +951,7 @@
         "text": "Custom URLs",
         "context": "",
         "plural": "",
-        "line": 1278
+        "line": 1403
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -897,7 +960,7 @@
         "text": "One CSV row per URL: loc,lastmod,changefreq,priority. JSON array is also accepted.",
         "context": "",
         "plural": "",
-        "line": 1279
+        "line": 1404
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -906,7 +969,7 @@
         "text": "Actions",
         "context": "",
         "plural": "",
-        "line": 1285
+        "line": 1410
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -915,7 +978,7 @@
         "text": "Open Sitemap dashboard",
         "context": "",
         "plural": "",
-        "line": 1286
+        "line": 1411
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -924,7 +987,7 @@
         "text": "Open sitemap.xml",
         "context": "",
         "plural": "",
-        "line": 1287
+        "line": 1412
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -933,7 +996,7 @@
         "text": "robots.txt / llms.txt",
         "context": "",
         "plural": "",
-        "line": 1292
+        "line": 1417
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -942,7 +1005,7 @@
         "text": "RobotsTxt companion module is installed. Use Setup > Robots.txt for the physical robots.txt editor and presets, or enable Ichiban robots.txt only when you want Ichiban to serve it dynamically. Avoid managing robots.txt in both places at once.",
         "context": "",
         "plural": "",
-        "line": 1297
+        "line": 1422
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -951,7 +1014,7 @@
         "text": "Install the companion RobotsTxt module if you want a full physical robots.txt editor with presets, rules overview, file status, and a View file action. Ichiban can still serve a simple dynamic robots.txt when enabled below.",
         "context": "",
         "plural": "",
-        "line": 1298
+        "line": 1423
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -960,7 +1023,7 @@
         "text": "Open Robots.txt editor",
         "context": "",
         "plural": "",
-        "line": 1304
+        "line": 1429
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -969,7 +1032,7 @@
         "text": "Open robots.txt",
         "context": "",
         "plural": "",
-        "line": 1305
+        "line": 1430
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -978,7 +1041,7 @@
         "text": "Serve robots.txt from Ichiban",
         "context": "",
         "plural": "",
-        "line": 1311
+        "line": 1436
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -987,7 +1050,7 @@
         "text": "robots.txt content",
         "context": "",
         "plural": "",
-        "line": 1317
+        "line": 1442
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -996,7 +1059,7 @@
         "text": "Ichiban appends Sitemap automatically when no Sitemap line is present.",
         "context": "",
         "plural": "",
-        "line": 1320
+        "line": 1445
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1005,7 +1068,7 @@
         "text": "Serve llms.txt from Ichiban",
         "context": "",
         "plural": "",
-        "line": 1325
+        "line": 1450
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1014,7 +1077,7 @@
         "text": "llms.txt mode",
         "context": "",
         "plural": "",
-        "line": 1331
+        "line": 1456
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1023,7 +1086,7 @@
         "text": "Auto",
         "context": "",
         "plural": "",
-        "line": 1332
+        "line": 1457
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1032,7 +1095,7 @@
         "text": "Manual",
         "context": "",
         "plural": "",
-        "line": 1333
+        "line": 1458
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1041,7 +1104,7 @@
         "text": "Auto mode templates",
         "context": "",
         "plural": "",
-        "line": 1339
+        "line": 1464
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1050,7 +1113,7 @@
         "text": "Comma-separated template names. Leave empty for all published pages.",
         "context": "",
         "plural": "",
-        "line": 1340
+        "line": 1465
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1059,7 +1122,7 @@
         "text": "Manual llms.txt lines",
         "context": "",
         "plural": "",
-        "line": 1346
+        "line": 1471
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1068,7 +1131,7 @@
         "text": "One Markdown link or plain URL per line.",
         "context": "",
         "plural": "",
-        "line": 1347
+        "line": 1472
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1077,7 +1140,7 @@
         "text": "Crawl & Search Cleanup",
         "context": "",
         "plural": "",
-        "line": 1355
+        "line": 1480
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1086,7 +1149,7 @@
         "text": "Use cleanup options carefully on production. Blocked search queries are recorded in the Cleanup log.",
         "context": "",
         "plural": "",
-        "line": 1358
+        "line": 1483
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1095,7 +1158,7 @@
         "text": "Block spam search queries",
         "context": "",
         "plural": "",
-        "line": 1360
+        "line": 1485
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1104,7 +1167,7 @@
         "text": "Remove RSD link",
         "context": "",
         "plural": "",
-        "line": 1361
+        "line": 1486
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1113,7 +1176,7 @@
         "text": "Remove WLW manifest",
         "context": "",
         "plural": "",
-        "line": 1362
+        "line": 1487
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1122,7 +1185,7 @@
         "text": "Remove shortlink",
         "context": "",
         "plural": "",
-        "line": 1363
+        "line": 1488
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1131,7 +1194,7 @@
         "text": "Remove prev/next links",
         "context": "",
         "plural": "",
-        "line": 1364
+        "line": 1489
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1140,7 +1203,7 @@
         "text": "Remove generator meta",
         "context": "",
         "plural": "",
-        "line": 1365
+        "line": 1490
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1149,7 +1212,7 @@
         "text": "Blocked query action",
         "context": "",
         "plural": "",
-        "line": 1376
+        "line": 1501
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1158,7 +1221,7 @@
         "text": "Redirect to homepage",
         "context": "",
         "plural": "",
-        "line": 1377
+        "line": 1502
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1167,7 +1230,7 @@
         "text": "Return 400",
         "context": "",
         "plural": "",
-        "line": 1378
+        "line": 1503
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1176,7 +1239,7 @@
         "text": "Custom block regex patterns",
         "context": "",
         "plural": "",
-        "line": 1384
+        "line": 1509
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1185,7 +1248,7 @@
         "text": "One regular expression per line.",
         "context": "",
         "plural": "",
-        "line": 1385
+        "line": 1510
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1194,7 +1257,7 @@
         "text": "Dashboard",
         "context": "",
         "plural": "",
-        "line": 53
+        "line": 54
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1203,7 +1266,7 @@
         "text": "SEO Dashboard",
         "context": "",
         "plural": "",
-        "line": 54
+        "line": 55
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1212,7 +1275,7 @@
         "text": "A quick overview of metadata health, crawl cleanup activity, redirects, and recent SEO changes.",
         "context": "",
         "plural": "",
-        "line": 88
+        "line": 89
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1221,7 +1284,7 @@
         "text": "Open Audit",
         "context": "",
         "plural": "",
-        "line": 89
+        "line": 90
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1230,7 +1293,7 @@
         "text": "Site SEO Score",
         "context": "",
         "plural": "",
-        "line": 93
+        "line": 94
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1239,7 +1302,7 @@
         "text": "Review score",
         "context": "",
         "plural": "",
-        "line": 95
+        "line": 96
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1248,7 +1311,7 @@
         "text": "Pages without a meta title.",
         "context": "",
         "plural": "",
-        "line": 100
+        "line": 101
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1257,7 +1320,7 @@
         "text": "Pages without a search snippet.",
         "context": "",
         "plural": "",
-        "line": 101
+        "line": 102
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1266,7 +1329,7 @@
         "text": "Pages that may share poorly on social networks.",
         "context": "",
         "plural": "",
-        "line": 102
+        "line": 103
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1275,7 +1338,7 @@
         "text": "Published pages hidden from search engines.",
         "context": "",
         "plural": "",
-        "line": 103
+        "line": 104
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1284,7 +1347,7 @@
         "text": "Schemas",
         "context": "",
         "plural": "",
-        "line": 108
+        "line": 109
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1293,7 +1356,7 @@
         "text": "GSC clicks",
         "context": "",
         "plural": "",
-        "line": 110
+        "line": 111
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1302,7 +1365,7 @@
         "text": "Indexing issues",
         "context": "",
         "plural": "",
-        "line": 111
+        "line": 112
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1311,7 +1374,7 @@
         "text": "Index last rebuilt: %s",
         "context": "",
         "plural": "",
-        "line": 118
+        "line": 119
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1320,7 +1383,7 @@
         "text": "Rebuild Index",
         "context": "",
         "plural": "",
-        "line": 119
+        "line": 120
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1329,7 +1392,7 @@
         "text": "Recent redirects",
         "context": "",
         "plural": "",
-        "line": 121
+        "line": 122
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1338,7 +1401,7 @@
         "text": "No redirects have been created yet.",
         "context": "",
         "plural": "",
-        "line": 130
+        "line": 131
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1347,7 +1410,7 @@
         "text": "Manage redirects",
         "context": "",
         "plural": "",
-        "line": 132
+        "line": 133
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1356,7 +1419,7 @@
         "text": "Structured data",
         "context": "",
         "plural": "",
-        "line": 133
+        "line": 134
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1365,7 +1428,7 @@
         "text": "schema mappings",
         "context": "",
         "plural": "",
-        "line": 134
+        "line": 135
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1374,7 +1437,7 @@
         "text": "missing OG images",
         "context": "",
         "plural": "",
-        "line": 135
+        "line": 136
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1383,7 +1446,7 @@
         "text": "Activity",
         "context": "",
         "plural": "",
-        "line": 137
+        "line": 138
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1392,7 +1455,7 @@
         "text": "SEO revisions",
         "context": "",
         "plural": "",
-        "line": 138
+        "line": 139
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1401,7 +1464,7 @@
         "text": "blocked searches",
         "context": "",
         "plural": "",
-        "line": 139
+        "line": 140
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1410,7 +1473,7 @@
         "text": "Bulk Editor",
         "context": "",
         "plural": "",
-        "line": 147
+        "line": 148
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1419,7 +1482,52 @@
         "text": "Bulk SEO Editor",
         "context": "",
         "plural": "",
-        "line": 148
+        "line": 149
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "bbb63f7c872069685793027208295a04",
+        "text": "All issue types",
+        "context": "",
+        "plural": "",
+        "line": 156
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "ed5b322b9a2de48d55ff2e07b3607760",
+        "text": "Missing titles",
+        "context": "",
+        "plural": "",
+        "line": 157
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "d5bbb6f040f94dd46ecc085c0c1bf176",
+        "text": "Missing descriptions",
+        "context": "",
+        "plural": "",
+        "line": 158
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "ca3d10d9686845089e9d2839efe7e14e",
+        "text": "Title length issues",
+        "context": "",
+        "plural": "",
+        "line": 159
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "c301c13e28f00e4de3ef7d1556328e7d",
+        "text": "Description length issues",
+        "context": "",
+        "plural": "",
+        "line": 160
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1428,7 +1536,16 @@
         "text": "Index not built yet. Please run Audit → Rebuild Index first.",
         "context": "",
         "plural": "",
-        "line": 168
+        "line": 193
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "8f5252a8e8d35a7cf33d6e1e9035e543",
+        "text": "Filtered to %s.",
+        "context": "",
+        "plural": "",
+        "line": 232
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1437,7 +1554,7 @@
         "text": "Edit meta titles and descriptions across indexed pages without opening each page individually.",
         "context": "",
         "plural": "",
-        "line": 191
+        "line": 237
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1446,7 +1563,7 @@
         "text": "Recommended lengths",
         "context": "",
         "plural": "",
-        "line": 192
+        "line": 238
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1455,7 +1572,7 @@
         "text": "indexed pages",
         "context": "",
         "plural": "",
-        "line": 195
+        "line": 241
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1464,7 +1581,7 @@
         "text": "missing titles",
         "context": "",
         "plural": "",
-        "line": 196
+        "line": 242
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1473,7 +1590,7 @@
         "text": "missing descriptions",
         "context": "",
         "plural": "",
-        "line": 197
+        "line": 243
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1482,7 +1599,7 @@
         "text": "templates",
         "context": "",
         "plural": "",
-        "line": 198
+        "line": 244
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1491,7 +1608,7 @@
         "text": "Filter by template name",
         "context": "",
         "plural": "",
-        "line": 201
+        "line": 247
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1500,7 +1617,7 @@
         "text": "Filter",
         "context": "",
         "plural": "",
-        "line": 202
+        "line": 254
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1509,16 +1626,16 @@
         "text": "Clear",
         "context": "",
         "plural": "",
-        "line": 203
+        "line": 255
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
         "textdomain": "site--modules--ichiban--processichiban-module-php",
-        "hash": "7d6bb3ee47544b7a9a0acbc6cecd0031",
-        "text": "Showing %1$d of %2$d indexed pages",
+        "hash": "a8e0decadb75e0f9c95506b58a3200a9",
+        "text": "Showing %1$d-%2$d of %3$d matching indexed pages",
         "context": "",
         "plural": "",
-        "line": 204
+        "line": 256
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1527,7 +1644,7 @@
         "text": "Changes are saved as custom SEO values for each page.",
         "context": "",
         "plural": "",
-        "line": 208
+        "line": 260
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1536,7 +1653,70 @@
         "text": "No indexed pages match this filter",
         "context": "",
         "plural": "",
-        "line": 210
+        "line": 262
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "145bd3ed496e1874d258c5860e35905e",
+        "text": "Score legend",
+        "context": "",
+        "plural": "",
+        "line": 267
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "b85143b69f41f3f656522c1a5ebc5cfb",
+        "text": "Missing title: -30",
+        "context": "",
+        "plural": "",
+        "line": 268
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "1fea1be223b4db5e9030ae6507b5db8b",
+        "text": "Missing description: -20",
+        "context": "",
+        "plural": "",
+        "line": 269
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "c70a9520ae3fe934717ef978169fb3b4",
+        "text": "Missing OG image: -15",
+        "context": "",
+        "plural": "",
+        "line": 270
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "d7a8a461cf75149a27b71bd9980d2464",
+        "text": "Title length: -10",
+        "context": "",
+        "plural": "",
+        "line": 271
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "d31db1e9f4844a7d8aee6d3b029abe0b",
+        "text": "Description length: -10",
+        "context": "",
+        "plural": "",
+        "line": 272
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "16c9ff67f038d5a1ca6120b671a7e0a0",
+        "text": "Noindex: -15",
+        "context": "",
+        "plural": "",
+        "line": 273
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1545,7 +1725,7 @@
         "text": "Page",
         "context": "",
         "plural": "",
-        "line": 215
+        "line": 276
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1554,7 +1734,7 @@
         "text": "Critical",
         "context": "",
         "plural": "",
-        "line": 217
+        "line": 278
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1563,7 +1743,7 @@
         "text": "Warnings",
         "context": "",
         "plural": "",
-        "line": 218
+        "line": 279
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1572,16 +1752,25 @@
         "text": "Healthy",
         "context": "",
         "plural": "",
-        "line": 219
+        "line": 280
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
         "textdomain": "site--modules--ichiban--processichiban-module-php",
-        "hash": "207ab96f9895f87f78f6c6162f323a4f",
-        "text": "%d pages",
+        "hash": "bc6192940e77395c29e418168910849c",
+        "text": "%d visible pages",
         "context": "",
         "plural": "",
-        "line": 231
+        "line": 292
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "273d872488e7730b57ed0ae5636db438",
+        "text": "Rendered title",
+        "context": "",
+        "plural": "",
+        "line": 306
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1590,7 +1779,7 @@
         "text": "Missing title",
         "context": "",
         "plural": "",
-        "line": 246
+        "line": 313
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1599,7 +1788,7 @@
         "text": "Missing description",
         "context": "",
         "plural": "",
-        "line": 247
+        "line": 314
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1608,7 +1797,7 @@
         "text": "Edit page",
         "context": "",
         "plural": "",
-        "line": 250
+        "line": 317
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1617,7 +1806,7 @@
         "text": "target 30–70",
         "context": "",
         "plural": "",
-        "line": 251
+        "line": 318
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1626,7 +1815,34 @@
         "text": "target 50–160",
         "context": "",
         "plural": "",
-        "line": 252
+        "line": 319
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "dd1f775e443ff3b9a89270713580a51b",
+        "text": "Previous",
+        "context": "",
+        "plural": "",
+        "line": 329
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "3a1ed905045e5cf29efec452131f9403",
+        "text": "Page %1$d of %2$d",
+        "context": "",
+        "plural": "",
+        "line": 330
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "10ac3d04253ef7e1ddc73e6091c0cd55",
+        "text": "Next",
+        "context": "",
+        "plural": "",
+        "line": 331
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1635,7 +1851,7 @@
         "text": "Review changed fields, then save all visible edits together.",
         "context": "",
         "plural": "",
-        "line": 258
+        "line": 334
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1644,7 +1860,7 @@
         "text": "Saved SEO fields for %d pages.",
         "context": "",
         "plural": "",
-        "line": 302
+        "line": 384
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1653,7 +1869,7 @@
         "text": "%d submitted pages were skipped because they no longer have an Ichiban SEO field.",
         "context": "",
         "plural": "",
-        "line": 304
+        "line": 386
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1662,7 +1878,7 @@
         "text": "Audit",
         "context": "",
         "plural": "",
-        "line": 311
+        "line": 400
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1671,7 +1887,7 @@
         "text": "SEO Audit Report",
         "context": "",
         "plural": "",
-        "line": 312
+        "line": 401
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1680,7 +1896,7 @@
         "text": "Index not built yet. Please rebuild the index first.",
         "context": "",
         "plural": "",
-        "line": 342
+        "line": 431
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1689,7 +1905,7 @@
         "text": "Every page must have a meta title. Missing titles prevent search engines from identifying page content.",
         "context": "",
         "plural": "",
-        "line": 346
+        "line": 435
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1698,7 +1914,7 @@
         "text": "Meta title should be 30–70 characters. Too short lacks context; too long gets truncated in search results.",
         "context": "",
         "plural": "",
-        "line": 347
+        "line": 436
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1707,7 +1923,7 @@
         "text": "Each page should have a unique meta title. Duplicate titles confuse search engines about which page to rank.",
         "context": "",
         "plural": "",
-        "line": 348
+        "line": 437
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1716,7 +1932,7 @@
         "text": "Meta description should be set on every page. It appears as the snippet in search results and affects click-through rate.",
         "context": "",
         "plural": "",
-        "line": 349
+        "line": 438
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1725,7 +1941,7 @@
         "text": "Meta description should be 50–160 characters. Longer descriptions get cut off in search results.",
         "context": "",
         "plural": "",
-        "line": 350
+        "line": 439
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1734,7 +1950,7 @@
         "text": "Each page should have a unique meta description. Duplicates reduce the value of individual pages in search rankings.",
         "context": "",
         "plural": "",
-        "line": 351
+        "line": 440
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1743,7 +1959,7 @@
         "text": "Open Graph image should be set so shared links look rich on social media.",
         "context": "",
         "plural": "",
-        "line": 352
+        "line": 441
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1752,7 +1968,7 @@
         "text": "Canonical URL must be an absolute URL starting with http. Invalid canonicals can cause indexing issues.",
         "context": "",
         "plural": "",
-        "line": 353
+        "line": 442
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1761,7 +1977,7 @@
         "text": "Published pages should not have noindex set unless intentionally hidden from search engines.",
         "context": "",
         "plural": "",
-        "line": 354
+        "line": 443
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1770,7 +1986,7 @@
         "text": "URLs should use hyphens instead of underscores. Google treats hyphens as word separators, underscores as word joiners.",
         "context": "",
         "plural": "",
-        "line": 355
+        "line": 444
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1779,7 +1995,7 @@
         "text": "Schema.org type should be set to help search engines understand page content and enable rich results.",
         "context": "",
         "plural": "",
-        "line": 356
+        "line": 445
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1788,7 +2004,7 @@
         "text": "Review technical SEO signals, metadata coverage, social sharing readiness, and schema basics across indexed pages.",
         "context": "",
         "plural": "",
-        "line": 391
+        "line": 480
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1797,7 +2013,7 @@
         "text": "Export CSV",
         "context": "",
         "plural": "",
-        "line": 393
+        "line": 482
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1806,7 +2022,7 @@
         "text": "Audit score",
         "context": "",
         "plural": "",
-        "line": 396
+        "line": 485
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1815,7 +2031,7 @@
         "text": "open issues",
         "context": "",
         "plural": "",
-        "line": 398
+        "line": 487
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1824,7 +2040,7 @@
         "text": "critical",
         "context": "",
         "plural": "",
-        "line": 399
+        "line": 488
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1833,7 +2049,7 @@
         "text": "warnings",
         "context": "",
         "plural": "",
-        "line": 400
+        "line": 489
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1842,7 +2058,7 @@
         "text": "Last indexed:",
         "context": "",
         "plural": "",
-        "line": 403
+        "line": 492
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1851,7 +2067,7 @@
         "text": "Rebuild the index after large content, template, or SEO field changes.",
         "context": "",
         "plural": "",
-        "line": 404
+        "line": 493
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1860,7 +2076,7 @@
         "text": "Fix first",
         "context": "",
         "plural": "",
-        "line": 407
+        "line": 496
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1869,7 +2085,7 @@
         "text": "%d pages affected",
         "context": "",
         "plural": "",
-        "line": 428
+        "line": 517
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1878,7 +2094,7 @@
         "text": "No active audit issues",
         "context": "",
         "plural": "",
-        "line": 434
+        "line": 523
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1887,7 +2103,7 @@
         "text": "Rule details",
         "context": "",
         "plural": "",
-        "line": 439
+        "line": 528
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1896,7 +2112,7 @@
         "text": "Rule",
         "context": "",
         "plural": "",
-        "line": 441
+        "line": 530
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1905,7 +2121,7 @@
         "text": "Severity",
         "context": "",
         "plural": "",
-        "line": 442
+        "line": 531
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1914,7 +2130,7 @@
         "text": "Description",
         "context": "",
         "plural": "",
-        "line": 443
+        "line": 532
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1923,7 +2139,7 @@
         "text": "Issues",
         "context": "",
         "plural": "",
-        "line": 444
+        "line": 533
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1932,7 +2148,7 @@
         "text": "Pages Affected",
         "context": "",
         "plural": "",
-        "line": 445
+        "line": 534
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1941,7 +2157,7 @@
         "text": "Open first affected page",
         "context": "",
         "plural": "",
-        "line": 452
+        "line": 541
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1950,7 +2166,7 @@
         "text": "Redirects",
         "context": "",
         "plural": "",
-        "line": 467
+        "line": 556
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1959,7 +2175,7 @@
         "text": "Redirect Manager",
         "context": "",
         "plural": "",
-        "line": 468
+        "line": 557
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1968,7 +2184,7 @@
         "text": "Imported %d redirects.",
         "context": "",
         "plural": "",
-        "line": 486
+        "line": 575
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1977,7 +2193,7 @@
         "text": "Manage manual, imported, and automatic redirects from one place.",
         "context": "",
         "plural": "",
-        "line": 501
+        "line": 590
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1986,7 +2202,7 @@
         "text": "shown",
         "context": "",
         "plural": "",
-        "line": 502
+        "line": 591
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -1995,7 +2211,7 @@
         "text": "Search by source, target, or note",
         "context": "",
         "plural": "",
-        "line": 505
+        "line": 594
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2004,7 +2220,7 @@
         "text": "Search",
         "context": "",
         "plural": "",
-        "line": 506
+        "line": 595
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2013,7 +2229,7 @@
         "text": "Add redirect",
         "context": "",
         "plural": "",
-        "line": 512
+        "line": 601
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2022,7 +2238,7 @@
         "text": "From",
         "context": "",
         "plural": "",
-        "line": 514
+        "line": 603
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2031,7 +2247,7 @@
         "text": "To",
         "context": "",
         "plural": "",
-        "line": 515
+        "line": 604
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2040,7 +2256,7 @@
         "text": "Type",
         "context": "",
         "plural": "",
-        "line": 516
+        "line": 605
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2049,7 +2265,7 @@
         "text": "Note",
         "context": "",
         "plural": "",
-        "line": 518
+        "line": 607
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2058,7 +2274,7 @@
         "text": "Treat From as a regular expression pattern.",
         "context": "",
         "plural": "",
-        "line": 519
+        "line": 608
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2067,7 +2283,7 @@
         "text": "Add Redirect",
         "context": "",
         "plural": "",
-        "line": 520
+        "line": 609
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2076,7 +2292,7 @@
         "text": "Import CSV",
         "context": "",
         "plural": "",
-        "line": 523
+        "line": 612
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2085,7 +2301,7 @@
         "text": "CSV format",
         "context": "",
         "plural": "",
-        "line": 525
+        "line": 614
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2094,7 +2310,7 @@
         "text": "Allowed types: 301, 302, 307, 410, 451. Use 1 for regex patterns and 0 for plain paths.",
         "context": "",
         "plural": "",
-        "line": 527
+        "line": 616
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2103,7 +2319,7 @@
         "text": "Example:",
         "context": "",
         "plural": "",
-        "line": 528
+        "line": 617
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2112,7 +2328,7 @@
         "text": "Import",
         "context": "",
         "plural": "",
-        "line": 531
+        "line": 620
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2121,7 +2337,7 @@
         "text": "Redirect list",
         "context": "",
         "plural": "",
-        "line": 534
+        "line": 623
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2130,7 +2346,7 @@
         "text": "Hits",
         "context": "",
         "plural": "",
-        "line": 537
+        "line": 626
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2139,7 +2355,7 @@
         "text": "Auto",
         "context": "",
         "plural": "",
-        "line": 549
+        "line": 638
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2148,7 +2364,7 @@
         "text": "Open",
         "context": "",
         "plural": "",
-        "line": 555
+        "line": 644
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2157,7 +2373,7 @@
         "text": "Created automatically after a page path change.",
         "context": "",
         "plural": "",
-        "line": 566
+        "line": 655
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2166,7 +2382,7 @@
         "text": "Save",
         "context": "",
         "plural": "",
-        "line": 568
+        "line": 657
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2175,7 +2391,7 @@
         "text": "Delete",
         "context": "",
         "plural": "",
-        "line": 571
+        "line": 660
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2184,7 +2400,7 @@
         "text": "Insights",
         "context": "",
         "plural": "",
-        "line": 579
+        "line": 668
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2193,7 +2409,7 @@
         "text": "SEO Insights",
         "context": "",
         "plural": "",
-        "line": 580
+        "line": 669
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2202,7 +2418,7 @@
         "text": "Add Google OAuth Client ID and Client Secret in Settings before connecting Search Console.",
         "context": "",
         "plural": "",
-        "line": 585
+        "line": 674
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2211,7 +2427,7 @@
         "text": "Google Search Console disconnected. Cached Insights and Page Indexing scan data were cleared.",
         "context": "",
         "plural": "",
-        "line": 594
+        "line": 683
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2220,7 +2436,7 @@
         "text": "Security token expired. Reload the page and click Disconnect GSC again.",
         "context": "",
         "plural": "",
-        "line": 596
+        "line": 685
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2229,7 +2445,7 @@
         "text": "Checked %d URLs with URL Inspection API.",
         "context": "",
         "plural": "",
-        "line": 617
+        "line": 706
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2238,7 +2454,7 @@
         "text": "URL Inspection scan did not return results: %s",
         "context": "",
         "plural": "",
-        "line": 620
+        "line": 709
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2247,7 +2463,7 @@
         "text": "Security token expired. Reload the page and run Scan indexing issues again.",
         "context": "",
         "plural": "",
-        "line": 623
+        "line": 712
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2256,7 +2472,7 @@
         "text": "Review Google Search Console performance, page indexing checks, and search breakdowns from cached API data.",
         "context": "",
         "plural": "",
-        "line": 631
+        "line": 720
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2265,7 +2481,7 @@
         "text": "Open Search Console",
         "context": "",
         "plural": "",
-        "line": 632
+        "line": 721
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2274,7 +2490,7 @@
         "text": "Connected",
         "context": "",
         "plural": "",
-        "line": 633
+        "line": 722
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2283,7 +2499,7 @@
         "text": "Clicks",
         "context": "",
         "plural": "",
-        "line": 637
+        "line": 726
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2292,7 +2508,7 @@
         "text": "Top Pages",
         "context": "",
         "plural": "",
-        "line": 645
+        "line": 734
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2301,7 +2517,7 @@
         "text": "Top Queries",
         "context": "",
         "plural": "",
-        "line": 647
+        "line": 736
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2310,7 +2526,7 @@
         "text": "Countries",
         "context": "",
         "plural": "",
-        "line": 655
+        "line": 744
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2319,7 +2535,7 @@
         "text": "Devices",
         "context": "",
         "plural": "",
-        "line": 656
+        "line": 745
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2328,7 +2544,7 @@
         "text": "Search Appearance",
         "context": "",
         "plural": "",
-        "line": 657
+        "line": 746
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2337,7 +2553,7 @@
         "text": "Backlinks",
         "context": "",
         "plural": "",
-        "line": 666
+        "line": 755
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2346,7 +2562,7 @@
         "text": "Moz quota snapshot saved.",
         "context": "",
         "plural": "",
-        "line": 689
+        "line": 778
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2355,7 +2571,7 @@
         "text": "Moz quota lookup did not return data.",
         "context": "",
         "plural": "",
-        "line": 691
+        "line": 780
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2364,7 +2580,7 @@
         "text": "Saved backlink snapshot with %d rows.",
         "context": "",
         "plural": "",
-        "line": 703
+        "line": 792
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2373,7 +2589,7 @@
         "text": "Monitor inbound links, linking domains, and anchor text through the Moz Links API.",
         "context": "",
         "plural": "",
-        "line": 714
+        "line": 803
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2382,7 +2598,7 @@
         "text": "Moz Settings",
         "context": "",
         "plural": "",
-        "line": 715
+        "line": 804
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2391,7 +2607,7 @@
         "text": "No saved snapshot yet",
         "context": "",
         "plural": "",
-        "line": 730
+        "line": 819
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2400,7 +2616,7 @@
         "text": "saved rows",
         "context": "",
         "plural": "",
-        "line": 733
+        "line": 822
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2409,7 +2625,7 @@
         "text": "target",
         "context": "",
         "plural": "",
-        "line": 734
+        "line": 823
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2418,7 +2634,7 @@
         "text": "last refresh",
         "context": "",
         "plural": "",
-        "line": 735
+        "line": 824
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2427,7 +2643,7 @@
         "text": "Links",
         "context": "",
         "plural": "",
-        "line": 750
+        "line": 839
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2436,7 +2652,7 @@
         "text": "example.com",
         "context": "",
         "plural": "",
-        "line": 755
+        "line": 844
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2445,7 +2661,7 @@
         "text": "Root domain",
         "context": "",
         "plural": "",
-        "line": 757
+        "line": 846
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2454,7 +2670,7 @@
         "text": "Refresh from Moz",
         "context": "",
         "plural": "",
-        "line": 763
+        "line": 852
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2463,7 +2679,7 @@
         "text": "How to connect Moz",
         "context": "",
         "plural": "",
-        "line": 782
+        "line": 871
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2472,7 +2688,7 @@
         "text": "Create or open a Moz API account.",
         "context": "",
         "plural": "",
-        "line": 784
+        "line": 873
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2481,7 +2697,7 @@
         "text": "During signup, Moz asks for a debit or credit card even on the free plan. This is part of their security and abuse-prevention flow.",
         "context": "",
         "plural": "",
-        "line": 785
+        "line": 874
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2490,7 +2706,7 @@
         "text": "Create an API token in the Moz API dashboard.",
         "context": "",
         "plural": "",
-        "line": 786
+        "line": 875
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2499,7 +2715,7 @@
         "text": "Paste the token into the Moz API token field in %s, then save.",
         "context": "",
         "plural": "",
-        "line": 787
+        "line": 876
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2508,7 +2724,7 @@
         "text": "Fallback: if token auth does not work for your account, open Show Legacy Credentials for the token and paste the Access ID and Secret Key instead.",
         "context": "",
         "plural": "",
-        "line": 788
+        "line": 877
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2517,7 +2733,7 @@
         "text": "Return here, keep the default 5-row limit, and click Refresh from Moz. The free plan quota is tiny, so avoid repeated refreshes.",
         "context": "",
         "plural": "",
-        "line": 789
+        "line": 878
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2526,7 +2742,7 @@
         "text": "Ichiban sends the new token as the x-moz-token header. Every refresh is saved as a backlink snapshot and reused from cache on page reload. Default API base URL: https://lsapi.seomoz.com/v2. Change it only if Moz gives you a different endpoint.",
         "context": "",
         "plural": "",
-        "line": 791
+        "line": 880
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2535,7 +2751,7 @@
         "text": "Moz quota",
         "context": "",
         "plural": "",
-        "line": 802
+        "line": 891
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2544,7 +2760,7 @@
         "text": "%1$d / %2$d rows used (%3$d%%)",
         "context": "",
         "plural": "",
-        "line": 812
+        "line": 901
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2553,7 +2769,7 @@
         "text": "Quota resets",
         "context": "",
         "plural": "",
-        "line": 816
+        "line": 905
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2562,7 +2778,7 @@
         "text": "Last checked",
         "context": "",
         "plural": "",
-        "line": 819
+        "line": 908
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2571,7 +2787,7 @@
         "text": "No quota snapshot saved yet",
         "context": "",
         "plural": "",
-        "line": 823
+        "line": 912
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2580,7 +2796,7 @@
         "text": "Click Refresh quota to save current Moz usage inside Ichiban.",
         "context": "",
         "plural": "",
-        "line": 824
+        "line": 913
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2589,7 +2805,7 @@
         "text": "Refresh quota",
         "context": "",
         "plural": "",
-        "line": 829
+        "line": 918
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2598,7 +2814,7 @@
         "text": "Backlinks are not working yet",
         "context": "",
         "plural": "",
-        "line": 837
+        "line": 926
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2607,7 +2823,7 @@
         "text": "Moz credentials are missing. Add your API token, or legacy Access ID and Secret Key, then return to this page to fetch backlink data.",
         "context": "",
         "plural": "",
-        "line": 838
+        "line": 927
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2616,7 +2832,7 @@
         "text": "Open Settings",
         "context": "",
         "plural": "",
-        "line": 839
+        "line": 928
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2625,7 +2841,7 @@
         "text": "No rows returned",
         "context": "",
         "plural": "",
-        "line": 845
+        "line": 934
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2634,7 +2850,7 @@
         "text": "Saved history",
         "context": "",
         "plural": "",
-        "line": 890
+        "line": 979
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2643,7 +2859,7 @@
         "text": "Overview",
         "context": "",
         "plural": "",
-        "line": 939
+        "line": 1028
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2652,7 +2868,7 @@
         "text": "Date range",
         "context": "",
         "plural": "",
-        "line": 943
+        "line": 1032
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2661,7 +2877,7 @@
         "text": "%d days",
         "context": "",
         "plural": "",
-        "line": 947
+        "line": 1036
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2670,7 +2886,7 @@
         "text": "Client ID saved",
         "context": "",
         "plural": "",
-        "line": 973
+        "line": 1062
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2679,7 +2895,7 @@
         "text": "Client Secret saved",
         "context": "",
         "plural": "",
-        "line": 974
+        "line": 1063
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2688,7 +2904,7 @@
         "text": "Google Search Console",
         "context": "",
         "plural": "",
-        "line": 981
+        "line": 1070
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2697,7 +2913,7 @@
         "text": "Connect search performance data",
         "context": "",
         "plural": "",
-        "line": 982
+        "line": 1071
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2706,7 +2922,7 @@
         "text": "After connecting, Ichiban will show Search Console metrics for 7, 28, 90, 180, and 365 days, including daily trends, top pages, top queries, countries, devices, search appearance, and cached Page Indexing scans.",
         "context": "",
         "plural": "",
-        "line": 983
+        "line": 1072
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2715,7 +2931,7 @@
         "text": "Connect GSC",
         "context": "",
         "plural": "",
-        "line": 986
+        "line": 1075
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2724,7 +2940,7 @@
         "text": "Use these values",
         "context": "",
         "plural": "",
-        "line": 994
+        "line": 1083
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2733,7 +2949,7 @@
         "text": "Authorized redirect URI",
         "context": "",
         "plural": "",
-        "line": 995
+        "line": 1084
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2742,7 +2958,7 @@
         "text": "Search Console property",
         "context": "",
         "plural": "",
-        "line": 997
+        "line": 1086
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2751,7 +2967,7 @@
         "text": "Enter the exact Search Console property you use. For Domain properties, use only the bare domain, for example lqrs.uk. Ichiban automatically sends it to Google as a sc-domain property. Use https://example.com/ only for URL-prefix properties.",
         "context": "",
         "plural": "",
-        "line": 999
+        "line": 1088
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2760,7 +2976,7 @@
         "text": "How to connect",
         "context": "",
         "plural": "",
-        "line": 1005
+        "line": 1094
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2769,7 +2985,7 @@
         "text": "Create or choose a Google Cloud project.",
         "context": "",
         "plural": "",
-        "line": 1007
+        "line": 1096
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2778,7 +2994,7 @@
         "text": "Create OAuth credentials.",
         "context": "",
         "plural": "",
-        "line": 1008
+        "line": 1097
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2787,7 +3003,7 @@
         "text": "Publish the OAuth app.",
         "context": "",
         "plural": "",
-        "line": 1009
+        "line": 1098
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2796,7 +3012,7 @@
         "text": "Save credentials in Ichiban.",
         "context": "",
         "plural": "",
-        "line": 1010
+        "line": 1099
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2805,7 +3021,7 @@
         "text": "Connect your Google account.",
         "context": "",
         "plural": "",
-        "line": 1011
+        "line": 1100
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2814,7 +3030,7 @@
         "text": "Run optional indexing scan.",
         "context": "",
         "plural": "",
-        "line": 1012
+        "line": 1101
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2823,7 +3039,7 @@
         "text": "Enable Search Console API",
         "context": "",
         "plural": "",
-        "line": 1015
+        "line": 1104
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2832,7 +3048,7 @@
         "text": "OAuth client setup",
         "context": "",
         "plural": "",
-        "line": 1016
+        "line": 1105
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2841,7 +3057,7 @@
         "text": "What appears after connection",
         "context": "",
         "plural": "",
-        "line": 1021
+        "line": 1110
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2850,7 +3066,7 @@
         "text": "Date ranges",
         "context": "",
         "plural": "",
-        "line": 1023
+        "line": 1112
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2859,7 +3075,7 @@
         "text": "Daily trend",
         "context": "",
         "plural": "",
-        "line": 1024
+        "line": 1113
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2868,7 +3084,7 @@
         "text": "Rows per detail",
         "context": "",
         "plural": "",
-        "line": 1025
+        "line": 1114
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2877,7 +3093,7 @@
         "text": "Page Indexing",
         "context": "",
         "plural": "",
-        "line": 1026
+        "line": 1115
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2886,7 +3102,7 @@
         "text": "Section",
         "context": "",
         "plural": "",
-        "line": 1028
+        "line": 1117
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2895,7 +3111,7 @@
         "text": "Breakdowns",
         "context": "",
         "plural": "",
-        "line": 1030
+        "line": 1119
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2904,7 +3120,7 @@
         "text": "Revisions",
         "context": "",
         "plural": "",
-        "line": 1039
+        "line": 1128
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2913,7 +3129,7 @@
         "text": "SEO Revisions",
         "context": "",
         "plural": "",
-        "line": 1040
+        "line": 1129
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2922,7 +3138,7 @@
         "text": "Review tracked SEO field changes and restore previous values when a page edit needs to be rolled back.",
         "context": "",
         "plural": "",
-        "line": 1050
+        "line": 1139
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2931,7 +3147,7 @@
         "text": "recent revisions",
         "context": "",
         "plural": "",
-        "line": 1051
+        "line": 1140
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2940,7 +3156,7 @@
         "text": "What is tracked?",
         "context": "",
         "plural": "",
-        "line": 1052
+        "line": 1141
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2949,7 +3165,7 @@
         "text": "No SEO revisions yet",
         "context": "",
         "plural": "",
-        "line": 1054
+        "line": 1143
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2958,7 +3174,7 @@
         "text": "Date",
         "context": "",
         "plural": "",
-        "line": 1058
+        "line": 1147
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2967,7 +3183,7 @@
         "text": "%d more changes",
         "context": "",
         "plural": "",
-        "line": 1070
+        "line": 1159
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2976,7 +3192,7 @@
         "text": "Reports",
         "context": "",
         "plural": "",
-        "line": 1087
+        "line": 1176
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2985,7 +3201,7 @@
         "text": "SEO Reports",
         "context": "",
         "plural": "",
-        "line": 1088
+        "line": 1177
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -2994,7 +3210,7 @@
         "text": "Report settings saved.",
         "context": "",
         "plural": "",
-        "line": 1098
+        "line": 1187
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3003,7 +3219,7 @@
         "text": "Report JSON generated.",
         "context": "",
         "plural": "",
-        "line": 1105
+        "line": 1194
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3012,7 +3228,7 @@
         "text": "Enter a valid recipient email address for the test.",
         "context": "",
         "plural": "",
-        "line": 1112
+        "line": 1201
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3021,7 +3237,7 @@
         "text": "Test report sent to %s.",
         "context": "",
         "plural": "",
-        "line": 1114
+        "line": 1203
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3030,7 +3246,7 @@
         "text": "Test report could not be sent. Check the selected WireMail provider and sender settings.",
         "context": "",
         "plural": "",
-        "line": 1116
+        "line": 1205
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3039,7 +3255,7 @@
         "text": "Monthly",
         "context": "",
         "plural": "",
-        "line": 1124
+        "line": 1213
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3048,7 +3264,7 @@
         "text": "In development",
         "context": "",
         "plural": "",
-        "line": 1125
+        "line": 1214
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3057,7 +3273,7 @@
         "text": "Never",
         "context": "",
         "plural": "",
-        "line": 1130
+        "line": 1219
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3066,7 +3282,7 @@
         "text": "Email reports",
         "context": "",
         "plural": "",
-        "line": 1137
+        "line": 1226
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3075,7 +3291,7 @@
         "text": "Reports are in development",
         "context": "",
         "plural": "",
-        "line": 1138
+        "line": 1227
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3084,7 +3300,7 @@
         "text": "LazyCron will generate the report as JSON, store the latest snapshot here, and send the same report by email. DOCX export is available for printing or sharing with a client.",
         "context": "",
         "plural": "",
-        "line": 1139
+        "line": 1228
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3093,7 +3309,7 @@
         "text": "Current schedule: %s",
         "context": "",
         "plural": "",
-        "line": 1143
+        "line": 1232
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3102,7 +3318,7 @@
         "text": "Email delivery is enabled in settings.",
         "context": "",
         "plural": "",
-        "line": 1144
+        "line": 1233
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3111,7 +3327,7 @@
         "text": "Last generated: %s",
         "context": "",
         "plural": "",
-        "line": 1145
+        "line": 1234
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3120,7 +3336,7 @@
         "text": "Recipients: %s",
         "context": "",
         "plural": "",
-        "line": 1146
+        "line": 1235
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3129,7 +3345,7 @@
         "text": "A short operational digest: current SEO score, new critical issues, pages that need attention, Search Console movement, and indexing warnings from the latest cached scan.",
         "context": "",
         "plural": "",
-        "line": 1152
+        "line": 1241
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3138,7 +3354,7 @@
         "text": "A broader trend summary: score change, issue totals, top winning and losing pages, query visibility, cleanup activity, redirect hits, and recommendations for the next month.",
         "context": "",
         "plural": "",
-        "line": 1153
+        "line": 1242
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3147,7 +3363,7 @@
         "text": "Planned report data",
         "context": "",
         "plural": "",
-        "line": 1160
+        "line": 1249
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3156,7 +3372,7 @@
         "text": "SEO health score and critical audit issues",
         "context": "",
         "plural": "",
-        "line": 1162
+        "line": 1251
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3165,7 +3381,7 @@
         "text": "Missing titles, descriptions, OG images, and noindex pages",
         "context": "",
         "plural": "",
-        "line": 1163
+        "line": 1252
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3174,7 +3390,7 @@
         "text": "Search Console clicks, impressions, CTR, and average position",
         "context": "",
         "plural": "",
-        "line": 1164
+        "line": 1253
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3183,7 +3399,7 @@
         "text": "Top pages, top queries, countries, devices, and search appearance",
         "context": "",
         "plural": "",
-        "line": 1165
+        "line": 1254
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3192,7 +3408,7 @@
         "text": "Page Indexing sample scan issues",
         "context": "",
         "plural": "",
-        "line": 1166
+        "line": 1255
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3201,7 +3417,7 @@
         "text": "Recent redirects, cleanup blocks, and SEO revisions",
         "context": "",
         "plural": "",
-        "line": 1167
+        "line": 1256
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3210,7 +3426,7 @@
         "text": "Latest JSON report",
         "context": "",
         "plural": "",
-        "line": 1172
+        "line": 1261
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3219,7 +3435,7 @@
         "text": "Generate report JSON",
         "context": "",
         "plural": "",
-        "line": 1174
+        "line": 1263
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3228,7 +3444,7 @@
         "text": "Download DOCX",
         "context": "",
         "plural": "",
-        "line": 1175
+        "line": 1264
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3237,7 +3453,7 @@
         "text": "No report JSON has been generated yet.",
         "context": "",
         "plural": "",
-        "line": 1180
+        "line": 1269
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3246,7 +3462,7 @@
         "text": "SEO score",
         "context": "",
         "plural": "",
-        "line": 1183
+        "line": 1272
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3255,7 +3471,7 @@
         "text": "priority issues",
         "context": "",
         "plural": "",
-        "line": 1184
+        "line": 1273
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3264,7 +3480,7 @@
         "text": "redirects",
         "context": "",
         "plural": "",
-        "line": 1185
+        "line": 1274
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3273,7 +3489,7 @@
         "text": "Report settings",
         "context": "",
         "plural": "",
-        "line": 1214
+        "line": 1303
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3282,7 +3498,7 @@
         "text": "Enable scheduled SEO email reports",
         "context": "",
         "plural": "",
-        "line": 1219
+        "line": 1308
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3291,7 +3507,7 @@
         "text": "Frequency",
         "context": "",
         "plural": "",
-        "line": 1220
+        "line": 1309
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3300,7 +3516,7 @@
         "text": "Recipients",
         "context": "",
         "plural": "",
-        "line": 1221
+        "line": 1310
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3309,7 +3525,7 @@
         "text": "Include Google Search Console summary",
         "context": "",
         "plural": "",
-        "line": 1222
+        "line": 1311
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3318,7 +3534,7 @@
         "text": "Mailer",
         "context": "",
         "plural": "",
-        "line": 1223
+        "line": 1312
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3327,7 +3543,7 @@
         "text": "From email",
         "context": "",
         "plural": "",
-        "line": 1224
+        "line": 1313
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3336,7 +3552,7 @@
         "text": "From name",
         "context": "",
         "plural": "",
-        "line": 1225
+        "line": 1314
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3345,7 +3561,7 @@
         "text": "Save report settings",
         "context": "",
         "plural": "",
-        "line": 1227
+        "line": 1316
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3354,7 +3570,7 @@
         "text": "Send Test Mail",
         "context": "",
         "plural": "",
-        "line": 1231
+        "line": 1320
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3363,7 +3579,7 @@
         "text": "Save your settings first, then test. The email is sent through the currently selected WireMail provider.",
         "context": "",
         "plural": "",
-        "line": 1232
+        "line": 1321
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3372,7 +3588,7 @@
         "text": "Recipient email address",
         "context": "",
         "plural": "",
-        "line": 1233
+        "line": 1322
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3381,7 +3597,7 @@
         "text": "PHP ZipArchive extension is required to generate DOCX reports.",
         "context": "",
         "plural": "",
-        "line": 1264
+        "line": 1353
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3390,7 +3606,7 @@
         "text": "Default (site WireMail setting)",
         "context": "",
         "plural": "",
-        "line": 1275
+        "line": 1364
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3399,7 +3615,7 @@
         "text": "Cleanup",
         "context": "",
         "plural": "",
-        "line": 1286
+        "line": 1375
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3408,7 +3624,7 @@
         "text": "Crawl & Search Cleanup",
         "context": "",
         "plural": "",
-        "line": 1287
+        "line": 1376
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3417,7 +3633,7 @@
         "text": "Cleanup log table is not available yet.",
         "context": "",
         "plural": "",
-        "line": 1292
+        "line": 1381
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3426,7 +3642,7 @@
         "text": "Monitor spam search queries and lightweight crawl-surface cleanup that keeps low-value URLs out of public search paths.",
         "context": "",
         "plural": "",
-        "line": 1301
+        "line": 1390
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3435,7 +3651,7 @@
         "text": "On",
         "context": "",
         "plural": "",
-        "line": 1303
+        "line": 1392
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3444,7 +3660,7 @@
         "text": "recent blocks",
         "context": "",
         "plural": "",
-        "line": 1304
+        "line": 1393
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3453,7 +3669,7 @@
         "text": "unique IPs",
         "context": "",
         "plural": "",
-        "line": 1305
+        "line": 1394
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3462,7 +3678,7 @@
         "text": "custom patterns",
         "context": "",
         "plural": "",
-        "line": 1306
+        "line": 1395
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3471,7 +3687,7 @@
         "text": "Current action",
         "context": "",
         "plural": "",
-        "line": 1308
+        "line": 1397
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3480,7 +3696,7 @@
         "text": "No blocked queries logged yet",
         "context": "",
         "plural": "",
-        "line": 1310
+        "line": 1399
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3489,7 +3705,7 @@
         "text": "Sitemap",
         "context": "",
         "plural": "",
-        "line": 1325
+        "line": 1414
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3498,7 +3714,7 @@
         "text": "XML Sitemap",
         "context": "",
         "plural": "",
-        "line": 1326
+        "line": 1415
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3507,7 +3723,7 @@
         "text": "Generated %d sitemap file(s), %s URLs in %.2fs.",
         "context": "",
         "plural": "",
-        "line": 1338
+        "line": 1427
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3516,7 +3732,7 @@
         "text": "Sitemap generation failed: ",
         "context": "",
         "plural": "",
-        "line": 1341
+        "line": 1430
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3525,7 +3741,7 @@
         "text": "Sitemap files deleted.",
         "context": "",
         "plural": "",
-        "line": 1353
+        "line": 1442
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3534,7 +3750,7 @@
         "text": "Sitemap directory created.",
         "context": "",
         "plural": "",
-        "line": 1361
+        "line": 1450
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3543,7 +3759,7 @@
         "text": "Off",
         "context": "",
         "plural": "",
-        "line": 1383
+        "line": 1472
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3552,7 +3768,7 @@
         "text": "Generate and inspect the XML sitemap files served by Ichiban.",
         "context": "",
         "plural": "",
-        "line": 1386
+        "line": 1475
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3561,7 +3777,7 @@
         "text": "Open Sitemap Settings",
         "context": "",
         "plural": "",
-        "line": 1387
+        "line": 1476
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3570,7 +3786,7 @@
         "text": "files",
         "context": "",
         "plural": "",
-        "line": 1389
+        "line": 1478
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3579,7 +3795,7 @@
         "text": "URLs",
         "context": "",
         "plural": "",
-        "line": 1390
+        "line": 1479
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3588,7 +3804,7 @@
         "text": "total size",
         "context": "",
         "plural": "",
-        "line": 1391
+        "line": 1480
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3597,7 +3813,7 @@
         "text": "OK",
         "context": "",
         "plural": "",
-        "line": 1392
+        "line": 1481
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3606,7 +3822,7 @@
         "text": "LazyCron",
         "context": "",
         "plural": "",
-        "line": 1393
+        "line": 1482
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3615,7 +3831,7 @@
         "text": "Public index",
         "context": "",
         "plural": "",
-        "line": 1395
+        "line": 1484
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3624,7 +3840,7 @@
         "text": "Last generated",
         "context": "",
         "plural": "",
-        "line": 1396
+        "line": 1485
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3633,7 +3849,7 @@
         "text": "Directory",
         "context": "",
         "plural": "",
-        "line": 1397
+        "line": 1486
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3642,7 +3858,7 @@
         "text": "Auto regeneration",
         "context": "",
         "plural": "",
-        "line": 1398
+        "line": 1487
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3651,7 +3867,7 @@
         "text": "Sitemap auto-regeneration is enabled, but LazyCron is not installed. Install the core LazyCron module or use Generate Now manually.",
         "context": "",
         "plural": "",
-        "line": 1401
+        "line": 1490
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3660,7 +3876,7 @@
         "text": "The sitemap directory does not exist yet.",
         "context": "",
         "plural": "",
-        "line": 1405
+        "line": 1494
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3669,7 +3885,7 @@
         "text": "Create Directory",
         "context": "",
         "plural": "",
-        "line": 1406
+        "line": 1495
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3678,7 +3894,7 @@
         "text": "The sitemap directory is not writable.",
         "context": "",
         "plural": "",
-        "line": 1408
+        "line": 1497
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3687,7 +3903,7 @@
         "text": "Generating...",
         "context": "",
         "plural": "",
-        "line": 1412
+        "line": 1501
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3696,7 +3912,7 @@
         "text": "Delete Files",
         "context": "",
         "plural": "",
-        "line": 1415
+        "line": 1504
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3705,7 +3921,7 @@
         "text": "No sitemap files yet",
         "context": "",
         "plural": "",
-        "line": 1419
+        "line": 1508
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3714,7 +3930,7 @@
         "text": "File",
         "context": "",
         "plural": "",
-        "line": 1423
+        "line": 1512
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3723,7 +3939,7 @@
         "text": "index",
         "context": "",
         "plural": "",
-        "line": 1429
+        "line": 1518
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3732,7 +3948,7 @@
         "text": "Disabled",
         "context": "",
         "plural": "",
-        "line": 1437
+        "line": 1526
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3741,7 +3957,7 @@
         "text": "Waiting for LazyCron module",
         "context": "",
         "plural": "",
-        "line": 1438
+        "line": 1527
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3750,7 +3966,7 @@
         "text": "%s, minimum interval %d seconds",
         "context": "",
         "plural": "",
-        "line": 1440
+        "line": 1529
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3759,7 +3975,7 @@
         "text": "Migration",
         "context": "",
         "plural": "",
-        "line": 1455
+        "line": 1544
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3768,7 +3984,7 @@
         "text": "SEO Migration",
         "context": "",
         "plural": "",
-        "line": 1456
+        "line": 1545
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3777,7 +3993,7 @@
         "text": "Repaired duplicate Ichiban fields. Kept %s, removed %s from %d template(s), copied %d row(s). Backups: %s.",
         "context": "",
         "plural": "",
-        "line": 1464
+        "line": 1553
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3786,7 +4002,7 @@
         "text": "Converted field %s. Backup table: %s. Rows migrated: %d.",
         "context": "",
         "plural": "",
-        "line": 1475
+        "line": 1564
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3795,7 +4011,7 @@
         "text": "Convert existing SeoMaestro fields to Ichiban without deleting the field or losing per-page SEO data.",
         "context": "",
         "plural": "",
-        "line": 1488
+        "line": 1577
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3804,7 +4020,7 @@
         "text": "SeoMaestro reference",
         "context": "",
         "plural": "",
-        "line": 1489
+        "line": 1578
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3813,7 +4029,7 @@
         "text": "Find SeoMaestro fields",
         "context": "",
         "plural": "",
-        "line": 1491
+        "line": 1580
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3822,7 +4038,7 @@
         "text": "Create a table backup",
         "context": "",
         "plural": "",
-        "line": 1492
+        "line": 1581
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3831,7 +4047,7 @@
         "text": "Convert data and switch type",
         "context": "",
         "plural": "",
-        "line": 1493
+        "line": 1582
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3840,7 +4056,7 @@
         "text": "FieldtypeIchiban is not installed yet. Install it from Modules before running a migration.",
         "context": "",
         "plural": "",
-        "line": 1498
+        "line": 1587
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3849,7 +4065,7 @@
         "text": "No SeoMaestro fields found",
         "context": "",
         "plural": "",
-        "line": 1502
+        "line": 1591
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3858,7 +4074,7 @@
         "text": "Field",
         "context": "",
         "plural": "",
-        "line": 1507
+        "line": 1596
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3867,7 +4083,7 @@
         "text": "None",
         "context": "",
         "plural": "",
-        "line": 1511
+        "line": 1600
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3876,7 +4092,7 @@
         "text": "Create a backup and convert this field to Ichiban?",
         "context": "",
         "plural": "",
-        "line": 1518
+        "line": 1607
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3885,7 +4101,7 @@
         "text": "Before you run it",
         "context": "",
         "plural": "",
-        "line": 1522
+        "line": 1611
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3894,7 +4110,7 @@
         "text": "Field tokens like {title} become Ichiban field sources; custom text stays custom text.",
         "context": "",
         "plural": "",
-        "line": 1528
+        "line": 1617
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3903,7 +4119,7 @@
         "text": "Field tokens become sources, custom copy is preserved.",
         "context": "",
         "plural": "",
-        "line": 1529
+        "line": 1618
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3912,7 +4128,7 @@
         "text": "Copied as the page canonical override when it is not inherited.",
         "context": "",
         "plural": "",
-        "line": 1530
+        "line": 1619
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3921,7 +4137,7 @@
         "text": "Field tokens become sources for social title output.",
         "context": "",
         "plural": "",
-        "line": 1531
+        "line": 1620
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3930,7 +4146,7 @@
         "text": "Field tokens become sources for social description output.",
         "context": "",
         "plural": "",
-        "line": 1532
+        "line": 1621
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3939,7 +4155,7 @@
         "text": "Copied as the selected OG image source. Ichiban resolves image output at render time.",
         "context": "",
         "plural": "",
-        "line": 1533
+        "line": 1622
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3948,7 +4164,7 @@
         "text": "Copied as alternate text for the OG image.",
         "context": "",
         "plural": "",
-        "line": 1534
+        "line": 1623
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3957,7 +4173,7 @@
         "text": "Copied when SeoMaestro stored an explicit type.",
         "context": "",
         "plural": "",
-        "line": 1535
+        "line": 1624
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3966,7 +4182,7 @@
         "text": "Copied as the page Twitter/X card mode.",
         "context": "",
         "plural": "",
-        "line": 1536
+        "line": 1625
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3975,7 +4191,7 @@
         "text": "Copied as the page creator handle.",
         "context": "",
         "plural": "",
-        "line": 1537
+        "line": 1626
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3984,7 +4200,7 @@
         "text": "Copied only when the value is not inherit.",
         "context": "",
         "plural": "",
-        "line": 1538
+        "line": 1627
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -3993,7 +4209,7 @@
         "text": "Copied only when the value is not inherit; otherwise Ichiban defaults to included.",
         "context": "",
         "plural": "",
-        "line": 1540
+        "line": 1629
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4002,7 +4218,7 @@
         "text": "Copied as the page-level sitemap priority.",
         "context": "",
         "plural": "",
-        "line": 1541
+        "line": 1630
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4011,7 +4227,7 @@
         "text": "Copied as the page-level change frequency.",
         "context": "",
         "plural": "",
-        "line": 1542
+        "line": 1631
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4020,7 +4236,7 @@
         "text": "Data mapping",
         "context": "",
         "plural": "",
-        "line": 1546
+        "line": 1635
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4029,7 +4245,7 @@
         "text": "Schema type defaults to WebPage",
         "context": "",
         "plural": "",
-        "line": 1547
+        "line": 1636
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4038,7 +4254,7 @@
         "text": "What moves",
         "context": "",
         "plural": "",
-        "line": 1549
+        "line": 1638
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4047,7 +4263,7 @@
         "text": "Field tokens",
         "context": "",
         "plural": "",
-        "line": 1558
+        "line": 1647
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4056,7 +4272,7 @@
         "text": "Backup",
         "context": "",
         "plural": "",
-        "line": 1559
+        "line": 1648
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4065,7 +4281,7 @@
         "text": "Duplicate Ichiban fields detected",
         "context": "",
         "plural": "",
-        "line": 1581
+        "line": 1670
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4074,7 +4290,7 @@
         "text": "This site has more than one FieldtypeIchiban field. Ichiban will keep %s as the canonical SEO field and can remove %s from templates after backing up both tables.",
         "context": "",
         "plural": "",
-        "line": 1582
+        "line": 1671
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4083,7 +4299,7 @@
         "text": "Backup both tables, copy missing rows into seo, and remove the duplicate field from templates?",
         "context": "",
         "plural": "",
-        "line": 1587
+        "line": 1676
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4092,7 +4308,7 @@
         "text": "Schema Builder",
         "context": "",
         "plural": "",
-        "line": 1593
+        "line": 1682
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4101,7 +4317,7 @@
         "text": "Schema builder mappings saved.",
         "context": "",
         "plural": "",
-        "line": 1626
+        "line": 1715
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4110,7 +4326,7 @@
         "text": "Create Schema.org nodes in a database-backed builder. Pick a type, choose templates, then map schema properties to ProcessWire fields or source expressions.",
         "context": "",
         "plural": "",
-        "line": 1652
+        "line": 1741
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4119,7 +4335,7 @@
         "text": "Save Schemas",
         "context": "",
         "plural": "",
-        "line": 1667
+        "line": 1756
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4128,7 +4344,7 @@
         "text": "AI",
         "context": "",
         "plural": "",
-        "line": 1675
+        "line": 1764
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4137,7 +4353,7 @@
         "text": "SEO AI",
         "context": "",
         "plural": "",
-        "line": 1676
+        "line": 1765
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4146,7 +4362,7 @@
         "text": "AI workspace is in development",
         "context": "",
         "plural": "",
-        "line": 1704
+        "line": 1793
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4155,7 +4371,7 @@
         "text": "This page will become the AI area for SEO suggestions, metadata drafts, schema help, and report summaries. It uses Context AI Gateway when available, with Ichiban OpenRouter settings as fallback, and attaches exported Context files to test requests.",
         "context": "",
         "plural": "",
-        "line": 1705
+        "line": 1794
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4164,7 +4380,7 @@
         "text": "Configured",
         "context": "",
         "plural": "",
-        "line": 1707
+        "line": 1796
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4173,7 +4389,7 @@
         "text": "Provider: %s",
         "context": "",
         "plural": "",
-        "line": 1708
+        "line": 1797
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4182,7 +4398,7 @@
         "text": "Model: %s",
         "context": "",
         "plural": "",
-        "line": 1709
+        "line": 1798
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4191,7 +4407,7 @@
         "text": "Context files: %s",
         "context": "",
         "plural": "",
-        "line": 1710
+        "line": 1799
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4200,7 +4416,7 @@
         "text": "Open AI settings",
         "context": "",
         "plural": "",
-        "line": 1711
+        "line": 1800
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4209,7 +4425,7 @@
         "text": "Test AI request",
         "context": "",
         "plural": "",
-        "line": 1715
+        "line": 1804
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4218,7 +4434,7 @@
         "text": "Run test",
         "context": "",
         "plural": "",
-        "line": 1729
+        "line": 1818
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4227,7 +4443,7 @@
         "text": "AI request failed",
         "context": "",
         "plural": "",
-        "line": 1733
+        "line": 1822
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4236,7 +4452,7 @@
         "text": "Model: %s · %d ms",
         "context": "",
         "plural": "",
-        "line": 1741
+        "line": 1830
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4245,7 +4461,7 @@
         "text": "The provider returned an empty message body. Try another model, increase Max tokens, or reduce the Context files sent with the request.",
         "context": "",
         "plural": "",
-        "line": 1745
+        "line": 1834
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4254,7 +4470,7 @@
         "text": "Audit suggestions",
         "context": "",
         "plural": "",
-        "line": 1757
+        "line": 1846
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4263,7 +4479,7 @@
         "text": "Find practical SEO fixes from Context data.",
         "context": "",
         "plural": "",
-        "line": 1758
+        "line": 1847
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4272,7 +4488,7 @@
         "text": "Using the attached Context export, give me 5 practical SEO improvements for the current site in concise bullets. Mention which pages, templates, or fields you used.",
         "context": "",
         "plural": "",
-        "line": 1759
+        "line": 1848
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4281,7 +4497,7 @@
         "text": "Metadata drafts",
         "context": "",
         "plural": "",
-        "line": 1762
+        "line": 1851
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4290,7 +4506,7 @@
         "text": "Draft titles and descriptions for priority pages.",
         "context": "",
         "plural": "",
-        "line": 1763
+        "line": 1852
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4299,7 +4515,7 @@
         "text": "Using the attached Context export, choose 5 priority pages or templates that need stronger metadata. For each one, draft an SEO title under 60 characters and a meta description under 155 characters.",
         "context": "",
         "plural": "",
-        "line": 1764
+        "line": 1853
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4308,7 +4524,7 @@
         "text": "Schema help",
         "context": "",
         "plural": "",
-        "line": 1767
+        "line": 1856
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4317,7 +4533,7 @@
         "text": "Recommend Schema.org mappings.",
         "context": "",
         "plural": "",
-        "line": 1768
+        "line": 1857
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4326,7 +4542,7 @@
         "text": "Using the attached Context export and the existing ProcessWire templates/fields, suggest Schema.org types and field mappings for the most important page templates. Include source fields such as field:title or field:summary when possible.",
         "context": "",
         "plural": "",
-        "line": 1769
+        "line": 1858
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4335,7 +4551,7 @@
         "text": "Report summary",
         "context": "",
         "plural": "",
-        "line": 1772
+        "line": 1861
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4344,7 +4560,7 @@
         "text": "Prepare a client-friendly report brief.",
         "context": "",
         "plural": "",
-        "line": 1773
+        "line": 1862
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4353,7 +4569,7 @@
         "text": "Using the attached Context export, write a concise client-friendly SEO report summary: current site structure, biggest opportunities, risks, and next actions. Keep it suitable for a monthly report.",
         "context": "",
         "plural": "",
-        "line": 1774
+        "line": 1863
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4362,7 +4578,7 @@
         "text": "No templates",
         "context": "",
         "plural": "",
-        "line": 1796
+        "line": 1885
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4371,7 +4587,7 @@
         "text": "Enabled",
         "context": "",
         "plural": "",
-        "line": 1828
+        "line": 1917
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4380,7 +4596,7 @@
         "text": "Remove",
         "context": "",
         "plural": "",
-        "line": 1829
+        "line": 1918
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4389,7 +4605,7 @@
         "text": "Name",
         "context": "",
         "plural": "",
-        "line": 1832
+        "line": 1921
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4398,7 +4614,7 @@
         "text": "Schema type",
         "context": "",
         "plural": "",
-        "line": 1833
+        "line": 1922
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4407,7 +4623,7 @@
         "text": "Custom type",
         "context": "",
         "plural": "",
-        "line": 1834
+        "line": 1923
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4416,7 +4632,7 @@
         "text": "Templates",
         "context": "",
         "plural": "",
-        "line": 1835
+        "line": 1924
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4425,7 +4641,7 @@
         "text": "Property",
         "context": "",
         "plural": "",
-        "line": 1837
+        "line": 1926
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4434,7 +4650,7 @@
         "text": "Add property",
         "context": "",
         "plural": "",
-        "line": 1839
+        "line": 1928
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4443,7 +4659,7 @@
         "text": "Use sources like field:title, field:summary|truncate:160, {legacy_field}, custom text, or empty string.",
         "context": "",
         "plural": "",
-        "line": 1841
+        "line": 1930
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4452,7 +4668,7 @@
         "text": "Choose property",
         "context": "",
         "plural": "",
-        "line": 1848
+        "line": 1937
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4461,7 +4677,7 @@
         "text": "Settings",
         "context": "",
         "plural": "",
-        "line": 1956
+        "line": 2045
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4470,7 +4686,7 @@
         "text": "SEO Settings",
         "context": "",
         "plural": "",
-        "line": 1957
+        "line": 2046
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4479,7 +4695,7 @@
         "text": "Settings saved.",
         "context": "",
         "plural": "",
-        "line": 1997
+        "line": 2086
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4488,7 +4704,7 @@
         "text": "IndexNow key file written to the site root.",
         "context": "",
         "plural": "",
-        "line": 2000
+        "line": 2089
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4497,7 +4713,7 @@
         "text": "IndexNow key saved, but the key file could not be written. Create {key}.txt in the site root with the key as file content.",
         "context": "",
         "plural": "",
-        "line": 2002
+        "line": 2091
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4506,7 +4722,7 @@
         "text": "Generate IndexNow key",
         "context": "",
         "plural": "",
-        "line": 2011
+        "line": 2100
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4515,7 +4731,7 @@
         "text": "Index not built.",
         "context": "",
         "plural": "",
-        "line": 2072
+        "line": 2161
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4524,7 +4740,7 @@
         "text": "No duplicate Ichiban fields were found.",
         "context": "",
         "plural": "",
-        "line": 2142
+        "line": 2231
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4533,7 +4749,7 @@
         "text": "Could not determine which Ichiban fields to repair.",
         "context": "",
         "plural": "",
-        "line": 2147
+        "line": 2236
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4542,7 +4758,7 @@
         "text": "Unsafe table name.",
         "context": "",
         "plural": "",
-        "line": 2192
+        "line": 2281
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4551,7 +4767,7 @@
         "text": "Missing field name.",
         "context": "",
         "plural": "",
-        "line": 2226
+        "line": 2315
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4560,7 +4776,7 @@
         "text": "Field \"%s\" was not found.",
         "context": "",
         "plural": "",
-        "line": 2228
+        "line": 2317
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4569,7 +4785,7 @@
         "text": "Field \"%s\" is not a SeoMaestro field.",
         "context": "",
         "plural": "",
-        "line": 2230
+        "line": 2319
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4578,7 +4794,7 @@
         "text": "FieldtypeIchiban is not installed.",
         "context": "",
         "plural": "",
-        "line": 2234
+        "line": 2323
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4587,7 +4803,43 @@
         "text": "Score",
         "context": "",
         "plural": "",
-        "line": 2356
+        "line": 2445
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "d0cc96dfee8f0a3d92cee158a0808ab3",
+        "text": "Missing OG image",
+        "context": "",
+        "plural": "",
+        "line": 2545
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "5adb0ea06c1f6fc3f2a96949597abc05",
+        "text": "Title length outside target",
+        "context": "",
+        "plural": "",
+        "line": 2546
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "14b32568602c176efce371a11782b8a1",
+        "text": "Description length outside target",
+        "context": "",
+        "plural": "",
+        "line": 2547
+    },
+    {
+        "file": "site/modules/Ichiban/ProcessIchiban.module.php",
+        "textdomain": "site--modules--ichiban--processichiban-module-php",
+        "hash": "0b2b0b3a80422bcea6470d347d39ae5b",
+        "text": "Noindex",
+        "context": "",
+        "plural": "",
+        "line": 2548
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4596,7 +4848,7 @@
         "text": "Daily Trend",
         "context": "",
         "plural": "",
-        "line": 2454
+        "line": 2554
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4605,7 +4857,7 @@
         "text": "No Search Console rows available yet.",
         "context": "",
         "plural": "",
-        "line": 2457
+        "line": 2557
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4614,7 +4866,7 @@
         "text": "Never checked",
         "context": "",
         "plural": "",
-        "line": 2476
+        "line": 2576
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4623,7 +4875,7 @@
         "text": "Checks a URL sample with Google URL Inspection API and groups non-indexed / problematic pages by coverage reason. Ichiban first uses Top Pages from Search Console for the last 28 days, then fills the sample with public ProcessWire pages sorted by path. This is a cached site scan, not Google’s full Page indexing aggregate report.",
         "context": "",
         "plural": "",
-        "line": 2482
+        "line": 2582
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4632,7 +4884,7 @@
         "text": "Scan indexing issues",
         "context": "",
         "plural": "",
-        "line": 2488
+        "line": 2588
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4641,7 +4893,7 @@
         "text": "Open Page Indexing",
         "context": "",
         "plural": "",
-        "line": 2490
+        "line": 2590
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4650,7 +4902,7 @@
         "text": "Indexed",
         "context": "",
         "plural": "",
-        "line": 2494
+        "line": 2594
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4659,7 +4911,7 @@
         "text": "Checked URLs",
         "context": "",
         "plural": "",
-        "line": 2495
+        "line": 2595
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4668,7 +4920,7 @@
         "text": "Last scan",
         "context": "",
         "plural": "",
-        "line": 2496
+        "line": 2596
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4677,7 +4929,7 @@
         "text": "No indexing scan yet. Click Scan indexing issues to inspect Top Pages from Search Console first, then public ProcessWire pages if more URLs are needed.",
         "context": "",
         "plural": "",
-        "line": 2500
+        "line": 2600
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4686,7 +4938,7 @@
         "text": "No indexing issues found in the checked URL sample.",
         "context": "",
         "plural": "",
-        "line": 2503
+        "line": 2603
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4695,7 +4947,7 @@
         "text": "Page / query",
         "context": "",
         "plural": "",
-        "line": 2519
+        "line": 2619
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4704,7 +4956,7 @@
         "text": "View all",
         "context": "",
         "plural": "",
-        "line": 2524
+        "line": 2624
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4713,7 +4965,7 @@
         "text": "Impressions",
         "context": "",
         "plural": "",
-        "line": 2535
+        "line": 2635
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4722,7 +4974,7 @@
         "text": "CTR",
         "context": "",
         "plural": "",
-        "line": 2536
+        "line": 2636
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4731,7 +4983,7 @@
         "text": "Position",
         "context": "",
         "plural": "",
-        "line": 2537
+        "line": 2637
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4740,7 +4992,7 @@
         "text": "Edit",
         "context": "",
         "plural": "",
-        "line": 2539
+        "line": 2639
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4749,7 +5001,7 @@
         "text": "n/a",
         "context": "",
         "plural": "",
-        "line": 2556
+        "line": 2656
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4758,7 +5010,7 @@
         "text": "%s rows",
         "context": "",
         "plural": "",
-        "line": 2572
+        "line": 2672
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4767,7 +5019,7 @@
         "text": "Last updated %s",
         "context": "",
         "plural": "",
-        "line": 2605
+        "line": 2705
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4776,7 +5028,7 @@
         "text": "Last updated unavailable",
         "context": "",
         "plural": "",
-        "line": 2606
+        "line": 2706
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4785,7 +5037,7 @@
         "text": "Disconnect GSC",
         "context": "",
         "plural": "",
-        "line": 2610
+        "line": 2710
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4794,7 +5046,7 @@
         "text": "Country",
         "context": "",
         "plural": "",
-        "line": 2621
+        "line": 2721
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -4803,7 +5055,7 @@
         "text": "Device",
         "context": "",
         "plural": "",
-        "line": 2625
+        "line": 2725
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -4812,7 +5064,7 @@
         "text": "Social",
         "context": "",
         "plural": "",
-        "line": 59
+        "line": 61
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -4821,7 +5073,7 @@
         "text": "Search result fields",
         "context": "",
         "plural": "",
-        "line": 70
+        "line": 72
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -4830,7 +5082,7 @@
         "text": "Meta Title",
         "context": "",
         "plural": "",
-        "line": 71
+        "line": 73
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -4839,7 +5091,7 @@
         "text": "Meta Description",
         "context": "",
         "plural": "",
-        "line": 72
+        "line": 74
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -4848,7 +5100,7 @@
         "text": "Canonical URL",
         "context": "",
         "plural": "",
-        "line": 73
+        "line": 75
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -4857,7 +5109,7 @@
         "text": "Noindex",
         "context": "",
         "plural": "",
-        "line": 75
+        "line": 77
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -4866,7 +5118,7 @@
         "text": "Nofollow",
         "context": "",
         "plural": "",
-        "line": 76
+        "line": 78
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -4875,7 +5127,7 @@
         "text": "Open Graph",
         "context": "",
         "plural": "",
-        "line": 85
+        "line": 87
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -4884,7 +5136,7 @@
         "text": "OG Type",
         "context": "",
         "plural": "",
-        "line": 86
+        "line": 88
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -4893,7 +5145,7 @@
         "text": "Controls the Open Graph object type shared to social networks.",
         "context": "",
         "plural": "",
-        "line": 87
+        "line": 89
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -4902,7 +5154,7 @@
         "text": "OG Title",
         "context": "",
         "plural": "",
-        "line": 88
+        "line": 90
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -4911,7 +5163,7 @@
         "text": "OG Description",
         "context": "",
         "plural": "",
-        "line": 89
+        "line": 91
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -4920,7 +5172,7 @@
         "text": "OG Image URL",
         "context": "",
         "plural": "",
-        "line": 90
+        "line": 92
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -4929,7 +5181,7 @@
         "text": "OG Image Alt",
         "context": "",
         "plural": "",
-        "line": 91
+        "line": 93
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -4938,7 +5190,7 @@
         "text": "Twitter / X",
         "context": "",
         "plural": "",
-        "line": 93
+        "line": 95
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -4947,7 +5199,7 @@
         "text": "Card Type",
         "context": "",
         "plural": "",
-        "line": 94
+        "line": 96
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -4956,7 +5208,7 @@
         "text": "Large image cards usually perform better for editorial and marketing pages.",
         "context": "",
         "plural": "",
-        "line": 95
+        "line": 97
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -4965,7 +5217,7 @@
         "text": "Twitter Creator Handle",
         "context": "",
         "plural": "",
-        "line": 96
+        "line": 98
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -4974,7 +5226,7 @@
         "text": "Structured data",
         "context": "",
         "plural": "",
-        "line": 107
+        "line": 109
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -4983,7 +5235,7 @@
         "text": "Schema Type",
         "context": "",
         "plural": "",
-        "line": 108
+        "line": 110
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -4992,7 +5244,7 @@
         "text": "Use a standard Schema.org type or pick one of the custom schemas created in SEO > Schemas.",
         "context": "",
         "plural": "",
-        "line": 109
+        "line": 111
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5001,7 +5253,7 @@
         "text": "Generated output",
         "context": "",
         "plural": "",
-        "line": 110
+        "line": 112
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5010,7 +5262,7 @@
         "text": "Sitemap entry",
         "context": "",
         "plural": "",
-        "line": 115
+        "line": 117
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5019,7 +5271,7 @@
         "text": "Include in sitemap",
         "context": "",
         "plural": "",
-        "line": 116
+        "line": 118
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5028,7 +5280,7 @@
         "text": "Priority",
         "context": "",
         "plural": "",
-        "line": 117
+        "line": 119
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5037,7 +5289,7 @@
         "text": "Relative importance within this site. Most pages should stay around 0.5.",
         "context": "",
         "plural": "",
-        "line": 118
+        "line": 120
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5046,7 +5298,7 @@
         "text": "Change Frequency",
         "context": "",
         "plural": "",
-        "line": 119
+        "line": 121
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5055,7 +5307,7 @@
         "text": "Crawler hint for how often the content usually changes.",
         "context": "",
         "plural": "",
-        "line": 120
+        "line": 122
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5064,7 +5316,7 @@
         "text": "Advanced overrides",
         "context": "",
         "plural": "",
-        "line": 126
+        "line": 128
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5073,7 +5325,7 @@
         "text": "Custom robots meta value",
         "context": "",
         "plural": "",
-        "line": 127
+        "line": 129
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5082,7 +5334,7 @@
         "text": "JSON-LD Override (raw)",
         "context": "",
         "plural": "",
-        "line": 128
+        "line": 130
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5091,7 +5343,7 @@
         "text": "Inherit",
         "context": "",
         "plural": "",
-        "line": 151
+        "line": 153
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5100,7 +5352,7 @@
         "text": "Resolved value:",
         "context": "",
         "plural": "",
-        "line": 159
+        "line": 161
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5109,7 +5361,7 @@
         "text": "Resolved image:",
         "context": "",
         "plural": "",
-        "line": 223
+        "line": 225
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5118,7 +5370,7 @@
         "text": "Standard types",
         "context": "",
         "plural": "",
-        "line": 262
+        "line": 264
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5127,7 +5379,7 @@
         "text": "None",
         "context": "",
         "plural": "",
-        "line": 267
+        "line": 269
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5136,7 +5388,7 @@
         "text": "Untitled page",
         "context": "",
         "plural": "",
-        "line": 330
+        "line": 332
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5145,7 +5397,7 @@
         "text": "Google preview",
         "context": "",
         "plural": "",
-        "line": 334
+        "line": 336
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5154,7 +5406,7 @@
         "text": "Desktop",
         "context": "",
         "plural": "",
-        "line": 336
+        "line": 338
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5163,7 +5415,7 @@
         "text": "Mobile",
         "context": "",
         "plural": "",
-        "line": 337
+        "line": 339
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5172,7 +5424,7 @@
         "text": "Social preview",
         "context": "",
         "plural": "",
-        "line": 396
+        "line": 398
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5181,7 +5433,7 @@
         "text": "Add a meta description to preview the search result snippet.",
         "context": "",
         "plural": "",
-        "line": 405
+        "line": 407
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5190,7 +5442,7 @@
         "text": "SEO Revision History",
         "context": "",
         "plural": "",
-        "line": 425
+        "line": 427
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5199,7 +5451,7 @@
         "text": "Date",
         "context": "",
         "plural": "",
-        "line": 427
+        "line": 429
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5208,7 +5460,7 @@
         "text": "Restore",
         "context": "",
         "plural": "",
-        "line": 435
+        "line": 437
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5217,7 +5469,7 @@
         "text": "Search Performance",
         "context": "",
         "plural": "",
-        "line": 446
+        "line": 448
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",
@@ -5226,7 +5478,7 @@
         "text": "Loading…",
         "context": "",
         "plural": "",
-        "line": 447
+        "line": 449
     },
     {
         "file": "site/modules/Ichiban/src/Ai/OpenRouter.php",

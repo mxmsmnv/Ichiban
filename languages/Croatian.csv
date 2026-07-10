@@ -1,0 +1,616 @@
+en,hr,description,file,hash
+Notes,Bilješke,,site/modules/Ichiban/Ichiban.module.php,f4c6f851b00d5518bf888815de279aba
+Identity,Identitet,,site/modules/Ichiban/Ichiban.module.php,c9c5c65fb4af9cf90eb99b3b84424189
+Used for Organization/Person JSON-LD and sameAs profile links. Leave fields empty if the identity node should stay minimal.,Koristi se za poveznice profila organizacije/osobe JSON-LD i sameAs. Ostavite polja prazna ako čvor identiteta treba ostati minimalan.,,site/modules/Ichiban/Ichiban.module.php,cde2ad3993452d48164bac03fd7ff2ea
+Defaults,Zadane postavke,,site/modules/Ichiban/Ichiban.module.php,0aabf727ab0a83c5f5d078e8b18445e0
+"JSON defaults are resolved before page-level values. Use field:title, field:summary|truncate:160, custom text, or inherit.","Zadane vrijednosti JSON rješavaju se prije vrijednosti na razini stranice. Koristite field:title, field:summary|truncate:160, prilagođeni tekst ili naslijedite.",,site/modules/Ichiban/Ichiban.module.php,33bdc3ae43a21121f7dce26d5197dd44
+Global defaults JSON,Globalne zadane postavke JSON,,site/modules/Ichiban/Ichiban.module.php,53e3b5312941b09573dc3f9186159072
+Template defaults JSON,Zadane postavke predloška JSON,,site/modules/Ichiban/Ichiban.module.php,5115e3fe37e3ad25f334f010f8c5b38e
+"Use typed source values like field:title, field:summary|truncate:160, custom text, or inherit.","Koristite unesene izvorne vrijednosti kao što su field:title, field:summary|truncate:160, prilagođeni tekst ili nasljeđivanje.",,site/modules/Ichiban/Ichiban.module.php,82ccb8f28eb5731a03cf696ad3f72648
+Rendering,Renderiranje,,site/modules/Ichiban/Ichiban.module.php,a6e8f9aed2ac6481dc25a18a33342d03
+By default Ichiban only renders tags when your template outputs $page->seo. Automatic injection is opt-in.,Prema zadanim postavkama Ichiban renderira oznake samo kada vaš predložak ispiše $page->seo. Automatsko ubrizgavanje je opt-in.,,site/modules/Ichiban/Ichiban.module.php,fb1b9b3b0133275b95ccaf96bd704d4a
+Automatically inject SEO tags into page <head>,Automatski ubaci SEO oznake na stranicu <head>,,site/modules/Ichiban/Ichiban.module.php,55e90fc94d051339268c8cea22d211ff
+Enable only if your templates do not output $page->seo.,Omogućite samo ako vaši predlošci ne izlaze $page->seo.,,site/modules/Ichiban/Ichiban.module.php,83d3719feac098415326b3ef32ef1fb2
+Title Format,Format naslova,,site/modules/Ichiban/Ichiban.module.php,0c21f0be6bc0d9e2fa13c59acfa65223
+"Optionally format the rendered <title>. Use {meta_title} for the resolved page title, for example {meta_title} | {site_name}. Leave blank to render the title unchanged.","Po želji formatirajte prikazani <title>. Koristite {meta_title} za riješeni naslov stranice, na primjer {meta_title} | {site_name}. Ostavite prazno kako bi naslov ostao nepromijenjen.",,site/modules/Ichiban/Ichiban.module.php,9d60b7ae07e266ce90621e229f337618
+"Supported placeholders: {meta_title}, {site_name}, {entity_name}, {host}. Title length checks include this format.","Podržana rezervirana mjesta: {meta_title}, {site_name}, {entity_name}, {host}. Provjere duljine naslova uključuju ovaj format.",,site/modules/Ichiban/Ichiban.module.php,08debe1ddbe5e86837f27f89a8b4c15d
+Render hreflang alternate links,Renderirajte hreflang alternativne veze,,site/modules/Ichiban/Ichiban.module.php,dd27ad837fa55751efc91ce4322806d2
+Disable this when ProcessWire languages are used internally but the public site should not advertise language alternates.,"Onemogućite ovo kada se ProcessWire jezici koriste interno, ali javna stranica ne bi trebala oglašavati zamjenske jezike.",,site/modules/Ichiban/Ichiban.module.php,a0f50a879725bc755d76fcc71dbebc9c
+Render JSON-LD schema,Prikaz JSON-LD sheme,,site/modules/Ichiban/Ichiban.module.php,093f286865020e6e4762d54b968f4e18
+Disable this when templates or another module generate custom structured data.,Onemogućite ovo kada predlošci ili drugi modul generiraju prilagođene strukturirane podatke.,,site/modules/Ichiban/Ichiban.module.php,4c61b25b55b63f2ab8fa34b40ae0d612
+Webmaster Verification,Potvrda webmastera,,site/modules/Ichiban/Ichiban.module.php,e16aace7feb4c4c815b9f9acbf072815
+Verification tags and Meta Pixel are rendered on the home page only. Google Search Console verification is intentionally omitted here because current Google setup should use DNS TXT or CNAME verification.,Verifikacijske oznake i Meta Pixel prikazuju se samo na početnoj stranici. Google Search Console potvrda ovdje je namjerno izostavljena jer trenutna Googleova postavka treba koristiti DNS TXT ili CNAME provjeru.,,site/modules/Ichiban/Ichiban.module.php,a9c50cdbf2ad228624b2017ab78c7438
+"Microsoft Bing, Yahoo, and DuckDuckGo visibility often starts from Bing Webmaster Tools.","Vidljivost Microsoft Bing, Yahoo i DuckDuckGo često počinje od Bing Webmaster Tools.",,site/modules/Ichiban/Ichiban.module.php,fbe1774e9a77f9f92b4b96bf4c64585a
+Yandex meta verification token.,Yandexov meta verifikacijski token.,,site/modules/Ichiban/Ichiban.module.php,76f540135e80a474de70e3583a54dc45
+China: renders baidu-site-verification meta tag.,Kina: prikazuje meta oznaku baidu-site-verification.,,site/modules/Ichiban/Ichiban.module.php,a95ed1f87dde1518d8b49008ebb77dbb
+China: renders sogou_site_verification meta tag.,Kina: prikazuje meta oznaku sogou_site_verification.,,site/modules/Ichiban/Ichiban.module.php,9d4aa8d584f94eac913b6201afac6730
+China: renders 360-site-verification meta tag.,Kina: renderira meta oznaku 360-site-verification.,,site/modules/Ichiban/Ichiban.module.php,d0a0430a9f737934f21aa4303c7edab1
+Pinterest domain verification token.,Pinterest token za potvrdu domene.,,site/modules/Ichiban/Ichiban.module.php,eacbd24ca94cad724c6f391d472638ba
+Meta domain verification token.,Token za provjeru metadomene.,,site/modules/Ichiban/Ichiban.module.php,db13ec584f9633e6751535d17824e79e
+Numeric Pixel ID. Renders the standard PageView pixel on the home page.,Numerički ID piksela. Renderira standardni piksel PageView na početnoj stranici.,,site/modules/Ichiban/Ichiban.module.php,9219a1dab2e3eebf88becf2f14e80d01
+Additional verification meta tags,Dodatne meta oznake za provjeru,,site/modules/Ichiban/Ichiban.module.php,e7d88f3cf0b8b671959e10fe014e8fd2
+One per line as meta-name=token. Use for regional tools that provide a meta verification tag.,Jedan po retku kao meta-name=token. Koristite za regionalne alate koji pružaju meta oznaku za provjeru.,,site/modules/Ichiban/Ichiban.module.php,76f0c578ce00ff37d7e990f91b0953d3
+Example: example-site-verification=abc123. Only simple meta names are rendered.,Primjer: example-site-verification=abc123. Prikazuju se samo jednostavna meta imena.,,site/modules/Ichiban/Ichiban.module.php,3cd39c0bf9c68bf909c01310e7dfa0ef
+Google Search Console,Google Search Console,,site/modules/Ichiban/Ichiban.module.php,4243784eac7728b8e6339bdafe240e01
+"Enable the Google Search Console API, create an OAuth Web application client, add this authorized redirect URI: %s, publish the OAuth app to production, then paste the Client ID and Client Secret below. Existing tokens are preserved when settings are saved.","Omogućite Google Search Console API, kreirajte klijenta web aplikacije OAuth, dodajte ovaj ovlašteni URI za preusmjeravanje: %s, objavite aplikaciju OAuth u produkciji, zatim zalijepite ID klijenta i tajnu klijenta ispod. Postojeći tokeni se čuvaju kada se postavke spremaju.",,site/modules/Ichiban/Ichiban.module.php,43a85ff63755f87a7ccd5056ba6c38c6
+Connection status,Status veze,,site/modules/Ichiban/Ichiban.module.php,1714ef7e843e7735ce68bebe872f33e5
+Access token expires %s.,Pristupni token ističe %s.,,site/modules/Ichiban/Ichiban.module.php,ba85dd89d299ed46b9c8a5948542f99c
+Access token expired; refresh token is saved.,Pristupni token je istekao; token za osvježavanje je spremljen.,,site/modules/Ichiban/Ichiban.module.php,f3802e32cd6d09d7c1af945c4f5943d6
+Client ID saved,ID klijenta spremljen,,site/modules/Ichiban/Ichiban.module.php,1de31a3258bc607d52b41ee216c7d72f
+Client Secret saved,Tajna klijenta spremljena,,site/modules/Ichiban/Ichiban.module.php,42b44c19ef8327c019c9ad9f78d67aee
+Google account connected,Google račun povezan,,site/modules/Ichiban/Ichiban.module.php,d760203bbcc492353c8b31b14d9ffbf7
+Open Insights,Otvori Uvide,,site/modules/Ichiban/Ichiban.module.php,7f1baa2a21ced2b2e130215f4bafd5f4
+"Enter the Search Console domain, for example lqrs.uk. Ichiban will query it as a Domain property. You can still enter a URL-prefix property like https://example.com/ when needed.","Unesite domenu Search Console, na primjer lqrs.uk. Ichiban će ga postaviti kao svojstvo domene. I dalje možete unijeti svojstvo URL-prefiksa kao što je https://example.com/ kada je potrebno.",,site/modules/Ichiban/Ichiban.module.php,239ee60095ca0138f335744cf3894216
+Examples: lqrs.uk or https://example.com/,Primjeri: lqrs.uk ili https://example.com/,,site/modules/Ichiban/Ichiban.module.php,c5841c295217e694ae9814ae1de70f4e
+Backlinks / Moz API,Povratne veze / Moz API,,site/modules/Ichiban/Ichiban.module.php,148a3c9e93041db9e3a92077aa62487a
+"Moz Links API is used by the Backlinks section for inbound links, linking root domains, and anchor text. Use the new Moz API token when possible; legacy Access ID and Secret Key are only a fallback. Start with a small row limit to control monthly usage.","Moz Veze API se koristi u odjeljku Povratne veze za ulazne veze, povezivanja korijenskih domena i sidreni tekst. Koristite novi Moz API token kada je to moguće; naslijeđeni pristupni ID i tajni ključ samo su zamjena. Započnite s malim ograničenjem reda kako biste kontrolirali mjesečnu upotrebu.",,site/modules/Ichiban/Ichiban.module.php,3934fe34546dadc9006bc189343d76f2
+Default target,Zadani cilj,,site/modules/Ichiban/Ichiban.module.php,b9fa8d034ac4e37eaf215fe66737b851
+Moz API token,Moz API token,,site/modules/Ichiban/Ichiban.module.php,607e064d5ce603ed00fcaf852c19c94b
+Legacy Moz Access ID,Legacy Moz pristupni ID,,site/modules/Ichiban/Ichiban.module.php,9b8ce27d60235026df35f7d5cbca4530
+Legacy Moz Secret Key,Naslijeđeni tajni ključ Moz,,site/modules/Ichiban/Ichiban.module.php,c8ee8763358100831a05c85657874e72
+Moz API base URL,Moz API baza URL,,site/modules/Ichiban/Ichiban.module.php,3a6253c05602eb8d3bd204c6116b429d
+Rows per request,Redovi po zahtjevu,,site/modules/Ichiban/Ichiban.module.php,ad470cb6dbb8dc939f06c96e7b0ab4fb
+Used by the Backlinks preview tables.,Koriste ga tablice pregleda povratnih veza.,,site/modules/Ichiban/Ichiban.module.php,7c7dd953919a36c2613a5cbdb05ce96c
+Timeout (sec),Istek (sek),,site/modules/Ichiban/Ichiban.module.php,ef8e3c27bc823b5dcf6164fb9f2823de
+AI / OpenRouter,AI / OpenRouter,,site/modules/Ichiban/Ichiban.module.php,352d399e1a48f6097e5ba56506f05233
+"OpenRouter connection used by the Ichiban AI section. This follows the same OpenAI-compatible pattern as the Context module: provider, API key, model, limits, and OpenRouter attribution headers.","Veza OpenRouter koju koristi odjeljak Ichiban AI. Ovo slijedi isti obrazac kompatibilan s OpenAI-jem kao modul Context: pružatelj, ključ API, model, ograničenja i zaglavlja atribucije OpenRouter.",,site/modules/Ichiban/Ichiban.module.php,cfc3cf84b322e9ae90482456eeb3bd38
+Enable AI features,Omogućite značajke AI,,site/modules/Ichiban/Ichiban.module.php,3148562cec18808d8b30b9ee29e0f94e
+Provider,Davatelj,,site/modules/Ichiban/Ichiban.module.php,27703c8f150ac4bb0a3a83a7857353af
+OpenRouter API key,OpenRouter API ključ,,site/modules/Ichiban/Ichiban.module.php,3f887aa03ecf4b1f9927b54999f9f425
+Get a key at openrouter.ai/keys.,Nabavite ključ na openrouter.ai/keys.,,site/modules/Ichiban/Ichiban.module.php,4737a7f3850d0474f3335ad3d0f213fa
+Default model,Zadani model,,site/modules/Ichiban/Ichiban.module.php,b8821dd93fc369a07b7e9be00bd71b10
+"OpenRouter format: provider/model, for example anthropic/claude-sonnet-4-6 or openai/gpt-4o-mini.","OpenRouter format: pružatelj/model, na primjer anthropic/claude-sonnet-4-6 ili openai/gpt-4o-mini.",,site/modules/Ichiban/Ichiban.module.php,f14be682d566283dc93e3af760bc8720
+Max tokens,Maks tokena,,site/modules/Ichiban/Ichiban.module.php,ebd6c027329f58c7a56ddb68035e623a
+Temperature,Temperatura,,site/modules/Ichiban/Ichiban.module.php,ee7a8e262285ed49ea1b4e4ae11525bd
+"0 = deterministic, 1 = more creative.","0 = deterministički, 1 = kreativniji.",,site/modules/Ichiban/Ichiban.module.php,e9c19aa21f310410427aed8cf273ee5e
+Global system prompt,Upit globalnog sustava,,site/modules/Ichiban/Ichiban.module.php,dc80dfae1022d8c1f3a4424589c3947f
+Prepended to Ichiban AI requests.,Dodano Ichiban AI zahtjevima.,,site/modules/Ichiban/Ichiban.module.php,ac60eb790e862f3f993590931849b81f
+You are a helpful SEO assistant for ProcessWire websites.,Vi ste koristan SEO pomoćnik za ProcessWire web stranice.,,site/modules/Ichiban/Ichiban.module.php,75146a303e87f5716fce1a6a506185cf
+Site URL (OpenRouter attribution),Stranica URL (atribucija OpenRouter),,site/modules/Ichiban/Ichiban.module.php,24d92b3277066f6e0f59081c85224a28
+Sent as HTTP-Referer header.,Poslano kao HTTP-Referer zaglavlje.,,site/modules/Ichiban/Ichiban.module.php,abdfdf90ffdff8c9d2aa53a5e0c0e5ae
+Site / app name (OpenRouter attribution),Naziv web-lokacije/aplikacije (atribucija OpenRouter),,site/modules/Ichiban/Ichiban.module.php,42adc4749d3e4cad8dab5d6caaefb002
+Sent as X-Title header.,Poslano kao zaglavlje X-Title.,,site/modules/Ichiban/Ichiban.module.php,d5d1de4439d5925614911c6ece8274dd
+Publishing & URLs,Izdavaštvo & URLs,,site/modules/Ichiban/Ichiban.module.php,86c81580cb61ca8b8b36e1eb8791e413
+"IndexNow keys are simple verification strings, not keys from an account. Generate one here or use any 8-128 character key containing letters, numbers, and hyphens. A public key file named {key}.txt must exist at the site root and contain the key.","IndexNow ključevi su jednostavni nizovi za provjeru, a ne ključevi s računa. Generirajte ga ovdje ili upotrijebite bilo koji ključ od 8-128 znakova koji sadrži slova, brojeve i crtice. Datoteka s javnim ključem pod nazivom {key}.txt mora postojati u korijenu stranice i sadržavati ključ.",,site/modules/Ichiban/Ichiban.module.php,6ba02b19032039de34d471bc54d181ad
+Current key file URL: %s,Trenutačna ključna datoteka URL: %s,,site/modules/Ichiban/Ichiban.module.php,f3fa4b8b953f520859f0c214f66d9bae
+Index Now API Key,Indeksiraj sada Ključ API,,site/modules/Ichiban/Ichiban.module.php,cf092d7f265535840a7191bfcde56ce6
+Used when Ichiban pings IndexNow after a public page is saved.,Koristi se kada Ichiban pinga IndexNow nakon što je javna stranica spremljena.,,site/modules/Ichiban/Ichiban.module.php,b84b5ee761e789d69ce9c7be24f60152
+Click Save to write/update the public key file if the site root is writable.,Kliknite Spremi za pisanje/ažuriranje datoteke javnog ključa ako je korijen stranice moguće pisati.,,site/modules/Ichiban/Ichiban.module.php,d41067de431a8f0e6afc4d55afe9a674
+Twitter/X Site Handle (global default),Twitter/X Site Handle (globalno zadano),,site/modules/Ichiban/Ichiban.module.php,ad9fdbcb00b1dd7da69fbcdf723973f4
+Example: @example,Primjer: @example,,site/modules/Ichiban/Ichiban.module.php,554f29fd1e15440cc34dbaa8a1b3cadc
+URL segments in SEO URLs,URL segmenti u SEO URLs,,site/modules/Ichiban/Ichiban.module.php,9556ac4044ecb6e06b7b429847b0a7ab
+"Controls canonical, og:url, twitter:url, and hreflang on pages that use ProcessWire URL segments.","Kontrolira canonical, og:url, twitter:url i hreflang na stranicama koje koriste ProcessWire URL segmente.",,site/modules/Ichiban/Ichiban.module.php,17b32f4acfd38a4071740901071cc050
+Preserve current URL segments,Sačuvaj trenutne URL segmente,,site/modules/Ichiban/Ichiban.module.php,83d8e9e795d8952cd83396209ba9a48f
+Collapse to the page URL,Sažmi na stranicu URL,,site/modules/Ichiban/Ichiban.module.php,fe2bdcd2792e9da25e6ea86d111b4c97
+Sitemap,Sitemap,,site/modules/Ichiban/Ichiban.module.php,5813ce0ec7196c492c97596718f71969
+Public index: %s. Use the Sitemap tab for generation status and manual actions.,Javni indeks: %s. Koristite karticu Sitemap za status generiranja i ručne radnje.,,site/modules/Ichiban/Ichiban.module.php,55b9475f53a07c7d5196f4c71a398dbb
+Enable XML sitemap,Omogući XML kartu web stranice,,site/modules/Ichiban/Ichiban.module.php,569a85acaf40ac1f92443e0decb42c95
+Sitemap directory,Imenik karti web stranica,,site/modules/Ichiban/Ichiban.module.php,b0f475614b773ce993fe45c9ef8b6329
+Relative to the ProcessWire web root.,U odnosu na web korijen ProcessWire.,,site/modules/Ichiban/Ichiban.module.php,ba69c62563d8fcaa5bc70e618ad9686c
+URLs per file,URLs po datoteci,,site/modules/Ichiban/Ichiban.module.php,ae11a7f6039f458bb3417a74af2a2a22
+Respect noindex,Poštujte noindex,,site/modules/Ichiban/Ichiban.module.php,42daa8924f722774b292a26353574ae1
+Include hidden pages,Uključi skrivene stranice,,site/modules/Ichiban/Ichiban.module.php,42fdbb35b46ad8e66130cc690f8d2e84
+Include unpublished pages,Uključi neobjavljene stranice,,site/modules/Ichiban/Ichiban.module.php,f10bf91385c456e865e24520b8c3249a
+Include image entries,Uključite slikovne unose,,site/modules/Ichiban/Ichiban.module.php,bae90c7f5f8ba4caf46f4d33748af032
+Include hreflang alternates,Uključite zamjene za hreflang,,site/modules/Ichiban/Ichiban.module.php,a3f0a766c142dca615feb89b2fcf8e4f
+Auto-regenerate with LazyCron,Automatska regeneracija sa LazyCron,,site/modules/Ichiban/Ichiban.module.php,f395869cfdc0ad94b539257b0822f0b9
+Default priority,Zadani prioritet,,site/modules/Ichiban/Ichiban.module.php,1ebbf846450960ea27ce5d8a47e2ee28
+Default change frequency,Zadana učestalost promjene,,site/modules/Ichiban/Ichiban.module.php,7c7455bca9481ec96e91524395bd37a6
+Homepage priority,Prioritet početne stranice,,site/modules/Ichiban/Ichiban.module.php,49e0d8d486d9112f21ba54742fe55be5
+Homepage change frequency,Učestalost promjene početne stranice,,site/modules/Ichiban/Ichiban.module.php,c7e60025101e69e09853c4ac2718519b
+Only include templates,Uključi samo predloške,,site/modules/Ichiban/Ichiban.module.php,950bad0a29a72ff00fb288b1f071d3ca
+Exclude templates,Isključi predloške,,site/modules/Ichiban/Ichiban.module.php,c7ea296376dd22a7d17f04efffe8ed27
+Lastmod date format,Lastmod format datuma,,site/modules/Ichiban/Ichiban.module.php,31f0035ae8deafc50c1a884e22a2c851
+Regenerate interval seconds,Regenerirajte intervalne sekunde,,site/modules/Ichiban/Ichiban.module.php,6b7ef7337d0424ec1eaae0becea77bc2
+Exclude URL patterns,Isključite uzorke URL,,site/modules/Ichiban/Ichiban.module.php,7b2a2bf0e015b564de9d30ec757db7cc
+One substring or regex per line.,Jedan podniz ili regularni izraz po retku.,,site/modules/Ichiban/Ichiban.module.php,205b33cf81fcdb5e601655a6dfdd6641
+Custom URLs,Prilagođeni URLs,,site/modules/Ichiban/Ichiban.module.php,ab6d16c877b80ef4bcaa140978b45722
+"One CSV row per URL: loc,lastmod,changefreq,priority. JSON array is also accepted.","Jedan CSV red po URL: loc,lastmod,changefreq,priority. JSON niz je također prihvaćen.",,site/modules/Ichiban/Ichiban.module.php,cd635d3759f05d2a6653958ea84baa87
+Actions,Radnje,,site/modules/Ichiban/Ichiban.module.php,06df33001c1d7187fdd81ea1f5b277aa
+Open Sitemap dashboard,Otvorite nadzornu ploču Sitemapa,,site/modules/Ichiban/Ichiban.module.php,b61224e27f0e9c1e2ea56427ab9df646
+Open sitemap.xml,Otvorite sitemap.xml,,site/modules/Ichiban/Ichiban.module.php,e22314499074693a6db3ad3ad84009d7
+robots.txt / llms.txt,robots.txt / llms.txt,,site/modules/Ichiban/Ichiban.module.php,f7f3595cfd911fe0f32b2d5ed2d6ec94
+"RobotsTxt companion module is installed. Use Setup > Robots.txt for the physical robots.txt editor and presets, or enable Ichiban robots.txt only when you want Ichiban to serve it dynamically. Avoid managing robots.txt in both places at once.",Instaliran je popratni modul RobotsTxt. Upotrijebite Postavke > Robots.txt za fizički uređivač robots.txt i unaprijed postavljene postavke ili omogućite Ichiban robots.txt samo kada želite da ga Ichiban služi dinamički. Izbjegavajte upravljanje robots.txt na oba mjesta odjednom.,,site/modules/Ichiban/Ichiban.module.php,61485a8a151dfd94bbad3951bd85db78
+"Install the companion RobotsTxt module if you want a full physical robots.txt editor with presets, rules overview, file status, and a View file action. Ichiban can still serve a simple dynamic robots.txt when enabled below.","Instalirajte popratni modul RobotsTxt ako želite puni fizički uređivač robots.txt s unaprijed postavljenim postavkama, pregledom pravila, statusom datoteke i radnjom Pregled datoteke. Ichiban i dalje može služiti jednostavnom dinamičkom robots.txt kada je omogućeno u nastavku.",,site/modules/Ichiban/Ichiban.module.php,8ce9d35f1632ad55a9b6fb6c83fdea06
+Open Robots.txt editor,Otvorite uređivač Robots.txt,,site/modules/Ichiban/Ichiban.module.php,ebbcbe25e55e17e08420c46e56b9b72b
+Open robots.txt,Otvorite robots.txt,,site/modules/Ichiban/Ichiban.module.php,6319ecca224596dd462c8d70e5de251e
+Serve robots.txt from Ichiban,Poslužite robots.txt od Ichiban,,site/modules/Ichiban/Ichiban.module.php,3adf7437341bc34c9a419562a915cb4b
+robots.txt content,robots.txt sadržaj,,site/modules/Ichiban/Ichiban.module.php,06007cedde4f915ae8a13b0bbce0565f
+Ichiban appends Sitemap automatically when no Sitemap line is present.,Ichiban automatski dodaje Sitemap kada nema redaka Sitemapa.,,site/modules/Ichiban/Ichiban.module.php,74650062ba06bfbf447668866a3a3760
+Serve llms.txt from Ichiban,Poslužite llms.txt od Ichiban,,site/modules/Ichiban/Ichiban.module.php,3df918c49ac03e882a2eee6e1b2f3377
+llms.txt mode,llms.txt način,,site/modules/Ichiban/Ichiban.module.php,80c866323cb12b94221dff80bb9cf554
+Auto,Automatski,,site/modules/Ichiban/Ichiban.module.php,06b9281e396db002010bde1de57262eb
+Manual,Priručnik,,site/modules/Ichiban/Ichiban.module.php,e1ba155a9f2e8c3be94020eef32a0301
+Auto mode templates,Predlošci automatskog načina rada,,site/modules/Ichiban/Ichiban.module.php,25ee8a7254ee5db849a6b5e5255e4b18
+Comma-separated template names. Leave empty for all published pages.,Nazivi predložaka odvojeni zarezima. Ostavite prazno za sve objavljene stranice.,,site/modules/Ichiban/Ichiban.module.php,74cf4d53a6a97044875cad78893856fa
+Manual llms.txt lines,Ručni redovi llms.txt,,site/modules/Ichiban/Ichiban.module.php,c65f8a4c0f1b072037bcd4e12d6ead1c
+One Markdown link or plain URL per line.,Jedna Markdown veza ili običan URL po retku.,,site/modules/Ichiban/Ichiban.module.php,dba285a1c9da947474171d57c08d9f74
+Crawl & Search Cleanup,Čišćenje indeksiranja i pretraživanja,,site/modules/Ichiban/Ichiban.module.php,2f33b05b959e88dac60b3ade4c27982c
+Use cleanup options carefully on production. Blocked search queries are recorded in the Cleanup log.,Pažljivo koristite mogućnosti čišćenja u proizvodnji. Blokirani upiti za pretraživanje bilježe se u dnevnik čišćenja.,,site/modules/Ichiban/Ichiban.module.php,25f9bdac879109e698c3eeea78382965
+Block spam search queries,Blokiraj neželjene upite za pretraživanje,,site/modules/Ichiban/Ichiban.module.php,3ca11db7ae6adf6b9fc55bf1e49f9111
+Remove RSD link,Ukloni vezu RSD,,site/modules/Ichiban/Ichiban.module.php,e78db2fa2f930ca7eb95d4fe519b1079
+Remove WLW manifest,Ukloni WLW manifest,,site/modules/Ichiban/Ichiban.module.php,af4faf4b93a20e008a2a44d6afda6e5e
+Remove shortlink,Ukloni kratku vezu,,site/modules/Ichiban/Ichiban.module.php,fba5ed320cbabb98e15b1d51ee8917b5
+Remove prev/next links,Ukloni prethodnu/sljedeću vezu,,site/modules/Ichiban/Ichiban.module.php,11e2216ecf0699ef40a37d563256f587
+Remove generator meta,Ukloni meta generator,,site/modules/Ichiban/Ichiban.module.php,da6d4ea0cd2bf158595a2f0e44c0afcb
+Blocked query action,Blokirana radnja upita,,site/modules/Ichiban/Ichiban.module.php,84eea49868e62884a2b1691d7cddcdc1
+Redirect to homepage,Preusmjeri na početnu stranicu,,site/modules/Ichiban/Ichiban.module.php,0499b7aaa6d121d7bece90c4109317b2
+Return 400,Vrati 400,,site/modules/Ichiban/Ichiban.module.php,d7c0a219f529812b6e4b637d7b61475f
+Custom block regex patterns,Prilagođeni blokovi regularnih izraza,,site/modules/Ichiban/Ichiban.module.php,2a055d063bf3d4633b9178510c96e149
+One regular expression per line.,Jedan regularni izraz po retku.,,site/modules/Ichiban/Ichiban.module.php,711561b4befca537ab5d6186def421ed
+Dashboard,Nadzorna ploča,,site/modules/Ichiban/ProcessIchiban.module.php,2938c7f7e560ed972f8a4f68e80ff834
+SEO Dashboard,Nadzorna ploča SEO,,site/modules/Ichiban/ProcessIchiban.module.php,9f4d395b3e4af46f092a4b462b8ea473
+"A quick overview of metadata health, crawl cleanup activity, redirects, and recent SEO changes.","Brzi pregled stanja metapodataka, aktivnosti čišćenja indeksiranja, preusmjeravanja i nedavnih SEO promjena.",,site/modules/Ichiban/ProcessIchiban.module.php,5ded7cfc24996854da04760043ba6190
+Open Audit,Otvorena revizija,,site/modules/Ichiban/ProcessIchiban.module.php,d696bd75a309953bf613eb851cdee09a
+Site SEO Score,Stranica SEO Rezultat,,site/modules/Ichiban/ProcessIchiban.module.php,3e37d6888c657624030bcc638dadcc13
+Review score,Ocjena recenzije,,site/modules/Ichiban/ProcessIchiban.module.php,416798f0b25aeb1beb087b8a33e932a5
+Pages without a meta title.,Stranice bez meta naslova.,,site/modules/Ichiban/ProcessIchiban.module.php,c6f04a5a6afe09939cab1dc1b9a8d078
+Pages without a search snippet.,Stranice bez isječka za pretraživanje.,,site/modules/Ichiban/ProcessIchiban.module.php,bfb42942a405eac62ad0e92738a5c4f3
+Pages that may share poorly on social networks.,Stranice koje se mogu loše dijeliti na društvenim mrežama.,,site/modules/Ichiban/ProcessIchiban.module.php,e0ee926486f6ca48f8b405f1c383f634
+Published pages hidden from search engines.,Objavljene stranice skrivene od tražilica.,,site/modules/Ichiban/ProcessIchiban.module.php,926a9f5a5e0668125a66753533fd5404
+Schemas,Sheme,,site/modules/Ichiban/ProcessIchiban.module.php,a38d889a69652729428cd6a8d98fac2d
+GSC clicks,GSC klikne,,site/modules/Ichiban/ProcessIchiban.module.php,2a0256449a43fc299bc7b07f07cc2f2e
+Indexing issues,Problemi s indeksiranjem,,site/modules/Ichiban/ProcessIchiban.module.php,b8529a719da70101b02721a9b1a13ca8
+Index last rebuilt: %s,Indeks posljednji put prepravljen: %s,,site/modules/Ichiban/ProcessIchiban.module.php,ff9b4fbc51b2f0812cc38cd1178f6c26
+Rebuild Index,Ponovno izgradi indeks,,site/modules/Ichiban/ProcessIchiban.module.php,7a7b7a0b739647a0aa6bb1875ffee650
+Recent redirects,Nedavna preusmjeravanja,,site/modules/Ichiban/ProcessIchiban.module.php,d8d1e8296464e0d102b685ca5740f12e
+No redirects have been created yet.,Još nisu stvorena preusmjeravanja.,,site/modules/Ichiban/ProcessIchiban.module.php,4a38edfeaacb03b63ea7ff7c01e36aba
+Manage redirects,Upravljanje preusmjeravanjima,,site/modules/Ichiban/ProcessIchiban.module.php,33b539e75111e7b300ec05d15c784435
+Structured data,Strukturirani podaci,,site/modules/Ichiban/ProcessIchiban.module.php,09c0d35fcf533a857f668781e02c37a3
+schema mappings,preslikavanja shema,,site/modules/Ichiban/ProcessIchiban.module.php,2f0a76f2e289332c22015e8c0ee86b74
+missing OG images,nedostaju OG slike,,site/modules/Ichiban/ProcessIchiban.module.php,9d87b77d119da75e9586d9057706c800
+Activity,aktivnost,,site/modules/Ichiban/ProcessIchiban.module.php,ecfc2dffe568c10a67dbc6d3724cfde2
+SEO revisions,SEO revizije,,site/modules/Ichiban/ProcessIchiban.module.php,706f859724b8b0e099e5a827252e1c5d
+blocked searches,blokirana pretraživanja,,site/modules/Ichiban/ProcessIchiban.module.php,d496583a9ae5fba1751e1b28d90365bc
+Bulk Editor,Skupni uređivač,,site/modules/Ichiban/ProcessIchiban.module.php,cc8d2364a9b575d533f8c432813ccc99
+Bulk SEO Editor,Bulk SEO Editor,,site/modules/Ichiban/ProcessIchiban.module.php,5495968a5bfdd8010f0954e3b2a87a7e
+All issue types,Sve vrste problema,,site/modules/Ichiban/ProcessIchiban.module.php,bbb63f7c872069685793027208295a04
+Missing titles,Nedostaju naslovi,,site/modules/Ichiban/ProcessIchiban.module.php,ed5b322b9a2de48d55ff2e07b3607760
+Missing descriptions,Nedostaju opisi,,site/modules/Ichiban/ProcessIchiban.module.php,d5bbb6f040f94dd46ecc085c0c1bf176
+Title length issues,Problemi s duljinom naslova,,site/modules/Ichiban/ProcessIchiban.module.php,ca3d10d9686845089e9d2839efe7e14e
+Description length issues,Problemi s duljinom opisa,,site/modules/Ichiban/ProcessIchiban.module.php,c301c13e28f00e4de3ef7d1556328e7d
+Index not built yet. Please run Audit → Rebuild Index first.,Indeks još nije izgrađen. Prvo pokrenite Reviziju → Ponovno izgradi indeks.,,site/modules/Ichiban/ProcessIchiban.module.php,21d758a9b0de9421b3ffcf59609efcf9
+Filtered to %s.,Filtrirano na %s.,,site/modules/Ichiban/ProcessIchiban.module.php,8f5252a8e8d35a7cf33d6e1e9035e543
+Edit meta titles and descriptions across indexed pages without opening each page individually.,Uredite meta naslove i opise na indeksiranim stranicama bez otvaranja svake stranice pojedinačno.,,site/modules/Ichiban/ProcessIchiban.module.php,5e309239cbc253988a2993a068b4d5b1
+Recommended lengths,Preporučene duljine,,site/modules/Ichiban/ProcessIchiban.module.php,a56fd997e2cb45dea02c0840095525cb
+indexed pages,indeksirane stranice,,site/modules/Ichiban/ProcessIchiban.module.php,cb14c4ede1a6260bcfd3480fe4cf3093
+missing titles,nedostaju naslovi,,site/modules/Ichiban/ProcessIchiban.module.php,2da049b3f6efb55b71c1727f3b47e57b
+missing descriptions,nedostaju opisi,,site/modules/Ichiban/ProcessIchiban.module.php,91ceefea6d67966f3ca6fbf9af223147
+templates,šablone,,site/modules/Ichiban/ProcessIchiban.module.php,fed36e93a0509e20f2dc96cbbd85b678
+Filter by template name,Filtrirajte prema nazivu predloška,,site/modules/Ichiban/ProcessIchiban.module.php,bb232c3f8d4bb560c17c9fd7a762860d
+Filter,Filter,,site/modules/Ichiban/ProcessIchiban.module.php,d7778d0c64b6ba21494c97f77a66885a
+Clear,čisto,,site/modules/Ichiban/ProcessIchiban.module.php,dc30bc0c7914db5918da4263fce93ad2
+Showing %1$d-%2$d of %3$d matching indexed pages,Prikazuje se %1$d-%2$d od %3$d podudarnih indeksiranih stranica,,site/modules/Ichiban/ProcessIchiban.module.php,a8e0decadb75e0f9c95506b58a3200a9
+Changes are saved as custom SEO values for each page.,Promjene se spremaju kao prilagođene SEO vrijednosti za svaku stranicu.,,site/modules/Ichiban/ProcessIchiban.module.php,e12077245fbed3db5f2324ea4b08e717
+No indexed pages match this filter,Nijedna indeksirana stranica ne odgovara ovom filtru,,site/modules/Ichiban/ProcessIchiban.module.php,c527f91b9b314bfaf3dca41af2afe629
+Score legend,Legenda rezultata,,site/modules/Ichiban/ProcessIchiban.module.php,145bd3ed496e1874d258c5860e35905e
+Missing title: -30,Nedostaje naslov: -30,,site/modules/Ichiban/ProcessIchiban.module.php,b85143b69f41f3f656522c1a5ebc5cfb
+Missing description: -20,Nedostaje opis: -20,,site/modules/Ichiban/ProcessIchiban.module.php,1fea1be223b4db5e9030ae6507b5db8b
+Missing OG image: -15,Nedostaje OG slika: -15,,site/modules/Ichiban/ProcessIchiban.module.php,c70a9520ae3fe934717ef978169fb3b4
+Title length: -10,Dužina naslova: -10,,site/modules/Ichiban/ProcessIchiban.module.php,d7a8a461cf75149a27b71bd9980d2464
+Description length: -10,Dužina opisa: -10,,site/modules/Ichiban/ProcessIchiban.module.php,d31db1e9f4844a7d8aee6d3b029abe0b
+Noindex: -15,Noindex: -15,,site/modules/Ichiban/ProcessIchiban.module.php,16c9ff67f038d5a1ca6120b671a7e0a0
+Page,Stranica,,site/modules/Ichiban/ProcessIchiban.module.php,193cfc9be3b995831c6af2fea6650e60
+Critical,Kritično,,site/modules/Ichiban/ProcessIchiban.module.php,278d01e5af56273bae1bb99a98b370cd
+Warnings,Upozorenja,,site/modules/Ichiban/ProcessIchiban.module.php,e17fdb615452f440c793b5ddad90dd5e
+Healthy,Zdrava,,site/modules/Ichiban/ProcessIchiban.module.php,396d45b57c2fbe3318e7b93272a2686b
+%d visible pages,%d vidljivih stranica,,site/modules/Ichiban/ProcessIchiban.module.php,bc6192940e77395c29e418168910849c
+Rendered title,Prikazani naslov,,site/modules/Ichiban/ProcessIchiban.module.php,273d872488e7730b57ed0ae5636db438
+Missing title,Nedostaje naslov,,site/modules/Ichiban/ProcessIchiban.module.php,3e008941ac5579d625d326af1afc25f8
+Missing description,Nedostaje opis,,site/modules/Ichiban/ProcessIchiban.module.php,82d3598a151f16cf11970def5e70d3f0
+Edit page,Uredi stranicu,,site/modules/Ichiban/ProcessIchiban.module.php,3fa4031425bbfdb55a03849422d8d9dc
+target 30–70,cilj 30–70,,site/modules/Ichiban/ProcessIchiban.module.php,ac18571e9ba027153475530499ea7dbe
+target 50–160,cilj 50–160,,site/modules/Ichiban/ProcessIchiban.module.php,89ce3028dd71ed591e3f85751ad1d819
+Previous,Prethodno,,site/modules/Ichiban/ProcessIchiban.module.php,dd1f775e443ff3b9a89270713580a51b
+Page %1$d of %2$d,Stranica %1$d od %2$d,,site/modules/Ichiban/ProcessIchiban.module.php,3a1ed905045e5cf29efec452131f9403
+Next,Dalje,,site/modules/Ichiban/ProcessIchiban.module.php,10ac3d04253ef7e1ddc73e6091c0cd55
+"Review changed fields, then save all visible edits together.","Pregledajte promijenjena polja, a zatim zajedno spremite sva vidljiva uređivanja.",,site/modules/Ichiban/ProcessIchiban.module.php,7d029cf2a87929c1475558f15bccb182
+Saved SEO fields for %d pages.,Spremljena SEO polja za %d stranice.,,site/modules/Ichiban/ProcessIchiban.module.php,bfe7a0be98b1d60a62b2709498d2607d
+%d submitted pages were skipped because they no longer have an Ichiban SEO field.,Poslane stranice %d su preskočene jer više nemaju polje Ichiban SEO.,,site/modules/Ichiban/ProcessIchiban.module.php,a794b63a31efb5723afeed37052d139a
+Audit,revizija,,site/modules/Ichiban/ProcessIchiban.module.php,eda63b570db82e05c2fd7b5f0c3bb20f
+SEO Audit Report,SEO Izvješće o reviziji,,site/modules/Ichiban/ProcessIchiban.module.php,1c7ca5ddf8a2d26c346059d4c5e7240f
+Index not built yet. Please rebuild the index first.,Indeks još nije izgrađen. Prvo ponovno izgradite indeks.,,site/modules/Ichiban/ProcessIchiban.module.php,19a1a4cfb28f06ec77fc25a6ba9b2165
+Every page must have a meta title. Missing titles prevent search engines from identifying page content.,Svaka stranica mora imati meta naslov. Naslovi koji nedostaju sprječavaju tražilice da identificiraju sadržaj stranice.,,site/modules/Ichiban/ProcessIchiban.module.php,644065a5487d2a525bde830fd4b46bfe
+Meta title should be 30–70 characters. Too short lacks context; too long gets truncated in search results.,Meta naslov treba imati 30-70 znakova. Prekratkom nedostaje kontekst; predug se skraćuje u rezultatima pretraživanja.,,site/modules/Ichiban/ProcessIchiban.module.php,9438f3922e54caabdf1d0ee6aa423705
+Each page should have a unique meta title. Duplicate titles confuse search engines about which page to rank.,Svaka stranica treba imati jedinstven meta naslov. Dvostruki naslovi zbunjuju tražilice oko toga koju stranicu rangirati.,,site/modules/Ichiban/ProcessIchiban.module.php,a552e12f62256f54e82c2cc3c80637f1
+Meta description should be set on every page. It appears as the snippet in search results and affects click-through rate.,Meta opis bi trebao biti postavljen na svakoj stranici. Pojavljuje se kao isječak u rezultatima pretraživanja i utječe na stopu klikanja.,,site/modules/Ichiban/ProcessIchiban.module.php,b533c9143b51b1bd4691be7bb6a1582c
+Meta description should be 50–160 characters. Longer descriptions get cut off in search results.,Meta opis treba imati 50-160 znakova. Duži opisi se izrezuju u rezultatima pretraživanja.,,site/modules/Ichiban/ProcessIchiban.module.php,a5e2f0705b313bf7664cd244360a1813
+Each page should have a unique meta description. Duplicates reduce the value of individual pages in search rankings.,Svaka stranica treba imati jedinstven meta opis. Duplikati smanjuju vrijednost pojedinačnih stranica na ljestvici pretraživanja.,,site/modules/Ichiban/ProcessIchiban.module.php,8a9f8ec515416f8bbb98f56ab4f20a26
+Open Graph image should be set so shared links look rich on social media.,Open Graph sliku treba postaviti tako da dijeljene veze izgledaju bogato na društvenim medijima.,,site/modules/Ichiban/ProcessIchiban.module.php,fd2c15562e2d7980c5db43f62e0a4a87
+Canonical URL must be an absolute URL starting with http. Invalid canonicals can cause indexing issues.,Kanonski URL mora biti apsolutni URL koji počinje s http. Nevažeći kanonici mogu uzrokovati probleme s indeksiranjem.,,site/modules/Ichiban/ProcessIchiban.module.php,3fce513fb1e80242956eeeb8aa7e20f1
+Published pages should not have noindex set unless intentionally hidden from search engines.,Objavljene stranice ne smiju imati postavljen noindex osim ako nisu namjerno skrivene od tražilica.,,site/modules/Ichiban/ProcessIchiban.module.php,ac9886e9d3f4822a6d7125906552eef3
+"URLs should use hyphens instead of underscores. Google treats hyphens as word separators, underscores as word joiners.","URLs bi trebao koristiti crtice umjesto podvlaka. Google tretira crtice kao razdjelnike riječi, podvlake kao spojnike riječi.",,site/modules/Ichiban/ProcessIchiban.module.php,c475f4454daccec66bb17ec4974c3240
+Schema.org type should be set to help search engines understand page content and enable rich results.,Vrsta Schema.org trebala bi biti postavljena kako bi tražilice lakše razumjele sadržaj stranice i omogućile bogate rezultate.,,site/modules/Ichiban/ProcessIchiban.module.php,dc01859480d28257fe0e168d1969dd4a
+"Review technical SEO signals, metadata coverage, social sharing readiness, and schema basics across indexed pages.","Pregledajte tehničke SEO signale, pokrivenost metapodacima, spremnost za društveno dijeljenje i osnove sheme na indeksiranim stranicama.",,site/modules/Ichiban/ProcessIchiban.module.php,50a4ea5886e9b74d699c47349f5ccc6f
+Export CSV,Izvoz CSV,,site/modules/Ichiban/ProcessIchiban.module.php,c04f1e4841a6af78088d6ccf6f3a8a76
+Audit score,Ocjena revizije,,site/modules/Ichiban/ProcessIchiban.module.php,cae9866f9e8b1261df35e8798b48dac6
+open issues,otvorena pitanja,,site/modules/Ichiban/ProcessIchiban.module.php,92b6e620a025aab6d868bcabf9a44545
+critical,kritičan,,site/modules/Ichiban/ProcessIchiban.module.php,7e85bcb66fb9a809d5ab4f62a8b8bea8
+warnings,upozorenja,,site/modules/Ichiban/ProcessIchiban.module.php,3879149292f9af4469cec013785d6dfd
+Last indexed:,Zadnje indeksirano:,,site/modules/Ichiban/ProcessIchiban.module.php,db07a988ebbbfbcc460b1e5a7db57d4a
+"Rebuild the index after large content, template, or SEO field changes.","Ponovno izgradite indeks nakon velikih promjena sadržaja, predloška ili polja SEO.",,site/modules/Ichiban/ProcessIchiban.module.php,3c1b1b069cbe9f09d78b1bea80405e93
+Fix first,Prvo popravi,,site/modules/Ichiban/ProcessIchiban.module.php,a18c078ea2b94f24f12cef2609fb14da
+%d pages affected,Zahvaćene su %d stranice,,site/modules/Ichiban/ProcessIchiban.module.php,566682b91df13af6a414f4de03a19961
+No active audit issues,Nema problema s aktivnom revizijom,,site/modules/Ichiban/ProcessIchiban.module.php,f57eacbb01d1146684945f3d443f611c
+Rule details,Detalji pravila,,site/modules/Ichiban/ProcessIchiban.module.php,9da625131759cd8facbc3977ad3896c4
+Rule,pravilo,,site/modules/Ichiban/ProcessIchiban.module.php,ab7a485ebe75b6dd7243ad719f23c7de
+Severity,Ozbiljnost,,site/modules/Ichiban/ProcessIchiban.module.php,007cc9547ae8884ad597cd92ba505422
+Description,Opis,,site/modules/Ichiban/ProcessIchiban.module.php,b5a7adde1af5c87d7fd797b6245c2a39
+Issues,Problemi,,site/modules/Ichiban/ProcessIchiban.module.php,80b768b15c3693e345a436b9dc0ea36f
+Pages Affected,Zahvaćene stranice,,site/modules/Ichiban/ProcessIchiban.module.php,877175f1d8ba6c5429e96ea65d3a5997
+Open first affected page,Otvorite prvu pogođenu stranicu,,site/modules/Ichiban/ProcessIchiban.module.php,2b1ff48f58fcac978f51ef768d59bf83
+Redirects,Preusmjerava,,site/modules/Ichiban/ProcessIchiban.module.php,08635c4f0bf6edbca5d2a8bd0da24a6c
+Redirect Manager,Upravitelj preusmjeravanja,,site/modules/Ichiban/ProcessIchiban.module.php,95ef4929dd3563b677d3d1873bc08461
+Imported %d redirects.,Uvezena preusmjeravanja %d.,,site/modules/Ichiban/ProcessIchiban.module.php,b6e4d6c15b322b2def36969349edc2fe
+"Manage manual, imported, and automatic redirects from one place.","Upravljajte ručnim, uvezenim i automatskim preusmjeravanjem s jednog mjesta.",,site/modules/Ichiban/ProcessIchiban.module.php,23f86049f85992c0d1ee5a70ce8b6db6
+shown,prikazano,,site/modules/Ichiban/ProcessIchiban.module.php,3fdec1ddf038c12af81ea185ed8c8083
+"Search by source, target, or note","Pretraživanje po izvoru, cilju ili bilješci",,site/modules/Ichiban/ProcessIchiban.module.php,739946d849ed2c606613dd6b9f01426e
+Search,Traži,,site/modules/Ichiban/ProcessIchiban.module.php,13348442cc6a27032d2b4aa28b75a5d3
+Add redirect,Dodaj preusmjeravanje,,site/modules/Ichiban/ProcessIchiban.module.php,be52536ce2456f133c611e523f95701c
+From,Od,,site/modules/Ichiban/ProcessIchiban.module.php,5da618e8e4b89c66fe86e32cdafde142
+To,Za,,site/modules/Ichiban/ProcessIchiban.module.php,e12167aa0a7698e6ebc92b4ce3909b53
+Type,Vrsta,,site/modules/Ichiban/ProcessIchiban.module.php,a1fa27779242b4902f7ae3bdd5c6d508
+Note,Napomena,,site/modules/Ichiban/ProcessIchiban.module.php,3b0649c72650c313a357338dcdfb64ec
+Treat From as a regular expression pattern.,Tretirajte From kao uzorak regularnog izraza.,,site/modules/Ichiban/ProcessIchiban.module.php,433e3597944060ed606dd1ee4d116158
+Add Redirect,Dodaj preusmjeravanje,,site/modules/Ichiban/ProcessIchiban.module.php,29d916d0db37747ddb65923756bafbf0
+Import CSV,Uvezi CSV,,site/modules/Ichiban/ProcessIchiban.module.php,28ec2d08ef97978d3e7776c33a75592a
+CSV format,CSV format,,site/modules/Ichiban/ProcessIchiban.module.php,59bcc5f531966f982541ced1e3717b8c
+"Allowed types: 301, 302, 307, 410, 451. Use 1 for regex patterns and 0 for plain paths.","Dopuštene vrste: 301, 302, 307, 410, 451. Koristite 1 za uzorke regularnih izraza i 0 za obične staze.",,site/modules/Ichiban/ProcessIchiban.module.php,3b3e761b1c8361b6494955de5c27179e
+Example:,Primjer:,,site/modules/Ichiban/ProcessIchiban.module.php,81eeab9506186e2dca8faefa78d54067
+Import,uvoz,,site/modules/Ichiban/ProcessIchiban.module.php,72d6d7a1885885bb55a565fd1070581a
+Redirect list,Popis preusmjeravanja,,site/modules/Ichiban/ProcessIchiban.module.php,93dad7633866331169afa8aafb5ad2d0
+Hits,Hitovi,,site/modules/Ichiban/ProcessIchiban.module.php,b69df945ae986e6b1882cdc87ad19617
+Auto,Automatski,,site/modules/Ichiban/ProcessIchiban.module.php,06b9281e396db002010bde1de57262eb
+Open,Otvoreno,,site/modules/Ichiban/ProcessIchiban.module.php,c3bf447eabe632720a3aa1a7ce401274
+Created automatically after a page path change.,Izrađuje se automatski nakon promjene putanje stranice.,,site/modules/Ichiban/ProcessIchiban.module.php,485386096fd4a3fa1f7e00836dbd0827
+Save,spremiti,,site/modules/Ichiban/ProcessIchiban.module.php,c9cc8cce247e49bae79f15173ce97354
+Delete,Izbriši,,site/modules/Ichiban/ProcessIchiban.module.php,f2a6c498fb90ee345d997f888fce3b18
+Insights,Uvidi,,site/modules/Ichiban/ProcessIchiban.module.php,f1c9e9af80bb533618f5bdefe333747d
+SEO Insights,SEO Uvidi,,site/modules/Ichiban/ProcessIchiban.module.php,c8edfd442a49de54b51cfd1c5a4196e3
+Add Google OAuth Client ID and Client Secret in Settings before connecting Search Console.,Dodajte Google OAuth ID klijenta i tajnu klijenta u Postavkama prije povezivanja Search Console.,,site/modules/Ichiban/ProcessIchiban.module.php,9916baf62a5906addf6905ede7103eb2
+Google Search Console disconnected. Cached Insights and Page Indexing scan data were cleared.,Google Search Console isključen. Predmemorirani uvidi i podaci skeniranja indeksiranja stranica su izbrisani.,,site/modules/Ichiban/ProcessIchiban.module.php,833357916696a9b5644b32cd37a3ac94
+Security token expired. Reload the page and click Disconnect GSC again.,Sigurnosni token je istekao. Ponovno učitajte stranicu i ponovno kliknite Prekini vezu GSC.,,site/modules/Ichiban/ProcessIchiban.module.php,38382341df23fe264a3257768af0ccbd
+Checked %d URLs with URL Inspection API.,Provjereno %d URLs sa URL Inspekcija API.,,site/modules/Ichiban/ProcessIchiban.module.php,1fc136b08e93155b636e08daf9b1948a
+URL Inspection scan did not return results: %s,URL Inspekcijski pregled nije dao rezultate: %s,,site/modules/Ichiban/ProcessIchiban.module.php,f8539786a365d791d4078ebfadf0f598
+Security token expired. Reload the page and run Scan indexing issues again.,Sigurnosni token je istekao. Ponovno učitajte stranicu i ponovno pokrenite Skeniraj probleme s indeksiranjem.,,site/modules/Ichiban/ProcessIchiban.module.php,de148e0c29d2a0be01cb28cd3e73f1c9
+"Review Google Search Console performance, page indexing checks, and search breakdowns from cached API data.","Pregledajte performanse Google Search Console, provjere indeksiranja stranica i raščlambe pretraživanja iz predmemoriranih podataka API.",,site/modules/Ichiban/ProcessIchiban.module.php,a269a9f699ef592ea53da37e53549875
+Open Search Console,Otvorite Search Console,,site/modules/Ichiban/ProcessIchiban.module.php,7b11b8df59ea4ca8a06e8750a4681332
+Connected,Povezan,,site/modules/Ichiban/ProcessIchiban.module.php,2ec0d16e4ca169baedb9b2d50ec5c6d7
+Clicks,Klikovi,,site/modules/Ichiban/ProcessIchiban.module.php,cbdb553aaace16e77bb205e9bc3375ef
+Top Pages,Najpopularnije stranice,,site/modules/Ichiban/ProcessIchiban.module.php,cbba0bb582f974795b6ae71047cc8d90
+Top Queries,Glavni upiti,,site/modules/Ichiban/ProcessIchiban.module.php,64abc290660b16254eec82793814b751
+Countries,zemlje,,site/modules/Ichiban/ProcessIchiban.module.php,790d59ef178acbc75d233bf4211763c6
+Devices,Uređaji,,site/modules/Ichiban/ProcessIchiban.module.php,c03ca67dda321195d74c951097f240c6
+Search Appearance,Izgled pretraživanja,,site/modules/Ichiban/ProcessIchiban.module.php,c43ac5e20d34bdfa4bb127e8cc09e1e0
+Backlinks,Povratne veze,,site/modules/Ichiban/ProcessIchiban.module.php,2fa3dc62790aa53d151200a8164fc11c
+Moz quota snapshot saved.,Moz snimka kvote spremljena.,,site/modules/Ichiban/ProcessIchiban.module.php,e00226a7bc383b84f1e44d6c20d53467
+Moz quota lookup did not return data.,Moz pretraživanje kvote nije vratilo podatke.,,site/modules/Ichiban/ProcessIchiban.module.php,00d38bdf70c9338041d07a7887e7b117
+Saved backlink snapshot with %d rows.,Spremljena snimka povratne veze sa %d redaka.,,site/modules/Ichiban/ProcessIchiban.module.php,44d1cb2adcaeef51af410fad1c19e7e6
+"Monitor inbound links, linking domains, and anchor text through the Moz Links API.","Pratite ulazne veze, domene povezivanja i sidreni tekst putem Moz Linkova API.",,site/modules/Ichiban/ProcessIchiban.module.php,4aff4e57b7209847ccc41bcc2745d359
+Moz Settings,Moz Postavke,,site/modules/Ichiban/ProcessIchiban.module.php,a9ee4eb721c82c6210503745244dba47
+No saved snapshot yet,Još nema spremljene snimke,,site/modules/Ichiban/ProcessIchiban.module.php,46df3f0a3c175030638f99c4a80e9322
+saved rows,spremljeni redovi,,site/modules/Ichiban/ProcessIchiban.module.php,64170782ace1493528730415d670055e
+target,meta,,site/modules/Ichiban/ProcessIchiban.module.php,42aefbae01d2dfd981f7da7d823d689e
+last refresh,zadnje osvježenje,,site/modules/Ichiban/ProcessIchiban.module.php,0bf5ccdba5d874d59f5bf75cd486b294
+Links,Linkovi,,site/modules/Ichiban/ProcessIchiban.module.php,bd908db5ccb07777ced8023dffc802f4
+example.com,primjer.com,,site/modules/Ichiban/ProcessIchiban.module.php,5ababd603b22780302dd8d83498e5172
+Root domain,Korijenska domena,,site/modules/Ichiban/ProcessIchiban.module.php,33bccc4998d30e02ad8f530b01971083
+Refresh from Moz,Osvježi iz Moz,,site/modules/Ichiban/ProcessIchiban.module.php,7f717ba9da26c27a23e86cb1ffe05fe7
+How to connect Moz,Kako spojiti Moz,,site/modules/Ichiban/ProcessIchiban.module.php,c425d6b0af823d3510061a1faefa995c
+Create or open a Moz API account.,Napravite ili otvorite Moz API račun.,,site/modules/Ichiban/ProcessIchiban.module.php,ce7beab1a382dacfeea47b70ce8ec1f6
+"During signup, Moz asks for a debit or credit card even on the free plan. This is part of their security and abuse-prevention flow.","Tijekom prijave, Moz traži debitnu ili kreditnu karticu čak i na besplatnom planu. Ovo je dio njihovog tijeka sigurnosti i sprječavanja zlouporabe.",,site/modules/Ichiban/ProcessIchiban.module.php,c014ee7db3d11af8bc7a712d229c1cb5
+Create an API token in the Moz API dashboard.,Stvorite API token na nadzornoj ploči Moz API.,,site/modules/Ichiban/ProcessIchiban.module.php,af568a58e1da41bcf051aaa57e49561d
+"Paste the token into the Moz API token field in %s, then save.","Zalijepite token u polje tokena Moz API u %s, a zatim spremite.",,site/modules/Ichiban/ProcessIchiban.module.php,c7c2eb8550b06c6b7f0be3a3439d299c
+"Fallback: if token auth does not work for your account, open Show Legacy Credentials for the token and paste the Access ID and Secret Key instead.","Zamjena: ako autentifikacija tokena ne radi za vaš račun, otvorite Prikaži naslijeđene vjerodajnice za token i umjesto toga zalijepite pristupni ID i tajni ključ.",,site/modules/Ichiban/ProcessIchiban.module.php,13288d7bafe020026c4e633fda1c9f50
+"Return here, keep the default 5-row limit, and click Refresh from Moz. The free plan quota is tiny, so avoid repeated refreshes.","Vratite se ovdje, zadržite zadano ograničenje od 5 redaka i kliknite Osvježi iz Moz. Kvota besplatnog plana je mala, stoga izbjegavajte ponovljena osvježavanja.",,site/modules/Ichiban/ProcessIchiban.module.php,29a2d2682f58a85045b1b2ba82b05cb5
+Ichiban sends the new token as the x-moz-token header. Every refresh is saved as a backlink snapshot and reused from cache on page reload. Default API base URL: https://lsapi.seomoz.com/v2. Change it only if Moz gives you a different endpoint.,Ichiban šalje novi token kao zaglavlje x-moz-tokena. Svako osvježenje sprema se kao snimka povratne veze i ponovno se koristi iz predmemorije pri ponovnom učitavanju stranice. Zadana baza API URL: https://lsapi.seomoz.com/v2. Promijenite ga samo ako vam Moz daje drugu krajnju točku.,,site/modules/Ichiban/ProcessIchiban.module.php,4a0f41574e0169b9cbf7b620597abc52
+Moz quota,Moz kvota,,site/modules/Ichiban/ProcessIchiban.module.php,66d1b2c330002299e4c522e06c2c4a43
+%1$d / %2$d rows used (%3$d%%),Upotrijebljeni %1$d / %2$d redaka (%3$d%%),,site/modules/Ichiban/ProcessIchiban.module.php,21417fddb0e37af1c5d7beb2572242aa
+Quota resets,Poništavanje kvote,,site/modules/Ichiban/ProcessIchiban.module.php,c1adb60088c38d4edb700b294f2c8c1c
+Last checked,Zadnja provjera,,site/modules/Ichiban/ProcessIchiban.module.php,712bd563f4ec14a3e9f63cd426a8f515
+No quota snapshot saved yet,Još nije spremljena snimka kvote,,site/modules/Ichiban/ProcessIchiban.module.php,a4a65810608be9f8be842570900e8393
+Click Refresh quota to save current Moz usage inside Ichiban.,Kliknite Osvježi kvotu za spremanje trenutne upotrebe Moz unutar Ichiban.,,site/modules/Ichiban/ProcessIchiban.module.php,ad52f8b657f7285100ec4f09b0626ecc
+Refresh quota,Osvježi kvotu,,site/modules/Ichiban/ProcessIchiban.module.php,97159fe7a75f98584a2e2462ca3d4bcc
+Backlinks are not working yet,Povratne veze još ne rade,,site/modules/Ichiban/ProcessIchiban.module.php,6e236b19e47f6132a9d7b49f8d1f1d3e
+"Moz credentials are missing. Add your API token, or legacy Access ID and Secret Key, then return to this page to fetch backlink data.","Moz vjerodajnice nedostaju. Dodajte svoj API token ili naslijeđeni pristupni ID i tajni ključ, a zatim se vratite na ovu stranicu da dohvatite podatke povratne veze.",,site/modules/Ichiban/ProcessIchiban.module.php,495ad14ba4b703b846af2573472f2eab
+Open Settings,Otvorite postavke,,site/modules/Ichiban/ProcessIchiban.module.php,638c05f4f159a403e04aebe94b46a2a8
+No rows returned,Nema vraćenih redaka,,site/modules/Ichiban/ProcessIchiban.module.php,919a978ebc6e0a13726a609e1d592641
+Saved history,Spremljena povijest,,site/modules/Ichiban/ProcessIchiban.module.php,870db953ccec85fe6fe4d81b24d5e276
+Overview,Pregled,,site/modules/Ichiban/ProcessIchiban.module.php,3b878279a04dc47d60932cb294d96259
+Date range,Razdoblje,,site/modules/Ichiban/ProcessIchiban.module.php,08ee10c9fa141c53ae44667dcc1adf1e
+%d days,%d dana,,site/modules/Ichiban/ProcessIchiban.module.php,cdca48ec5dde79b84b395c0c557bb290
+Client ID saved,ID klijenta spremljen,,site/modules/Ichiban/ProcessIchiban.module.php,1de31a3258bc607d52b41ee216c7d72f
+Client Secret saved,Tajna klijenta spremljena,,site/modules/Ichiban/ProcessIchiban.module.php,42b44c19ef8327c019c9ad9f78d67aee
+Google Search Console,Google Search Console,,site/modules/Ichiban/ProcessIchiban.module.php,4243784eac7728b8e6339bdafe240e01
+Connect search performance data,Povežite podatke o izvedbi pretraživanja,,site/modules/Ichiban/ProcessIchiban.module.php,4d9f46c179352d5b2d38589555a217bf
+"After connecting, Ichiban will show Search Console metrics for 7, 28, 90, 180, and 365 days, including daily trends, top pages, top queries, countries, devices, search appearance, and cached Page Indexing scans.","Nakon povezivanja, Ichiban će prikazati metriku Search Console za 7, 28, 90, 180 i 365 dana, uključujući dnevne trendove, najpopularnije stranice, najpopularnije upite, zemlje, uređaje, izgled pretraživanja i skeniranja indeksiranja stranica u predmemoriji.",,site/modules/Ichiban/ProcessIchiban.module.php,d5ad36a5c11aa3bfcd6490071960510a
+Connect GSC,Povežite GSC,,site/modules/Ichiban/ProcessIchiban.module.php,5169a3e73c792b659bf7ea3ebcf90d2a
+Use these values,Koristite ove vrijednosti,,site/modules/Ichiban/ProcessIchiban.module.php,380619beb0f00818c369ec13a9649649
+Authorized redirect URI,URI ovlaštenog preusmjeravanja,,site/modules/Ichiban/ProcessIchiban.module.php,443d5d24c0964c6c49c5f81670d37624
+Search Console property,Search Console svojstvo,,site/modules/Ichiban/ProcessIchiban.module.php,2271a30c6775a2b462687d705c876d30
+"Enter the exact Search Console property you use. For Domain properties, use only the bare domain, for example lqrs.uk. Ichiban automatically sends it to Google as a sc-domain property. Use https://example.com/ only for URL-prefix properties.","Unesite točno svojstvo Search Console koje koristite. Za svojstva domene koristite samo golu domenu, na primjer lqrs.uk. Ichiban ga automatski šalje Googleu kao vlasništvo sc-domene. Koristite https://example.com/ samo za svojstva prefiksa URL.",,site/modules/Ichiban/ProcessIchiban.module.php,a786f0cf80cfb5d5d10abf81ce3a6838
+How to connect,Kako se povezati,,site/modules/Ichiban/ProcessIchiban.module.php,84d1dfd4219bd088fcf71f136fd6b604
+Create or choose a Google Cloud project.,Izradite ili odaberite Google Cloud projekt.,,site/modules/Ichiban/ProcessIchiban.module.php,93aac15bf6a45d37a5a7bc4ffe7e8e2e
+Create OAuth credentials.,Stvorite OAuth vjerodajnice.,,site/modules/Ichiban/ProcessIchiban.module.php,6237e1dab705b80dca50dd7791bca8a9
+Publish the OAuth app.,Objavite aplikaciju OAuth.,,site/modules/Ichiban/ProcessIchiban.module.php,56cc2183e22b64a8393c94666179c05d
+Save credentials in Ichiban.,Spremite vjerodajnice u Ichiban.,,site/modules/Ichiban/ProcessIchiban.module.php,dac233cae924b8d77e260ec9cf5dc33b
+Connect your Google account.,Povežite svoj Google račun.,,site/modules/Ichiban/ProcessIchiban.module.php,7b89353113f03e281ea7e3d43c50658a
+Run optional indexing scan.,Pokrenite izborno skeniranje indeksiranja.,,site/modules/Ichiban/ProcessIchiban.module.php,cb468820ea79505bed3bd0deee6600b7
+Enable Search Console API,Omogući Search Console API,,site/modules/Ichiban/ProcessIchiban.module.php,f121c1352efd213144968c77f03fd8ba
+OAuth client setup,Postavljanje klijenta OAuth,,site/modules/Ichiban/ProcessIchiban.module.php,ba9213abcc9cca89ead1239782c52a0d
+What appears after connection,Što se pojavljuje nakon povezivanja,,site/modules/Ichiban/ProcessIchiban.module.php,1a5dec6593f3a1fd20673ea7830c8f9c
+Date ranges,Rasponi datuma,,site/modules/Ichiban/ProcessIchiban.module.php,b719f89abe2683830aa364c642fa393a
+Daily trend,Dnevni trend,,site/modules/Ichiban/ProcessIchiban.module.php,e81292f7a544bdf1ab7316beefd13be3
+Rows per detail,Redovi po detalju,,site/modules/Ichiban/ProcessIchiban.module.php,239eaebc34634cca9787fc149972746c
+Page Indexing,Indeksiranje stranica,,site/modules/Ichiban/ProcessIchiban.module.php,da47ac89c1a3597ba4b513b7c2fa4ca7
+Section,odjeljak,,site/modules/Ichiban/ProcessIchiban.module.php,d2c24d59e0baff4d0155fbdf62590867
+Breakdowns,Kvarovi,,site/modules/Ichiban/ProcessIchiban.module.php,ff1cc00548a7265a8600c7ea86675f39
+Revisions,Revizije,,site/modules/Ichiban/ProcessIchiban.module.php,fd88b11cfde6aa5e3c7ff0553b534885
+SEO Revisions,SEO Revizije,,site/modules/Ichiban/ProcessIchiban.module.php,91c51ab91c24548fd5427de8a0e7f31f
+Review tracked SEO field changes and restore previous values when a page edit needs to be rolled back.,Pregledajte praćene promjene polja SEO i vratite prethodne vrijednosti kada je potrebno vratiti uređivanje stranice.,,site/modules/Ichiban/ProcessIchiban.module.php,a1aac973a63feb1fd57f355743594c90
+recent revisions,nedavne revizije,,site/modules/Ichiban/ProcessIchiban.module.php,530945749366f603712bd4d24e0111e1
+What is tracked?,Što se prati?,,site/modules/Ichiban/ProcessIchiban.module.php,02855514ddbae9c70d07f449379222a0
+No SEO revisions yet,Još nema SEO revizija,,site/modules/Ichiban/ProcessIchiban.module.php,6bf3a349304b11418b6a2f280da6a678
+Date,Datum,,site/modules/Ichiban/ProcessIchiban.module.php,44749712dbec183e983dcd78a7736c41
+%d more changes,%d više promjena,,site/modules/Ichiban/ProcessIchiban.module.php,49aea55a61e372375780c2356ff3c9ca
+Reports,izvješća,,site/modules/Ichiban/ProcessIchiban.module.php,c91c7b93c28cd18741b71f727ee81ee3
+SEO Reports,SEO Izvješća,,site/modules/Ichiban/ProcessIchiban.module.php,81ba12f30d83c378af285a0371230353
+Report settings saved.,Postavke izvješća spremljene.,,site/modules/Ichiban/ProcessIchiban.module.php,15f016ff5c23d5df2b3f38a408b5edf5
+Report JSON generated.,Generirano izvješće JSON.,,site/modules/Ichiban/ProcessIchiban.module.php,07225234b62f106f4bcec15723b1891c
+Enter a valid recipient email address for the test.,Unesite valjanu adresu e-pošte primatelja za test.,,site/modules/Ichiban/ProcessIchiban.module.php,bb14575c101749a7c485e4a2969d1a25
+Test report sent to %s.,Izvješće o ispitivanju poslano na %s.,,site/modules/Ichiban/ProcessIchiban.module.php,86c9c8aedf1b4156d0df0827e5fcc95e
+Test report could not be sent. Check the selected WireMail provider and sender settings.,Izvješće o ispitivanju nije bilo moguće poslati. Provjerite odabranog pružatelja usluge WireMail i postavke pošiljatelja.,,site/modules/Ichiban/ProcessIchiban.module.php,9a4b615ca2f061284e2f889a5e0406a7
+Monthly,Mjesečno,,site/modules/Ichiban/ProcessIchiban.module.php,9030e39f00132d583da4122532e509e9
+In development,U razvoju,,site/modules/Ichiban/ProcessIchiban.module.php,be78895889e8bb7c29f2b40b8b9027ce
+Never,nikada,,site/modules/Ichiban/ProcessIchiban.module.php,6e7b34fa59e1bd229b207892956dc41c
+Email reports,Izvješća e-poštom,,site/modules/Ichiban/ProcessIchiban.module.php,555c449850a679d325c002d6081e9373
+Reports are in development,Izvješća su u izradi,,site/modules/Ichiban/ProcessIchiban.module.php,9f209867ef413cf433f09d82c8d3728e
+"LazyCron will generate the report as JSON, store the latest snapshot here, and send the same report by email. DOCX export is available for printing or sharing with a client.","LazyCron će generirati izvješće kao JSON, pohraniti najnoviju snimku ovdje i poslati isto izvješće e-poštom. Izvoz DOCX dostupan je za ispis ili dijeljenje s klijentom.",,site/modules/Ichiban/ProcessIchiban.module.php,db19324b69e6523d959f877cc425ae59
+Current schedule: %s,Trenutni raspored: %s,,site/modules/Ichiban/ProcessIchiban.module.php,c9d0f684bd8afe89509359f6f64af465
+Email delivery is enabled in settings.,Isporuka e-pošte omogućena je u postavkama.,,site/modules/Ichiban/ProcessIchiban.module.php,f5ea5a57edff2817de95a4a680310939
+Last generated: %s,Zadnji put generirano: %s,,site/modules/Ichiban/ProcessIchiban.module.php,c20ff854937e5b0fa34512a7281f0eb5
+Recipients: %s,Primatelji: %s,,site/modules/Ichiban/ProcessIchiban.module.php,3d142456f4594a65bf0328b48c3ea3cb
+"A short operational digest: current SEO score, new critical issues, pages that need attention, Search Console movement, and indexing warnings from the latest cached scan.","Kratki operativni sažetak: trenutni SEO rezultat, novi kritični problemi, stranice na koje je potrebna pažnja, kretanje Search Console i upozorenja o indeksiranju iz posljednjeg skeniranja u predmemoriji.",,site/modules/Ichiban/ProcessIchiban.module.php,ef526c8948e5024b155827fe4d6ab441
+"A broader trend summary: score change, issue totals, top winning and losing pages, query visibility, cleanup activity, redirect hits, and recommendations for the next month.","Širi sažetak trenda: promjena rezultata, ukupni broj izdanja, najbolje dobitne i gubitničke stranice, vidljivost upita, aktivnost čišćenja, pogoci preusmjeravanja i preporuke za sljedeći mjesec.",,site/modules/Ichiban/ProcessIchiban.module.php,672d04b68f6e2446736244f5394f33a1
+Planned report data,Podaci planiranog izvješća,,site/modules/Ichiban/ProcessIchiban.module.php,3c60f8a18255c43f46adf559658e9469
+SEO health score and critical audit issues,SEO zdravstvena ocjena i kritična pitanja revizije,,site/modules/Ichiban/ProcessIchiban.module.php,ba95ccf5ff1e3c1e123d72d3b5839600
+"Missing titles, descriptions, OG images, and noindex pages","Nedostaju naslovi, opisi, OG slike i stranice bez indeksa",,site/modules/Ichiban/ProcessIchiban.module.php,5514beefa3cf9fb90a5aab1b5635fe39
+"Search Console clicks, impressions, CTR, and average position","Search Console klikova, pojavljivanja, CTR-a i prosječne pozicije",,site/modules/Ichiban/ProcessIchiban.module.php,0d08eb3c00cf5df40cebd7cd903d9ef4
+"Top pages, top queries, countries, devices, and search appearance","Najpopularnije stranice, najčešći upiti, zemlje, uređaji i izgled pretraživanja",,site/modules/Ichiban/ProcessIchiban.module.php,c941e3e28d391260d0ab99b8eae0543f
+Page Indexing sample scan issues,Problemi s uzorkom skeniranja indeksiranja stranice,,site/modules/Ichiban/ProcessIchiban.module.php,7489962f8f744553c84540b49cdfe252
+"Recent redirects, cleanup blocks, and SEO revisions","Nedavna preusmjeravanja, blokovi čišćenja i SEO revizije",,site/modules/Ichiban/ProcessIchiban.module.php,65c0c6e55aebd2915fcf247e41d31324
+Latest JSON report,Najnovije izvješće JSON,,site/modules/Ichiban/ProcessIchiban.module.php,adbf210d8192e10cdb1b48623db1bc0a
+Generate report JSON,Generirajte izvješće JSON,,site/modules/Ichiban/ProcessIchiban.module.php,2d6f6e522bfa1c678f32eaafac824604
+Download DOCX,Preuzmite DOCX,,site/modules/Ichiban/ProcessIchiban.module.php,7346caa5c044baf6fa89eef9027e0dc2
+No report JSON has been generated yet.,Još nije generirano izvješće JSON.,,site/modules/Ichiban/ProcessIchiban.module.php,6371fb284d0f3d642f925706554074a4
+SEO score,SEO rezultat,,site/modules/Ichiban/ProcessIchiban.module.php,074b37a1f8c8d097db329269306dc82a
+priority issues,prioritetna pitanja,,site/modules/Ichiban/ProcessIchiban.module.php,511f2908daccf3e43e3b2aadb757c69f
+redirects,preusmjerava,,site/modules/Ichiban/ProcessIchiban.module.php,2d8413ae32cda5259e93d4f3666f1235
+Report settings,Postavke izvješća,,site/modules/Ichiban/ProcessIchiban.module.php,d7ef833eef4eab6e04dae7e2d02281e2
+Enable scheduled SEO email reports,Omogući zakazana izvješća e-poštom SEO,,site/modules/Ichiban/ProcessIchiban.module.php,02aeff7b30592ea88903bc067d53d785
+Frequency,Učestalost,,site/modules/Ichiban/ProcessIchiban.module.php,7cf395303ce3665a9834721d4b748e4b
+Recipients,Primatelji,,site/modules/Ichiban/ProcessIchiban.module.php,5959cf158e76f7c6f27bff2917ee05b1
+Include Google Search Console summary,Uključi Google Search Console sažetak,,site/modules/Ichiban/ProcessIchiban.module.php,b738447fc9dae2d3887e9c28dfb6dab1
+Mailer,Poštar,,site/modules/Ichiban/ProcessIchiban.module.php,ab7cdc2b180fc58564cd06e2e1507977
+From email,Iz e-pošte,,site/modules/Ichiban/ProcessIchiban.module.php,3b4d5020b407b2eae50b456767d206b3
+From name,Od imena,,site/modules/Ichiban/ProcessIchiban.module.php,c3a7ea0c38bac179a545dbfaf4ebb013
+Save report settings,Spremi postavke izvješća,,site/modules/Ichiban/ProcessIchiban.module.php,ee6194f4ccfdbe7933961e43d6f90d76
+Send Test Mail,Pošalji probnu poštu,,site/modules/Ichiban/ProcessIchiban.module.php,36919f04baddfe13a8f360fab4d3b8c6
+"Save your settings first, then test. The email is sent through the currently selected WireMail provider.","Prvo spremite svoje postavke, a zatim testirajte. E-pošta se šalje putem trenutno odabranog pružatelja usluge WireMail.",,site/modules/Ichiban/ProcessIchiban.module.php,a7cdc8690b95d29021411bc235e02e00
+Recipient email address,Adresa e-pošte primatelja,,site/modules/Ichiban/ProcessIchiban.module.php,718ab67ab696216232f873a816b4c3ae
+PHP ZipArchive extension is required to generate DOCX reports.,Za generiranje DOCX izvješća potrebno je proširenje PHP ZipArchive.,,site/modules/Ichiban/ProcessIchiban.module.php,77583b688213cdb648ab7259d4b743da
+Default (site WireMail setting),Zadano (postavka WireMail web mjesta),,site/modules/Ichiban/ProcessIchiban.module.php,22b68561382eae5a367978df7489a588
+Cleanup,Čišćenje,,site/modules/Ichiban/ProcessIchiban.module.php,8c6384dda98d8864d00e29dc96179970
+Crawl & Search Cleanup,Čišćenje indeksiranja i pretraživanja,,site/modules/Ichiban/ProcessIchiban.module.php,2f33b05b959e88dac60b3ade4c27982c
+Cleanup log table is not available yet.,Tablica dnevnika čišćenja još nije dostupna.,,site/modules/Ichiban/ProcessIchiban.module.php,5b710bb3eabf36b0fd2fad5981e4c49d
+Monitor spam search queries and lightweight crawl-surface cleanup that keeps low-value URLs out of public search paths.,Pratite neželjene upite pretraživanja i lagano čišćenje površine za indeksiranje koje URLs male vrijednosti drži izvan javnih putova pretraživanja.,,site/modules/Ichiban/ProcessIchiban.module.php,8fbde3592f3d8a4f25335e0eb1131b15
+On,Uključeno,,site/modules/Ichiban/ProcessIchiban.module.php,521c36a31c2762741cf0f8890cbe05e3
+recent blocks,nedavni blokovi,,site/modules/Ichiban/ProcessIchiban.module.php,cc25395c697bda6b15d8c719c91305c9
+unique IPs,jedinstvene IP adrese,,site/modules/Ichiban/ProcessIchiban.module.php,9a9938cc7d9d0bb27617530349ebe7f2
+custom patterns,prilagođeni uzorci,,site/modules/Ichiban/ProcessIchiban.module.php,84ba93e6ab6d556b08280bfe7ed8c5c8
+Current action,Trenutno djelovanje,,site/modules/Ichiban/ProcessIchiban.module.php,43f46ad0a6a808aa9c365af10603d239
+No blocked queries logged yet,Još nema evidentiranih blokiranih upita,,site/modules/Ichiban/ProcessIchiban.module.php,b505562d3d31085f4552c94d6e6d5d48
+Sitemap,Sitemap,,site/modules/Ichiban/ProcessIchiban.module.php,5813ce0ec7196c492c97596718f71969
+XML Sitemap,XML Sitemap,,site/modules/Ichiban/ProcessIchiban.module.php,7036538ac2854b23d072ec99da8f5b0a
+"Generated %d sitemap file(s), %s URLs in %.2fs.","Generirana(e) datoteka(e) karte web mjesta %d, %s URLs u %.2fs.",,site/modules/Ichiban/ProcessIchiban.module.php,77cef957a2ef87caa1adff97fe75dfed
+Sitemap generation failed: ,Generiranje karte web stranice nije uspjelo: ,,site/modules/Ichiban/ProcessIchiban.module.php,aa4d6eca815f814ae8d66b7a0e9ace89
+Sitemap files deleted.,Datoteke Sitemapa izbrisane.,,site/modules/Ichiban/ProcessIchiban.module.php,bef940614944b349e06fa81bd9d62db6
+Sitemap directory created.,Sitemap imenik stvoren.,,site/modules/Ichiban/ProcessIchiban.module.php,2c4ef09ebfa180f06b1d4ac5a6bbaa13
+Off,Isključeno,,site/modules/Ichiban/ProcessIchiban.module.php,d15305d7a4e34e02489c74a5ef542f36
+Generate and inspect the XML sitemap files served by Ichiban.,Generirajte i pregledajte XML datoteke karte web mjesta koje poslužuje Ichiban.,,site/modules/Ichiban/ProcessIchiban.module.php,200a4445b971d7a768a8f3f6efd283ba
+Open Sitemap Settings,Otvorite postavke Sitemapa,,site/modules/Ichiban/ProcessIchiban.module.php,7af59ca1298bf39877eea71c7450924c
+files,datoteke,,site/modules/Ichiban/ProcessIchiban.module.php,45b963397aa40d4a0063e0d85e4fe7a1
+URLs,URLs,,site/modules/Ichiban/ProcessIchiban.module.php,6f0118397671d5cdea6c525a67f4753c
+total size,ukupna veličina,,site/modules/Ichiban/ProcessIchiban.module.php,9093525a73c1e95a729e1392e4ede0c6
+OK,OK,,site/modules/Ichiban/ProcessIchiban.module.php,e0aa021e21dddbd6d8cecec71e9cf564
+LazyCron,LazyCron,,site/modules/Ichiban/ProcessIchiban.module.php,30d7a80090e845f560b7784238e85969
+Public index,Javni indeks,,site/modules/Ichiban/ProcessIchiban.module.php,0742c642fa68e53b7605f135544a243f
+Last generated,Posljednje generirano,,site/modules/Ichiban/ProcessIchiban.module.php,aa9053ec771f1c66b14089ff8b2be89b
+Directory,Imenik,,site/modules/Ichiban/ProcessIchiban.module.php,e73cda510e8bb947f7e61089e5581494
+Auto regeneration,Auto regeneracija,,site/modules/Ichiban/ProcessIchiban.module.php,8958c951653a6c1ba525bf7232d20caa
+"Sitemap auto-regeneration is enabled, but LazyCron is not installed. Install the core LazyCron module or use Generate Now manually.","Automatsko ponovno generiranje karte web mjesta je omogućeno, ali LazyCron nije instaliran. Instalirajte temeljni modul LazyCron ili upotrijebite Generate Now ručno.",,site/modules/Ichiban/ProcessIchiban.module.php,1d9c6da96b457bdd5259ae38c86cc080
+The sitemap directory does not exist yet.,Direktorij karte web stranice još ne postoji.,,site/modules/Ichiban/ProcessIchiban.module.php,3511021951e6cabe1ef6547dfaacbcaa
+Create Directory,Napravi imenik,,site/modules/Ichiban/ProcessIchiban.module.php,1a66ebe97638ee1c7c8f277aacb01e5e
+The sitemap directory is not writable.,U direktorij karte web-mjesta nije moguće pisati.,,site/modules/Ichiban/ProcessIchiban.module.php,5eefd5c32b1e8ae11379ede114ef4ead
+Generating...,Generiranje...,,site/modules/Ichiban/ProcessIchiban.module.php,530a6ed46ff9e1aa707e0af48a465be7
+Delete Files,Brisanje datoteka,,site/modules/Ichiban/ProcessIchiban.module.php,9e58e0e2c85e2f645c34af266791657c
+No sitemap files yet,Još nema datoteka karte web-lokacije,,site/modules/Ichiban/ProcessIchiban.module.php,16ee2ae1c432ef5c40d9b4ac537491dc
+File,File,,site/modules/Ichiban/ProcessIchiban.module.php,0b27918290ff5323bea1e3b78a9cf04e
+index,kazalo,,site/modules/Ichiban/ProcessIchiban.module.php,6a992d5529f459a44fee58c733255e86
+Disabled,Onesposobljeno,,site/modules/Ichiban/ProcessIchiban.module.php,b9f5c797ebbf55adccdd8539a65a0241
+Waiting for LazyCron module,Čeka se LazyCron modul,,site/modules/Ichiban/ProcessIchiban.module.php,1527913f2df3d5298c0648cd8b52e90e
+"%s, minimum interval %d seconds","%s, minimalni interval %d sekundi",,site/modules/Ichiban/ProcessIchiban.module.php,2c450a87221f73b6299b349f0eebdbfb
+Migration,Migracija,,site/modules/Ichiban/ProcessIchiban.module.php,19f59b74448f6a27519db281a44e4b12
+SEO Migration,SEO Migracija,,site/modules/Ichiban/ProcessIchiban.module.php,d65d3e75a29453ce407a987b950ea6bf
+"Repaired duplicate Ichiban fields. Kept %s, removed %s from %d template(s), copied %d row(s). Backups: %s.","Popravljeni dupli Ichiban polja. Zadržan %s, uklonjen %s iz predložaka %d, kopiran red(ovi) %d. Sigurnosne kopije: %s.",,site/modules/Ichiban/ProcessIchiban.module.php,9fbd0aa4cbdcb9a0592cd0f899d7ce45
+Converted field %s. Backup table: %s. Rows migrated: %d.,Pretvoreno polje %s. Rezervna tablica: %s. Premješteni redovi: %d.,,site/modules/Ichiban/ProcessIchiban.module.php,e7b762ae23ff58d931eae481c208f566
+Convert existing SeoMaestro fields to Ichiban without deleting the field or losing per-page SEO data.,Pretvorite postojeća SeoMaestro polja u Ichiban bez brisanja polja ili gubitka SEO podataka po stranici.,,site/modules/Ichiban/ProcessIchiban.module.php,e657b03d129c75fe7906187a5aab9166
+SeoMaestro reference,SeoMaestro referenca,,site/modules/Ichiban/ProcessIchiban.module.php,a745e6adcf5830f34bd49d67a4615509
+Find SeoMaestro fields,Pronađite SeoMaestro polja,,site/modules/Ichiban/ProcessIchiban.module.php,878ef99969f24c1bb0b091ea84391c43
+Create a table backup,Napravite sigurnosnu kopiju tablice,,site/modules/Ichiban/ProcessIchiban.module.php,79061263518514152c480906a1677e4d
+Convert data and switch type,Pretvorite podatke i promijenite vrstu,,site/modules/Ichiban/ProcessIchiban.module.php,797fa1d3ee920c779c2bf520017431ad
+FieldtypeIchiban is not installed yet. Install it from Modules before running a migration.,FieldtypeIchiban još nije instaliran. Instalirajte ga iz Modula prije pokretanja migracije.,,site/modules/Ichiban/ProcessIchiban.module.php,9b913bfac7efd6b6a3e6301ae4156cee
+No SeoMaestro fields found,Nisu pronađena polja SeoMaestro,,site/modules/Ichiban/ProcessIchiban.module.php,2e7bfb05187020c3ff85b53ec5a64901
+Field,Polje,,site/modules/Ichiban/ProcessIchiban.module.php,6f16a5f8ff5d75ab84c018adacdfcbb7
+None,Nijedan,,site/modules/Ichiban/ProcessIchiban.module.php,6adf97f83acf6453d4a6a4b1070f3754
+Create a backup and convert this field to Ichiban?,Napraviti sigurnosnu kopiju i pretvoriti ovo polje u Ichiban?,,site/modules/Ichiban/ProcessIchiban.module.php,683bbabbc942967ecf2d819ad6b230f0
+Before you run it,Prije nego što ga pokrenete,,site/modules/Ichiban/ProcessIchiban.module.php,6c4a12988eee52faf677b0ba81a0d60f
+Field tokens like {title} become Ichiban field sources; custom text stays custom text.,Tokeni polja poput {title} postaju izvori polja Ichiban; prilagođeni tekst ostaje prilagođeni tekst.,,site/modules/Ichiban/ProcessIchiban.module.php,c81ce93ae3b85794289232491c159941
+"Field tokens become sources, custom copy is preserved.","Tokeni polja postaju izvori, prilagođena kopija je sačuvana.",,site/modules/Ichiban/ProcessIchiban.module.php,b5d6c6f7b7366b52649bd3d0599a4c32
+Copied as the page canonical override when it is not inherited.,Kopirano kao kanonsko nadjačavanje stranice kada nije naslijeđeno.,,site/modules/Ichiban/ProcessIchiban.module.php,01f0daf761da2a9bedbf32f5c6c038e6
+Field tokens become sources for social title output.,Tokeni polja postaju izvori za izlaz društvenih naslova.,,site/modules/Ichiban/ProcessIchiban.module.php,80596546abff1f2d450e7364efc1987b
+Field tokens become sources for social description output.,Tokeni polja postaju izvori za izlaz društvenih opisa.,,site/modules/Ichiban/ProcessIchiban.module.php,2d370202ef1621a980a4720fa4cfc741
+Copied as the selected OG image source. Ichiban resolves image output at render time.,Kopirano kao odabrani OG izvor slike. Ichiban razrješava izlaz slike tijekom renderiranja.,,site/modules/Ichiban/ProcessIchiban.module.php,6de748487fb10d7bb6401237d3089fd2
+Copied as alternate text for the OG image.,Kopirano kao zamjenski tekst za sliku OG.,,site/modules/Ichiban/ProcessIchiban.module.php,235b78afb8eb5097f7ac022c1794ebba
+Copied when SeoMaestro stored an explicit type.,Kopirano kada je SeoMaestro pohranio eksplicitni tip.,,site/modules/Ichiban/ProcessIchiban.module.php,db63810c354e9cbc7a45c3346f27378f
+Copied as the page Twitter/X card mode.,Kopirano kao način kartice Twitter/X stranice.,,site/modules/Ichiban/ProcessIchiban.module.php,1df72f56060ebb5e833fd2cb7789d10b
+Copied as the page creator handle.,Kopirano kao ručica kreatora stranice.,,site/modules/Ichiban/ProcessIchiban.module.php,cd7881e988df3f0df6969b714476611a
+Copied only when the value is not inherit.,Kopira se samo ako vrijednost nije naslijeđena.,,site/modules/Ichiban/ProcessIchiban.module.php,26f5e971c7d642983712af156444ddc7
+Copied only when the value is not inherit; otherwise Ichiban defaults to included.,Kopira se samo kada vrijednost nije naslijeđena; inače je Ichiban zadano uključen.,,site/modules/Ichiban/ProcessIchiban.module.php,b47fedd4584c551ec79be26f71ff7f9f
+Copied as the page-level sitemap priority.,Kopirano kao prioritet karte web-lokacije na razini stranice.,,site/modules/Ichiban/ProcessIchiban.module.php,2612b522c46c4a297a91f7a0b466d9bc
+Copied as the page-level change frequency.,Kopirano kao učestalost promjene na razini stranice.,,site/modules/Ichiban/ProcessIchiban.module.php,ba173a09bd5663626abf06d1d17c0bf9
+Data mapping,Mapiranje podataka,,site/modules/Ichiban/ProcessIchiban.module.php,e4ba3304db42b31af4707c0c3d7b332b
+Schema type defaults to WebPage,Zadana vrsta sheme je Web-stranica,,site/modules/Ichiban/ProcessIchiban.module.php,55b011f515642256f8b7b158ca540931
+What moves,Što se kreće,,site/modules/Ichiban/ProcessIchiban.module.php,8af23e5c696200bada06372ecbc8f832
+Field tokens,Žetoni polja,,site/modules/Ichiban/ProcessIchiban.module.php,677b1ea8ae4decc1f5986dd983248cde
+Backup,Sigurnosna kopija,,site/modules/Ichiban/ProcessIchiban.module.php,3500ba09d0538297440ca620c9dd46bf
+Duplicate Ichiban fields detected,Otkrivena dupla Ichiban polja,,site/modules/Ichiban/ProcessIchiban.module.php,d6fb57faa1c48b0de3719ef0cf38ce65
+This site has more than one FieldtypeIchiban field. Ichiban will keep %s as the canonical SEO field and can remove %s from templates after backing up both tables.,Ova stranica ima više od jednog FieldtypeIchiban polja. Ichiban će zadržati %s kao kanonsko polje SEO i može ukloniti %s iz predložaka nakon sigurnosne kopije obje tablice.,,site/modules/Ichiban/ProcessIchiban.module.php,ecc74abd82c584b28d88e3e469a62273
+"Backup both tables, copy missing rows into seo, and remove the duplicate field from templates?","Sigurnosno kopirati obje tablice, kopirati retke koji nedostaju u SEO i ukloniti duplikat polja iz predložaka?",,site/modules/Ichiban/ProcessIchiban.module.php,5f8e2d56c22060808c3d63f7dd43246e
+Schema Builder,Graditelj shema,,site/modules/Ichiban/ProcessIchiban.module.php,4be02862798fb8a7f780a94f2c62cf7c
+Schema builder mappings saved.,Preslikavanja alata za izradu shema su spremljena.,,site/modules/Ichiban/ProcessIchiban.module.php,9b6769725cbc5375769b5e538b2fe18e
+"Create Schema.org nodes in a database-backed builder. Pick a type, choose templates, then map schema properties to ProcessWire fields or source expressions.","Stvorite Schema.org čvorove u alatu za izgradnju koji podržava bazu podataka. Odaberite vrstu, odaberite predloške, zatim mapirajte svojstva sheme u ProcessWire polja ili izvorne izraze.",,site/modules/Ichiban/ProcessIchiban.module.php,7886b38e0032a933dba52f031169d272
+Save Schemas,Spremi sheme,,site/modules/Ichiban/ProcessIchiban.module.php,4b90b6f8b5e78d0d81048d52869b7318
+AI,AI,,site/modules/Ichiban/ProcessIchiban.module.php,0a40e3c91a3a55c9a37428c6d194d0e5
+SEO AI,SEO AI,,site/modules/Ichiban/ProcessIchiban.module.php,a94745b00e5ed823953a8c28ff741c2d
+AI workspace is in development,Radni prostor AI je u razvoju,,site/modules/Ichiban/ProcessIchiban.module.php,58638440f29a5990eb547152e33298c6
+"This page will become the AI area for SEO suggestions, metadata drafts, schema help, and report summaries. It uses Context AI Gateway when available, with Ichiban OpenRouter settings as fallback, and attaches exported Context files to test requests.","Ova će stranica postati AI područje za SEO prijedloge, nacrte metapodataka, pomoć za sheme i sažetke izvješća. On koristi Context AI Gateway kada je dostupan, sa Ichiban OpenRouter postavkama kao zamjenom i prilaže izvezene datoteke konteksta zahtjevima za testiranje.",,site/modules/Ichiban/ProcessIchiban.module.php,ca9926f3094e9ef1e35e66768b217ab3
+Configured,Konfigurirano,,site/modules/Ichiban/ProcessIchiban.module.php,61aa63eb3ac1c3408640463ee5fe8aa3
+Provider: %s,Dobavljač: %s,,site/modules/Ichiban/ProcessIchiban.module.php,4c2d04983cfbca7ad6fad0bae11b7618
+Model: %s,Model: %s,,site/modules/Ichiban/ProcessIchiban.module.php,33d0e5d99493052d203cd308fb3604df
+Context files: %s,Kontekstne datoteke: %s,,site/modules/Ichiban/ProcessIchiban.module.php,2f86fdbafdbb907d769846547ecf8695
+Open AI settings,Otvorite postavke AI,,site/modules/Ichiban/ProcessIchiban.module.php,a15876382b98ed526e73a6678d66c5fc
+Test AI request,Testirajte AI zahtjev,,site/modules/Ichiban/ProcessIchiban.module.php,b9b6387278ff7b8ea04568bdc5725fa3
+Run test,Pokreni test,,site/modules/Ichiban/ProcessIchiban.module.php,0b9171fc5e063b1e00b222d6b63bf733
+AI request failed,AI zahtjev nije uspio,,site/modules/Ichiban/ProcessIchiban.module.php,87ad7e70a6d54017a933389a756211ed
+Model: %s · %d ms,Model: %s · %d ms,,site/modules/Ichiban/ProcessIchiban.module.php,3b158020fa009a28c258d3e9b625c4be
+"The provider returned an empty message body. Try another model, increase Max tokens, or reduce the Context files sent with the request.","Davatelj je vratio prazno tijelo poruke. Isprobajte drugi model, povećajte Maks tokena ili smanjite kontekstne datoteke koje se šalju uz zahtjev.",,site/modules/Ichiban/ProcessIchiban.module.php,d8113f4d1f649caa4b106d7991e41488
+Audit suggestions,Prijedlozi revizije,,site/modules/Ichiban/ProcessIchiban.module.php,81670a3d543b3cb8d20b73590dd404ae
+Find practical SEO fixes from Context data.,Pronađite praktične SEO popravke iz Context data.,,site/modules/Ichiban/ProcessIchiban.module.php,bc3f46852275ab8a7da99fc77f4ecb83
+"Using the attached Context export, give me 5 practical SEO improvements for the current site in concise bullets. Mention which pages, templates, or fields you used.","Koristeći priloženi izvoz konteksta, dajte mi 5 praktičnih SEO poboljšanja za trenutnu stranicu u sažetim crtama. Navedite koje ste stranice, predloške ili polja koristili.",,site/modules/Ichiban/ProcessIchiban.module.php,e8ae2b3c6a0a742b12adc05ec70eabd6
+Metadata drafts,Skice metapodataka,,site/modules/Ichiban/ProcessIchiban.module.php,e0009b3babfad929a1e79a3fde429cfb
+Draft titles and descriptions for priority pages.,Skice naslova i opisa za prioritetne stranice.,,site/modules/Ichiban/ProcessIchiban.module.php,5b4cfeb5da3859b0aaa72a2a2c5b4dfb
+"Using the attached Context export, choose 5 priority pages or templates that need stronger metadata. For each one, draft an SEO title under 60 characters and a meta description under 155 characters.",Pomoću priloženog izvoza konteksta odaberite 5 prioritetnih stranica ili predložaka koji trebaju jače metapodatke. Za svaki od njih izradite SEO naslov ispod 60 znakova i meta opis ispod 155 znakova.,,site/modules/Ichiban/ProcessIchiban.module.php,9c68d8f6810e4440651644cf7d230f9a
+Schema help,Pomoć za shemu,,site/modules/Ichiban/ProcessIchiban.module.php,b89e539ac27b0832f7e028f4406d7fc8
+Recommend Schema.org mappings.,Preporučite preslikavanja Schema.org.,,site/modules/Ichiban/ProcessIchiban.module.php,ab3d845693af768bda668c493bfa6b18
+"Using the attached Context export and the existing ProcessWire templates/fields, suggest Schema.org types and field mappings for the most important page templates. Include source fields such as field:title or field:summary when possible.","Korištenjem priloženog izvoza konteksta i postojećih predložaka/polja ProcessWire, predložite vrste Schema.org i preslikavanja polja za najvažnije predloške stranica. Uključite izvorna polja kao što su field:title ili field:summary kada je to moguće.",,site/modules/Ichiban/ProcessIchiban.module.php,695eec73706fbfb2558272a701fc0ca5
+Report summary,Sažetak izvješća,,site/modules/Ichiban/ProcessIchiban.module.php,5031d2669ceb39cf9e3c5bd8071b3ae6
+Prepare a client-friendly report brief.,Pripremite sažetak izvješća prilagođen klijentu.,,site/modules/Ichiban/ProcessIchiban.module.php,cf7924d73a558815529be20b2e23e192
+"Using the attached Context export, write a concise client-friendly SEO report summary: current site structure, biggest opportunities, risks, and next actions. Keep it suitable for a monthly report.","Koristeći priloženi izvoz konteksta, napišite sažeti sažetak izvješća SEO prilagođen klijentu: trenutna struktura web mjesta, najveće prilike, rizici i sljedeće radnje. Neka bude prikladno za mjesečno izvješće.",,site/modules/Ichiban/ProcessIchiban.module.php,91dca7d21d99ef20ce8c18e05e1fef82
+No templates,Nema šablona,,site/modules/Ichiban/ProcessIchiban.module.php,28b80975b6641681ee6985abaf438677
+Enabled,Omogućeno,,site/modules/Ichiban/ProcessIchiban.module.php,00d23a76e43b46dae9ec7aa9dcbebb32
+Remove,Ukloniti,,site/modules/Ichiban/ProcessIchiban.module.php,1063e38cb53d94d386f21227fcd84717
+Name,Ime,,site/modules/Ichiban/ProcessIchiban.module.php,49ee3087348e8d44e1feda1917443987
+Schema type,Vrsta sheme,,site/modules/Ichiban/ProcessIchiban.module.php,6cb6f90e022d55db3527e3a1dfc8938c
+Custom type,Prilagođena vrsta,,site/modules/Ichiban/ProcessIchiban.module.php,a1e88efea9b9183d6eda122b47621799
+Templates,Predlošci,,site/modules/Ichiban/ProcessIchiban.module.php,7df96b18c230f90ada0a9e2307226338
+Property,Vlasništvo,,site/modules/Ichiban/ProcessIchiban.module.php,5ad234cb2cde4266195252a23ca7d84e
+Add property,Dodaj imovinu,,site/modules/Ichiban/ProcessIchiban.module.php,9820ade036bf1bdf80c0b7da24a4ce0a
+"Use sources like field:title, field:summary|truncate:160, {legacy_field}, custom text, or empty string.","Koristite izvore kao što su field:title, field:summary|truncate:160, {legacy_field}, prilagođeni tekst ili prazan niz.",,site/modules/Ichiban/ProcessIchiban.module.php,5d5850034cd862f5ad9ac01d88e8737a
+Choose property,Odaberite nekretninu,,site/modules/Ichiban/ProcessIchiban.module.php,832f6c69c10f614bfc3f39fca3fa79a3
+Settings,postavke,,site/modules/Ichiban/ProcessIchiban.module.php,f4f70727dc34561dfde1a3c529b6205c
+SEO Settings,SEO Postavke,,site/modules/Ichiban/ProcessIchiban.module.php,f4569fc50347e757f158413dff3a219a
+Settings saved.,Postavke su spremljene.,,site/modules/Ichiban/ProcessIchiban.module.php,9a7e58ee13cb727cb7c4acc68f4cafe5
+IndexNow key file written to the site root.,Datoteka ključa IndexNow zapisana u korijenu stranice.,,site/modules/Ichiban/ProcessIchiban.module.php,bbe9cac2bd7214dd42fa87c1d3310cca
+"IndexNow key saved, but the key file could not be written. Create {key}.txt in the site root with the key as file content.","Ključ IndexNow je spremljen, ali se datoteka ključa ne može napisati. Stvorite {key}.txt u korijenu stranice s ključem kao sadržajem datoteke.",,site/modules/Ichiban/ProcessIchiban.module.php,6dae63cfd122c66d6dc9c80f8e71e0c3
+Generate IndexNow key,Generirajte ključ IndexNow,,site/modules/Ichiban/ProcessIchiban.module.php,fba9358e873c7da283059409a1aa5af4
+Index not built.,Indeks nije izgrađen.,,site/modules/Ichiban/ProcessIchiban.module.php,d72eeb9fd15cc6d09c7489cc5aaa2611
+No duplicate Ichiban fields were found.,Nisu pronađena duplikata Ichiban polja.,,site/modules/Ichiban/ProcessIchiban.module.php,0041723d30b258f7a5cbe7fda42a95b6
+Could not determine which Ichiban fields to repair.,Nije moguće odrediti koja Ichiban polja popraviti.,,site/modules/Ichiban/ProcessIchiban.module.php,32b4780ab052a71a880cf77376d3b32c
+Unsafe table name.,Nesiguran naziv tablice.,,site/modules/Ichiban/ProcessIchiban.module.php,bf2df6ddc3f272967c57ed6ea1e41651
+Missing field name.,Nedostaje naziv polja.,,site/modules/Ichiban/ProcessIchiban.module.php,9cc245e7bd7598fb5b60e2de1879597e
+"Field ""%s"" was not found.","Polje ""%s"" nije pronađeno.",,site/modules/Ichiban/ProcessIchiban.module.php,326a81e081d9f0197c9a82f2ae686307
+"Field ""%s"" is not a SeoMaestro field.","Polje ""%s"" nije polje SeoMaestro.",,site/modules/Ichiban/ProcessIchiban.module.php,9ecc4264a15d5ee8894b4622e57655e1
+FieldtypeIchiban is not installed.,FieldtypeIchiban nije instaliran.,,site/modules/Ichiban/ProcessIchiban.module.php,ddf369cb3c27c74e216cc807db87a695
+Score,rezultat,,site/modules/Ichiban/ProcessIchiban.module.php,5dd135d1bcfa7f63c3b7f25425c2a4a1
+Missing OG image,Nedostaje OG slika,,site/modules/Ichiban/ProcessIchiban.module.php,d0cc96dfee8f0a3d92cee158a0808ab3
+Title length outside target,Dužina naslova izvan cilja,,site/modules/Ichiban/ProcessIchiban.module.php,5adb0ea06c1f6fc3f2a96949597abc05
+Description length outside target,Dužina opisa izvan cilja,,site/modules/Ichiban/ProcessIchiban.module.php,14b32568602c176efce371a11782b8a1
+Noindex,Noindex,,site/modules/Ichiban/ProcessIchiban.module.php,0b2b0b3a80422bcea6470d347d39ae5b
+Daily Trend,Dnevni trend,,site/modules/Ichiban/ProcessIchiban.module.php,532e811ecb99fabbb6d886d61b01be55
+No Search Console rows available yet.,Još nema dostupnih redaka Search Console.,,site/modules/Ichiban/ProcessIchiban.module.php,2b70900b3b0412f3e007cd806380a683
+Never checked,Nikad provjereno,,site/modules/Ichiban/ProcessIchiban.module.php,a3ca6ea2e8305187403c445ea575b44f
+"Checks a URL sample with Google URL Inspection API and groups non-indexed / problematic pages by coverage reason. Ichiban first uses Top Pages from Search Console for the last 28 days, then fills the sample with public ProcessWire pages sorted by path. This is a cached site scan, not Google’s full Page indexing aggregate report.","Provjerava uzorak URL s Google URL Inspection API i grupira neindeksirane/problematične stranice prema razlogu pokrivenosti. Ichiban prvo koristi najpopularnije stranice od Search Console u zadnjih 28 dana, a zatim ispunjava uzorak javnim ProcessWire stranicama razvrstanim po putanji. Ovo je skeniranje web-mjesta u predmemoriji, a ne Googleovo cjelovito skupno izvješće o indeksiranju stranica.",,site/modules/Ichiban/ProcessIchiban.module.php,dfef1b773586997dd81ab60a2891da12
+Scan indexing issues,Problemi s indeksiranjem skeniranja,,site/modules/Ichiban/ProcessIchiban.module.php,ac5bd2bb3ce576b744c2be7db31222c0
+Open Page Indexing,Otvori Indeksiranje stranice,,site/modules/Ichiban/ProcessIchiban.module.php,e3847e7954abcf7cf678e942167aedec
+Indexed,Indeksirano,,site/modules/Ichiban/ProcessIchiban.module.php,cccd5fd8c8f59fe9373c56b1b951780c
+Checked URLs,Provjereno URLs,,site/modules/Ichiban/ProcessIchiban.module.php,904dbbd89baa6d1d2446e23cef059d50
+Last scan,Zadnje skeniranje,,site/modules/Ichiban/ProcessIchiban.module.php,5eb0c210307a8c254e190ca67c030910
+"No indexing scan yet. Click Scan indexing issues to inspect Top Pages from Search Console first, then public ProcessWire pages if more URLs are needed.","Još nema skeniranja indeksiranja. Kliknite Skeniraj probleme s indeksiranjem da prvo pregledate najpopularnije stranice iz Search Console, a zatim javne ProcessWire stranice ako je potrebno više URLs.",,site/modules/Ichiban/ProcessIchiban.module.php,a10e2f97cdadc6e270037d18558d0c27
+No indexing issues found in the checked URL sample.,U provjerenom uzorku URL nisu pronađeni problemi s indeksiranjem.,,site/modules/Ichiban/ProcessIchiban.module.php,b756b124b0fad1cc25ca1133b192d724
+Page / query,Stranica / upit,,site/modules/Ichiban/ProcessIchiban.module.php,3a3f4c0161d295393accbecac2bc428b
+View all,Pogledaj sve,,site/modules/Ichiban/ProcessIchiban.module.php,0b4db271fc4624853e634ef6882ea8be
+Impressions,Dojmovi,,site/modules/Ichiban/ProcessIchiban.module.php,6cdec37eda6ac1eec892e4bf19aaa78c
+CTR,CTR,,site/modules/Ichiban/ProcessIchiban.module.php,ff2a7a5418a49af64a57ef3cf31d7721
+Position,Pozicija,,site/modules/Ichiban/ProcessIchiban.module.php,52f5e0bc3859bc5f5e25130b6c7e8881
+Edit,Uredi,,site/modules/Ichiban/ProcessIchiban.module.php,7dce122004969d56ae2e0245cb754d35
+n/a,n/a,,site/modules/Ichiban/ProcessIchiban.module.php,274b68192b056e268f128ff63bfcd4a4
+%s rows,%s redaka,,site/modules/Ichiban/ProcessIchiban.module.php,4a79f8950c64f34c7a1775ba32a63c33
+Last updated %s,Zadnji put ažurirano %s,,site/modules/Ichiban/ProcessIchiban.module.php,8ce8cbf23b58eb6bd25d8f6656ccb3c7
+Last updated unavailable,Zadnje ažuriranje nije dostupno,,site/modules/Ichiban/ProcessIchiban.module.php,bcb32f4e876af737c79fdfe0d0604b4e
+Disconnect GSC,Odspojite GSC,,site/modules/Ichiban/ProcessIchiban.module.php,a87147a0aa4632b246a3373c114f35e3
+Country,Država,,site/modules/Ichiban/ProcessIchiban.module.php,59716c97497eb9694541f7c3d37b1a4d
+Device,Uređaj,,site/modules/Ichiban/ProcessIchiban.module.php,e0ac20adce6ffee48c7151b070aa5737
+Social,Društveni,,site/modules/Ichiban/InputfieldIchiban.module.php,f431e17ea0081a3c9e51fc240221ee21
+Search result fields,Polja rezultata pretraživanja,,site/modules/Ichiban/InputfieldIchiban.module.php,50ddcee6d670e0f82652c53fe4ee846d
+Meta Title,Meta naslov,,site/modules/Ichiban/InputfieldIchiban.module.php,c4144f455327c502b8916e1556478ad7
+Meta Description,Meta opis,,site/modules/Ichiban/InputfieldIchiban.module.php,81a35ec1dc4a194f938b211a86a57826
+Canonical URL,Kanonski URL,,site/modules/Ichiban/InputfieldIchiban.module.php,ee096b45f2e0dcd83771ea27b049c76a
+Noindex,Noindex,,site/modules/Ichiban/InputfieldIchiban.module.php,0b2b0b3a80422bcea6470d347d39ae5b
+Nofollow,Nofollow,,site/modules/Ichiban/InputfieldIchiban.module.php,ded50d13cb30cf23b301590bd0d1605a
+Open Graph,Open Graph,,site/modules/Ichiban/InputfieldIchiban.module.php,9d003c21ab5fb8409c51e901aed5576d
+OG Type,Vrsta OG,,site/modules/Ichiban/InputfieldIchiban.module.php,81df20e18c231f5d495009c42749d511
+Controls the Open Graph object type shared to social networks.,Kontrolira tip objekta Open Graph koji se dijeli na društvenim mrežama.,,site/modules/Ichiban/InputfieldIchiban.module.php,97087059c324ab1880fe4c87e022b3ae
+OG Title,OG Naslov,,site/modules/Ichiban/InputfieldIchiban.module.php,d99b661dd6dc723e9a1e70b594155cac
+OG Description,OG Opis,,site/modules/Ichiban/InputfieldIchiban.module.php,ba6f9c249f327d5a9c5583435db25fe4
+OG Image URL,OG Slika URL,,site/modules/Ichiban/InputfieldIchiban.module.php,516ef25bab3cd7ec09e6bd057ca4ac36
+OG Image Alt,OG Slika Alt,,site/modules/Ichiban/InputfieldIchiban.module.php,8dcac293ef065a190312745716f1949b
+Twitter / X,Twitter / X,,site/modules/Ichiban/InputfieldIchiban.module.php,d7408a4f398e73504921481b9e3ba03d
+Card Type,Vrsta kartice,,site/modules/Ichiban/InputfieldIchiban.module.php,379c80c789f0f3e0165b5e6d5df839ca
+Large image cards usually perform better for editorial and marketing pages.,Kartice s velikim slikama obično imaju bolju izvedbu za uredničke i marketinške stranice.,,site/modules/Ichiban/InputfieldIchiban.module.php,73c2d1e0aa38e6714fe6825753c36c43
+Twitter Creator Handle,Ručka kreatora Twittera,,site/modules/Ichiban/InputfieldIchiban.module.php,050dfaab05f8bd1f430f7ddb1ab9063b
+Structured data,Strukturirani podaci,,site/modules/Ichiban/InputfieldIchiban.module.php,09c0d35fcf533a857f668781e02c37a3
+Schema Type,Vrsta sheme,,site/modules/Ichiban/InputfieldIchiban.module.php,7c326ab5625a20ebb1aae5587445df0c
+Use a standard Schema.org type or pick one of the custom schemas created in SEO > Schemas.,Upotrijebite standardnu vrstu Schema.org ili odaberite jednu od prilagođenih shema stvorenih u SEO > Sheme.,,site/modules/Ichiban/InputfieldIchiban.module.php,abd3083eb1a2c4a52cc5ddc596ae0b5d
+Generated output,Generirani izlaz,,site/modules/Ichiban/InputfieldIchiban.module.php,2cfad7e59fdae5fdfa5dcf1e7d1e3547
+Sitemap entry,Unos karte web stranice,,site/modules/Ichiban/InputfieldIchiban.module.php,2fa7940a68a52311fe8cda9dceca0ace
+Include in sitemap,Uključi u kartu web stranice,,site/modules/Ichiban/InputfieldIchiban.module.php,7eee18c19b6134e236eaf0f746d85dbc
+Priority,Prioritet,,site/modules/Ichiban/InputfieldIchiban.module.php,502996d9790340c5fd7b86a5b93b1c9f
+Relative importance within this site. Most pages should stay around 0.5.,"Relativna važnost unutar ove stranice. Većina stranica trebala bi ostati oko 0,5.",,site/modules/Ichiban/InputfieldIchiban.module.php,8eef456badfbc68db9f93710dae19027
+Change Frequency,Promjena frekvencije,,site/modules/Ichiban/InputfieldIchiban.module.php,97c92636698e4eabcdf690f54f635736
+Crawler hint for how often the content usually changes.,Savjet za indeksiranje koliko se često sadržaj obično mijenja.,,site/modules/Ichiban/InputfieldIchiban.module.php,a8f0d926093b7abc9cc1985af59b6867
+Advanced overrides,Napredna nadjačavanja,,site/modules/Ichiban/InputfieldIchiban.module.php,7ca5fec96962e7f4af3cc632aee6e528
+Custom robots meta value,Meta vrijednost prilagođenih robota,,site/modules/Ichiban/InputfieldIchiban.module.php,44338653285d0c8c995a04d0a03c0244
+JSON-LD Override (raw),JSON-LD Nadjačavanje (neobrađeno),,site/modules/Ichiban/InputfieldIchiban.module.php,e529aba5e4a658374492d899d3946ba5
+Inherit,naslijediti,,site/modules/Ichiban/InputfieldIchiban.module.php,c49484faf79e2388b580e49444d6ac11
+Resolved value:,Razriješena vrijednost:,,site/modules/Ichiban/InputfieldIchiban.module.php,d37a38eba893a152b803c75f1c6c67ce
+Resolved image:,Riješena slika:,,site/modules/Ichiban/InputfieldIchiban.module.php,d7264a6cb9bb2c41ef3429d62bea5751
+Standard types,Standardne vrste,,site/modules/Ichiban/InputfieldIchiban.module.php,44a9f9fb0401514013da912151aea276
+None,Nijedan,,site/modules/Ichiban/InputfieldIchiban.module.php,6adf97f83acf6453d4a6a4b1070f3754
+Untitled page,Stranica bez naslova,,site/modules/Ichiban/InputfieldIchiban.module.php,fa1cfd16c02fcf7dcdc1a89d1797a180
+Google preview,Google pregled,,site/modules/Ichiban/InputfieldIchiban.module.php,988fc1f9d539c60940b54c2109ea8cb7
+Desktop,Radna površina,,site/modules/Ichiban/InputfieldIchiban.module.php,2310408a63388fe57e3a4177168a8798
+Mobile,Mobilni,,site/modules/Ichiban/InputfieldIchiban.module.php,87d17f4624a514e81dc7c8e016a7405c
+Social preview,Društveni pregled,,site/modules/Ichiban/InputfieldIchiban.module.php,b92fa9bb09c164e16236195681e21eea
+Add a meta description to preview the search result snippet.,Dodajte meta opis za pregled isječka rezultata pretraživanja.,,site/modules/Ichiban/InputfieldIchiban.module.php,f2f3931d6ecf4e9a1f56bd7ed0963ce8
+SEO Revision History,SEO Povijest revizija,,site/modules/Ichiban/InputfieldIchiban.module.php,ae1984b085f99a9075b018a76d61758c
+Date,Datum,,site/modules/Ichiban/InputfieldIchiban.module.php,44749712dbec183e983dcd78a7736c41
+Restore,Vratiti,,site/modules/Ichiban/InputfieldIchiban.module.php,2bd339d85ee3b33e513359ce781b60cc
+Search Performance,Izvedba pretraživanja,,site/modules/Ichiban/InputfieldIchiban.module.php,a3d2707eb9827cf51524254b7592563e
+Loading…,učitavanje...,,site/modules/Ichiban/InputfieldIchiban.module.php,5f02f05c744a0f875aebb8625ae1486f
+AI is not configured. Configure Context AI Gateway or enable Ichiban OpenRouter settings.,AI nije konfiguriran. Konfigurirajte Context AI Gateway ili omogućite Ichiban OpenRouter postavke.,,site/modules/Ichiban/src/Ai/OpenRouter.php,a7f69b7b79cba57ca64958adecdc3d09
+PHP cURL extension is required for OpenRouter requests.,PHP cURL proširenje potrebno je za OpenRouter zahtjeve.,,site/modules/Ichiban/src/Ai/OpenRouter.php,1f578f56e436249918ecae91aba4ef00
+AI request has no messages.,AI zahtjev nema poruka.,,site/modules/Ichiban/src/Ai/OpenRouter.php,b53008ced2d9f60aafa257d62da576ba
+OpenRouter returned no visible text before the output token limit was reached. Increase Max tokens or shorten the Context export sent with the request.,OpenRouter nije vratio vidljiv tekst prije nego što je dostignuto ograničenje izlaznog tokena. Povećajte Max tokena ili skratite izvoz konteksta koji se šalje sa zahtjevom.,,site/modules/Ichiban/src/Ai/OpenRouter.php,07b1c46ba1964bc7e6e2e2055be44f0c
+OpenRouter returned an empty message body. Finish reason: %s. Output tokens: %d.,OpenRouter je vratio prazno tijelo poruke. Razlog završetka: %s. Izlazni žetoni: %d.,,site/modules/Ichiban/src/Ai/OpenRouter.php,7014e5abd75742d344a16417650f7350
+OpenRouter returned an empty message body with no finish reason. Output tokens: %d.,OpenRouter je vratio prazno tijelo poruke bez razloga završetka. Izlazni žetoni: %d.,,site/modules/Ichiban/src/Ai/OpenRouter.php,fb49455c629e0ba082d078aef3dee2c0
