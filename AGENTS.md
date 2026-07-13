@@ -183,6 +183,7 @@ Expected sections:
 - Sitemap
 - Migration
 - AI
+- CLI
 - Settings
 
 An agent may explain these sections and propose settings. Mutating actions in admin must follow the approval rules below.
@@ -200,6 +201,7 @@ These are generally safe for an agent:
 - read resolved SEO values;
 - render previews in a local/dev context;
 - export reports, redirects, or audit data when the user asks.
+- run read-only CLI commands such as `--ichiban-help`, `--ichiban-status`, `--ichiban-sitemap-status`, `--ichiban-robots`, `--ichiban-llms`, `--ichiban-settings`, or `--ichiban-page=ID`.
 
 ## Requires User Approval
 
@@ -211,6 +213,7 @@ Ask for approval before:
 - changing global rendering behavior, canonical behavior, hreflang, or JSON-LD toggles;
 - writing or replacing `robots.txt`, `llms.txt`, sitemap settings, or IndexNow key files;
 - rebuilding a large audit index on production;
+- running write CLI commands on production, including `--ichiban-audit-rebuild`, `--ichiban-sitemap-generate`, and `--ichiban-sitemap-delete --ichiban-force`;
 - bulk editing metadata;
 - importing redirects or deleting redirects;
 - creating regex redirects;
@@ -248,6 +251,21 @@ $ichiban->renderLlmsTxt();
 ```
 
 Check whether sitemap generation is enabled before relying on files. LazyCron may be required for automatic regeneration. Do not assume `llms.txt` should be enabled; it is optional and the convention is still experimental.
+
+## CLI
+
+Run Ichiban CLI commands from the ProcessWire site root:
+
+```bash
+php index.php --ichiban-help
+php index.php --ichiban-help=status
+php index.php --ichiban-status --ichiban-format=json
+php index.php --ichiban-audit-rebuild
+php index.php --ichiban-sitemap-generate
+php index.php --ichiban-page=123 --ichiban-format=json
+```
+
+Prefer CLI commands for repeatable maintenance, smoke checks, cron jobs, and deployment scripts. Use read-only commands freely in local/dev contexts. Ask before write commands on production.
 
 ## Redirects
 

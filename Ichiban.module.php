@@ -36,6 +36,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 	// -------------------------------------------------------------------------
 
 	public function init(): void {
+		$this->getCli()->dispatch();
 		$this->addHookBefore('ProcessPageView::execute', $this, 'hookUtilityTextFiles');
 		$this->addHookBefore('ProcessPageView::execute', $this, 'hookRedirects');
 		$this->addHookAfter('Fields::getCompatibleFieldtypes', $this, 'hookSeoMaestroCompatibility');
@@ -740,6 +741,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 	protected ?\IchibanSitemap $_sitemap = null;
 	protected ?\IchibanAuditEngine $_auditEngine = null;
 	protected ?\IchibanUpdater $_updater = null;
+	protected ?\IchibanCli $_cli = null;
 
 	public function getSchemaGraph(): \IchibanSchemaGraph {
 		if (!$this->_schemaGraph) $this->_schemaGraph = new \IchibanSchemaGraph($this);
@@ -808,6 +810,11 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 	public function getUpdater(): \IchibanUpdater {
 		if (!$this->_updater) $this->_updater = new \IchibanUpdater($this);
 		return $this->_updater;
+	}
+
+	public function getCli(): \IchibanCli {
+		if (!$this->_cli) $this->_cli = new \IchibanCli($this);
+		return $this->_cli;
 	}
 
 	// -------------------------------------------------------------------------

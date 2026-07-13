@@ -43,7 +43,21 @@ Automatic head injection is available in module settings, but use it only when y
 - SeoMaestro migration tool.
 - Scheduled report workspace with email tests and DOCX export.
 - Squad-backed AI prompt workspace.
+- CLI commands for audit rebuilds, sitemap maintenance, status checks, and generated text previews.
 - Hook API for custom source resolution, final SEO values, audit rules, rendering, redirects, and identity schema.
+
+## CLI
+
+Run commands from the ProcessWire site root:
+
+```bash
+php index.php --ichiban-help
+php index.php --ichiban-status
+php index.php --ichiban-audit-rebuild
+php index.php --ichiban-sitemap-generate
+```
+
+Use `--ichiban-help=command` for command-specific help and `--ichiban-format=json` where structured output is useful.
 
 ## Documentation
 

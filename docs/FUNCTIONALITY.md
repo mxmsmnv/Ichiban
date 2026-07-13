@@ -110,7 +110,28 @@ The Process module adds an SEO workspace with these sections:
 - **Cleanup**: crawl tag cleanup and spam search query blocking.
 - **Migration**: SeoMaestro to Ichiban converter with backup tables.
 - **AI**: Squad-backed SEO prompt test workspace.
+- **CLI**: command reference for audit, sitemap, status, robots/llms, settings, and page SEO inspection.
 - **Settings**: identity, defaults, rendering, verification, Search Console, Moz, sitemap, robots/llms, reports, cleanup, and AI.
+
+## CLI
+
+Ichiban exposes maintenance commands through ProcessWire's normal CLI bootstrap. Run commands from the site root:
+
+```bash
+php index.php --ichiban-help
+```
+
+Common commands:
+
+```bash
+php index.php --ichiban-status
+php index.php --ichiban-audit-rebuild
+php index.php --ichiban-sitemap-generate
+php index.php --ichiban-sitemap-status
+php index.php --ichiban-page=123 --ichiban-format=json
+```
+
+Use `--ichiban-help=command` for detailed help and `--ichiban-format=json` for machine-readable output. Destructive sitemap cleanup requires `--ichiban-force`.
 
 ## Audit
 

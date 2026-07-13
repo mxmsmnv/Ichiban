@@ -518,6 +518,14 @@ Run test,Exécuter un test,,site/modules/Ichiban/ProcessIchiban.module.php,0b917
 AI request failed,La requête AI a échoué,,site/modules/Ichiban/ProcessIchiban.module.php,87ad7e70a6d54017a933389a756211ed
 Model: %s · %d ms,Modèle : %s · %d ms,,site/modules/Ichiban/ProcessIchiban.module.php,3b158020fa009a28c258d3e9b625c4be
 "The provider returned an empty message body. Try another model, increase Max tokens, or reduce the Context files sent with the request.","Le fournisseur a renvoyé un corps de message vide. Essayez un autre modèle, augmentez le nombre maximum de jetons ou réduisez les fichiers de contexte envoyés avec la demande.",,site/modules/Ichiban/ProcessIchiban.module.php,d8113f4d1f649caa4b106d7991e41488
+CLI,CLI,,site/modules/Ichiban/ProcessIchiban.module.php,91af5705f16502125e8b2187e64202c0
+Ichiban CLI,CLI Ichiban,,site/modules/Ichiban/ProcessIchiban.module.php,5f7ae61b387f330926bdcb993eca2980
+Command line tools,Outils de ligne de commande,,site/modules/Ichiban/ProcessIchiban.module.php,b54d7cbfc37eaabd3f1b40f01a1dd2fe
+"Run these commands from the ProcessWire site root. They are meant for deploy scripts, cron jobs, smoke checks, and local maintenance.","Exécutez ces commandes à partir de la racine du site ProcessWire. Ils sont destinés aux scripts de déploiement, aux tâches cron, aux contrôles de fumée et à la maintenance locale.",,site/modules/Ichiban/ProcessIchiban.module.php,0bc164689238d86fca9cbcae068f2a9f
+Command,Commande,,site/modules/Ichiban/ProcessIchiban.module.php,ee97be03cb04119af45014d815621ce1
+Usage,Utilisation,,site/modules/Ichiban/ProcessIchiban.module.php,c64518704ce0c0d5501a45763f464276
+Options,Possibilités,,site/modules/Ichiban/ProcessIchiban.module.php,dae8ace18bdcbcc6ae5aece263e14fe8
+Examples,Exemples,,site/modules/Ichiban/ProcessIchiban.module.php,ff7c0fcd6a31e735a61c001f75426961
 Audit suggestions,Suggestions d'audit,,site/modules/Ichiban/ProcessIchiban.module.php,81670a3d543b3cb8d20b73590dd404ae
 Find practical SEO fixes from Context data.,Trouvez des correctifs pratiques pour SEO à partir des données contextuelles.,,site/modules/Ichiban/ProcessIchiban.module.php,bc3f46852275ab8a7da99fc77f4ecb83
 "Using the attached Context export, give me 5 practical SEO improvements for the current site in concise bullets. Mention which pages, templates, or fields you used.","À l'aide de l'exportation contextuelle ci-jointe, donnez-moi 5 améliorations pratiques SEO pour le site actuel sous forme de puces concises. Mentionnez les pages, modèles ou champs que vous avez utilisés.",,site/modules/Ichiban/ProcessIchiban.module.php,e8ae2b3c6a0a742b12adc05ec70eabd6

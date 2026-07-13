@@ -1927,6 +1927,46 @@ class ProcessIchiban extends Process {
 		return $out;
 	}
 
+	public function executeCli(): string {
+		$this->setIchibanBreadcrumb(__('CLI'), 'cli/');
+		$this->headline(__('Ichiban CLI'));
+		$san = $this->wire('sanitizer');
+		$commands = $this->ichiban->getCli()->commands();
+		$out = $this->renderAdminNav('cli') . "<div class='ichiban-cli'>\n"
+			. "<section class='ichiban-cli-intro'><div><h2>" . __('Command line tools') . "</h2>"
+			. "<p>" . __('Run these commands from the ProcessWire site root. They are meant for deploy scripts, cron jobs, smoke checks, and local maintenance.') . "</p></div>"
+			. "<pre><code>php index.php --ichiban-help</code></pre></section>\n";
+		$out .= "<section class='ichiban-cli-commands'><table class='uk-table uk-table-divider uk-table-hover'><thead><tr>"
+			. "<th>" . __('Command') . "</th><th>" . __('What it does') . "</th><th>" . __('Usage') . "</th></tr></thead><tbody>";
+		foreach ($commands as $key => $command) {
+			$anchor = 'ichiban-cli-' . preg_replace('/[^a-z0-9-]/', '-', strtolower((string)$key));
+			$out .= "<tr><td><a href='#{$anchor}'><code>" . $san->entities((string)$key) . "</code></a></td>"
+				. "<td><strong>" . $san->entities((string)$command['title']) . "</strong><br><span>" . $san->entities((string)$command['description']) . "</span></td>"
+				. "<td><code>" . $san->entities((string)$command['usage']) . "</code></td></tr>";
+		}
+		$out .= "</tbody></table></section>\n";
+		$out .= "<section class='ichiban-cli-help'>\n";
+		foreach ($commands as $key => $command) {
+			$anchor = 'ichiban-cli-' . preg_replace('/[^a-z0-9-]/', '-', strtolower((string)$key));
+			$out .= "<article id='{$anchor}'><h3><code>" . $san->entities((string)$key) . "</code> " . $san->entities((string)$command['title']) . "</h3>"
+				. "<p>" . $san->entities((string)$command['description']) . "</p>"
+				. "<div><strong>" . __('Usage') . "</strong><pre><code>" . $san->entities((string)$command['usage']) . "</code></pre></div>";
+			if (!empty($command['options'])) {
+				$out .= "<div><strong>" . __('Options') . "</strong><ul>";
+				foreach ((array)$command['options'] as $option) $out .= "<li><code>" . $san->entities((string)$option) . "</code></li>";
+				$out .= "</ul></div>";
+			}
+			if (!empty($command['examples'])) {
+				$out .= "<div><strong>" . __('Examples') . "</strong><ul>";
+				foreach ((array)$command['examples'] as $example) $out .= "<li><code>" . $san->entities((string)$example) . "</code></li>";
+				$out .= "</ul></div>";
+			}
+			$out .= "</article>\n";
+		}
+		$out .= "</section></div>";
+		return $out;
+	}
+
 	protected function renderAiMarkdown(string $markdown): string {
 		$markdown = str_replace(["\r\n", "\r"], "\n", trim($markdown));
 		if ($markdown === '') return "<div class='ichiban-ai-markdown'></div>";
@@ -2576,6 +2616,7 @@ class ProcessIchiban extends Process {
 			'migration' => [__('Migration'), 'migration/'],
 			'reports' => [__('Reports'), 'reports/'],
 			'ai' => [__('AI'), 'ai/'],
+			'cli' => [__('CLI'), 'cli/'],
 		];
 		$out = "<div class='ichiban-admin-nav uk-margin-medium-bottom'><ul class='uk-subnav uk-subnav-pill'>\n";
 		foreach ($items as $key => $item) {

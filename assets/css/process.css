@@ -36,6 +36,7 @@ body.dark-theme {
 .ichiban-migration,
 .ichiban-reports,
 .ichiban-website,
+.ichiban-cli,
 .ichiban-ai {
   color: var(--ichiban-text);
 }
@@ -51,6 +52,7 @@ body.dark-theme {
 .ichiban-cleanup .uk-table,
 .ichiban-migration .uk-table,
 .ichiban-reports .uk-table,
+.ichiban-cli .uk-table,
 .ichiban-ai .uk-table {
   color: var(--ichiban-text);
 }
@@ -85,6 +87,9 @@ body.dark-theme {
 .ichiban-reports .uk-table-divider > tr:not(:first-child),
 .ichiban-reports .uk-table-divider > :not(:first-child) > tr,
 .ichiban-reports .uk-table-divider > :first-child > tr:not(:first-child),
+.ichiban-cli .uk-table-divider > tr:not(:first-child),
+.ichiban-cli .uk-table-divider > :not(:first-child) > tr,
+.ichiban-cli .uk-table-divider > :first-child > tr:not(:first-child),
 .ichiban-ai .uk-table-divider > tr:not(:first-child),
 .ichiban-ai .uk-table-divider > :not(:first-child) > tr,
 .ichiban-ai .uk-table-divider > :first-child > tr:not(:first-child) {
@@ -1724,6 +1729,73 @@ body.dark-theme .ichiban-severity-info {
   color: var(--ichiban-muted);
   border-left: 3px solid var(--ichiban-accent);
   background: var(--ichiban-surface);
+}
+
+/* -------------------------------------------------------------------------
+   CLI
+   ------------------------------------------------------------------------- */
+.ichiban-cli {
+  display: grid;
+  gap: 18px;
+  max-width: 1520px;
+}
+.ichiban-cli-intro,
+.ichiban-cli-commands,
+.ichiban-cli-help article {
+  padding: 18px;
+  background: var(--ichiban-surface);
+  border: 1px solid var(--ichiban-border);
+}
+.ichiban-cli-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, .4fr);
+  gap: 18px;
+  align-items: start;
+}
+.ichiban-cli-intro h2,
+.ichiban-cli-intro p,
+.ichiban-cli-help h3,
+.ichiban-cli-help p {
+  margin: 0;
+}
+.ichiban-cli-intro p,
+.ichiban-cli-commands span,
+.ichiban-cli-help p {
+  color: var(--ichiban-muted);
+}
+.ichiban-cli pre {
+  margin: 0;
+  padding: 12px;
+  overflow: auto;
+  background: var(--ichiban-muted-surface);
+  border: 1px solid var(--ichiban-border);
+}
+.ichiban-cli code {
+  color: var(--ichiban-text);
+  font-size: 13px;
+}
+.ichiban-cli-help {
+  display: grid;
+  gap: 14px;
+}
+.ichiban-cli-help article {
+  display: grid;
+  gap: 12px;
+}
+.ichiban-cli-help h3 {
+  font-size: 20px;
+}
+.ichiban-cli-help ul {
+  margin: 8px 0 0 20px;
+  padding: 0;
+}
+.ichiban-cli-help li {
+  margin: 5px 0;
+}
+@media (max-width: 959px) {
+  .ichiban-cli-intro {
+    grid-template-columns: 1fr;
+  }
 }
 @media (max-width: 959px) {
   .ichiban-ai-hero {

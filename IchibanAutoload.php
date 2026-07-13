@@ -15,6 +15,7 @@ spl_autoload_register(function(string $class): void {
 		'IchibanSeoGroup'          => 'src/PageFieldValue.php',
 		'IchibanCascade'           => 'src/Cascade.php',
 		'IchibanSourceResolver'    => 'src/Source/SourceResolver.php',
+		'IchibanCli'               => 'src/Cli/Cli.php',
 		'IchibanSchemaGraph'       => 'src/Schema/SchemaGraph.php',
 		'IchibanAuditEngine'       => 'src/Audit/AuditEngine.php',
 		'IchibanRedirectManager'   => 'src/Redirects/RedirectManager.php',

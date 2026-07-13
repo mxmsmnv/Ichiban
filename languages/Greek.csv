@@ -518,6 +518,14 @@ Run test,Εκτέλεση δοκιμής,,site/modules/Ichiban/ProcessIchiban.mo
 AI request failed,Το αίτημα AI απέτυχε,,site/modules/Ichiban/ProcessIchiban.module.php,87ad7e70a6d54017a933389a756211ed
 Model: %s · %d ms,Μοντέλο: %s · %d ms,,site/modules/Ichiban/ProcessIchiban.module.php,3b158020fa009a28c258d3e9b625c4be
 "The provider returned an empty message body. Try another model, increase Max tokens, or reduce the Context files sent with the request.","Ο πάροχος επέστρεψε ένα κενό σώμα μηνύματος. Δοκιμάστε ένα άλλο μοντέλο, αυξήστε τα διακριτικά Max ή μειώστε τα αρχεία περιβάλλοντος που αποστέλλονται με το αίτημα.",,site/modules/Ichiban/ProcessIchiban.module.php,d8113f4d1f649caa4b106d7991e41488
+CLI,CLI,,site/modules/Ichiban/ProcessIchiban.module.php,91af5705f16502125e8b2187e64202c0
+Ichiban CLI,Ichiban CLI,,site/modules/Ichiban/ProcessIchiban.module.php,5f7ae61b387f330926bdcb993eca2980
+Command line tools,Εργαλεία γραμμής εντολών,,site/modules/Ichiban/ProcessIchiban.module.php,b54d7cbfc37eaabd3f1b40f01a1dd2fe
+"Run these commands from the ProcessWire site root. They are meant for deploy scripts, cron jobs, smoke checks, and local maintenance.","Εκτελέστε αυτές τις εντολές από τη ρίζα της τοποθεσίας ProcessWire. Προορίζονται για την ανάπτυξη σεναρίων, τις εργασίες cron, τους ελέγχους καπνού και την τοπική συντήρηση.",,site/modules/Ichiban/ProcessIchiban.module.php,0bc164689238d86fca9cbcae068f2a9f
+Command,Εντολή,,site/modules/Ichiban/ProcessIchiban.module.php,ee97be03cb04119af45014d815621ce1
+Usage,Χρήση,,site/modules/Ichiban/ProcessIchiban.module.php,c64518704ce0c0d5501a45763f464276
+Options,Επιλογές,,site/modules/Ichiban/ProcessIchiban.module.php,dae8ace18bdcbcc6ae5aece263e14fe8
+Examples,Παραδείγματα,,site/modules/Ichiban/ProcessIchiban.module.php,ff7c0fcd6a31e735a61c001f75426961
 Audit suggestions,Προτάσεις ελέγχου,,site/modules/Ichiban/ProcessIchiban.module.php,81670a3d543b3cb8d20b73590dd404ae
 Find practical SEO fixes from Context data.,Βρείτε πρακτικές διορθώσεις SEO από δεδομένα περιβάλλοντος.,,site/modules/Ichiban/ProcessIchiban.module.php,bc3f46852275ab8a7da99fc77f4ecb83
 "Using the attached Context export, give me 5 practical SEO improvements for the current site in concise bullets. Mention which pages, templates, or fields you used.","Χρησιμοποιώντας τη συνημμένη εξαγωγή Context, δώστε μου 5 πρακτικές βελτιώσεις SEO για την τρέχουσα τοποθεσία σε συνοπτικές κουκκίδες. Αναφέρετε ποιες σελίδες, πρότυπα ή πεδία χρησιμοποιήσατε.",,site/modules/Ichiban/ProcessIchiban.module.php,e8ae2b3c6a0a742b12adc05ec70eabd6
