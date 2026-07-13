@@ -1202,7 +1202,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$squadInstalled = false;
 		$squadDefinitions = [];
 		$squadStatuses = [];
-		$squadSettingsUrl = rtrim((string)$this->wire('config')->urls->admin, '/') . '/module/edit?name=Squad';
+		$squadSettingsUrl = rtrim((string)wire('config')->urls->admin, '/') . '/module/edit?name=Squad';
 		try {
 			$squadInstalled = $modules->isInstalled('Squad');
 			if ($squadInstalled) {
@@ -1219,7 +1219,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		if ($squadInstalled) {
 			$active = [];
 			foreach ($squadStatuses as $key => $status) {
-				if (!empty($status['active'])) $active[] = $this->wire('sanitizer')->entities((string)($status['label'] ?? $key));
+				if (!empty($status['active'])) $active[] = wire('sanitizer')->entities((string)($status['label'] ?? $key));
 			}
 			$f->value = '<p>' . sprintf(__('Squad is installed. Active providers: %s.'), $active ? implode(', ', $active) : __('none')) . '</p>'
 				. '<p><a class="uk-button uk-button-default uk-button-small" href="' . $squadSettingsUrl . '">' . __('Open Squad settings') . '</a></p>';
