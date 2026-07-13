@@ -1908,7 +1908,7 @@ class ProcessIchiban extends Process {
 			if (!empty($result['error'])) {
 				$out .= "<div class='uk-alert uk-alert-danger'><strong>" . __('AI request failed') . "</strong><p>" . $san->entities((string)$result['error']) . "</p></div>";
 			} else {
-				$content = $san->entities((string)($result['content'] ?? ''));
+				$contentRaw = trim((string)($result['content'] ?? ''));
 				$used = !empty($result['context_files']) && is_array($result['context_files']) ? ' · Context: ' . implode(', ', $result['context_files']) : '';
 				$finish = (string)($result['finish_reason'] ?? '');
 				$tokens = is_array($result['usage'] ?? null) && isset($result['usage']['completion_tokens'])
@@ -1917,14 +1917,91 @@ class ProcessIchiban extends Process {
 				$meta = sprintf(__('Model: %s · %d ms'), $san->entities((string)($result['model'] ?? $model)), (int)($result['duration_ms'] ?? 0))
 					. ($finish !== '' ? ' · Finish: ' . $san->entities($finish) : '')
 					. $san->entities($tokens . $used);
-				if ($content === '') {
-					$content = $san->entities((string)($result['empty_reason'] ?? __('The provider returned an empty message body. Try another model, increase Max tokens, or reduce the Context files sent with the request.')));
+				if ($contentRaw === '') {
+					$contentRaw = (string)($result['empty_reason'] ?? __('The provider returned an empty message body. Try another model, increase Max tokens, or reduce the Context files sent with the request.'));
 				}
-				$out .= "<div class='ichiban-ai-result'><span>{$meta}</span><pre>{$content}</pre></div>";
+				$out .= "<div class='ichiban-ai-result'><span>{$meta}</span>" . $this->renderAiMarkdown($contentRaw) . "</div>";
 			}
 		}
 		$out .= "</section></div>";
 		return $out;
+	}
+
+	protected function renderAiMarkdown(string $markdown): string {
+		$markdown = str_replace(["\r\n", "\r"], "\n", trim($markdown));
+		if ($markdown === '') return "<div class='ichiban-ai-markdown'></div>";
+
+		$blocks = preg_split("/\n{2,}/", $markdown) ?: [];
+		$html = [];
+		foreach ($blocks as $block) {
+			$block = trim($block);
+			if ($block === '') continue;
+
+			if (preg_match('/^```([A-Za-z0-9_-]*)\n(.*)\n```$/s', $block, $m)) {
+				$lang = preg_replace('/[^A-Za-z0-9_-]/', '', (string)$m[1]);
+				$class = $lang !== '' ? " class='language-" . $this->wire('sanitizer')->entities($lang) . "'" : '';
+				$html[] = "<pre><code{$class}>" . $this->wire('sanitizer')->entities((string)$m[2]) . "</code></pre>";
+				continue;
+			}
+
+			$lines = array_values(array_filter(array_map('trim', explode("\n", $block)), 'strlen'));
+			if (!$lines) continue;
+
+			if (preg_match('/^(#{1,4})\s+(.+)$/', $lines[0], $m) && count($lines) === 1) {
+				$level = min(4, strlen($m[1]) + 2);
+				$html[] = "<h{$level}>" . $this->renderAiMarkdownInline((string)$m[2]) . "</h{$level}>";
+				continue;
+			}
+
+			if ($this->aiMarkdownListType($lines) !== '') {
+				$type = $this->aiMarkdownListType($lines);
+				$items = [];
+				foreach ($lines as $line) {
+					$text = preg_replace($type === 'ol' ? '/^\d+[.)]\s+/' : '/^[-*]\s+/', '', $line);
+					$items[] = '<li>' . $this->renderAiMarkdownInline((string)$text) . '</li>';
+				}
+				$html[] = '<' . $type . '>' . implode('', $items) . '</' . $type . '>';
+				continue;
+			}
+
+			if (str_starts_with($lines[0], '>')) {
+				$quote = preg_replace('/^>\s?/m', '', implode("\n", $lines));
+				$html[] = '<blockquote>' . $this->renderAiMarkdownInline(trim((string)$quote)) . '</blockquote>';
+				continue;
+			}
+
+			$html[] = '<p>' . $this->renderAiMarkdownInline(implode("\n", $lines)) . '</p>';
+		}
+
+		return "<div class='ichiban-ai-markdown'>" . implode("\n", $html) . "</div>";
+	}
+
+	protected function aiMarkdownListType(array $lines): string {
+		$type = '';
+		foreach ($lines as $line) {
+			$current = preg_match('/^\d+[.)]\s+/', $line) ? 'ol' : (preg_match('/^[-*]\s+/', $line) ? 'ul' : '');
+			if ($current === '') return '';
+			if ($type === '') $type = $current;
+			if ($current !== $type) return '';
+		}
+		return $type;
+	}
+
+	protected function renderAiMarkdownInline(string $text): string {
+		$escaped = $this->wire('sanitizer')->entities($text);
+		$escaped = preg_replace_callback('/`([^`]+)`/', fn($m) => '<code>' . $m[1] . '</code>', $escaped);
+		$escaped = preg_replace('/\*\*([^*]+)\*\*/', '<strong>$1</strong>', $escaped);
+		$escaped = preg_replace('/__([^_]+)__/', '<strong>$1</strong>', $escaped);
+		$escaped = preg_replace('/(?<!\*)\*([^*\n]+)\*(?!\*)/', '<em>$1</em>', $escaped);
+		$escaped = preg_replace('/(?<!_)_([^_\n]+)_(?!_)/', '<em>$1</em>', $escaped);
+		$escaped = preg_replace_callback('/\[([^\]]+)\]\(([^)]+)\)/', function($m) {
+			$label = $m[1];
+			$href = html_entity_decode((string)$m[2], ENT_QUOTES, 'UTF-8');
+			if (!preg_match('!^(https?://|mailto:|/)!i', $href)) return $label;
+			$url = $this->wire('sanitizer')->entities($href);
+			return "<a href='{$url}' target='_blank' rel='noopener'>{$label}</a>";
+		}, $escaped);
+		return nl2br($escaped, false);
 	}
 
 	protected function aiModes(): array {

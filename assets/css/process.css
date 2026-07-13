@@ -1657,12 +1657,73 @@ body.dark-theme .ichiban-severity-info {
   font-weight: 700;
   text-transform: uppercase;
 }
-.ichiban-ai-result pre {
-  max-height: 520px;
-  margin: 0;
+.ichiban-ai-markdown {
+  max-height: 620px;
   overflow: auto;
   color: var(--ichiban-text);
+  font-size: 15px;
+  line-height: 1.55;
+}
+.ichiban-ai-markdown > *:first-child {
+  margin-top: 0;
+}
+.ichiban-ai-markdown > *:last-child {
+  margin-bottom: 0;
+}
+.ichiban-ai-markdown p {
+  margin: 0 0 12px;
+  color: var(--ichiban-text);
+}
+.ichiban-ai-markdown h3,
+.ichiban-ai-markdown h4,
+.ichiban-ai-markdown h5,
+.ichiban-ai-markdown h6 {
+  margin: 18px 0 8px;
+  color: var(--ichiban-text);
+  font-size: 18px;
+  line-height: 1.3;
+}
+.ichiban-ai-markdown ul,
+.ichiban-ai-markdown ol {
+  margin: 0 0 14px 22px;
+  padding: 0;
+}
+.ichiban-ai-markdown li {
+  margin: 6px 0;
+}
+.ichiban-ai-markdown strong {
+  color: var(--ichiban-text);
+}
+.ichiban-ai-markdown code {
+  padding: 1px 5px;
+  color: var(--ichiban-text);
+  background: var(--ichiban-surface);
+  border: 1px solid var(--ichiban-border);
+  border-radius: 4px;
+  font-size: 13px;
+}
+.ichiban-ai-markdown pre {
+  max-height: 520px;
+  margin: 0 0 14px;
+  padding: 12px;
+  overflow: auto;
+  color: var(--ichiban-text);
+  background: var(--ichiban-surface);
+  border: 1px solid var(--ichiban-border);
   white-space: pre-wrap;
+}
+.ichiban-ai-markdown pre code {
+  display: block;
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+.ichiban-ai-markdown blockquote {
+  margin: 0 0 14px;
+  padding: 8px 12px;
+  color: var(--ichiban-muted);
+  border-left: 3px solid var(--ichiban-accent);
+  background: var(--ichiban-surface);
 }
 @media (max-width: 959px) {
   .ichiban-ai-hero {
