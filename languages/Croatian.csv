@@ -1,7 +1,9 @@
 en,hr,description,file,hash
 Notes,Bilješke,,site/modules/Ichiban/Ichiban.module.php,f4c6f851b00d5518bf888815de279aba
-Identity,Identitet,,site/modules/Ichiban/Ichiban.module.php,c9c5c65fb4af9cf90eb99b3b84424189
-Used for Organization/Person JSON-LD and sameAs profile links. Leave fields empty if the identity node should stay minimal.,Koristi se za poveznice profila organizacije/osobe JSON-LD i sameAs. Ostavite polja prazna ako čvor identiteta treba ostati minimalan.,,site/modules/Ichiban/Ichiban.module.php,cde2ad3993452d48164bac03fd7ff2ea
+Website & Identity,Web stranica i identitet,,site/modules/Ichiban/Ichiban.module.php,5f31fa0e425153f2d3ecb9c2d7f21a2d
+Moved to Website,Premješteno na web stranicu,,site/modules/Ichiban/Ichiban.module.php,4e16d56399d1c0e0725c995fa6414179
+"Brand, contact, social profile, and Schema.org identity settings now live in the Website tab so global site facts are edited in one place.","Postavke robne marke, kontakta, društvenog profila i Schema.org identiteta sada žive na kartici Web stranica tako da se globalne činjenice o web stranici uređuju na jednom mjestu.",,site/modules/Ichiban/Ichiban.module.php,b3c2c2c1cba8d3fb26eef538c43b65ea
+Open Website Settings,Otvorite postavke web stranice,,site/modules/Ichiban/Ichiban.module.php,3e23181983fd8c730ed855214f9ccd9e
 Defaults,Zadane postavke,,site/modules/Ichiban/Ichiban.module.php,0aabf727ab0a83c5f5d078e8b18445e0
 "JSON defaults are resolved before page-level values. Use field:title, field:summary|truncate:160, custom text, or inherit.","Zadane vrijednosti JSON rješavaju se prije vrijednosti na razini stranice. Koristite field:title, field:summary|truncate:160, prilagođeni tekst ili naslijedite.",,site/modules/Ichiban/Ichiban.module.php,33bdc3ae43a21121f7dce26d5197dd44
 Global defaults JSON,Globalne zadane postavke JSON,,site/modules/Ichiban/Ichiban.module.php,53e3b5312941b09573dc3f9186159072
@@ -176,7 +178,8 @@ Website,web stranica,,site/modules/Ichiban/ProcessIchiban.module.php,15bbb9d0bbf
 Website Settings,Postavke web stranice,,site/modules/Ichiban/ProcessIchiban.module.php,214da1f24a3f988f8152522853ab3958
 Custom JSON must be a JSON object.,Prilagođeni JSON mora biti JSON objekt.,,site/modules/Ichiban/ProcessIchiban.module.php,bd6488a993170d0cac1da9bc16da5168
 Website settings saved.,Postavke web stranice spremljene.,,site/modules/Ichiban/ProcessIchiban.module.php,6259f56ac984507cecd0ab486e893b46
-"Global website facts for templates, schema fallbacks, reports, and AI prompts. These settings do not replace page-level SEO fields.","Globalne činjenice o web-mjestu za predloške, zamjenske sheme, izvješća i upite umjetne inteligencije. Ove postavke ne zamjenjuju SEO polja na razini stranice.",,site/modules/Ichiban/ProcessIchiban.module.php,727546d4b20c5f5004e7361d46f347b2
+"Global website facts for templates, schema fallbacks, reports, AI prompts, and reusable site templates. Page-level SEO fields still win for individual pages.","Globalne činjenice o web-mjestu za predloške, zamjenske sheme, izvješća, AI upute i predloške web-mjesta za višekratnu upotrebu. SEO polja na razini stranice još uvijek pobjeđuju za pojedinačne stranice.",,site/modules/Ichiban/ProcessIchiban.module.php,c844981b90d8616bec677122669ff184
+SEO Settings,SEO Postavke,,site/modules/Ichiban/ProcessIchiban.module.php,f4569fc50347e757f158413dff3a219a
 Save Website Settings,Spremi postavke web stranice,,site/modules/Ichiban/ProcessIchiban.module.php,5e28d844ad6c2d60de633feb33ff0958
 Update installation is disabled in Ichiban settings.,Instalacija ažuriranja onemogućena je u postavkama Ichibana.,,site/modules/Ichiban/ProcessIchiban.module.php,32663c4cf7725aa2904b1d8dcf9dd997
 Ichiban update installed.,Ažuriranje Ichibana je instalirano.,,site/modules/Ichiban/ProcessIchiban.module.php,f90a08d564b3b3804066a054b3d09358
@@ -539,7 +542,6 @@ Add property,Dodaj imovinu,,site/modules/Ichiban/ProcessIchiban.module.php,9820a
 "Use sources like field:title, field:summary|truncate:160, {legacy_field}, custom text, or empty string.","Koristite izvore kao što su field:title, field:summary|truncate:160, {legacy_field}, prilagođeni tekst ili prazan niz.",,site/modules/Ichiban/ProcessIchiban.module.php,5d5850034cd862f5ad9ac01d88e8737a
 Choose property,Odaberite nekretninu,,site/modules/Ichiban/ProcessIchiban.module.php,832f6c69c10f614bfc3f39fca3fa79a3
 Settings,postavke,,site/modules/Ichiban/ProcessIchiban.module.php,f4f70727dc34561dfde1a3c529b6205c
-SEO Settings,SEO Postavke,,site/modules/Ichiban/ProcessIchiban.module.php,f4569fc50347e757f158413dff3a219a
 Settings saved.,Postavke su spremljene.,,site/modules/Ichiban/ProcessIchiban.module.php,9a7e58ee13cb727cb7c4acc68f4cafe5
 IndexNow key file written to the site root.,Datoteka ključa IndexNow zapisana u korijenu stranice.,,site/modules/Ichiban/ProcessIchiban.module.php,bbe9cac2bd7214dd42fa87c1d3310cca
 "IndexNow key saved, but the key file could not be written. Create {key}.txt in the site root with the key as file content.","Ključ IndexNow je spremljen, ali se datoteka ključa ne može napisati. Stvorite {key}.txt u korijenu stranice s ključem kao sadržajem datoteke.",,site/modules/Ichiban/ProcessIchiban.module.php,6dae63cfd122c66d6dc9c80f8e71e0c3
@@ -576,6 +578,15 @@ LinkedIn Profile,LinkedIn profil,,site/modules/Ichiban/ProcessIchiban.module.php
 YouTube Channel,YouTube kanal,,site/modules/Ichiban/ProcessIchiban.module.php,960078a66b70f750dc2ac99353dfc7aa
 GitHub Profile,GitHub profil,,site/modules/Ichiban/ProcessIchiban.module.php,2b379d4e18c7d3b72104978b9d568599
 X/Twitter Profile,X/Twitter profil,,site/modules/Ichiban/ProcessIchiban.module.php,409f4d6d66f6efc8280043786d3fc79b
+Entity Type,Vrsta entiteta,,site/modules/Ichiban/ProcessIchiban.module.php,59a4e567964574e7e7298d0276c2d64f
+Schema Name Override,Nadjačavanje naziva sheme,,site/modules/Ichiban/ProcessIchiban.module.php,6db2e2d4b291a5ada458250047437926
+Schema URL Override,Nadjačavanje URL-a sheme,,site/modules/Ichiban/ProcessIchiban.module.php,454f27b994645e2a9a8e78bfe073f2dd
+Schema Logo Override,Nadjačavanje logotipa sheme,,site/modules/Ichiban/ProcessIchiban.module.php,daa2ac03b316ce357aecc21c22232974
+Twitter/X Profile Override,Twitter/X Profile Override,,site/modules/Ichiban/ProcessIchiban.module.php,96342a6939a99452e676de2317f583af
+LinkedIn Profile Override,LinkedIn Profile Override,,site/modules/Ichiban/ProcessIchiban.module.php,2d1f288d8260afdec292bbbc374cdbcc
+Facebook Profile Override,Facebook Profile Override,,site/modules/Ichiban/ProcessIchiban.module.php,38692363c9c7c7a26995f4e77f0b58ef
+GitHub Profile Override,Nadjačavanje GitHub profila,,site/modules/Ichiban/ProcessIchiban.module.php,150ae62b6d950fbf17ab87f758e14ff9
+Instagram Profile Override,Instagram Profile Override,,site/modules/Ichiban/ProcessIchiban.module.php,68b8f7e5309a00d53f4e523995dbbc9a
 Brand,Marka,,site/modules/Ichiban/ProcessIchiban.module.php,1be6f9eb563f3bf85c78b4219bf09de9
 Brand identity and default visual assets for templates and metadata helpers.,Identitet robne marke i zadana vizualna sredstva za predloške i pomoćnike metapodataka.,,site/modules/Ichiban/ProcessIchiban.module.php,bffd3dac913f6e776adb2f20da95c8fd
 Contact,kontakt,,site/modules/Ichiban/ProcessIchiban.module.php,bbaff12800505b22a853e8b7f4eb6a22
@@ -585,11 +596,16 @@ Address,Adresa,,site/modules/Ichiban/ProcessIchiban.module.php,dd7bf230fde8d4836
 Social Profiles,Društveni profili,,site/modules/Ichiban/ProcessIchiban.module.php,51f3fc4fe44d76eebd8b865150ee1a6d
 Profile URLs used as sameAs fallbacks when dedicated SEO Identity social fields are empty.,URL-ovi profila koji se koriste kao zamjena sameAs kada su namjenska društvena polja SEO identiteta prazna.,,site/modules/Ichiban/ProcessIchiban.module.php,3a78545ec772c6443e9d47b349870832
 Notes,Bilješke,,site/modules/Ichiban/ProcessIchiban.module.php,f4c6f851b00d5518bf888815de279aba
+Schema Identity,Identitet sheme,,site/modules/Ichiban/ProcessIchiban.module.php,606a42e50d5da8782a727ce7d894926c
+These optional overrides feed the Organization/Person JSON-LD node. Leave them blank to reuse the Website values above.,Ova neobavezna nadjačavanja unose JSON-LD čvor organizacije/osobe. Ostavite ih praznima za ponovno korištenje gore navedenih vrijednosti web-mjesta.,,site/modules/Ichiban/ProcessIchiban.module.php,99c1b9f2011d51a7438b9c4b7ad36daa
 Custom Settings,Prilagođene postavke,,site/modules/Ichiban/ProcessIchiban.module.php,7c31e4534dad7ccfcd03b6a8a9852d88
 Custom JSON,Prilagođeni JSON,,site/modules/Ichiban/ProcessIchiban.module.php,880739752ffb163cd4d1c902158751a7
 Optional JSON object. Keys are available through siteSetting() together with the named fields above.,Izborni JSON objekt. Ključevi su dostupni putem siteSetting() zajedno s gore navedenim poljima.,,site/modules/Ichiban/ProcessIchiban.module.php,755234471465857a5f547b6b6c2c93b2
 "Example: {""support_hours"":""Mon-Fri 09:00-17:00""}","Primjer: {""support_hours"":""pon-pet 09:00-17:00""}",,site/modules/Ichiban/ProcessIchiban.module.php,5d1112d922fa0338531ed70ffc64fc59
 Template API,API za predloške,,site/modules/Ichiban/ProcessIchiban.module.php,116f012b6102066b51644624cc86f439
+"Use these helpers from templates, hooks, reports, or project code. Custom JSON keys are merged into siteSettings() and can be read with siteSetting().","Koristite ove pomoćnike iz predložaka, kuka, izvješća ili koda projekta. Prilagođeni JSON ključevi spojeni su u siteSettings() i mogu se čitati pomoću siteSetting().",,site/modules/Ichiban/ProcessIchiban.module.php,780215433d6f1c96a3fab77b30c6439d
+Named keys,Imenovani ključevi,,site/modules/Ichiban/ProcessIchiban.module.php,aec947bedabde02cb962be7bb5540d13
+Schema identity,Identitet sheme,,site/modules/Ichiban/ProcessIchiban.module.php,396dcef361289ef0cf0ed8b112eda1b7
 Score,rezultat,,site/modules/Ichiban/ProcessIchiban.module.php,5dd135d1bcfa7f63c3b7f25425c2a4a1
 Missing OG image,Nedostaje OG slika,,site/modules/Ichiban/ProcessIchiban.module.php,d0cc96dfee8f0a3d92cee158a0808ab3
 Title length outside target,Dužina naslova izvan cilja,,site/modules/Ichiban/ProcessIchiban.module.php,5adb0ea06c1f6fc3f2a96949597abc05

@@ -374,11 +374,42 @@ body.dark-theme {
   max-width: 1280px;
 }
 .ichiban-website-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: end;
   margin-bottom: 18px;
 }
 .ichiban-website-header p {
   margin: 0;
   color: var(--ichiban-muted);
+}
+.ichiban-website-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+.ichiban-api-reference p {
+  margin: 0 0 10px;
+}
+.ichiban-api-reference pre {
+  margin: 0 0 10px;
+  padding: 12px;
+  overflow: auto;
+  background: var(--ichiban-muted-surface);
+  border: 1px solid var(--ichiban-border);
+}
+.ichiban-api-reference code {
+  color: var(--ichiban-text);
+}
+@media (max-width: 959px) {
+  .ichiban-website-header {
+    grid-template-columns: 1fr;
+  }
+  .ichiban-website-actions {
+    justify-content: flex-start;
+  }
 }
 
 /* -------------------------------------------------------------------------

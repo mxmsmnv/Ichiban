@@ -1,7 +1,9 @@
 en,lt,description,file,hash
 Notes,Pastabos,,site/modules/Ichiban/Ichiban.module.php,f4c6f851b00d5518bf888815de279aba
-Identity,Tapatybė,,site/modules/Ichiban/Ichiban.module.php,c9c5c65fb4af9cf90eb99b3b84424189
-Used for Organization/Person JSON-LD and sameAs profile links. Leave fields empty if the identity node should stay minimal.,"Naudojama organizacijos / asmens JSON-LD ir „sameAs“ profilio nuorodoms. Palikite laukus tuščius, jei tapatybės mazgas turėtų likti minimalus.",,site/modules/Ichiban/Ichiban.module.php,cde2ad3993452d48164bac03fd7ff2ea
+Website & Identity,Svetainė ir tapatybė,,site/modules/Ichiban/Ichiban.module.php,5f31fa0e425153f2d3ecb9c2d7f21a2d
+Moved to Website,Perkelta į svetainę,,site/modules/Ichiban/Ichiban.module.php,4e16d56399d1c0e0725c995fa6414179
+"Brand, contact, social profile, and Schema.org identity settings now live in the Website tab so global site facts are edited in one place.","Prekės ženklo, kontaktų, socialinio profilio ir Schema.org tapatybės nustatymai dabar pateikiami skirtuke Svetainė, todėl pasauliniai svetainės faktai redaguojami vienoje vietoje.",,site/modules/Ichiban/Ichiban.module.php,b3c2c2c1cba8d3fb26eef538c43b65ea
+Open Website Settings,Atidarykite svetainės nustatymus,,site/modules/Ichiban/Ichiban.module.php,3e23181983fd8c730ed855214f9ccd9e
 Defaults,Numatytieji nustatymai,,site/modules/Ichiban/Ichiban.module.php,0aabf727ab0a83c5f5d078e8b18445e0
 "JSON defaults are resolved before page-level values. Use field:title, field:summary|truncate:160, custom text, or inherit.","Numatytieji JSON nustatymai nustatomi prieš puslapio lygio vertes. Naudokite lauką:pavadinimas, laukas:sutrauka|trumpinti:160, pasirinktinį tekstą arba paveldėkite.",,site/modules/Ichiban/Ichiban.module.php,33bdc3ae43a21121f7dce26d5197dd44
 Global defaults JSON,Pasauliniai numatytieji JSON,,site/modules/Ichiban/Ichiban.module.php,53e3b5312941b09573dc3f9186159072
@@ -176,7 +178,8 @@ Website,Svetainė,,site/modules/Ichiban/ProcessIchiban.module.php,15bbb9d0bbf25e
 Website Settings,Svetainės nustatymai,,site/modules/Ichiban/ProcessIchiban.module.php,214da1f24a3f988f8152522853ab3958
 Custom JSON must be a JSON object.,Tinkintas JSON turi būti JSON objektas.,,site/modules/Ichiban/ProcessIchiban.module.php,bd6488a993170d0cac1da9bc16da5168
 Website settings saved.,Svetainės nustatymai išsaugoti.,,site/modules/Ichiban/ProcessIchiban.module.php,6259f56ac984507cecd0ab486e893b46
-"Global website facts for templates, schema fallbacks, reports, and AI prompts. These settings do not replace page-level SEO fields.","Pasauliniai svetainių faktai, skirti šablonams, schemų atsargoms, ataskaitoms ir AI raginimams. Šie nustatymai nepakeičia puslapio lygio SEO laukų.",,site/modules/Ichiban/ProcessIchiban.module.php,727546d4b20c5f5004e7361d46f347b2
+"Global website facts for templates, schema fallbacks, reports, AI prompts, and reusable site templates. Page-level SEO fields still win for individual pages.","Pasauliniai svetainių faktai apie šablonus, atsargines schemas, ataskaitas, AI raginimus ir daugkartinio naudojimo svetainių šablonus. Puslapio lygio SEO laukai vis tiek laimi atskiriems puslapiams.",,site/modules/Ichiban/ProcessIchiban.module.php,c844981b90d8616bec677122669ff184
+SEO Settings,SEO nustatymai,,site/modules/Ichiban/ProcessIchiban.module.php,f4569fc50347e757f158413dff3a219a
 Save Website Settings,Išsaugokite svetainės nustatymus,,site/modules/Ichiban/ProcessIchiban.module.php,5e28d844ad6c2d60de633feb33ff0958
 Update installation is disabled in Ichiban settings.,Atnaujinimo diegimas išjungtas Ichiban nustatymuose.,,site/modules/Ichiban/ProcessIchiban.module.php,32663c4cf7725aa2904b1d8dcf9dd997
 Ichiban update installed.,Įdiegtas Ichiban naujinimas.,,site/modules/Ichiban/ProcessIchiban.module.php,f90a08d564b3b3804066a054b3d09358
@@ -539,7 +542,6 @@ Add property,Pridėti nuosavybę,,site/modules/Ichiban/ProcessIchiban.module.php
 "Use sources like field:title, field:summary|truncate:160, {legacy_field}, custom text, or empty string.","Naudokite šaltinius, pvz., field:title, field:summa|trumpinti:160, {legacy_field}, tinkintą tekstą arba tuščią eilutę.",,site/modules/Ichiban/ProcessIchiban.module.php,5d5850034cd862f5ad9ac01d88e8737a
 Choose property,Pasirinkite turtą,,site/modules/Ichiban/ProcessIchiban.module.php,832f6c69c10f614bfc3f39fca3fa79a3
 Settings,Nustatymai,,site/modules/Ichiban/ProcessIchiban.module.php,f4f70727dc34561dfde1a3c529b6205c
-SEO Settings,SEO nustatymai,,site/modules/Ichiban/ProcessIchiban.module.php,f4569fc50347e757f158413dff3a219a
 Settings saved.,Nustatymai išsaugoti.,,site/modules/Ichiban/ProcessIchiban.module.php,9a7e58ee13cb727cb7c4acc68f4cafe5
 IndexNow key file written to the site root.,"IndexNow rakto failas, įrašytas į svetainės šaknį.",,site/modules/Ichiban/ProcessIchiban.module.php,bbe9cac2bd7214dd42fa87c1d3310cca
 "IndexNow key saved, but the key file could not be written. Create {key}.txt in the site root with the key as file content.","IndexNow raktas išsaugotas, bet nepavyko įrašyti rakto failo. Sukurkite {key}.txt svetainės šaknyje naudodami raktą kaip failo turinį.",,site/modules/Ichiban/ProcessIchiban.module.php,6dae63cfd122c66d6dc9c80f8e71e0c3
@@ -576,6 +578,15 @@ LinkedIn Profile,LinkedIn profilis,,site/modules/Ichiban/ProcessIchiban.module.p
 YouTube Channel,„YouTube“ kanalas,,site/modules/Ichiban/ProcessIchiban.module.php,960078a66b70f750dc2ac99353dfc7aa
 GitHub Profile,„GitHub“ profilis,,site/modules/Ichiban/ProcessIchiban.module.php,2b379d4e18c7d3b72104978b9d568599
 X/Twitter Profile,X/Twitter profilis,,site/modules/Ichiban/ProcessIchiban.module.php,409f4d6d66f6efc8280043786d3fc79b
+Entity Type,Esybės tipas,,site/modules/Ichiban/ProcessIchiban.module.php,59a4e567964574e7e7298d0276c2d64f
+Schema Name Override,Schemos pavadinimo nepaisymas,,site/modules/Ichiban/ProcessIchiban.module.php,6db2e2d4b291a5ada458250047437926
+Schema URL Override,Schemos URL nepaisymas,,site/modules/Ichiban/ProcessIchiban.module.php,454f27b994645e2a9a8e78bfe073f2dd
+Schema Logo Override,Schemos logotipo nepaisymas,,site/modules/Ichiban/ProcessIchiban.module.php,daa2ac03b316ce357aecc21c22232974
+Twitter/X Profile Override,„Twitter“ / X profilio nepaisymas,,site/modules/Ichiban/ProcessIchiban.module.php,96342a6939a99452e676de2317f583af
+LinkedIn Profile Override,„LinkedIn“ profilio nepaisymas,,site/modules/Ichiban/ProcessIchiban.module.php,2d1f288d8260afdec292bbbc374cdbcc
+Facebook Profile Override,„Facebook“ profilio nepaisymas,,site/modules/Ichiban/ProcessIchiban.module.php,38692363c9c7c7a26995f4e77f0b58ef
+GitHub Profile Override,„GitHub“ profilio nepaisymas,,site/modules/Ichiban/ProcessIchiban.module.php,150ae62b6d950fbf17ab87f758e14ff9
+Instagram Profile Override,„Instagram“ profilio nepaisymas,,site/modules/Ichiban/ProcessIchiban.module.php,68b8f7e5309a00d53f4e523995dbbc9a
 Brand,Prekės ženklas,,site/modules/Ichiban/ProcessIchiban.module.php,1be6f9eb563f3bf85c78b4219bf09de9
 Brand identity and default visual assets for templates and metadata helpers.,Prekės ženklo tapatybė ir numatytieji vaizdiniai ištekliai šablonams ir metaduomenų pagalbininkams.,,site/modules/Ichiban/ProcessIchiban.module.php,bffd3dac913f6e776adb2f20da95c8fd
 Contact,Susisiekite,,site/modules/Ichiban/ProcessIchiban.module.php,bbaff12800505b22a853e8b7f4eb6a22
@@ -585,11 +596,16 @@ Address,Adresas,,site/modules/Ichiban/ProcessIchiban.module.php,dd7bf230fde8d483
 Social Profiles,Socialiniai profiliai,,site/modules/Ichiban/ProcessIchiban.module.php,51f3fc4fe44d76eebd8b865150ee1a6d
 Profile URLs used as sameAs fallbacks when dedicated SEO Identity social fields are empty.,"Profilio URL adresai naudojami kaip tie patysKaip atsarginiai adresai, kai specialūs SEO tapatybės socialiniai laukai yra tušti.",,site/modules/Ichiban/ProcessIchiban.module.php,3a78545ec772c6443e9d47b349870832
 Notes,Pastabos,,site/modules/Ichiban/ProcessIchiban.module.php,f4c6f851b00d5518bf888815de279aba
+Schema Identity,Schemos tapatybė,,site/modules/Ichiban/ProcessIchiban.module.php,606a42e50d5da8782a727ce7d894926c
+These optional overrides feed the Organization/Person JSON-LD node. Leave them blank to reuse the Website values above.,"Šie pasirenkami nepaisymai tiekia organizacijos / asmens JSON-LD mazgą. Palikite juos tuščius, kad pakartotinai naudotumėte anksčiau pateiktas svetainės vertes.",,site/modules/Ichiban/ProcessIchiban.module.php,99c1b9f2011d51a7438b9c4b7ad36daa
 Custom Settings,Pasirinktiniai nustatymai,,site/modules/Ichiban/ProcessIchiban.module.php,7c31e4534dad7ccfcd03b6a8a9852d88
 Custom JSON,Tinkintas JSON,,site/modules/Ichiban/ProcessIchiban.module.php,880739752ffb163cd4d1c902158751a7
 Optional JSON object. Keys are available through siteSetting() together with the named fields above.,Pasirenkamas JSON objektas. Raktai pasiekiami naudojant siteSetting() kartu su anksčiau nurodytais laukais.,,site/modules/Ichiban/ProcessIchiban.module.php,755234471465857a5f547b6b6c2c93b2
 "Example: {""support_hours"":""Mon-Fri 09:00-17:00""}","Pavyzdys: {""support_hours"":""Pr-Penktadienis 09:00-17:00""}",,site/modules/Ichiban/ProcessIchiban.module.php,5d1112d922fa0338531ed70ffc64fc59
 Template API,Šablono API,,site/modules/Ichiban/ProcessIchiban.module.php,116f012b6102066b51644624cc86f439
+"Use these helpers from templates, hooks, reports, or project code. Custom JSON keys are merged into siteSettings() and can be read with siteSetting().","Naudokite šiuos pagalbininkus iš šablonų, kabliukų, ataskaitų ar projekto kodo. Tinkinti JSON raktai sujungiami į siteSettings() ir gali būti nuskaitomi naudojant siteSetting().",,site/modules/Ichiban/ProcessIchiban.module.php,780215433d6f1c96a3fab77b30c6439d
+Named keys,Vardiniai raktai,,site/modules/Ichiban/ProcessIchiban.module.php,aec947bedabde02cb962be7bb5540d13
+Schema identity,Schemos tapatybė,,site/modules/Ichiban/ProcessIchiban.module.php,396dcef361289ef0cf0ed8b112eda1b7
 Score,Rezultatas,,site/modules/Ichiban/ProcessIchiban.module.php,5dd135d1bcfa7f63c3b7f25425c2a4a1
 Missing OG image,Trūksta OG vaizdo,,site/modules/Ichiban/ProcessIchiban.module.php,d0cc96dfee8f0a3d92cee158a0808ab3
 Title length outside target,Pavadinimo ilgis už tikslo ribų,,site/modules/Ichiban/ProcessIchiban.module.php,5adb0ea06c1f6fc3f2a96949597abc05

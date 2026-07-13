@@ -1,7 +1,9 @@
 en,hu,description,file,hash
 Notes,Megjegyzések,,site/modules/Ichiban/Ichiban.module.php,f4c6f851b00d5518bf888815de279aba
-Identity,Identitás,,site/modules/Ichiban/Ichiban.module.php,c9c5c65fb4af9cf90eb99b3b84424189
-Used for Organization/Person JSON-LD and sameAs profile links. Leave fields empty if the identity node should stay minimal.,"A szervezet/személy JSON-LD és a sameAs profilhivatkozásokhoz használható. Hagyja üresen a mezőket, ha az azonosító csomópont minimális marad.",,site/modules/Ichiban/Ichiban.module.php,cde2ad3993452d48164bac03fd7ff2ea
+Website & Identity,Weboldal és személyazonosság,,site/modules/Ichiban/Ichiban.module.php,5f31fa0e425153f2d3ecb9c2d7f21a2d
+Moved to Website,Áthelyezve a Webhelyre,,site/modules/Ichiban/Ichiban.module.php,4e16d56399d1c0e0725c995fa6414179
+"Brand, contact, social profile, and Schema.org identity settings now live in the Website tab so global site facts are edited in one place.","A márka, kapcsolattartó, közösségi profil és a Schema.org identitás beállításai mostantól a Webhely lapon jelennek meg, így a webhely globális tényei egy helyen szerkeszthetők.",,site/modules/Ichiban/Ichiban.module.php,b3c2c2c1cba8d3fb26eef538c43b65ea
+Open Website Settings,Nyissa meg a Webhely beállításait,,site/modules/Ichiban/Ichiban.module.php,3e23181983fd8c730ed855214f9ccd9e
 Defaults,Alapértelmezések,,site/modules/Ichiban/Ichiban.module.php,0aabf727ab0a83c5f5d078e8b18445e0
 "JSON defaults are resolved before page-level values. Use field:title, field:summary|truncate:160, custom text, or inherit.","A JSON alapértelmezései az oldalszintű értékek előtt kerülnek feloldásra. Használja a field:title, field:summary|truncate:160, egyéni szöveget vagy az öröklést.",,site/modules/Ichiban/Ichiban.module.php,33bdc3ae43a21121f7dce26d5197dd44
 Global defaults JSON,Globális alapértelmezett JSON,,site/modules/Ichiban/Ichiban.module.php,53e3b5312941b09573dc3f9186159072
@@ -176,7 +178,8 @@ Website,Weboldal,,site/modules/Ichiban/ProcessIchiban.module.php,15bbb9d0bbf25e8
 Website Settings,Webhely beállításai,,site/modules/Ichiban/ProcessIchiban.module.php,214da1f24a3f988f8152522853ab3958
 Custom JSON must be a JSON object.,Az egyéni JSON-nak JSON-objektumnak kell lennie.,,site/modules/Ichiban/ProcessIchiban.module.php,bd6488a993170d0cac1da9bc16da5168
 Website settings saved.,A webhely beállításai mentve.,,site/modules/Ichiban/ProcessIchiban.module.php,6259f56ac984507cecd0ab486e893b46
-"Global website facts for templates, schema fallbacks, reports, and AI prompts. These settings do not replace page-level SEO fields.","Globális webhely-tények a sablonokhoz, a tartalék sémakhoz, a jelentésekhez és az AI-értesítésekhez. Ezek a beállítások nem helyettesítik az oldalszintű keresőoptimalizálási mezőket.",,site/modules/Ichiban/ProcessIchiban.module.php,727546d4b20c5f5004e7361d46f347b2
+"Global website facts for templates, schema fallbacks, reports, AI prompts, and reusable site templates. Page-level SEO fields still win for individual pages.","Globális webhely-tények sablonokhoz, tartalék sémakhoz, jelentésekhez, mesterséges intelligencia-utasításokhoz és újrafelhasználható webhelysablonokhoz. Az egyes oldalak esetében továbbra is az oldalszintű SEO mezők nyernek.",,site/modules/Ichiban/ProcessIchiban.module.php,c844981b90d8616bec677122669ff184
+SEO Settings,SEO beállítások,,site/modules/Ichiban/ProcessIchiban.module.php,f4569fc50347e757f158413dff3a219a
 Save Website Settings,Mentse el a Webhely beállításait,,site/modules/Ichiban/ProcessIchiban.module.php,5e28d844ad6c2d60de633feb33ff0958
 Update installation is disabled in Ichiban settings.,A frissítés telepítése le van tiltva az Ichiban beállításaiban.,,site/modules/Ichiban/ProcessIchiban.module.php,32663c4cf7725aa2904b1d8dcf9dd997
 Ichiban update installed.,Ichiban frissítés telepítve.,,site/modules/Ichiban/ProcessIchiban.module.php,f90a08d564b3b3804066a054b3d09358
@@ -539,7 +542,6 @@ Add property,Tulajdon hozzáadása,,site/modules/Ichiban/ProcessIchiban.module.p
 "Use sources like field:title, field:summary|truncate:160, {legacy_field}, custom text, or empty string.","Használjon olyan forrásokat, mint a field:title, field:summary|truncate:160, {legacy_field}, egyéni szöveg vagy üres karakterlánc.",,site/modules/Ichiban/ProcessIchiban.module.php,5d5850034cd862f5ad9ac01d88e8737a
 Choose property,Válasszon ingatlant,,site/modules/Ichiban/ProcessIchiban.module.php,832f6c69c10f614bfc3f39fca3fa79a3
 Settings,Beállítások elemre,,site/modules/Ichiban/ProcessIchiban.module.php,f4f70727dc34561dfde1a3c529b6205c
-SEO Settings,SEO beállítások,,site/modules/Ichiban/ProcessIchiban.module.php,f4569fc50347e757f158413dff3a219a
 Settings saved.,A beállítások mentve.,,site/modules/Ichiban/ProcessIchiban.module.php,9a7e58ee13cb727cb7c4acc68f4cafe5
 IndexNow key file written to the site root.,A webhely gyökérkönyvtárába írt IndexNow kulcsfájl.,,site/modules/Ichiban/ProcessIchiban.module.php,bbe9cac2bd7214dd42fa87c1d3310cca
 "IndexNow key saved, but the key file could not be written. Create {key}.txt in the site root with the key as file content.","A IndexNow kulcs mentve, de a kulcsfájlt nem lehetett írni. Fájltartalomként hozza létre a {key}.txt fájlt a webhely gyökérkönyvtárában a kulccsal.",,site/modules/Ichiban/ProcessIchiban.module.php,6dae63cfd122c66d6dc9c80f8e71e0c3
@@ -576,6 +578,15 @@ LinkedIn Profile,LinkedIn profil,,site/modules/Ichiban/ProcessIchiban.module.php
 YouTube Channel,YouTube csatorna,,site/modules/Ichiban/ProcessIchiban.module.php,960078a66b70f750dc2ac99353dfc7aa
 GitHub Profile,GitHub profil,,site/modules/Ichiban/ProcessIchiban.module.php,2b379d4e18c7d3b72104978b9d568599
 X/Twitter Profile,X/Twitter profil,,site/modules/Ichiban/ProcessIchiban.module.php,409f4d6d66f6efc8280043786d3fc79b
+Entity Type,Entitás típusa,,site/modules/Ichiban/ProcessIchiban.module.php,59a4e567964574e7e7298d0276c2d64f
+Schema Name Override,Sémanév felülírása,,site/modules/Ichiban/ProcessIchiban.module.php,6db2e2d4b291a5ada458250047437926
+Schema URL Override,Séma URL felülbírálása,,site/modules/Ichiban/ProcessIchiban.module.php,454f27b994645e2a9a8e78bfe073f2dd
+Schema Logo Override,Séma logó felülbírálása,,site/modules/Ichiban/ProcessIchiban.module.php,daa2ac03b316ce357aecc21c22232974
+Twitter/X Profile Override,Twitter/X profil felülbírálása,,site/modules/Ichiban/ProcessIchiban.module.php,96342a6939a99452e676de2317f583af
+LinkedIn Profile Override,LinkedIn-profil felülbírálása,,site/modules/Ichiban/ProcessIchiban.module.php,2d1f288d8260afdec292bbbc374cdbcc
+Facebook Profile Override,Facebook-profil felülbírálása,,site/modules/Ichiban/ProcessIchiban.module.php,38692363c9c7c7a26995f4e77f0b58ef
+GitHub Profile Override,GitHub-profil felülbírálása,,site/modules/Ichiban/ProcessIchiban.module.php,150ae62b6d950fbf17ab87f758e14ff9
+Instagram Profile Override,Instagram-profil felülbírálása,,site/modules/Ichiban/ProcessIchiban.module.php,68b8f7e5309a00d53f4e523995dbbc9a
 Brand,Márka,,site/modules/Ichiban/ProcessIchiban.module.php,1be6f9eb563f3bf85c78b4219bf09de9
 Brand identity and default visual assets for templates and metadata helpers.,Márkaidentitás és alapértelmezett vizuális eszközök sablonokhoz és metaadat-segédekhez.,,site/modules/Ichiban/ProcessIchiban.module.php,bffd3dac913f6e776adb2f20da95c8fd
 Contact,Kapcsolatfelvétel,,site/modules/Ichiban/ProcessIchiban.module.php,bbaff12800505b22a853e8b7f4eb6a22
@@ -585,11 +596,16 @@ Address,Cím,,site/modules/Ichiban/ProcessIchiban.module.php,dd7bf230fde8d483691
 Social Profiles,Közösségi profilok,,site/modules/Ichiban/ProcessIchiban.module.php,51f3fc4fe44d76eebd8b865150ee1a6d
 Profile URLs used as sameAs fallbacks when dedicated SEO Identity social fields are empty.,"A profil URL-jei azonosként használhatók tartalékként, amikor a keresőoptimalizálási azonosító közösségi mezői üresek.",,site/modules/Ichiban/ProcessIchiban.module.php,3a78545ec772c6443e9d47b349870832
 Notes,Megjegyzések,,site/modules/Ichiban/ProcessIchiban.module.php,f4c6f851b00d5518bf888815de279aba
+Schema Identity,Sémaazonosító,,site/modules/Ichiban/ProcessIchiban.module.php,606a42e50d5da8782a727ce7d894926c
+These optional overrides feed the Organization/Person JSON-LD node. Leave them blank to reuse the Website values above.,Ezek az opcionális felülírások a szervezet/személy JSON-LD csomópontot táplálják. Hagyja üresen a fenti webhelyértékek újrafelhasználásához.,,site/modules/Ichiban/ProcessIchiban.module.php,99c1b9f2011d51a7438b9c4b7ad36daa
 Custom Settings,Egyéni beállítások,,site/modules/Ichiban/ProcessIchiban.module.php,7c31e4534dad7ccfcd03b6a8a9852d88
 Custom JSON,Egyéni JSON,,site/modules/Ichiban/ProcessIchiban.module.php,880739752ffb163cd4d1c902158751a7
 Optional JSON object. Keys are available through siteSetting() together with the named fields above.,"Opcionális JSON objektum. A kulcsok a siteSetting()-en keresztül érhetők el, a fenti mezőkkel együtt.",,site/modules/Ichiban/ProcessIchiban.module.php,755234471465857a5f547b6b6c2c93b2
 "Example: {""support_hours"":""Mon-Fri 09:00-17:00""}","Példa: {""support_hours"":""Hétfő-Péntek 09:00-17:00""}",,site/modules/Ichiban/ProcessIchiban.module.php,5d1112d922fa0338531ed70ffc64fc59
 Template API,Sablon API,,site/modules/Ichiban/ProcessIchiban.module.php,116f012b6102066b51644624cc86f439
+"Use these helpers from templates, hooks, reports, or project code. Custom JSON keys are merged into siteSettings() and can be read with siteSetting().","Használja ezeket a segítőket sablonokból, hookokból, jelentésekből vagy projektkódokból. Az egyéni JSON-kulcsok a siteSettings()-be egyesülnek, és a siteSetting() segítségével olvashatók.",,site/modules/Ichiban/ProcessIchiban.module.php,780215433d6f1c96a3fab77b30c6439d
+Named keys,Elnevezett kulcsok,,site/modules/Ichiban/ProcessIchiban.module.php,aec947bedabde02cb962be7bb5540d13
+Schema identity,Sémaazonosság,,site/modules/Ichiban/ProcessIchiban.module.php,396dcef361289ef0cf0ed8b112eda1b7
 Score,Pontszám,,site/modules/Ichiban/ProcessIchiban.module.php,5dd135d1bcfa7f63c3b7f25425c2a4a1
 Missing OG image,Hiányzik az OG kép,,site/modules/Ichiban/ProcessIchiban.module.php,d0cc96dfee8f0a3d92cee158a0808ab3
 Title length outside target,A cím hossza a célon kívül,,site/modules/Ichiban/ProcessIchiban.module.php,5adb0ea06c1f6fc3f2a96949597abc05

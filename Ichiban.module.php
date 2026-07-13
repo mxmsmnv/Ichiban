@@ -973,32 +973,17 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 
 		/** @var InputfieldFieldset $fs */
 		$fs = $modules->get('InputfieldFieldset');
-		$fs->label = __('Identity');
-		$fs->collapsed = $collapsedFor(['entity_name', 'entity_url', 'entity_logo', 'social_twitter', 'social_linkedin', 'social_facebook', 'social_github', 'social_instagram']);
-		$addNotes($fs, __('Used for Organization/Person JSON-LD and sameAs profile links. Leave fields empty if the identity node should stay minimal.'));
-
-		foreach ([
-			['entity_type', 'Entity Type', 'InputfieldSelect', ['Organization' => 'Organization', 'Person' => 'Person'], 'Organization', 33],
-			['entity_name', 'Name', 'InputfieldText', null, '', 33],
-			['entity_url',  'URL',  'InputfieldURL',  null, '', 34],
-			['entity_logo', 'Logo URL', 'InputfieldURL', null, '', 50],
-			['social_twitter', 'Twitter/X Profile URL', 'InputfieldURL', null, '', 50],
-			['social_linkedin', 'LinkedIn Profile URL', 'InputfieldURL', null, '', 50],
-			['social_facebook', 'Facebook Profile URL', 'InputfieldURL', null, '', 50],
-			['social_github', 'GitHub Profile URL', 'InputfieldURL', null, '', 50],
-			['social_instagram', 'Instagram Profile URL', 'InputfieldURL', null, '', 50],
-		] as [$name, $label, $type, $options, $default, $width]) {
-			/** @var Inputfield $f */
-			$f = $modules->get($type);
-			$f->name  = $name;
-			$f->label = $label;
-			$f->value = $data[$name] ?? $default;
-			$f->columnWidth = $width;
-			if ($options) {
-				foreach ($options as $k => $v) $f->addOption($k, $v);
-			}
-			$fs->add($f);
-		}
+		$fs->label = __('Website & Identity');
+		$fs->collapsed = Inputfield::collapsedNo;
+		$websiteUrl = self::adminPageUrl(false, 'website/');
+		$f = $modules->get('InputfieldMarkup');
+		$f->label = __('Moved to Website');
+		$f->value = "<div class='uk-alert uk-alert-primary uk-margin-small'>"
+			. __('Brand, contact, social profile, and Schema.org identity settings now live in the Website tab so global site facts are edited in one place.')
+			. "<br><a class='uk-button uk-button-default uk-button-small uk-margin-small-top' href='" . wire('sanitizer')->entities($websiteUrl) . "'>" . __('Open Website Settings') . "</a>"
+			. "</div>";
+		$f->columnWidth = 100;
+		$fs->add($f);
 		$wrapper->add($fs);
 
 		$fsDefaults = $modules->get('InputfieldFieldset');

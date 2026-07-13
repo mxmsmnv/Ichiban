@@ -150,6 +150,7 @@ class ProcessIchiban extends Process {
 		$this->headline(__('Website Settings'));
 
 		$fields = $this->websiteSettingFields();
+		$identityFields = $this->websiteIdentityFields();
 		$settings = $this->ichiban->siteSettings();
 		$san = $this->wire('sanitizer');
 
@@ -180,14 +181,27 @@ class ProcessIchiban extends Process {
 			}
 			$config = $this->wire('modules')->getModuleConfigData('Ichiban');
 			$config['website_settings'] = $save;
+			foreach ($identityFields as $name => $meta) {
+				$value = trim((string)$this->wire('input')->post($name));
+				$configKey = $meta['config_key'] ?? $name;
+				if (($meta['type'] ?? '') === 'url') {
+					$value = $value === '' ? '' : $san->url($value);
+				} elseif ($configKey === 'entity_type') {
+					$value = in_array($value, ['Organization', 'Person'], true) ? $value : 'Organization';
+				} else {
+					$value = $san->text($value);
+				}
+				$config[$configKey] = $value;
+			}
 			$this->wire('modules')->saveModuleConfigData('Ichiban', $config);
 			$this->wire('session')->message(__('Website settings saved.'));
 			$this->wire('session')->redirect($this->adminUrl('website/'));
 		}
 
 		$out = $this->renderAdminNav('website') . "<div class='ichiban-website'>\n";
-		$out .= "<div class='ichiban-website-header'><p>" . __('Global website facts for templates, schema fallbacks, reports, and AI prompts. These settings do not replace page-level SEO fields.') . "</p></div>\n";
-		$form = $this->buildWebsiteSettingsForm($settings);
+		$out .= "<div class='ichiban-website-header'><div><p>" . __('Global website facts for templates, schema fallbacks, reports, AI prompts, and reusable site templates. Page-level SEO fields still win for individual pages.') . "</p></div>"
+			. "<div class='ichiban-website-actions'><a class='uk-button uk-button-default' href='" . $this->adminUrl('settings/') . "'>" . __('SEO Settings') . "</a></div></div>\n";
+		$form = $this->buildWebsiteSettingsForm($settings, $this->websiteIdentityValues());
 		$form->prepend($this->wire('modules')->get('InputfieldHidden')->attr('name', '_ichiban_website_settings')->attr('value', '1'));
 		$out .= "<form method='post' class='ichiban-website-form'>" . $this->wire('session')->CSRF->renderInput() . $form->render()
 			. "<p><button type='submit' class='uk-button uk-button-primary'>" . __('Save Website Settings') . "</button></p></form></div>\n";
@@ -2537,19 +2551,19 @@ class ProcessIchiban extends Process {
 
 	protected function websiteSettingFields(): array {
 		return [
-			'brand_name' => ['label' => __('Brand Name'), 'type' => 'text'],
-			'legal_name' => ['label' => __('Legal Name'), 'type' => 'text'],
-			'tagline' => ['label' => __('Tagline'), 'type' => 'text'],
-			'site_url' => ['label' => __('Site URL'), 'type' => 'url'],
-			'logo_url' => ['label' => __('Logo URL'), 'type' => 'url'],
-			'default_og_image' => ['label' => __('Default Open Graph Image'), 'type' => 'url'],
-			'email' => ['label' => __('Email'), 'type' => 'email'],
-			'phone' => ['label' => __('Phone'), 'type' => 'text'],
+			'brand_name' => ['label' => __('Brand Name'), 'type' => 'text', 'description' => __('Short public name used in templates, title formats, and fallback schema output.')],
+			'legal_name' => ['label' => __('Legal Name'), 'type' => 'text', 'description' => __('Registered organization or person name when it differs from the public brand.')],
+			'tagline' => ['label' => __('Tagline'), 'type' => 'text', 'description' => __('One-line positioning statement for footers, snippets, prompts, or report context.')],
+			'site_url' => ['label' => __('Site URL'), 'type' => 'url', 'description' => __('Canonical public site root. Leave blank to use ProcessWire HTTP root.')],
+			'logo_url' => ['label' => __('Logo URL'), 'type' => 'url', 'description' => __('Public logo URL for templates and Schema.org fallback identity.')],
+			'default_og_image' => ['label' => __('Default Open Graph Image'), 'type' => 'url', 'description' => __('Fallback share image for templates or hooks when a page has no specific image.')],
+			'email' => ['label' => __('Email'), 'type' => 'email', 'description' => __('Public contact email, if one should be available to templates.')],
+			'phone' => ['label' => __('Phone'), 'type' => 'text', 'description' => __('Public contact phone in display format.')],
 			'street_address' => ['label' => __('Street Address'), 'type' => 'text'],
 			'postal_code' => ['label' => __('Postal Code'), 'type' => 'text'],
-			'locality' => ['label' => __('Locality'), 'type' => 'text'],
-			'region' => ['label' => __('Region'), 'type' => 'text'],
-			'country' => ['label' => __('Country'), 'type' => 'text'],
+			'locality' => ['label' => __('Locality'), 'type' => 'text', 'description' => __('City, town, or locality.')],
+			'region' => ['label' => __('Region'), 'type' => 'text', 'description' => __('State, county, province, or region.')],
+			'country' => ['label' => __('Country'), 'type' => 'text', 'description' => __('Country name or ISO code, depending on your template needs.')],
 			'social_facebook' => ['label' => __('Facebook Profile'), 'type' => 'url'],
 			'social_instagram' => ['label' => __('Instagram Profile'), 'type' => 'url'],
 			'social_linkedin' => ['label' => __('LinkedIn Profile'), 'type' => 'url'],
@@ -2559,7 +2573,30 @@ class ProcessIchiban extends Process {
 		];
 	}
 
-	protected function buildWebsiteSettingsForm(array $settings): InputfieldWrapper {
+	protected function websiteIdentityFields(): array {
+		return [
+			'entity_type' => ['label' => __('Entity Type'), 'type' => 'select', 'options' => ['Organization' => 'Organization', 'Person' => 'Person'], 'description' => __('Schema.org identity type used for the site-level publisher node.')],
+			'entity_name' => ['label' => __('Schema Name Override'), 'type' => 'text', 'description' => __('Optional. Leave blank to use Website Brand Name or Legal Name.')],
+			'entity_url' => ['label' => __('Schema URL Override'), 'type' => 'url', 'description' => __('Optional. Leave blank to use Website Site URL.')],
+			'entity_logo' => ['label' => __('Schema Logo Override'), 'type' => 'url', 'description' => __('Optional. Leave blank to use Website Logo URL.')],
+			'social_twitter' => ['label' => __('Twitter/X Profile Override'), 'type' => 'url'],
+			'identity_social_linkedin' => ['label' => __('LinkedIn Profile Override'), 'type' => 'url', 'config_key' => 'social_linkedin'],
+			'identity_social_facebook' => ['label' => __('Facebook Profile Override'), 'type' => 'url', 'config_key' => 'social_facebook'],
+			'identity_social_github' => ['label' => __('GitHub Profile Override'), 'type' => 'url', 'config_key' => 'social_github'],
+			'identity_social_instagram' => ['label' => __('Instagram Profile Override'), 'type' => 'url', 'config_key' => 'social_instagram'],
+		];
+	}
+
+	protected function websiteIdentityValues(): array {
+		$values = [];
+		foreach ($this->websiteIdentityFields() as $name => $meta) {
+			$values[$name] = $this->ichiban->get($meta['config_key'] ?? $name);
+		}
+		if (!$values['entity_type']) $values['entity_type'] = 'Organization';
+		return $values;
+	}
+
+	protected function buildWebsiteSettingsForm(array $settings, array $identity): InputfieldWrapper {
 		$modules = $this->wire('modules');
 		$wrapper = new InputfieldWrapper();
 		$fields = $this->websiteSettingFields();
@@ -2620,6 +2657,29 @@ class ProcessIchiban extends Process {
 			$wrapper->add($fs);
 		}
 
+		$fsIdentity = $modules->get('InputfieldFieldset');
+		$fsIdentity->label = __('Schema Identity');
+		$fsIdentity->collapsed = Inputfield::collapsedYes;
+		$note = $modules->get('InputfieldMarkup');
+		$note->label = __('Notes');
+		$note->value = "<div class='uk-alert uk-alert-primary uk-margin-small'>" . __('These optional overrides feed the Organization/Person JSON-LD node. Leave them blank to reuse the Website values above.') . "</div>";
+		$note->columnWidth = 100;
+		$fsIdentity->add($note);
+		foreach ([
+			'entity_type' => 33,
+			'entity_name' => 33,
+			'entity_url' => 34,
+			'entity_logo' => 50,
+			'social_twitter' => 50,
+			'identity_social_linkedin' => 50,
+			'identity_social_facebook' => 50,
+			'identity_social_github' => 50,
+			'identity_social_instagram' => 50,
+		] as $name => $width) {
+			$fsIdentity->add($this->buildWebsiteInputfield($name, $this->websiteIdentityFields()[$name], (string)($identity[$name] ?? ''), (int)$width));
+		}
+		$wrapper->add($fsIdentity);
+
 		$fsCustom = $modules->get('InputfieldFieldset');
 		$fsCustom->label = __('Custom Settings');
 		$fsCustom->collapsed = empty($settings['custom_json']) ? Inputfield::collapsedYes : Inputfield::collapsedNo;
@@ -2636,7 +2696,7 @@ class ProcessIchiban extends Process {
 
 		$api = $modules->get('InputfieldMarkup');
 		$api->label = __('Template API');
-		$api->value = "<div class='uk-alert uk-alert-primary'><code>\$modules-&gt;get('Ichiban')-&gt;siteSetting('brand_name')</code></div>";
+		$api->value = $this->renderWebsiteApiReference();
 		$api->columnWidth = 100;
 		$wrapper->add($api);
 
@@ -2644,14 +2704,54 @@ class ProcessIchiban extends Process {
 	}
 
 	protected function buildWebsiteInputfield(string $name, array $meta, string $value, int $width): Inputfield {
-		$type = ($meta['type'] ?? 'text') === 'url' ? 'InputfieldURL' : 'InputfieldText';
+		$type = ($meta['type'] ?? 'text') === 'url' ? 'InputfieldURL' : (($meta['type'] ?? 'text') === 'select' ? 'InputfieldSelect' : 'InputfieldText');
 		$f = $this->wire('modules')->get($type);
 		$f->name = $name;
 		$f->label = $meta['label'];
 		$f->value = $value;
 		$f->columnWidth = $width;
+		if (!empty($meta['description'])) $f->description = $meta['description'];
+		if (!empty($meta['notes'])) $f->notes = $meta['notes'];
+		if (!empty($meta['options']) && is_callable([$f, 'addOption'])) {
+			foreach ($meta['options'] as $optionValue => $optionLabel) $f->addOption($optionValue, $optionLabel);
+		}
 		if (($meta['type'] ?? '') === 'email') $f->attr('type', 'email');
 		return $f;
+	}
+
+	protected function renderWebsiteApiReference(): string {
+		$code = "\$ichiban = \$modules->get('Ichiban');\n"
+			. "\$settings = \$ichiban->siteSettings();\n"
+			. "\$brand = \$ichiban->siteSetting('brand_name', \$config->httpHost);\n"
+			. "\$logo = \$ichiban->siteSetting('logo_url');\n"
+			. "\$hours = \$ichiban->siteSetting('support_hours');\n";
+		$keys = implode(', ', [
+			'brand_name',
+			'legal_name',
+			'tagline',
+			'site_url',
+			'logo_url',
+			'default_og_image',
+			'email',
+			'phone',
+			'street_address',
+			'postal_code',
+			'locality',
+			'region',
+			'country',
+			'social_facebook',
+			'social_instagram',
+			'social_linkedin',
+			'social_youtube',
+			'social_github',
+			'social_x',
+		]);
+		return "<div class='ichiban-api-reference'>"
+			. "<p>" . __('Use these helpers from templates, hooks, reports, or project code. Custom JSON keys are merged into siteSettings() and can be read with siteSetting().') . "</p>"
+			. "<pre><code>" . $this->wire('sanitizer')->entities($code) . "</code></pre>"
+			. "<p><strong>" . __('Named keys') . ":</strong> <code>" . $this->wire('sanitizer')->entities($keys) . "</code></p>"
+			. "<p><strong>" . __('Schema identity') . ":</strong> " . __('Website values are used as fallbacks for Organization/Person JSON-LD. The Schema Identity fieldset only overrides those fallbacks when needed.') . "</p>"
+			. "</div>";
 	}
 
 	protected function renderSettingsIcon(): string {

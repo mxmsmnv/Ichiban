@@ -1,7 +1,9 @@
 en,sk,description,file,hash
 Notes,Poznámky,,site/modules/Ichiban/Ichiban.module.php,f4c6f851b00d5518bf888815de279aba
-Identity,Identita,,site/modules/Ichiban/Ichiban.module.php,c9c5c65fb4af9cf90eb99b3b84424189
-Used for Organization/Person JSON-LD and sameAs profile links. Leave fields empty if the identity node should stay minimal.,"Používa sa pre odkazy na profil organizácie/osoby JSON-LD a sameAs. Ak má byť uzol identity minimálny, ponechajte polia prázdne.",,site/modules/Ichiban/Ichiban.module.php,cde2ad3993452d48164bac03fd7ff2ea
+Website & Identity,Webstránka a identita,,site/modules/Ichiban/Ichiban.module.php,5f31fa0e425153f2d3ecb9c2d7f21a2d
+Moved to Website,Presunuté na webovú stránku,,site/modules/Ichiban/Ichiban.module.php,4e16d56399d1c0e0725c995fa6414179
+"Brand, contact, social profile, and Schema.org identity settings now live in the Website tab so global site facts are edited in one place.","Nastavenia značky, kontaktu, sociálneho profilu a identity Schema.org sa teraz nachádzajú na karte Webové stránky, takže globálne fakty o webe sa upravujú na jednom mieste.",,site/modules/Ichiban/Ichiban.module.php,b3c2c2c1cba8d3fb26eef538c43b65ea
+Open Website Settings,Otvorte Nastavenia webových stránok,,site/modules/Ichiban/Ichiban.module.php,3e23181983fd8c730ed855214f9ccd9e
 Defaults,Predvolené,,site/modules/Ichiban/Ichiban.module.php,0aabf727ab0a83c5f5d078e8b18445e0
 "JSON defaults are resolved before page-level values. Use field:title, field:summary|truncate:160, custom text, or inherit.","Predvolené hodnoty JSON sú vyriešené pred hodnotami na úrovni stránky. Použite pole:názov, pole:súhrn|skrátiť:160, vlastný text alebo zdediť.",,site/modules/Ichiban/Ichiban.module.php,33bdc3ae43a21121f7dce26d5197dd44
 Global defaults JSON,Globálne predvolené hodnoty JSON,,site/modules/Ichiban/Ichiban.module.php,53e3b5312941b09573dc3f9186159072
@@ -176,7 +178,8 @@ Website,webové stránky,,site/modules/Ichiban/ProcessIchiban.module.php,15bbb9d
 Website Settings,Nastavenia webových stránok,,site/modules/Ichiban/ProcessIchiban.module.php,214da1f24a3f988f8152522853ab3958
 Custom JSON must be a JSON object.,Vlastný JSON musí byť objekt JSON.,,site/modules/Ichiban/ProcessIchiban.module.php,bd6488a993170d0cac1da9bc16da5168
 Website settings saved.,Nastavenia webových stránok boli uložené.,,site/modules/Ichiban/ProcessIchiban.module.php,6259f56ac984507cecd0ab486e893b46
-"Global website facts for templates, schema fallbacks, reports, and AI prompts. These settings do not replace page-level SEO fields.","Globálne fakty o webových stránkach pre šablóny, záložné schémy, zostavy a výzvy AI. Tieto nastavenia nenahrádzajú polia SEO na úrovni stránky.",,site/modules/Ichiban/ProcessIchiban.module.php,727546d4b20c5f5004e7361d46f347b2
+"Global website facts for templates, schema fallbacks, reports, AI prompts, and reusable site templates. Page-level SEO fields still win for individual pages.","Globálne fakty o webových stránkach pre šablóny, záložné schémy, zostavy, výzvy AI a opakovane použiteľné šablóny stránok. Pre jednotlivé stránky stále vyhrávajú SEO polia na úrovni stránky.",,site/modules/Ichiban/ProcessIchiban.module.php,c844981b90d8616bec677122669ff184
+SEO Settings,Nastavenia SEO,,site/modules/Ichiban/ProcessIchiban.module.php,f4569fc50347e757f158413dff3a219a
 Save Website Settings,Uložiť nastavenia webových stránok,,site/modules/Ichiban/ProcessIchiban.module.php,5e28d844ad6c2d60de633feb33ff0958
 Update installation is disabled in Ichiban settings.,Inštalácia aktualizácie je zakázaná v nastaveniach Ichibanu.,,site/modules/Ichiban/ProcessIchiban.module.php,32663c4cf7725aa2904b1d8dcf9dd997
 Ichiban update installed.,Ichiban aktualizácia nainštalovaná.,,site/modules/Ichiban/ProcessIchiban.module.php,f90a08d564b3b3804066a054b3d09358
@@ -539,7 +542,6 @@ Add property,Pridať vlastnosť,,site/modules/Ichiban/ProcessIchiban.module.php,
 "Use sources like field:title, field:summary|truncate:160, {legacy_field}, custom text, or empty string.","Použite zdroje ako field:title, field:summary|truncate:160, {legacy_field}, vlastný text alebo prázdny reťazec.",,site/modules/Ichiban/ProcessIchiban.module.php,5d5850034cd862f5ad9ac01d88e8737a
 Choose property,Vyberte nehnuteľnosť,,site/modules/Ichiban/ProcessIchiban.module.php,832f6c69c10f614bfc3f39fca3fa79a3
 Settings,Nastavenia,,site/modules/Ichiban/ProcessIchiban.module.php,f4f70727dc34561dfde1a3c529b6205c
-SEO Settings,Nastavenia SEO,,site/modules/Ichiban/ProcessIchiban.module.php,f4569fc50347e757f158413dff3a219a
 Settings saved.,Nastavenia boli uložené.,,site/modules/Ichiban/ProcessIchiban.module.php,9a7e58ee13cb727cb7c4acc68f4cafe5
 IndexNow key file written to the site root.,Súbor kľúča IndexNow zapísaný do koreňového adresára lokality.,,site/modules/Ichiban/ProcessIchiban.module.php,bbe9cac2bd7214dd42fa87c1d3310cca
 "IndexNow key saved, but the key file could not be written. Create {key}.txt in the site root with the key as file content.","Kľúč IndexNow bol uložený, ale súbor kľúča sa nepodarilo zapísať. Vytvorte {key}.txt v koreňovom adresári lokality s kľúčom ako obsahom súboru.",,site/modules/Ichiban/ProcessIchiban.module.php,6dae63cfd122c66d6dc9c80f8e71e0c3
@@ -576,6 +578,15 @@ LinkedIn Profile,Profil LinkedIn,,site/modules/Ichiban/ProcessIchiban.module.php
 YouTube Channel,kanál YouTube,,site/modules/Ichiban/ProcessIchiban.module.php,960078a66b70f750dc2ac99353dfc7aa
 GitHub Profile,Profil GitHub,,site/modules/Ichiban/ProcessIchiban.module.php,2b379d4e18c7d3b72104978b9d568599
 X/Twitter Profile,Profil X/Twitter,,site/modules/Ichiban/ProcessIchiban.module.php,409f4d6d66f6efc8280043786d3fc79b
+Entity Type,Typ entity,,site/modules/Ichiban/ProcessIchiban.module.php,59a4e567964574e7e7298d0276c2d64f
+Schema Name Override,Prepísanie názvu schémy,,site/modules/Ichiban/ProcessIchiban.module.php,6db2e2d4b291a5ada458250047437926
+Schema URL Override,Prepísanie adresy URL schémy,,site/modules/Ichiban/ProcessIchiban.module.php,454f27b994645e2a9a8e78bfe073f2dd
+Schema Logo Override,Prepísanie loga schémy,,site/modules/Ichiban/ProcessIchiban.module.php,daa2ac03b316ce357aecc21c22232974
+Twitter/X Profile Override,Prepísanie profilu Twitter/X,,site/modules/Ichiban/ProcessIchiban.module.php,96342a6939a99452e676de2317f583af
+LinkedIn Profile Override,Prepísanie profilu LinkedIn,,site/modules/Ichiban/ProcessIchiban.module.php,2d1f288d8260afdec292bbbc374cdbcc
+Facebook Profile Override,Prepísanie profilu na Facebooku,,site/modules/Ichiban/ProcessIchiban.module.php,38692363c9c7c7a26995f4e77f0b58ef
+GitHub Profile Override,Prepísanie profilu GitHub,,site/modules/Ichiban/ProcessIchiban.module.php,150ae62b6d950fbf17ab87f758e14ff9
+Instagram Profile Override,Prepísanie profilu na Instagrame,,site/modules/Ichiban/ProcessIchiban.module.php,68b8f7e5309a00d53f4e523995dbbc9a
 Brand,Značka,,site/modules/Ichiban/ProcessIchiban.module.php,1be6f9eb563f3bf85c78b4219bf09de9
 Brand identity and default visual assets for templates and metadata helpers.,Identita značky a predvolené vizuálne prostriedky pre šablóny a pomocníkov metadát.,,site/modules/Ichiban/ProcessIchiban.module.php,bffd3dac913f6e776adb2f20da95c8fd
 Contact,Kontaktovať,,site/modules/Ichiban/ProcessIchiban.module.php,bbaff12800505b22a853e8b7f4eb6a22
@@ -585,11 +596,16 @@ Address,Adresa,,site/modules/Ichiban/ProcessIchiban.module.php,dd7bf230fde8d4836
 Social Profiles,Sociálne profily,,site/modules/Ichiban/ProcessIchiban.module.php,51f3fc4fe44d76eebd8b865150ee1a6d
 Profile URLs used as sameAs fallbacks when dedicated SEO Identity social fields are empty.,"Webové adresy profilu používané ako rovnaké ako záložné adresy, keď sú vyhradené sociálne polia SEO Identity prázdne.",,site/modules/Ichiban/ProcessIchiban.module.php,3a78545ec772c6443e9d47b349870832
 Notes,Poznámky,,site/modules/Ichiban/ProcessIchiban.module.php,f4c6f851b00d5518bf888815de279aba
+Schema Identity,Identita schémy,,site/modules/Ichiban/ProcessIchiban.module.php,606a42e50d5da8782a727ce7d894926c
+These optional overrides feed the Organization/Person JSON-LD node. Leave them blank to reuse the Website values above.,"Tieto voliteľné prepísania napájajú uzol JSON-LD organizácie/osoby. Ak chcete znova použiť vyššie uvedené hodnoty webových stránok, nechajte ich prázdne.",,site/modules/Ichiban/ProcessIchiban.module.php,99c1b9f2011d51a7438b9c4b7ad36daa
 Custom Settings,Vlastné nastavenia,,site/modules/Ichiban/ProcessIchiban.module.php,7c31e4534dad7ccfcd03b6a8a9852d88
 Custom JSON,Vlastný JSON,,site/modules/Ichiban/ProcessIchiban.module.php,880739752ffb163cd4d1c902158751a7
 Optional JSON object. Keys are available through siteSetting() together with the named fields above.,Voliteľný objekt JSON. Kľúče sú dostupné prostredníctvom siteSetting() spolu s menovanými poľami vyššie.,,site/modules/Ichiban/ProcessIchiban.module.php,755234471465857a5f547b6b6c2c93b2
 "Example: {""support_hours"":""Mon-Fri 09:00-17:00""}","Príklad: {""support_hours"":""Po-Pia 09:00-17:00""}",,site/modules/Ichiban/ProcessIchiban.module.php,5d1112d922fa0338531ed70ffc64fc59
 Template API,Rozhranie API šablóny,,site/modules/Ichiban/ProcessIchiban.module.php,116f012b6102066b51644624cc86f439
+"Use these helpers from templates, hooks, reports, or project code. Custom JSON keys are merged into siteSettings() and can be read with siteSetting().","Použite týchto pomocníkov zo šablón, hákov, zostáv alebo kódu projektu. Vlastné kľúče JSON sú zlúčené do siteSettings() a možno ich čítať pomocou siteSetting().",,site/modules/Ichiban/ProcessIchiban.module.php,780215433d6f1c96a3fab77b30c6439d
+Named keys,Pomenované kľúče,,site/modules/Ichiban/ProcessIchiban.module.php,aec947bedabde02cb962be7bb5540d13
+Schema identity,Identita schémy,,site/modules/Ichiban/ProcessIchiban.module.php,396dcef361289ef0cf0ed8b112eda1b7
 Score,skóre,,site/modules/Ichiban/ProcessIchiban.module.php,5dd135d1bcfa7f63c3b7f25425c2a4a1
 Missing OG image,Chýba OG obrázok,,site/modules/Ichiban/ProcessIchiban.module.php,d0cc96dfee8f0a3d92cee158a0808ab3
 Title length outside target,Dĺžka názvu mimo cieľa,,site/modules/Ichiban/ProcessIchiban.module.php,5adb0ea06c1f6fc3f2a96949597abc05
