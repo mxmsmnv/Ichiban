@@ -21,6 +21,17 @@ class IchibanCli {
 			'ichiban-format:',
 			'ichiban-force',
 			'ichiban-status',
+			'ichiban-bulk-list',
+			'ichiban-bulk-fix:',
+			'ichiban-bulk-import:',
+			'ichiban-template:',
+			'ichiban-issue:',
+			'ichiban-limit:',
+			'ichiban-title:',
+			'ichiban-description:',
+			'ichiban-inherit-title',
+			'ichiban-inherit-description',
+			'ichiban-no-rebuild',
 			'ichiban-audit-rebuild',
 			'ichiban-sitemap-generate',
 			'ichiban-sitemap-status',
@@ -57,6 +68,27 @@ class IchibanCli {
 				'description' => 'Print SEO field, template count, audit stats, sitemap state, and Squad readiness.',
 				'options' => ['--ichiban-format=json'],
 				'examples' => ["{$root} --ichiban-status", "{$root} --ichiban-status --ichiban-format=json"],
+			],
+			'bulk-list' => [
+				'title' => 'List Bulk Editor rows',
+				'usage' => "{$root} --ichiban-bulk-list [--ichiban-template=NAME] [--ichiban-issue=ISSUE] [--ichiban-limit=N] [--ichiban-format=json]",
+				'description' => 'List indexed pages using the same issue filters as the Bulk Editor.',
+				'options' => ['--ichiban-template=NAME', '--ichiban-issue=missing_title|missing_description|title_length|description_length', '--ichiban-limit=N', '--ichiban-format=json'],
+				'examples' => ["{$root} --ichiban-bulk-list --ichiban-issue=missing_title", "{$root} --ichiban-bulk-list --ichiban-template=blog-post --ichiban-format=json"],
+			],
+			'bulk-fix' => [
+				'title' => 'Fix one Bulk Editor row',
+				'usage' => "{$root} --ichiban-bulk-fix=PAGE_ID [--ichiban-title=TEXT] [--ichiban-description=TEXT] [--ichiban-inherit-title] [--ichiban-inherit-description]",
+				'description' => 'Save custom or inherited meta title and description values for one page through the Ichiban field API.',
+				'options' => ['--ichiban-title=TEXT', '--ichiban-description=TEXT', '--ichiban-inherit-title', '--ichiban-inherit-description', '--ichiban-no-rebuild', '--ichiban-format=json'],
+				'examples' => ["{$root} --ichiban-bulk-fix=123 --ichiban-title='New SEO title' --ichiban-description='Search snippet.'", "{$root} --ichiban-bulk-fix=123 --ichiban-inherit-title"],
+			],
+			'bulk-import' => [
+				'title' => 'Apply Bulk Editor fixes from a file',
+				'usage' => "{$root} --ichiban-bulk-import=/path/to/fixes.csv [--ichiban-no-rebuild] [--ichiban-format=json]",
+				'description' => 'Apply multiple meta title/description fixes from CSV or JSON. CSV columns: page_id,title,description,inherit_title,inherit_description.',
+				'options' => ['--ichiban-no-rebuild', '--ichiban-format=json'],
+				'examples' => ["{$root} --ichiban-bulk-import=/tmp/ichiban-fixes.csv", "{$root} --ichiban-bulk-import=/tmp/ichiban-fixes.json --ichiban-format=json"],
 			],
 			'audit-rebuild' => [
 				'title' => 'Rebuild audit index',
@@ -133,6 +165,9 @@ class IchibanCli {
 			return $this->help(is_string($value) ? $value : null);
 		}
 		if (array_key_exists('ichiban-status', $options)) return $this->status();
+		if (array_key_exists('ichiban-bulk-list', $options)) return $this->bulkList($options);
+		if (array_key_exists('ichiban-bulk-fix', $options)) return $this->bulkFix((int)$options['ichiban-bulk-fix'], $options);
+		if (array_key_exists('ichiban-bulk-import', $options)) return $this->bulkImport((string)$options['ichiban-bulk-import'], $options);
 		if (array_key_exists('ichiban-audit-rebuild', $options)) return $this->auditRebuild();
 		if (array_key_exists('ichiban-sitemap-generate', $options)) return $this->sitemapGenerate();
 		if (array_key_exists('ichiban-sitemap-status', $options)) return $this->sitemapStatus();
@@ -175,6 +210,86 @@ class IchibanCli {
 	protected function auditRebuild(): array {
 		$this->ichiban->getAuditEngine()->rebuildIndex();
 		return ['ok' => true, 'message' => 'Audit index rebuilt.', 'audit' => $this->ichiban->getAuditEngine()->getQuickStats()];
+	}
+
+	protected function bulkList(array $options): array {
+		$issue = $this->issueOption((string)($options['ichiban-issue'] ?? ''));
+		$template = trim((string)($options['ichiban-template'] ?? ''));
+		$limit = max(1, min(500, (int)($options['ichiban-limit'] ?? 50)));
+		[$where, $params] = $this->bulkWhere($issue, $template);
+		$db = $this->ichiban->wire('database');
+		$stmt = $db->prepare("SELECT page_id, template_name, url, meta_title, meta_description, meta_title_len, meta_desc_len, is_noindex, has_og_image, schema_type FROM ichiban_index{$where} ORDER BY (meta_title='') DESC, (meta_description='') DESC, template_name, url LIMIT :limit");
+		foreach ($params as $name => $value) $stmt->bindValue($name, $value);
+		$stmt->bindValue(':limit', $limit, \PDO::PARAM_INT);
+		$stmt->execute();
+		$rows = $stmt->fetchAll(\PDO::FETCH_ASSOC) ?: [];
+		foreach ($rows as &$row) {
+			$row['page_id'] = (int)$row['page_id'];
+			$row['meta_title_len'] = (int)$row['meta_title_len'];
+			$row['meta_desc_len'] = (int)$row['meta_desc_len'];
+			$row['is_noindex'] = (bool)$row['is_noindex'];
+			$row['has_og_image'] = (bool)$row['has_og_image'];
+		}
+		return [
+			'ok' => true,
+			'filter' => ['issue' => $issue, 'template' => $template, 'limit' => $limit],
+			'count' => count($rows),
+			'rows' => $rows,
+			'csv_columns' => ['page_id', 'title', 'description', 'inherit_title', 'inherit_description'],
+		];
+	}
+
+	protected function bulkFix(int $pageId, array $options): array {
+		if ($pageId < 1) throw new \InvalidArgumentException('Page ID must be a positive integer.');
+		$hasTitle = array_key_exists('ichiban-title', $options);
+		$hasDescription = array_key_exists('ichiban-description', $options);
+		$inheritTitle = array_key_exists('ichiban-inherit-title', $options);
+		$inheritDescription = array_key_exists('ichiban-inherit-description', $options);
+		if (!$hasTitle && !$hasDescription && !$inheritTitle && !$inheritDescription) {
+			throw new \InvalidArgumentException('Nothing to save. Pass --ichiban-title, --ichiban-description, --ichiban-inherit-title, or --ichiban-inherit-description.');
+		}
+		$result = $this->saveBulkPage($pageId, [
+			'title' => $hasTitle ? (string)$options['ichiban-title'] : null,
+			'description' => $hasDescription ? (string)$options['ichiban-description'] : null,
+			'inherit_title' => $inheritTitle,
+			'inherit_description' => $inheritDescription,
+		]);
+		$this->afterBulkSave(!array_key_exists('ichiban-no-rebuild', $options), [$pageId]);
+		return ['ok' => true, 'message' => 'Bulk SEO fix saved.', 'saved' => 1, 'skipped' => 0, 'pages' => [$result]];
+	}
+
+	protected function bulkImport(string $path, array $options): array {
+		$path = $this->resolvePath($path);
+		if (!is_file($path) || !is_readable($path)) throw new \InvalidArgumentException("Import file is not readable: {$path}");
+		$rows = $this->readBulkImportRows($path);
+		if (!$rows) throw new \InvalidArgumentException('Import file contains no rows.');
+		$saved = 0;
+		$skipped = 0;
+		$pages = [];
+		$pageIds = [];
+		foreach ($rows as $row) {
+			$pageId = (int)($row['page_id'] ?? $row['id'] ?? 0);
+			if ($pageId < 1) {
+				$skipped++;
+				continue;
+			}
+			try {
+				$page = $this->saveBulkPage($pageId, [
+					'title' => array_key_exists('title', $row) ? (string)$row['title'] : (array_key_exists('meta_title', $row) ? (string)$row['meta_title'] : null),
+					'description' => array_key_exists('description', $row) ? (string)$row['description'] : (array_key_exists('meta_description', $row) ? (string)$row['meta_description'] : null),
+					'inherit_title' => $this->truthy($row['inherit_title'] ?? false),
+					'inherit_description' => $this->truthy($row['inherit_description'] ?? false),
+				]);
+				$saved++;
+				$pageIds[] = $pageId;
+				$pages[] = $page;
+			} catch (\Throwable $e) {
+				$skipped++;
+				$pages[] = ['page_id' => $pageId, 'ok' => false, 'error' => $e->getMessage()];
+			}
+		}
+		$this->afterBulkSave(!array_key_exists('ichiban-no-rebuild', $options), $pageIds);
+		return ['ok' => true, 'message' => 'Bulk SEO fixes imported.', 'saved' => $saved, 'skipped' => $skipped, 'pages' => $pages];
 	}
 
 	protected function sitemapGenerate(): array {
@@ -226,6 +341,131 @@ class IchibanCli {
 				'schema_type' => (string)($seo->schema->type ?? ''),
 			],
 		];
+	}
+
+	protected function saveBulkPage(int $pageId, array $changes): array {
+		$page = $this->ichiban->wire('pages')->get($pageId);
+		if (!$page || !$page->id) throw new \InvalidArgumentException("Page not found: {$pageId}");
+		$fieldName = $this->ichiban->getSeoFieldName();
+		if (!$page->hasField($fieldName)) throw new \InvalidArgumentException("Page {$pageId} does not have Ichiban field '{$fieldName}'.");
+
+		$page->of(false);
+		$seo = $page->get($fieldName);
+		if (!$seo instanceof \IchibanPageFieldValue) throw new \RuntimeException("Page {$pageId} has no writable Ichiban value.");
+		$data = $seo->getData();
+		$san = $this->ichiban->wire('sanitizer');
+
+		$changed = [];
+		if (!empty($changes['inherit_title'])) {
+			$data['meta_title'] = ['mode' => 'inherit', 'value' => ''];
+			$changed[] = 'meta_title';
+		} elseif (array_key_exists('title', $changes) && $changes['title'] !== null) {
+			$title = $san->text((string)$changes['title']);
+			$data['meta_title'] = $title === '' ? ['mode' => 'inherit', 'value' => ''] : ['mode' => 'custom', 'value' => $title];
+			$changed[] = 'meta_title';
+		}
+
+		if (!empty($changes['inherit_description'])) {
+			$data['meta_description'] = ['mode' => 'inherit', 'value' => ''];
+			$changed[] = 'meta_description';
+		} elseif (array_key_exists('description', $changes) && $changes['description'] !== null) {
+			$description = $san->text((string)$changes['description']);
+			$data['meta_description'] = $description === '' ? ['mode' => 'inherit', 'value' => ''] : ['mode' => 'custom', 'value' => $description];
+			$changed[] = 'meta_description';
+		}
+
+		if (!$changed) throw new \InvalidArgumentException("Page {$pageId}: nothing to save.");
+		$seo->setData($data);
+		$page->set($fieldName, $seo);
+		$page->trackChange($fieldName);
+		$page->save($fieldName);
+
+		return [
+			'ok' => true,
+			'page_id' => (int)$page->id,
+			'title' => (string)$page->title,
+			'url' => method_exists($this->ichiban, 'pageHttpUrl') ? $this->ichiban->pageHttpUrl($page) : $page->httpUrl(),
+			'changed' => array_values(array_unique($changed)),
+		];
+	}
+
+	protected function afterBulkSave(bool $rebuild, array $pageIds): void {
+		$engine = $this->ichiban->getAuditEngine();
+		if ($rebuild) {
+			$engine->rebuildIndex();
+			return;
+		}
+		foreach (array_values(array_unique(array_map('intval', $pageIds))) as $pageId) {
+			$page = $this->ichiban->wire('pages')->get($pageId);
+			if ($page && $page->id) $engine->refreshPage($page);
+		}
+	}
+
+	protected function readBulkImportRows(string $path): array {
+		$ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+		if ($ext === 'json') {
+			$data = json_decode((string)file_get_contents($path), true);
+			if (isset($data['rows']) && is_array($data['rows'])) $data = $data['rows'];
+			if (!is_array($data)) throw new \InvalidArgumentException('JSON import must be an array or an object with rows.');
+			return array_values(array_filter($data, 'is_array'));
+		}
+
+		$fh = fopen($path, 'r');
+		if (!$fh) throw new \InvalidArgumentException("Cannot open import file: {$path}");
+		$header = fgetcsv($fh);
+		if (!$header) {
+			fclose($fh);
+			return [];
+		}
+		$header = array_map(static fn($h) => strtolower(trim((string)$h)), $header);
+		$rows = [];
+		while (($row = fgetcsv($fh)) !== false) {
+			$item = [];
+			foreach ($header as $i => $name) {
+				if ($name !== '') $item[$name] = $row[$i] ?? '';
+			}
+			$rows[] = $item;
+		}
+		fclose($fh);
+		return $rows;
+	}
+
+	protected function bulkWhere(string $issue, string $template): array {
+		$where = [];
+		$params = [];
+		if ($template !== '') {
+			$where[] = 'template_name=:template';
+			$params[':template'] = $template;
+		}
+		$issueMap = [
+			'missing_title' => "meta_title=''",
+			'missing_description' => "meta_description=''",
+			'title_length' => "meta_title!='' AND NOT (meta_title_len BETWEEN 30 AND 70)",
+			'description_length' => "meta_description!='' AND NOT (meta_desc_len BETWEEN 50 AND 160)",
+		];
+		if ($issue !== '' && isset($issueMap[$issue])) $where[] = $issueMap[$issue];
+		return [$where ? ' WHERE ' . implode(' AND ', $where) : '', $params];
+	}
+
+	protected function issueOption(string $issue): string {
+		$issue = trim($issue);
+		if ($issue === '') return '';
+		$allowed = ['missing_title', 'missing_description', 'title_length', 'description_length'];
+		if (!in_array($issue, $allowed, true)) throw new \InvalidArgumentException('Unknown bulk issue filter: ' . $issue);
+		return $issue;
+	}
+
+	protected function resolvePath(string $path): string {
+		$path = trim($path);
+		if ($path === '') throw new \InvalidArgumentException('Import path is required.');
+		if (str_starts_with($path, '/')) return $path;
+		return rtrim((string)$this->ichiban->wire('config')->paths->root, '/') . '/' . $path;
+	}
+
+	protected function truthy(mixed $value): bool {
+		if (is_bool($value)) return $value;
+		$value = strtolower(trim((string)$value));
+		return in_array($value, ['1', 'yes', 'true', 'on', 'inherit'], true);
 	}
 
 	protected function compactSitemapStatus(array $status): array {

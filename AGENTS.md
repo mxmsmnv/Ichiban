@@ -201,7 +201,7 @@ These are generally safe for an agent:
 - read resolved SEO values;
 - render previews in a local/dev context;
 - export reports, redirects, or audit data when the user asks.
-- run read-only CLI commands such as `--ichiban-help`, `--ichiban-status`, `--ichiban-sitemap-status`, `--ichiban-robots`, `--ichiban-llms`, `--ichiban-settings`, or `--ichiban-page=ID`.
+- run read-only CLI commands such as `--ichiban-help`, `--ichiban-status`, `--ichiban-bulk-list`, `--ichiban-sitemap-status`, `--ichiban-robots`, `--ichiban-llms`, `--ichiban-settings`, or `--ichiban-page=ID`.
 
 ## Requires User Approval
 
@@ -213,7 +213,7 @@ Ask for approval before:
 - changing global rendering behavior, canonical behavior, hreflang, or JSON-LD toggles;
 - writing or replacing `robots.txt`, `llms.txt`, sitemap settings, or IndexNow key files;
 - rebuilding a large audit index on production;
-- running write CLI commands on production, including `--ichiban-audit-rebuild`, `--ichiban-sitemap-generate`, and `--ichiban-sitemap-delete --ichiban-force`;
+- running write CLI commands on production, including `--ichiban-bulk-fix`, `--ichiban-bulk-import`, `--ichiban-audit-rebuild`, `--ichiban-sitemap-generate`, and `--ichiban-sitemap-delete --ichiban-force`;
 - bulk editing metadata;
 - importing redirects or deleting redirects;
 - creating regex redirects;
@@ -260,6 +260,9 @@ Run Ichiban CLI commands from the ProcessWire site root:
 php index.php --ichiban-help
 php index.php --ichiban-help=status
 php index.php --ichiban-status --ichiban-format=json
+php index.php --ichiban-bulk-list --ichiban-issue=missing_title
+php index.php --ichiban-bulk-fix=123 --ichiban-title="New SEO title" --ichiban-description="Search snippet."
+php index.php --ichiban-bulk-import=/tmp/ichiban-fixes.csv
 php index.php --ichiban-audit-rebuild
 php index.php --ichiban-sitemap-generate
 php index.php --ichiban-page=123 --ichiban-format=json

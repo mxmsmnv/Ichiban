@@ -53,6 +53,8 @@ Run commands from the ProcessWire site root:
 ```bash
 php index.php --ichiban-help
 php index.php --ichiban-status
+php index.php --ichiban-bulk-list --ichiban-issue=missing_title
+php index.php --ichiban-bulk-fix=123 --ichiban-title="New SEO title"
 php index.php --ichiban-audit-rebuild
 php index.php --ichiban-sitemap-generate
 ```

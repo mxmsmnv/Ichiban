@@ -125,13 +125,16 @@ Common commands:
 
 ```bash
 php index.php --ichiban-status
+php index.php --ichiban-bulk-list --ichiban-issue=missing_title
+php index.php --ichiban-bulk-fix=123 --ichiban-title="New SEO title" --ichiban-description="Search snippet."
+php index.php --ichiban-bulk-import=/tmp/ichiban-fixes.csv
 php index.php --ichiban-audit-rebuild
 php index.php --ichiban-sitemap-generate
 php index.php --ichiban-sitemap-status
 php index.php --ichiban-page=123 --ichiban-format=json
 ```
 
-Use `--ichiban-help=command` for detailed help and `--ichiban-format=json` for machine-readable output. Destructive sitemap cleanup requires `--ichiban-force`.
+Use `--ichiban-help=command` for detailed help and `--ichiban-format=json` for machine-readable output. Bulk import CSV columns are `page_id,title,description,inherit_title,inherit_description`. Destructive sitemap cleanup requires `--ichiban-force`.
 
 ## Audit
 
