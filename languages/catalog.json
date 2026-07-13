@@ -5442,7 +5442,7 @@
         "text": "Use these helpers from templates, hooks, reports, or project code. Custom JSON keys are merged into siteSettings() and can be read with siteSetting().",
         "context": "",
         "plural": "",
-        "line": 2750
+        "line": 2754
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5451,7 +5451,7 @@
         "text": "Named keys",
         "context": "",
         "plural": "",
-        "line": 2752
+        "line": 2756
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5460,7 +5460,7 @@
         "text": "Schema identity",
         "context": "",
         "plural": "",
-        "line": 2753
+        "line": 2757
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5469,7 +5469,7 @@
         "text": "Score",
         "context": "",
         "plural": "",
-        "line": 2775
+        "line": 2779
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5478,7 +5478,7 @@
         "text": "Missing OG image",
         "context": "",
         "plural": "",
-        "line": 2875
+        "line": 2879
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5487,7 +5487,7 @@
         "text": "Title length outside target",
         "context": "",
         "plural": "",
-        "line": 2876
+        "line": 2880
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5496,7 +5496,7 @@
         "text": "Description length outside target",
         "context": "",
         "plural": "",
-        "line": 2877
+        "line": 2881
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5505,7 +5505,7 @@
         "text": "Noindex",
         "context": "",
         "plural": "",
-        "line": 2878
+        "line": 2882
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5514,7 +5514,7 @@
         "text": "Daily Trend",
         "context": "",
         "plural": "",
-        "line": 2884
+        "line": 2888
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5523,7 +5523,7 @@
         "text": "No Search Console rows available yet.",
         "context": "",
         "plural": "",
-        "line": 2887
+        "line": 2891
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5532,7 +5532,7 @@
         "text": "Never checked",
         "context": "",
         "plural": "",
-        "line": 2906
+        "line": 2910
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5541,7 +5541,7 @@
         "text": "Checks a URL sample with Google URL Inspection API and groups non-indexed / problematic pages by coverage reason. Ichiban first uses Top Pages from Search Console for the last 28 days, then fills the sample with public ProcessWire pages sorted by path. This is a cached site scan, not Google’s full Page indexing aggregate report.",
         "context": "",
         "plural": "",
-        "line": 2912
+        "line": 2916
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5550,7 +5550,7 @@
         "text": "Scan indexing issues",
         "context": "",
         "plural": "",
-        "line": 2918
+        "line": 2922
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5559,7 +5559,7 @@
         "text": "Open Page Indexing",
         "context": "",
         "plural": "",
-        "line": 2920
+        "line": 2924
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5568,7 +5568,7 @@
         "text": "Indexed",
         "context": "",
         "plural": "",
-        "line": 2924
+        "line": 2928
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5577,7 +5577,7 @@
         "text": "Checked URLs",
         "context": "",
         "plural": "",
-        "line": 2925
+        "line": 2929
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5586,7 +5586,7 @@
         "text": "Last scan",
         "context": "",
         "plural": "",
-        "line": 2926
+        "line": 2930
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5595,7 +5595,7 @@
         "text": "No indexing scan yet. Click Scan indexing issues to inspect Top Pages from Search Console first, then public ProcessWire pages if more URLs are needed.",
         "context": "",
         "plural": "",
-        "line": 2930
+        "line": 2934
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5604,7 +5604,7 @@
         "text": "No indexing issues found in the checked URL sample.",
         "context": "",
         "plural": "",
-        "line": 2933
+        "line": 2937
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5613,7 +5613,7 @@
         "text": "Page / query",
         "context": "",
         "plural": "",
-        "line": 2949
+        "line": 2953
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5622,7 +5622,7 @@
         "text": "View all",
         "context": "",
         "plural": "",
-        "line": 2954
+        "line": 2958
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5631,7 +5631,7 @@
         "text": "Impressions",
         "context": "",
         "plural": "",
-        "line": 2965
+        "line": 2969
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5640,7 +5640,7 @@
         "text": "CTR",
         "context": "",
         "plural": "",
-        "line": 2966
+        "line": 2970
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5649,7 +5649,7 @@
         "text": "Position",
         "context": "",
         "plural": "",
-        "line": 2967
+        "line": 2971
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5658,7 +5658,7 @@
         "text": "Edit",
         "context": "",
         "plural": "",
-        "line": 2969
+        "line": 2973
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5667,7 +5667,7 @@
         "text": "n/a",
         "context": "",
         "plural": "",
-        "line": 2986
+        "line": 2990
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5676,7 +5676,7 @@
         "text": "%s rows",
         "context": "",
         "plural": "",
-        "line": 3002
+        "line": 3006
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5685,7 +5685,7 @@
         "text": "Last updated %s",
         "context": "",
         "plural": "",
-        "line": 3035
+        "line": 3039
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5694,7 +5694,7 @@
         "text": "Last updated unavailable",
         "context": "",
         "plural": "",
-        "line": 3036
+        "line": 3040
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5703,7 +5703,7 @@
         "text": "Disconnect GSC",
         "context": "",
         "plural": "",
-        "line": 3040
+        "line": 3044
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -5712,7 +5712,7 @@
         "text": "Device",
         "context": "",
         "plural": "",
-        "line": 3055
+        "line": 3059
     },
     {
         "file": "site/modules/Ichiban/InputfieldIchiban.module.php",

@@ -2725,7 +2725,7 @@ class ProcessIchiban extends Process {
 			. "\$brand = \$ichiban->siteSetting('brand_name', \$config->httpHost);\n"
 			. "\$logo = \$ichiban->siteSetting('logo_url');\n"
 			. "\$hours = \$ichiban->siteSetting('support_hours');\n";
-		$keys = implode(', ', [
+		$keyList = [
 			'brand_name',
 			'legal_name',
 			'tagline',
@@ -2745,11 +2745,15 @@ class ProcessIchiban extends Process {
 			'social_youtube',
 			'social_github',
 			'social_x',
-		]);
+		];
+		$keyItems = '';
+		foreach ($keyList as $key) {
+			$keyItems .= "<code>" . $this->wire('sanitizer')->entities($key) . "</code>";
+		}
 		return "<div class='ichiban-api-reference'>"
 			. "<p>" . __('Use these helpers from templates, hooks, reports, or project code. Custom JSON keys are merged into siteSettings() and can be read with siteSetting().') . "</p>"
 			. "<pre><code>" . $this->wire('sanitizer')->entities($code) . "</code></pre>"
-			. "<p><strong>" . __('Named keys') . ":</strong> <code>" . $this->wire('sanitizer')->entities($keys) . "</code></p>"
+			. "<div class='ichiban-api-key-list'><strong>" . __('Named keys') . ":</strong><span>{$keyItems}</span></div>"
 			. "<p><strong>" . __('Schema identity') . ":</strong> " . __('Website values are used as fallbacks for Organization/Person JSON-LD. The Schema Identity fieldset only overrides those fallbacks when needed.') . "</p>"
 			. "</div>";
 	}

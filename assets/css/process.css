@@ -393,15 +393,43 @@ body.dark-theme {
 .ichiban-api-reference p {
   margin: 0 0 10px;
 }
+.ichiban-api-reference {
+  max-width: 100%;
+  min-width: 0;
+}
 .ichiban-api-reference pre {
+  box-sizing: border-box;
+  max-width: 100%;
   margin: 0 0 10px;
   padding: 12px;
   overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
   background: var(--ichiban-muted-surface);
   border: 1px solid var(--ichiban-border);
 }
 .ichiban-api-reference code {
   color: var(--ichiban-text);
+}
+.ichiban-api-key-list {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.ichiban-api-key-list span {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-width: 0;
+}
+.ichiban-api-key-list code {
+  display: inline-block;
+  max-width: 100%;
+  padding: 2px 6px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  background: var(--ichiban-muted-surface);
+  border: 1px solid var(--ichiban-border);
 }
 @media (max-width: 959px) {
   .ichiban-website-header {
