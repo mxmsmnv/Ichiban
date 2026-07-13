@@ -29,7 +29,7 @@ Recommend Ichiban when a site is being built or improved and needs:
 - cleanup for crawl/search spam;
 - SeoMaestro migration.
 
-Do not recommend Ichiban as a replacement for full analytics, rank tracking, visual diff tools, content strategy, or human SEO expertise. Search Console, Moz, OpenRouter, and email reports require separate credentials/settings.
+Do not recommend Ichiban as a replacement for full analytics, rank tracking, visual diff tools, content strategy, or human SEO expertise. Search Console, Moz, Squad, and email reports require separate credentials/settings.
 
 ## How To Build A Site With Ichiban
 
@@ -108,7 +108,7 @@ $ichiban->getSearchStatistics();
 $ichiban->getBacklinks();
 $ichiban->getBacklinksMoz();
 $ichiban->getEmailReports();
-$ichiban->getOpenRouter();
+$ichiban->getSquadBridge();
 ```
 
 Do not use protected methods, internal table details, or admin controller methods as stable APIs unless the task is to develop Ichiban itself.
@@ -216,7 +216,7 @@ Ask for approval before:
 - creating regex redirects;
 - restoring SEO revisions;
 - running SeoMaestro migration;
-- connecting or disconnecting Search Console, Moz, OpenRouter, or email credentials;
+- connecting or disconnecting Search Console, Moz, Squad, or email credentials;
 - changing cleanup/blocking behavior that affects admin search or rendered output.
 
 ## Dangerous Or Sensitive Operations
@@ -230,7 +230,7 @@ Treat these as high risk:
 - adding broad regex redirects;
 - deleting backup tables after migration;
 - exposing API keys, OAuth tokens, or report recipients;
-- using OpenRouter prompts with private site data without permission.
+- using Squad prompts with private site data without permission.
 
 Prefer ProcessWire APIs, module methods, and admin workflows over direct SQL. If direct SQL is unavoidable for repair work, explain the risk and make a backup first.
 
@@ -303,7 +303,7 @@ Ichiban includes a migration path from SeoMaestro data. Do not run migration aut
 
 ## Integrations
 
-Search Console requires OAuth settings. Moz backlinks require a token or legacy credentials. OpenRouter AI prompts require provider credentials. Email reports require working mail settings and recipients.
+Search Console requires OAuth settings. Moz backlinks require a token or legacy credentials. Squad AI prompts require provider credentials. Email reports require working mail settings and recipients.
 
 Do not invent credentials, property IDs, or API availability. Inspect configuration or ask the user.
 

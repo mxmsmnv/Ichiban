@@ -1851,7 +1851,7 @@ class ProcessIchiban extends Process {
 		$this->setIchibanBreadcrumb(__('AI'), 'ai/');
 		$this->headline(__('SEO AI'));
 		$san = $this->wire('sanitizer');
-		$ai = $this->ichiban->getOpenRouter();
+		$ai = $this->ichiban->getSquadBridge();
 		$configUrl = $ai->settingsUrl();
 		$enabled = $ai->isConfigured();
 		$model = $ai->activeModel();
@@ -1878,7 +1878,7 @@ class ProcessIchiban extends Process {
 		$out = $this->renderAdminNav('ai') . "<div class='ichiban-ai'>"
 			. "<section class='ichiban-ai-hero'>"
 			. "<div><span class='ichiban-eyebrow'>" . $san->entities($providerLabel) . "</span><h2>" . __('AI workspace is in development') . "</h2>"
-			. "<p>" . __('This page will become the AI area for SEO suggestions, metadata drafts, schema help, and report summaries. It uses Context AI Gateway when available, with Ichiban OpenRouter settings as fallback, and attaches exported Context files to test requests.') . "</p></div>"
+			. "<p>" . __('This page will become the AI area for SEO suggestions, metadata drafts, schema help, and report summaries. It sends requests through Squad and attaches exported Context files to test requests when available.') . "</p></div>"
 			. "<div class='ichiban-ai-status " . ($enabled ? 'is-ready' : 'is-missing') . "'>"
 			. "<strong>" . ($enabled ? __('Configured') : __('Not configured')) . "</strong>"
 			. "<span>" . sprintf(__('Provider: %s'), $san->entities($providerLabel)) . "</span>"
@@ -1888,7 +1888,7 @@ class ProcessIchiban extends Process {
 			. "</div></section>";
 
 		$out .= "<section class='ichiban-ai-test'>"
-			. "<div><h3>" . __('Test AI request') . "</h3><p>" . __('Save AI settings first, then send a prompt to confirm the connection, model response, and Context export ingestion.') . "</p></div>"
+			. "<div><h3>" . __('Test AI request') . "</h3><p>" . __('Configure Squad first, save Ichiban AI defaults, then send a prompt to confirm the connection, model response, and Context export ingestion.') . "</p></div>"
 			. "<form method='post'>"
 			. $this->wire('session')->CSRF->renderInput()
 			. "<div class='ichiban-ai-modes'>";

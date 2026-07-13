@@ -54,24 +54,26 @@ Moz API base URL,Moz API основа URL,,site/modules/Ichiban/Ichiban.module.p
 Rows per request,Редове на заявка,,site/modules/Ichiban/Ichiban.module.php,ad470cb6dbb8dc939f06c96e7b0ab4fb
 Used by the Backlinks preview tables.,Използва се от таблиците за преглед на обратни връзки.,,site/modules/Ichiban/Ichiban.module.php,7c7dd953919a36c2613a5cbdb05ce96c
 Timeout (sec),Изчакване (сек),,site/modules/Ichiban/Ichiban.module.php,ef8e3c27bc823b5dcf6164fb9f2823de
-AI / OpenRouter,AI / OpenRouter,,site/modules/Ichiban/Ichiban.module.php,352d399e1a48f6097e5ba56506f05233
-"OpenRouter connection used by the Ichiban AI section. This follows the same OpenAI-compatible pattern as the Context module: provider, API key, model, limits, and OpenRouter attribution headers.","OpenRouter връзка, използвана от секцията Ichiban AI. Това следва същия съвместим с OpenAI модел като модула Context: доставчик, ключ API, модел, ограничения и заглавки на приписване OpenRouter.",,site/modules/Ichiban/Ichiban.module.php,cfc3cf84b322e9ae90482456eeb3bd38
+AI / Squad,AI / Отряд,,site/modules/Ichiban/Ichiban.module.php,c7c967fe29ea975b52a568677d80d368
+Ichiban uses Squad as the shared AI gateway. Configure provider keys in Squad; use these settings only for Ichiban request defaults and SEO-specific prompts.,"Ichiban използва Squad като споделен AI шлюз. Конфигурирайте ключовете на доставчика в Squad; използвайте тези настройки само за Ichiban заявка по подразбиране и подкани, специфични за SEO.",,site/modules/Ichiban/Ichiban.module.php,b3a60431fd7be7126e428a28f3bb08e5
+Squad connection,Отрядна връзка,,site/modules/Ichiban/Ichiban.module.php,ce0a6805ed97e495b3871f250b469549
+Squad is installed. Active providers: %s.,Отрядът е инсталиран. Активни доставчици: %s.,,site/modules/Ichiban/Ichiban.module.php,943cdceb5161ec2aaa0c8b7240c88ff5
+Open Squad settings,Отворете настройките на Squad,,site/modules/Ichiban/Ichiban.module.php,e5e25695970de11c7acbf3f901b7e249
+Squad is not installed. Install and configure Squad before running Ichiban AI requests.,"Squad не е инсталиран. Инсталирайте и конфигурирайте Squad, преди да стартирате Ichiban AI заявки.",,site/modules/Ichiban/Ichiban.module.php,1fd298f8ed650af1f1c7391b249df142
 Enable AI features,Активиране на AI функции,,site/modules/Ichiban/Ichiban.module.php,3148562cec18808d8b30b9ee29e0f94e
-Provider,Доставчик,,site/modules/Ichiban/Ichiban.module.php,27703c8f150ac4bb0a3a83a7857353af
-OpenRouter API key,Ключ OpenRouter API,,site/modules/Ichiban/Ichiban.module.php,3f887aa03ecf4b1f9927b54999f9f425
-Get a key at openrouter.ai/keys.,Вземете ключ на openrouter.ai/keys.,,site/modules/Ichiban/Ichiban.module.php,4737a7f3850d0474f3335ad3d0f213fa
-Default model,Модел по подразбиране,,site/modules/Ichiban/Ichiban.module.php,b8821dd93fc369a07b7e9be00bd71b10
-"OpenRouter format: provider/model, for example anthropic/claude-sonnet-4-6 or openai/gpt-4o-mini.","OpenRouter формат: доставчик/модел, например anthropic/claude-sonnet-4-6 или openai/gpt-4o-mini.",,site/modules/Ichiban/Ichiban.module.php,f14be682d566283dc93e3af760bc8720
+Allows the Ichiban AI workspace to send requests through Squad.,Позволява на работното пространство на Ichiban AI да изпраща заявки през Squad.,,site/modules/Ichiban/Ichiban.module.php,34ec0f579952dd1e0819805922d08722
+Provider override,Отмяна на доставчика,,site/modules/Ichiban/Ichiban.module.php,c8b66ad23c12655d32b6e9b14a5d32fd
+Leave empty to use the default provider selected in Squad.,"Оставете празно, за да използвате доставчика по подразбиране, избран в Squad.",,site/modules/Ichiban/Ichiban.module.php,9c3aac1cd9f9352d12af87ccb7e38fb2
+Squad default,Подразбиране на отбора,,site/modules/Ichiban/Ichiban.module.php,379df8c2ecca7f514c9cf71e7f215a34
+Model override,Отмяна на модела,,site/modules/Ichiban/Ichiban.module.php,a90e17a4e9375a72a438a44c0a43e661
+Optional. Leave empty to use the model configured on the active Squad key.,"Не е задължително. Оставете празно, за да използвате модела, конфигуриран на активния ключ на Squad.",,site/modules/Ichiban/Ichiban.module.php,d46e25bd96a117a8661e6f8ffbb7fdad
+Use a model ID supported by the selected Squad provider.,"Използвайте идентификатор на модел, поддържан от избрания доставчик на Squad.",,site/modules/Ichiban/Ichiban.module.php,72d95b32af7e034bf92d02c480624d80
 Max tokens,Макс жетони,,site/modules/Ichiban/Ichiban.module.php,ebd6c027329f58c7a56ddb68035e623a
 Temperature,температура,,site/modules/Ichiban/Ichiban.module.php,ee7a8e262285ed49ea1b4e4ae11525bd
 "0 = deterministic, 1 = more creative.","0 = детерминистичен, 1 = по-креативен.",,site/modules/Ichiban/Ichiban.module.php,e9c19aa21f310410427aed8cf273ee5e
 Global system prompt,Глобална системна подкана,,site/modules/Ichiban/Ichiban.module.php,dc80dfae1022d8c1f3a4424589c3947f
-Prepended to Ichiban AI requests.,Добавено към Ichiban AI заявки.,,site/modules/Ichiban/Ichiban.module.php,ac60eb790e862f3f993590931849b81f
+Prepended to Ichiban AI requests before the mode-specific SEO prompt.,Добавя се към Ichiban AI заявки преди специфичния за режима SEO подкана.,,site/modules/Ichiban/Ichiban.module.php,ba50ae3d4e25aaf8e9f96f1b12597d8a
 You are a helpful SEO assistant for ProcessWire websites.,Вие сте полезен SEO асистент за ProcessWire уебсайтове.,,site/modules/Ichiban/Ichiban.module.php,75146a303e87f5716fce1a6a506185cf
-Site URL (OpenRouter attribution),Сайт URL (приписване на OpenRouter),,site/modules/Ichiban/Ichiban.module.php,24d92b3277066f6e0f59081c85224a28
-Sent as HTTP-Referer header.,Изпратено като HTTP-Referer хедър.,,site/modules/Ichiban/Ichiban.module.php,abdfdf90ffdff8c9d2aa53a5e0c0e5ae
-Site / app name (OpenRouter attribution),Име на сайт/приложение (приписване на OpenRouter),,site/modules/Ichiban/Ichiban.module.php,42adc4749d3e4cad8dab5d6caaefb002
-Sent as X-Title header.,Изпратено като заглавие X-Title.,,site/modules/Ichiban/Ichiban.module.php,d5d1de4439d5925614911c6ece8274dd
 Publishing & URLs,Издателство и URLs,,site/modules/Ichiban/Ichiban.module.php,86c81580cb61ca8b8b36e1eb8791e413
 "IndexNow keys are simple verification strings, not keys from an account. Generate one here or use any 8-128 character key containing letters, numbers, and hyphens. A public key file named {key}.txt must exist at the site root and contain the key.","IndexNow ключовете са прости низове за проверка, а не ключове от акаунт. Генерирайте такъв тук или използвайте произволен ключ от 8-128 знака, съдържащ букви, цифри и тирета. Файл с публичен ключ с име {key}.txt трябва да съществува в основата на сайта и да съдържа ключа.",,site/modules/Ichiban/Ichiban.module.php,6ba02b19032039de34d471bc54d181ad
 Current key file URL: %s,Текущ ключов файл URL: %s,,site/modules/Ichiban/Ichiban.module.php,f3fa4b8b953f520859f0c214f66d9bae
@@ -507,7 +509,7 @@ Save Schemas,Запазване на схеми,,site/modules/Ichiban/ProcessIch
 AI,AI,,site/modules/Ichiban/ProcessIchiban.module.php,0a40e3c91a3a55c9a37428c6d194d0e5
 SEO AI,SEO AI,,site/modules/Ichiban/ProcessIchiban.module.php,a94745b00e5ed823953a8c28ff741c2d
 AI workspace is in development,Работното пространство AI е в процес на разработка,,site/modules/Ichiban/ProcessIchiban.module.php,58638440f29a5990eb547152e33298c6
-"This page will become the AI area for SEO suggestions, metadata drafts, schema help, and report summaries. It uses Context AI Gateway when available, with Ichiban OpenRouter settings as fallback, and attaches exported Context files to test requests.","Тази страница ще се превърне в област AI за SEO предложения, чернови на метаданни, помощ за схеми и резюмета на отчети. Той използва Context AI Gateway, когато е наличен, с Ichiban OpenRouter настройки като резервен вариант и прикачва експортирани контекстни файлове към тестови заявки.",,site/modules/Ichiban/ProcessIchiban.module.php,ca9926f3094e9ef1e35e66768b217ab3
+"This page will become the AI area for SEO suggestions, metadata drafts, schema help, and report summaries. It sends requests through Squad and attaches exported Context files to test requests when available.","Тази страница ще се превърне в зона за изкуствен интелект за SEO предложения, чернови на метаданни, помощ за схеми и резюмета на отчети. Той изпраща заявки през Squad и прикачва експортирани контекстни файлове, за да тества заявки, когато са налични.",,site/modules/Ichiban/ProcessIchiban.module.php,68d72f179379ad123114bc318de11d1a
 Configured,Конфигуриран,,site/modules/Ichiban/ProcessIchiban.module.php,61aa63eb3ac1c3408640463ee5fe8aa3
 Provider: %s,Доставчик: %s,,site/modules/Ichiban/ProcessIchiban.module.php,4c2d04983cfbca7ad6fad0bae11b7618
 Model: %s,Модел: %s,,site/modules/Ichiban/ProcessIchiban.module.php,33d0e5d99493052d203cd308fb3604df
@@ -681,9 +683,10 @@ Date,Дата,,site/modules/Ichiban/InputfieldIchiban.module.php,44749712dbec183
 Restore,Възстановяване,,site/modules/Ichiban/InputfieldIchiban.module.php,2bd339d85ee3b33e513359ce781b60cc
 Search Performance,Ефективност на търсенето,,site/modules/Ichiban/InputfieldIchiban.module.php,a3d2707eb9827cf51524254b7592563e
 Loading…,Зарежда се...,,site/modules/Ichiban/InputfieldIchiban.module.php,5f02f05c744a0f875aebb8625ae1486f
-AI is not configured. Configure Context AI Gateway or enable Ichiban OpenRouter settings.,AI не е конфигуриран. Конфигурирайте Context AI Gateway или активирайте настройките на Ichiban OpenRouter.,,site/modules/Ichiban/src/Ai/OpenRouter.php,a7f69b7b79cba57ca64958adecdc3d09
-PHP cURL extension is required for OpenRouter requests.,Разширението PHP cURL е необходимо за OpenRouter заявки.,,site/modules/Ichiban/src/Ai/OpenRouter.php,1f578f56e436249918ecae91aba4ef00
-AI request has no messages.,Заявката AI няма съобщения.,,site/modules/Ichiban/src/Ai/OpenRouter.php,b53008ced2d9f60aafa257d62da576ba
-OpenRouter returned no visible text before the output token limit was reached. Increase Max tokens or shorten the Context export sent with the request.,"OpenRouter не върна видим текст, преди да бъде достигнат лимитът на изходния токен. Увеличете макс. токени или съкратете експортирането на контекста, изпратено със заявката.",,site/modules/Ichiban/src/Ai/OpenRouter.php,07b1c46ba1964bc7e6e2e2055be44f0c
-OpenRouter returned an empty message body. Finish reason: %s. Output tokens: %d.,OpenRouter върна празно тяло на съобщението. Причина за завършване: %s. Изходни токени: %d.,,site/modules/Ichiban/src/Ai/OpenRouter.php,7014e5abd75742d344a16417650f7350
-OpenRouter returned an empty message body with no finish reason. Output tokens: %d.,OpenRouter върна празно тяло на съобщение без причина за приключване. Изходни токени: %d.,,site/modules/Ichiban/src/Ai/OpenRouter.php,fb49455c629e0ba082d078aef3dee2c0
+AI request has no messages.,AI заявка няма съобщения.,,site/modules/Ichiban/src/Ai/SquadBridge.php,b53008ced2d9f60aafa257d62da576ba
+AI features are disabled in Ichiban settings.,AI функциите са деактивирани в настройките на Ichiban.,,site/modules/Ichiban/src/Ai/SquadBridge.php,a1a68f94af4b74a504895cf4dc8a0b70
+Squad module is not installed or is not available.,Модулът Squad не е инсталиран или не е наличен.,,site/modules/Ichiban/src/Ai/SquadBridge.php,cef25258f37728a4ce228741e28e7a65
+AI is not configured. Configure an active provider key in Squad settings.,AI не е конфигуриран. Конфигурирайте активен ключ на доставчик в настройките на Squad.,,site/modules/Ichiban/src/Ai/SquadBridge.php,a3326061772f405e147fbeff4a2314e9
+Squad request failed.,Неуспешна заявка за отряд.,,site/modules/Ichiban/src/Ai/SquadBridge.php,93dbb45445859021f6bc6a214ecbe31f
+Squad returned an empty message body. Finish reason: %s. Output tokens: %d.,Squad върна празно тяло на съобщението. Причина за приключване: %s. Изходни токени: %d.,,site/modules/Ichiban/src/Ai/SquadBridge.php,0e3e3a2ea10205414f3218d9ca935dcc
+Squad returned an empty message body with no finish reason. Output tokens: %d.,Squad върна празно тяло на съобщение без причина за приключване. Изходни токени: %d.,,site/modules/Ichiban/src/Ai/SquadBridge.php,adbf62b4ea6e1b9ba28ca5701aba3bf0

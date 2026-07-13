@@ -42,7 +42,7 @@ Automatic head injection is available in module settings, but use it only when y
 - Schema.org mapping builder.
 - SeoMaestro migration tool.
 - Scheduled report workspace with email tests and DOCX export.
-- OpenRouter-backed AI prompt workspace.
+- Squad-backed AI prompt workspace.
 - Hook API for custom source resolution, final SEO values, audit rules, rendering, redirects, and identity schema.
 
 ## Documentation

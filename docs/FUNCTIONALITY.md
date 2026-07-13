@@ -109,7 +109,7 @@ The Process module adds an SEO workspace with these sections:
 - **Revisions**: tracked SEO field changes with restore support.
 - **Cleanup**: crawl tag cleanup and spam search query blocking.
 - **Migration**: SeoMaestro to Ichiban converter with backup tables.
-- **AI**: OpenRouter-backed SEO prompt test workspace.
+- **AI**: Squad-backed SEO prompt test workspace.
 - **Settings**: identity, defaults, rendering, verification, Search Console, Moz, sitemap, robots/llms, reports, cleanup, and AI.
 
 ## Audit

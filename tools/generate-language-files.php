@@ -8,7 +8,7 @@ $files = [
 	'Ichiban.module.php',
 	'ProcessIchiban.module.php',
 	'InputfieldIchiban.module.php',
-	'src/Ai/OpenRouter.php',
+	'src/Ai/SquadBridge.php',
 ];
 
 $outputDir = $moduleRoot . '/languages/processwire';

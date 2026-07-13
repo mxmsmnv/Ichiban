@@ -733,7 +733,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 	protected ?\IchibanCrawlCleanup $_crawlCleanup = null;
 	protected ?\IchibanSearchCleanup $_searchCleanup = null;
 	protected ?\IchibanEmailReports $_emailReports = null;
-	protected ?\IchibanOpenRouter $_openRouter = null;
+	protected ?\IchibanSquadBridge $_squadBridge = null;
 	protected ?\IchibanSearchStatistics $_searchStatistics = null;
 	protected ?\IchibanBacklinks $_backlinks = null;
 	protected ?\IchibanBacklinksMoz $_backlinksMoz = null;
@@ -771,9 +771,13 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		return $this->_emailReports;
 	}
 
+	public function getSquadBridge(): \IchibanSquadBridge {
+		if (!$this->_squadBridge) $this->_squadBridge = new \IchibanOpenRouter($this);
+		return $this->_squadBridge;
+	}
+
 	public function getOpenRouter(): \IchibanOpenRouter {
-		if (!$this->_openRouter) $this->_openRouter = new \IchibanOpenRouter($this);
-		return $this->_openRouter;
+		return $this->getSquadBridge();
 	}
 
 	public function getSearchStatistics(): \IchibanSearchStatistics {
@@ -1190,23 +1194,59 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$wrapper->add($fsMoz);
 
 		$fsAi = $modules->get('InputfieldFieldset');
-		$fsAi->label = __('AI / OpenRouter');
-		$fsAi->collapsed = $collapsedFor(['ai_enabled', 'ai_api_key', 'ai_model', 'ai_system_prompt']);
+		$fsAi->label = __('AI / Squad');
+		$fsAi->collapsed = $collapsedFor(['ai_enabled', 'ai_provider', 'ai_model', 'ai_system_prompt']);
 		$fsAi->columnWidth = 100;
-		$addNotes($fsAi, __('OpenRouter connection used by the Ichiban AI section. This follows the same OpenAI-compatible pattern as the Context module: provider, API key, model, limits, and OpenRouter attribution headers.'));
+		$addNotes($fsAi, __('Ichiban uses Squad as the shared AI gateway. Configure provider keys in Squad; use these settings only for Ichiban request defaults and SEO-specific prompts.'));
+
+		$squadInstalled = false;
+		$squadDefinitions = [];
+		$squadStatuses = [];
+		$squadSettingsUrl = rtrim((string)$this->wire('config')->urls->admin, '/') . '/module/edit?name=Squad';
+		try {
+			$squadInstalled = $modules->isInstalled('Squad');
+			if ($squadInstalled) {
+				$squad = $modules->get('Squad');
+				if ($squad && method_exists($squad, 'getProviderDefinitions')) $squadDefinitions = $squad->getProviderDefinitions();
+				if ($squad && method_exists($squad, 'getProvidersStatus')) $squadStatuses = $squad->getProvidersStatus();
+			}
+		} catch (\Throwable $e) {
+			$squadInstalled = false;
+		}
+
+		$f = $modules->get('InputfieldMarkup');
+		$f->label = __('Squad connection');
+		if ($squadInstalled) {
+			$active = [];
+			foreach ($squadStatuses as $key => $status) {
+				if (!empty($status['active'])) $active[] = $this->wire('sanitizer')->entities((string)($status['label'] ?? $key));
+			}
+			$f->value = '<p>' . sprintf(__('Squad is installed. Active providers: %s.'), $active ? implode(', ', $active) : __('none')) . '</p>'
+				. '<p><a class="uk-button uk-button-default uk-button-small" href="' . $squadSettingsUrl . '">' . __('Open Squad settings') . '</a></p>';
+		} else {
+			$f->value = '<p>' . __('Squad is not installed. Install and configure Squad before running Ichiban AI requests.') . '</p>';
+		}
+		$f->columnWidth = 100;
+		$fsAi->add($f);
 
 		$f = $modules->get('InputfieldCheckbox');
 		$f->name = 'ai_enabled';
 		$f->label = __('Enable AI features');
+		$f->description = __('Allows the Ichiban AI workspace to send requests through Squad.');
 		$f->checked = !empty($data['ai_enabled']);
 		$f->columnWidth = 33;
 		$fsAi->add($f);
 
 		$f = $modules->get('InputfieldSelect');
 		$f->name = 'ai_provider';
-		$f->label = __('Provider');
-		$f->addOption('openrouter', 'OpenRouter');
-		$f->value = $data['ai_provider'] ?? 'openrouter';
+		$f->label = __('Provider override');
+		$f->description = __('Leave empty to use the default provider selected in Squad.');
+		$f->addOption('', __('Squad default'));
+		foreach ($squadDefinitions as $key => $definition) {
+			$f->addOption((string)$key, (string)($definition['label'] ?? $key));
+		}
+		$currentProvider = (string)($data['ai_provider'] ?? '');
+		$f->value = $currentProvider === 'openrouter' ? '' : $currentProvider;
 		$f->showIf = 'ai_enabled=1';
 		$f->columnWidth = 33;
 		$fsAi->add($f);
@@ -1222,21 +1262,11 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$fsAi->add($f);
 
 		$f = $modules->get('InputfieldText');
-		$f->name = 'ai_api_key';
-		$f->label = __('OpenRouter API key');
-		$f->notes = __('Get a key at openrouter.ai/keys.');
-		$f->placeholder = 'sk-or-...';
-		$f->value = $data['ai_api_key'] ?? '';
-		$f->attr('type', 'password');
-		$f->showIf = 'ai_enabled=1';
-		$f->columnWidth = 100;
-		$fsAi->add($f);
-
-		$f = $modules->get('InputfieldText');
 		$f->name = 'ai_model';
-		$f->label = __('Default model');
-		$f->notes = __('OpenRouter format: provider/model, for example anthropic/claude-sonnet-4-6 or openai/gpt-4o-mini.');
-		$f->value = $data['ai_model'] ?? 'anthropic/claude-sonnet-4-6';
+		$f->label = __('Model override');
+		$f->description = __('Optional. Leave empty to use the model configured on the active Squad key.');
+		$f->notes = __('Use a model ID supported by the selected Squad provider.');
+		$f->value = $data['ai_model'] ?? '';
 		$f->showIf = 'ai_enabled=1';
 		$f->columnWidth = 50;
 		$fsAi->add($f);
@@ -1263,30 +1293,12 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$f = $modules->get('InputfieldTextarea');
 		$f->name = 'ai_system_prompt';
 		$f->label = __('Global system prompt');
-		$f->notes = __('Prepended to Ichiban AI requests.');
+		$f->notes = __('Prepended to Ichiban AI requests before the mode-specific SEO prompt.');
 		$f->placeholder = __('You are a helpful SEO assistant for ProcessWire websites.');
 		$f->value = $data['ai_system_prompt'] ?? '';
 		$f->rows = 3;
 		$f->showIf = 'ai_enabled=1';
 		$f->columnWidth = 100;
-		$fsAi->add($f);
-
-		$f = $modules->get('InputfieldText');
-		$f->name = 'ai_site_url';
-		$f->label = __('Site URL (OpenRouter attribution)');
-		$f->notes = __('Sent as HTTP-Referer header.');
-		$f->value = $data['ai_site_url'] ?? '';
-		$f->showIf = 'ai_enabled=1';
-		$f->columnWidth = 50;
-		$fsAi->add($f);
-
-		$f = $modules->get('InputfieldText');
-		$f->name = 'ai_site_name';
-		$f->label = __('Site / app name (OpenRouter attribution)');
-		$f->notes = __('Sent as X-Title header.');
-		$f->value = $data['ai_site_name'] ?? '';
-		$f->showIf = 'ai_enabled=1';
-		$f->columnWidth = 50;
 		$fsAi->add($f);
 
 		$wrapper->add($fsAi);
