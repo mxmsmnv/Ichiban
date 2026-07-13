@@ -60,8 +60,6 @@ Squad connection,Σύνδεση διμοιρίας,,site/modules/Ichiban/Ichiban
 Squad is installed. Active providers: %s.,Η ομάδα έχει εγκατασταθεί. Ενεργοί πάροχοι: %s.,,site/modules/Ichiban/Ichiban.module.php,943cdceb5161ec2aaa0c8b7240c88ff5
 Open Squad settings,Ανοίξτε τις ρυθμίσεις της ομάδας,,site/modules/Ichiban/Ichiban.module.php,e5e25695970de11c7acbf3f901b7e249
 Squad is not installed. Install and configure Squad before running Ichiban AI requests.,Το Squad δεν έχει εγκατασταθεί. Εγκαταστήστε και διαμορφώστε το Squad πριν εκτελέσετε αιτήματα Ichiban AI.,,site/modules/Ichiban/Ichiban.module.php,1fd298f8ed650af1f1c7391b249df142
-Enable AI features,Ενεργοποιήστε τις λειτουργίες AI,,site/modules/Ichiban/Ichiban.module.php,3148562cec18808d8b30b9ee29e0f94e
-Allows the Ichiban AI workspace to send requests through Squad.,Επιτρέπει στον χώρο εργασίας Ichiban AI να στέλνει αιτήματα μέσω του Squad.,,site/modules/Ichiban/Ichiban.module.php,34ec0f579952dd1e0819805922d08722
 Provider override,Παράκαμψη παρόχου,,site/modules/Ichiban/Ichiban.module.php,c8b66ad23c12655d32b6e9b14a5d32fd
 Leave empty to use the default provider selected in Squad.,Αφήστε κενό για να χρησιμοποιήσετε τον προεπιλεγμένο πάροχο που έχει επιλεγεί στο Squad.,,site/modules/Ichiban/Ichiban.module.php,9c3aac1cd9f9352d12af87ccb7e38fb2
 Squad default,Προεπιλογή ομάδας,,site/modules/Ichiban/Ichiban.module.php,379df8c2ecca7f514c9cf71e7f215a34
@@ -684,7 +682,6 @@ Restore,Επαναφορά,,site/modules/Ichiban/InputfieldIchiban.module.php,2b
 Search Performance,Απόδοση αναζήτησης,,site/modules/Ichiban/InputfieldIchiban.module.php,a3d2707eb9827cf51524254b7592563e
 Loading…,Φόρτωση…,,site/modules/Ichiban/InputfieldIchiban.module.php,5f02f05c744a0f875aebb8625ae1486f
 AI request has no messages.,Το αίτημα AI δεν έχει μηνύματα.,,site/modules/Ichiban/src/Ai/SquadBridge.php,b53008ced2d9f60aafa257d62da576ba
-AI features are disabled in Ichiban settings.,Οι λειτουργίες AI είναι απενεργοποιημένες στις ρυθμίσεις Ichiban.,,site/modules/Ichiban/src/Ai/SquadBridge.php,a1a68f94af4b74a504895cf4dc8a0b70
 Squad module is not installed or is not available.,Η μονάδα Squad δεν είναι εγκατεστημένη ή δεν είναι διαθέσιμη.,,site/modules/Ichiban/src/Ai/SquadBridge.php,cef25258f37728a4ce228741e28e7a65
 AI is not configured. Configure an active provider key in Squad settings.,Το AI δεν έχει ρυθμιστεί. Διαμορφώστε ένα ενεργό κλειδί παρόχου στις ρυθμίσεις του Squad.,,site/modules/Ichiban/src/Ai/SquadBridge.php,a3326061772f405e147fbeff4a2314e9
 Squad request failed.,Το αίτημα ομάδας απέτυχε.,,site/modules/Ichiban/src/Ai/SquadBridge.php,93dbb45445859021f6bc6a214ecbe31f

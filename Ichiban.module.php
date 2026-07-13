@@ -1195,7 +1195,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 
 		$fsAi = $modules->get('InputfieldFieldset');
 		$fsAi->label = __('AI / Squad');
-		$fsAi->collapsed = $collapsedFor(['ai_enabled', 'ai_provider', 'ai_model', 'ai_system_prompt']);
+		$fsAi->collapsed = $collapsedFor(['ai_provider', 'ai_model', 'ai_system_prompt']);
 		$fsAi->columnWidth = 100;
 		$addNotes($fsAi, __('Ichiban uses Squad as the shared AI gateway. Configure provider keys in Squad; use these settings only for Ichiban request defaults and SEO-specific prompts.'));
 
@@ -1229,14 +1229,6 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$f->columnWidth = 100;
 		$fsAi->add($f);
 
-		$f = $modules->get('InputfieldCheckbox');
-		$f->name = 'ai_enabled';
-		$f->label = __('Enable AI features');
-		$f->description = __('Allows the Ichiban AI workspace to send requests through Squad.');
-		$f->checked = !empty($data['ai_enabled']);
-		$f->columnWidth = 33;
-		$fsAi->add($f);
-
 		$f = $modules->get('InputfieldSelect');
 		$f->name = 'ai_provider';
 		$f->label = __('Provider override');
@@ -1247,7 +1239,6 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		}
 		$currentProvider = (string)($data['ai_provider'] ?? '');
 		$f->value = $currentProvider === 'openrouter' ? '' : $currentProvider;
-		$f->showIf = 'ai_enabled=1';
 		$f->columnWidth = 33;
 		$fsAi->add($f);
 
@@ -1257,7 +1248,6 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$f->value = (int)($data['ai_timeout'] ?? 30);
 		$f->min = 5;
 		$f->max = 120;
-		$f->showIf = 'ai_enabled=1';
 		$f->columnWidth = 34;
 		$fsAi->add($f);
 
@@ -1267,7 +1257,6 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$f->description = __('Optional. Leave empty to use the model configured on the active Squad key.');
 		$f->notes = __('Use a model ID supported by the selected Squad provider.');
 		$f->value = $data['ai_model'] ?? '';
-		$f->showIf = 'ai_enabled=1';
 		$f->columnWidth = 50;
 		$fsAi->add($f);
 
@@ -1277,7 +1266,6 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$f->value = (int)($data['ai_max_tokens'] ?? 1024);
 		$f->min = 64;
 		$f->max = 16384;
-		$f->showIf = 'ai_enabled=1';
 		$f->columnWidth = 25;
 		$fsAi->add($f);
 
@@ -1286,7 +1274,6 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$f->label = __('Temperature');
 		$f->notes = __('0 = deterministic, 1 = more creative.');
 		$f->value = (string)($data['ai_temperature'] ?? '0.7');
-		$f->showIf = 'ai_enabled=1';
 		$f->columnWidth = 25;
 		$fsAi->add($f);
 
@@ -1297,7 +1284,6 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$f->placeholder = __('You are a helpful SEO assistant for ProcessWire websites.');
 		$f->value = $data['ai_system_prompt'] ?? '';
 		$f->rows = 3;
-		$f->showIf = 'ai_enabled=1';
 		$f->columnWidth = 100;
 		$fsAi->add($f);
 

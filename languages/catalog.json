@@ -551,29 +551,11 @@
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
         "textdomain": "site--modules--ichiban--ichiban-module-php",
-        "hash": "3148562cec18808d8b30b9ee29e0f94e",
-        "text": "Enable AI features",
-        "context": "",
-        "plural": "",
-        "line": 1234
-    },
-    {
-        "file": "site/modules/Ichiban/Ichiban.module.php",
-        "textdomain": "site--modules--ichiban--ichiban-module-php",
-        "hash": "34ec0f579952dd1e0819805922d08722",
-        "text": "Allows the Ichiban AI workspace to send requests through Squad.",
-        "context": "",
-        "plural": "",
-        "line": 1235
-    },
-    {
-        "file": "site/modules/Ichiban/Ichiban.module.php",
-        "textdomain": "site--modules--ichiban--ichiban-module-php",
         "hash": "c8b66ad23c12655d32b6e9b14a5d32fd",
         "text": "Provider override",
         "context": "",
         "plural": "",
-        "line": 1242
+        "line": 1234
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -582,7 +564,7 @@
         "text": "Leave empty to use the default provider selected in Squad.",
         "context": "",
         "plural": "",
-        "line": 1243
+        "line": 1235
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -591,7 +573,7 @@
         "text": "Squad default",
         "context": "",
         "plural": "",
-        "line": 1244
+        "line": 1236
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -600,7 +582,7 @@
         "text": "Model override",
         "context": "",
         "plural": "",
-        "line": 1266
+        "line": 1256
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -609,7 +591,7 @@
         "text": "Optional. Leave empty to use the model configured on the active Squad key.",
         "context": "",
         "plural": "",
-        "line": 1267
+        "line": 1257
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -618,7 +600,7 @@
         "text": "Use a model ID supported by the selected Squad provider.",
         "context": "",
         "plural": "",
-        "line": 1268
+        "line": 1258
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -627,7 +609,7 @@
         "text": "Max tokens",
         "context": "",
         "plural": "",
-        "line": 1276
+        "line": 1265
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -636,7 +618,7 @@
         "text": "Temperature",
         "context": "",
         "plural": "",
-        "line": 1286
+        "line": 1274
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -645,7 +627,7 @@
         "text": "0 = deterministic, 1 = more creative.",
         "context": "",
         "plural": "",
-        "line": 1287
+        "line": 1275
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -654,7 +636,7 @@
         "text": "Global system prompt",
         "context": "",
         "plural": "",
-        "line": 1295
+        "line": 1282
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -663,7 +645,7 @@
         "text": "Prepended to Ichiban AI requests before the mode-specific SEO prompt.",
         "context": "",
         "plural": "",
-        "line": 1296
+        "line": 1283
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -672,7 +654,7 @@
         "text": "You are a helpful SEO assistant for ProcessWire websites.",
         "context": "",
         "plural": "",
-        "line": 1297
+        "line": 1284
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -681,7 +663,7 @@
         "text": "Publishing & URLs",
         "context": "",
         "plural": "",
-        "line": 1307
+        "line": 1293
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -690,7 +672,7 @@
         "text": "IndexNow keys are simple verification strings, not keys from an account. Generate one here or use any 8-128 character key containing letters, numbers, and hyphens. A public key file named {key}.txt must exist at the site root and contain the key.",
         "context": "",
         "plural": "",
-        "line": 1313
+        "line": 1299
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -699,7 +681,7 @@
         "text": "Current key file URL: %s",
         "context": "",
         "plural": "",
-        "line": 1315
+        "line": 1301
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -708,7 +690,7 @@
         "text": "Index Now API Key",
         "context": "",
         "plural": "",
-        "line": 1323
+        "line": 1309
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -717,7 +699,7 @@
         "text": "Used when Ichiban pings IndexNow after a public page is saved.",
         "context": "",
         "plural": "",
-        "line": 1324
+        "line": 1310
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -726,7 +708,7 @@
         "text": "Click Save to write/update the public key file if the site root is writable.",
         "context": "",
         "plural": "",
-        "line": 1325
+        "line": 1311
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -735,7 +717,7 @@
         "text": "Twitter/X Site Handle (global default)",
         "context": "",
         "plural": "",
-        "line": 1332
+        "line": 1318
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -744,7 +726,7 @@
         "text": "Example: @example",
         "context": "",
         "plural": "",
-        "line": 1333
+        "line": 1319
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -753,7 +735,7 @@
         "text": "URL segments in SEO URLs",
         "context": "",
         "plural": "",
-        "line": 1340
+        "line": 1326
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -762,7 +744,7 @@
         "text": "Controls canonical, og:url, twitter:url, and hreflang on pages that use ProcessWire URL segments.",
         "context": "",
         "plural": "",
-        "line": 1341
+        "line": 1327
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -771,7 +753,7 @@
         "text": "Preserve current URL segments",
         "context": "",
         "plural": "",
-        "line": 1342
+        "line": 1328
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -780,7 +762,7 @@
         "text": "Collapse to the page URL",
         "context": "",
         "plural": "",
-        "line": 1343
+        "line": 1329
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -789,7 +771,7 @@
         "text": "Updates",
         "context": "",
         "plural": "",
-        "line": 1350
+        "line": 1336
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -798,7 +780,7 @@
         "text": "Dashboard update checks read GitHub releases and show a full-width banner when a newer Ichiban release exists. Installation is always manual, creates a local backup, and requires the ichiban-manage permission.",
         "context": "",
         "plural": "",
-        "line": 1353
+        "line": 1339
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -807,7 +789,7 @@
         "text": "Check GitHub releases for updates",
         "context": "",
         "plural": "",
-        "line": 1357
+        "line": 1343
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -816,7 +798,7 @@
         "text": "Allow one-click update installation",
         "context": "",
         "plural": "",
-        "line": 1364
+        "line": 1350
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -825,7 +807,7 @@
         "text": "When enabled, the Dashboard banner can download the latest release, back up the current module folder, and replace the module files.",
         "context": "",
         "plural": "",
-        "line": 1365
+        "line": 1351
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -834,7 +816,7 @@
         "text": "Update channel",
         "context": "",
         "plural": "",
-        "line": 1372
+        "line": 1358
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -843,7 +825,7 @@
         "text": "Alpha / prerelease",
         "context": "",
         "plural": "",
-        "line": 1373
+        "line": 1359
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -852,7 +834,7 @@
         "text": "Stable releases only",
         "context": "",
         "plural": "",
-        "line": 1374
+        "line": 1360
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -861,7 +843,7 @@
         "text": "GitHub repository",
         "context": "",
         "plural": "",
-        "line": 1381
+        "line": 1367
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -870,7 +852,7 @@
         "text": "Owner/repository used for release checks and downloads.",
         "context": "",
         "plural": "",
-        "line": 1382
+        "line": 1368
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -879,7 +861,7 @@
         "text": "Sitemap",
         "context": "",
         "plural": "",
-        "line": 1389
+        "line": 1375
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -888,7 +870,7 @@
         "text": "Public index: %s. Use the Sitemap tab for generation status and manual actions.",
         "context": "",
         "plural": "",
-        "line": 1396
+        "line": 1382
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -897,7 +879,7 @@
         "text": "Enable XML sitemap",
         "context": "",
         "plural": "",
-        "line": 1402
+        "line": 1388
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -906,7 +888,7 @@
         "text": "Sitemap directory",
         "context": "",
         "plural": "",
-        "line": 1409
+        "line": 1395
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -915,7 +897,7 @@
         "text": "Relative to the ProcessWire web root.",
         "context": "",
         "plural": "",
-        "line": 1411
+        "line": 1397
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -924,7 +906,7 @@
         "text": "URLs per file",
         "context": "",
         "plural": "",
-        "line": 1417
+        "line": 1403
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -933,7 +915,7 @@
         "text": "Respect noindex",
         "context": "",
         "plural": "",
-        "line": 1425
+        "line": 1411
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -942,7 +924,7 @@
         "text": "Include hidden pages",
         "context": "",
         "plural": "",
-        "line": 1426
+        "line": 1412
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -951,7 +933,7 @@
         "text": "Include unpublished pages",
         "context": "",
         "plural": "",
-        "line": 1427
+        "line": 1413
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -960,7 +942,7 @@
         "text": "Include image entries",
         "context": "",
         "plural": "",
-        "line": 1428
+        "line": 1414
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -969,7 +951,7 @@
         "text": "Include hreflang alternates",
         "context": "",
         "plural": "",
-        "line": 1429
+        "line": 1415
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -978,7 +960,7 @@
         "text": "Auto-regenerate with LazyCron",
         "context": "",
         "plural": "",
-        "line": 1430
+        "line": 1416
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -987,7 +969,7 @@
         "text": "Default priority",
         "context": "",
         "plural": "",
-        "line": 1441
+        "line": 1427
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -996,7 +978,7 @@
         "text": "Default change frequency",
         "context": "",
         "plural": "",
-        "line": 1442
+        "line": 1428
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1005,7 +987,7 @@
         "text": "Homepage priority",
         "context": "",
         "plural": "",
-        "line": 1443
+        "line": 1429
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1014,7 +996,7 @@
         "text": "Homepage change frequency",
         "context": "",
         "plural": "",
-        "line": 1444
+        "line": 1430
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1023,7 +1005,7 @@
         "text": "Only include templates",
         "context": "",
         "plural": "",
-        "line": 1445
+        "line": 1431
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1032,7 +1014,7 @@
         "text": "Exclude templates",
         "context": "",
         "plural": "",
-        "line": 1446
+        "line": 1432
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1041,7 +1023,7 @@
         "text": "Lastmod date format",
         "context": "",
         "plural": "",
-        "line": 1447
+        "line": 1433
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1050,7 +1032,7 @@
         "text": "Regenerate interval seconds",
         "context": "",
         "plural": "",
-        "line": 1448
+        "line": 1434
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1059,7 +1041,7 @@
         "text": "Exclude URL patterns",
         "context": "",
         "plural": "",
-        "line": 1460
+        "line": 1446
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1068,7 +1050,7 @@
         "text": "One substring or regex per line.",
         "context": "",
         "plural": "",
-        "line": 1461
+        "line": 1447
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1077,7 +1059,7 @@
         "text": "Custom URLs",
         "context": "",
         "plural": "",
-        "line": 1468
+        "line": 1454
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1086,7 +1068,7 @@
         "text": "One CSV row per URL: loc,lastmod,changefreq,priority. JSON array is also accepted.",
         "context": "",
         "plural": "",
-        "line": 1469
+        "line": 1455
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1095,7 +1077,7 @@
         "text": "Actions",
         "context": "",
         "plural": "",
-        "line": 1475
+        "line": 1461
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1104,7 +1086,7 @@
         "text": "Open Sitemap dashboard",
         "context": "",
         "plural": "",
-        "line": 1476
+        "line": 1462
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1113,7 +1095,7 @@
         "text": "Open sitemap.xml",
         "context": "",
         "plural": "",
-        "line": 1477
+        "line": 1463
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1122,7 +1104,7 @@
         "text": "robots.txt / llms.txt",
         "context": "",
         "plural": "",
-        "line": 1482
+        "line": 1468
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1131,7 +1113,7 @@
         "text": "RobotsTxt companion module is installed. Use Setup > Robots.txt for the physical robots.txt editor and presets, or enable Ichiban robots.txt only when you want Ichiban to serve it dynamically. Avoid managing robots.txt in both places at once.",
         "context": "",
         "plural": "",
-        "line": 1487
+        "line": 1473
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1140,7 +1122,7 @@
         "text": "Install the companion RobotsTxt module if you want a full physical robots.txt editor with presets, rules overview, file status, and a View file action. Ichiban can still serve a simple dynamic robots.txt when enabled below.",
         "context": "",
         "plural": "",
-        "line": 1488
+        "line": 1474
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1149,7 +1131,7 @@
         "text": "Open Robots.txt editor",
         "context": "",
         "plural": "",
-        "line": 1494
+        "line": 1480
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1158,7 +1140,7 @@
         "text": "Open robots.txt",
         "context": "",
         "plural": "",
-        "line": 1495
+        "line": 1481
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1167,7 +1149,7 @@
         "text": "Serve robots.txt from Ichiban",
         "context": "",
         "plural": "",
-        "line": 1501
+        "line": 1487
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1176,7 +1158,7 @@
         "text": "robots.txt content",
         "context": "",
         "plural": "",
-        "line": 1507
+        "line": 1493
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1185,7 +1167,7 @@
         "text": "Ichiban appends Sitemap automatically when no Sitemap line is present.",
         "context": "",
         "plural": "",
-        "line": 1510
+        "line": 1496
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1194,7 +1176,7 @@
         "text": "Serve llms.txt from Ichiban",
         "context": "",
         "plural": "",
-        "line": 1515
+        "line": 1501
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1203,7 +1185,7 @@
         "text": "llms.txt mode",
         "context": "",
         "plural": "",
-        "line": 1521
+        "line": 1507
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1212,7 +1194,7 @@
         "text": "Auto",
         "context": "",
         "plural": "",
-        "line": 1522
+        "line": 1508
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1221,7 +1203,7 @@
         "text": "Manual",
         "context": "",
         "plural": "",
-        "line": 1523
+        "line": 1509
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1230,7 +1212,7 @@
         "text": "Auto mode templates",
         "context": "",
         "plural": "",
-        "line": 1529
+        "line": 1515
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1239,7 +1221,7 @@
         "text": "Comma-separated template names. Leave empty for all published pages.",
         "context": "",
         "plural": "",
-        "line": 1530
+        "line": 1516
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1248,7 +1230,7 @@
         "text": "Manual llms.txt lines",
         "context": "",
         "plural": "",
-        "line": 1536
+        "line": 1522
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1257,7 +1239,7 @@
         "text": "One Markdown link or plain URL per line.",
         "context": "",
         "plural": "",
-        "line": 1537
+        "line": 1523
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1266,7 +1248,7 @@
         "text": "Crawl & Search Cleanup",
         "context": "",
         "plural": "",
-        "line": 1545
+        "line": 1531
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1275,7 +1257,7 @@
         "text": "Use cleanup options carefully on production. Blocked search queries are recorded in the Cleanup log.",
         "context": "",
         "plural": "",
-        "line": 1548
+        "line": 1534
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1284,7 +1266,7 @@
         "text": "Block spam search queries",
         "context": "",
         "plural": "",
-        "line": 1550
+        "line": 1536
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1293,7 +1275,7 @@
         "text": "Remove RSD link",
         "context": "",
         "plural": "",
-        "line": 1551
+        "line": 1537
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1302,7 +1284,7 @@
         "text": "Remove WLW manifest",
         "context": "",
         "plural": "",
-        "line": 1552
+        "line": 1538
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1311,7 +1293,7 @@
         "text": "Remove shortlink",
         "context": "",
         "plural": "",
-        "line": 1553
+        "line": 1539
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1320,7 +1302,7 @@
         "text": "Remove prev/next links",
         "context": "",
         "plural": "",
-        "line": 1554
+        "line": 1540
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1329,7 +1311,7 @@
         "text": "Remove generator meta",
         "context": "",
         "plural": "",
-        "line": 1555
+        "line": 1541
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1338,7 +1320,7 @@
         "text": "Blocked query action",
         "context": "",
         "plural": "",
-        "line": 1566
+        "line": 1552
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1347,7 +1329,7 @@
         "text": "Redirect to homepage",
         "context": "",
         "plural": "",
-        "line": 1567
+        "line": 1553
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1356,7 +1338,7 @@
         "text": "Return 400",
         "context": "",
         "plural": "",
-        "line": 1568
+        "line": 1554
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1365,7 +1347,7 @@
         "text": "Custom block regex patterns",
         "context": "",
         "plural": "",
-        "line": 1574
+        "line": 1560
     },
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
@@ -1374,7 +1356,7 @@
         "text": "One regular expression per line.",
         "context": "",
         "plural": "",
-        "line": 1575
+        "line": 1561
     },
     {
         "file": "site/modules/Ichiban/ProcessIchiban.module.php",
@@ -6162,16 +6144,7 @@
         "text": "AI request has no messages.",
         "context": "",
         "plural": "",
-        "line": 58
-    },
-    {
-        "file": "site/modules/Ichiban/src/Ai/SquadBridge.php",
-        "textdomain": "site--modules--ichiban--src--ai--squadbridge-php",
-        "hash": "a1a68f94af4b74a504895cf4dc8a0b70",
-        "text": "AI features are disabled in Ichiban settings.",
-        "context": "",
-        "plural": "",
-        "line": 71
+        "line": 57
     },
     {
         "file": "site/modules/Ichiban/src/Ai/SquadBridge.php",
@@ -6180,7 +6153,7 @@
         "text": "Squad module is not installed or is not available.",
         "context": "",
         "plural": "",
-        "line": 73
+        "line": 71
     },
     {
         "file": "site/modules/Ichiban/src/Ai/SquadBridge.php",
@@ -6189,7 +6162,7 @@
         "text": "AI is not configured. Configure an active provider key in Squad settings.",
         "context": "",
         "plural": "",
-        "line": 74
+        "line": 72
     },
     {
         "file": "site/modules/Ichiban/src/Ai/SquadBridge.php",
@@ -6198,7 +6171,7 @@
         "text": "Squad request failed.",
         "context": "",
         "plural": "",
-        "line": 103
+        "line": 101
     },
     {
         "file": "site/modules/Ichiban/src/Ai/SquadBridge.php",
@@ -6207,7 +6180,7 @@
         "text": "Squad returned an empty message body. Finish reason: %s. Output tokens: %d.",
         "context": "",
         "plural": "",
-        "line": 227
+        "line": 221
     },
     {
         "file": "site/modules/Ichiban/src/Ai/SquadBridge.php",
@@ -6216,6 +6189,6 @@
         "text": "Squad returned an empty message body with no finish reason. Output tokens: %d.",
         "context": "",
         "plural": "",
-        "line": 229
+        "line": 223
     }
 ]

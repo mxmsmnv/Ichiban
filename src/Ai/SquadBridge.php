@@ -12,7 +12,6 @@ class IchibanSquadBridge {
 	}
 
 	public function isConfigured(): bool {
-		if (!$this->isEnabled()) return false;
 		$squad = $this->squad();
 		if (!$squad || !method_exists($squad, 'getProvidersStatus')) return false;
 		foreach ($squad->getProvidersStatus() as $status) {
@@ -68,7 +67,6 @@ class IchibanSquadBridge {
 			$message = $prefix . "\n\n" . $message;
 		}
 
-		if (!$this->isEnabled()) return ['error' => __('AI features are disabled in Ichiban settings.')];
 		$squad = $this->squad();
 		if (!$squad || !method_exists($squad, 'ask')) return ['error' => __('Squad module is not installed or is not available.')];
 		if (!$this->isConfigured()) return ['error' => __('AI is not configured. Configure an active provider key in Squad settings.')];
@@ -151,10 +149,6 @@ class IchibanSquadBridge {
 			if (is_file($path) && is_readable($path)) $files[$file] = $path;
 		}
 		return $files;
-	}
-
-	protected function isEnabled(): bool {
-		return !empty($this->ichiban->get('ai_enabled'));
 	}
 
 	protected function squad(): ?object {
