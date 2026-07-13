@@ -177,13 +177,6 @@ Website Settings,Website-instellingen,,site/modules/Ichiban/ProcessIchiban.modul
 Custom JSON must be a JSON object.,Aangepaste JSON moet een JSON-object zijn.,,site/modules/Ichiban/ProcessIchiban.module.php,bd6488a993170d0cac1da9bc16da5168
 Website settings saved.,Website-instellingen opgeslagen.,,site/modules/Ichiban/ProcessIchiban.module.php,6259f56ac984507cecd0ab486e893b46
 "Global website facts for templates, schema fallbacks, reports, and AI prompts. These settings do not replace page-level SEO fields.","Algemene websitefeiten voor sjablonen, schema-fallbacks, rapporten en AI-prompts. Deze instellingen vervangen SEO-velden op paginaniveau niet.",,site/modules/Ichiban/ProcessIchiban.module.php,727546d4b20c5f5004e7361d46f347b2
-Brand,Merk,,site/modules/Ichiban/ProcessIchiban.module.php,1be6f9eb563f3bf85c78b4219bf09de9
-Contact,Contacteer,,site/modules/Ichiban/ProcessIchiban.module.php,bbaff12800505b22a853e8b7f4eb6a22
-Address,Adres,,site/modules/Ichiban/ProcessIchiban.module.php,dd7bf230fde8d4836917806aff6a6b27
-Social Profiles,Sociale profielen,,site/modules/Ichiban/ProcessIchiban.module.php,51f3fc4fe44d76eebd8b865150ee1a6d
-Custom Settings,Aangepaste instellingen,,site/modules/Ichiban/ProcessIchiban.module.php,7c31e4534dad7ccfcd03b6a8a9852d88
-Custom JSON,Aangepaste JSON,,site/modules/Ichiban/ProcessIchiban.module.php,880739752ffb163cd4d1c902158751a7
-Optional JSON object. Keys are available through siteSetting() together with the named fields above.,Optioneel JSON-object. Sleutels zijn beschikbaar via siteSetting() samen met de hierboven genoemde velden.,,site/modules/Ichiban/ProcessIchiban.module.php,755234471465857a5f547b6b6c2c93b2
 Save Website Settings,Website-instellingen opslaan,,site/modules/Ichiban/ProcessIchiban.module.php,5e28d844ad6c2d60de633feb33ff0958
 Update installation is disabled in Ichiban settings.,Update-installatie is uitgeschakeld in de Ichiban-instellingen.,,site/modules/Ichiban/ProcessIchiban.module.php,32663c4cf7725aa2904b1d8dcf9dd997
 Ichiban update installed.,Ichiban-update geïnstalleerd.,,site/modules/Ichiban/ProcessIchiban.module.php,f90a08d564b3b3804066a054b3d09358
@@ -583,6 +576,20 @@ LinkedIn Profile,LinkedIn-profiel,,site/modules/Ichiban/ProcessIchiban.module.ph
 YouTube Channel,YouTube-kanaal,,site/modules/Ichiban/ProcessIchiban.module.php,960078a66b70f750dc2ac99353dfc7aa
 GitHub Profile,GitHub-profiel,,site/modules/Ichiban/ProcessIchiban.module.php,2b379d4e18c7d3b72104978b9d568599
 X/Twitter Profile,X/Twitter-profiel,,site/modules/Ichiban/ProcessIchiban.module.php,409f4d6d66f6efc8280043786d3fc79b
+Brand,Merk,,site/modules/Ichiban/ProcessIchiban.module.php,1be6f9eb563f3bf85c78b4219bf09de9
+Brand identity and default visual assets for templates and metadata helpers.,Merkidentiteit en standaard visuele middelen voor sjablonen en metadatahelpers.,,site/modules/Ichiban/ProcessIchiban.module.php,bffd3dac913f6e776adb2f20da95c8fd
+Contact,Contacteer,,site/modules/Ichiban/ProcessIchiban.module.php,bbaff12800505b22a853e8b7f4eb6a22
+Public contact details that templates and schema hooks can reuse.,Openbare contactgegevens die sjablonen en schemahooks kunnen hergebruiken.,,site/modules/Ichiban/ProcessIchiban.module.php,67d6ed9509d36bccced16d0aa7bb8375
+Address,Adres,,site/modules/Ichiban/ProcessIchiban.module.php,dd7bf230fde8d4836917806aff6a6b27
+"Postal address values for local business sites, footers, and structured data customization.","Postadreswaarden voor lokale bedrijfssites, voetteksten en aanpassing van gestructureerde gegevens.",,site/modules/Ichiban/ProcessIchiban.module.php,5818ece82f911a22ea473b9ee2b27c6a
+Social Profiles,Sociale profielen,,site/modules/Ichiban/ProcessIchiban.module.php,51f3fc4fe44d76eebd8b865150ee1a6d
+Profile URLs used as sameAs fallbacks when dedicated SEO Identity social fields are empty.,Profiel-URL's worden als hetzelfde gebruiktAls fallback wanneer speciale sociale velden voor SEO-identiteit leeg zijn.,,site/modules/Ichiban/ProcessIchiban.module.php,3a78545ec772c6443e9d47b349870832
+Notes,Opmerkingen,,site/modules/Ichiban/ProcessIchiban.module.php,f4c6f851b00d5518bf888815de279aba
+Custom Settings,Aangepaste instellingen,,site/modules/Ichiban/ProcessIchiban.module.php,7c31e4534dad7ccfcd03b6a8a9852d88
+Custom JSON,Aangepaste JSON,,site/modules/Ichiban/ProcessIchiban.module.php,880739752ffb163cd4d1c902158751a7
+Optional JSON object. Keys are available through siteSetting() together with the named fields above.,Optioneel JSON-object. Sleutels zijn beschikbaar via siteSetting() samen met de hierboven genoemde velden.,,site/modules/Ichiban/ProcessIchiban.module.php,755234471465857a5f547b6b6c2c93b2
+"Example: {""support_hours"":""Mon-Fri 09:00-17:00""}","Voorbeeld: {""support_hours"": ma-vr 09:00-17:00""}",,site/modules/Ichiban/ProcessIchiban.module.php,5d1112d922fa0338531ed70ffc64fc59
+Template API,Sjabloon-API,,site/modules/Ichiban/ProcessIchiban.module.php,116f012b6102066b51644624cc86f439
 Score,Scoren,,site/modules/Ichiban/ProcessIchiban.module.php,5dd135d1bcfa7f63c3b7f25425c2a4a1
 Missing OG image,Ontbrekende OG-afbeelding,,site/modules/Ichiban/ProcessIchiban.module.php,d0cc96dfee8f0a3d92cee158a0808ab3
 Title length outside target,Titellengte buiten doel,,site/modules/Ichiban/ProcessIchiban.module.php,5adb0ea06c1f6fc3f2a96949597abc05

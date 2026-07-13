@@ -177,13 +177,6 @@ Website Settings,Setări site,,site/modules/Ichiban/ProcessIchiban.module.php,21
 Custom JSON must be a JSON object.,JSON personalizat trebuie să fie un obiect JSON.,,site/modules/Ichiban/ProcessIchiban.module.php,bd6488a993170d0cac1da9bc16da5168
 Website settings saved.,Setările site-ului au fost salvate.,,site/modules/Ichiban/ProcessIchiban.module.php,6259f56ac984507cecd0ab486e893b46
 "Global website facts for templates, schema fallbacks, reports, and AI prompts. These settings do not replace page-level SEO fields.","Informații globale ale site-ului web pentru șabloane, alternative de schemă, rapoarte și solicitări AI. Aceste setări nu înlocuiesc câmpurile SEO la nivel de pagină.",,site/modules/Ichiban/ProcessIchiban.module.php,727546d4b20c5f5004e7361d46f347b2
-Brand,Marca,,site/modules/Ichiban/ProcessIchiban.module.php,1be6f9eb563f3bf85c78b4219bf09de9
-Contact,Contact,,site/modules/Ichiban/ProcessIchiban.module.php,bbaff12800505b22a853e8b7f4eb6a22
-Address,Adresa,,site/modules/Ichiban/ProcessIchiban.module.php,dd7bf230fde8d4836917806aff6a6b27
-Social Profiles,Profiluri sociale,,site/modules/Ichiban/ProcessIchiban.module.php,51f3fc4fe44d76eebd8b865150ee1a6d
-Custom Settings,Setări personalizate,,site/modules/Ichiban/ProcessIchiban.module.php,7c31e4534dad7ccfcd03b6a8a9852d88
-Custom JSON,JSON personalizat,,site/modules/Ichiban/ProcessIchiban.module.php,880739752ffb163cd4d1c902158751a7
-Optional JSON object. Keys are available through siteSetting() together with the named fields above.,Obiect JSON opțional. Cheile sunt disponibile prin siteSetting() împreună cu câmpurile denumite de mai sus.,,site/modules/Ichiban/ProcessIchiban.module.php,755234471465857a5f547b6b6c2c93b2
 Save Website Settings,Salvați setările site-ului,,site/modules/Ichiban/ProcessIchiban.module.php,5e28d844ad6c2d60de633feb33ff0958
 Update installation is disabled in Ichiban settings.,Instalarea actualizării este dezactivată în setările Ichiban.,,site/modules/Ichiban/ProcessIchiban.module.php,32663c4cf7725aa2904b1d8dcf9dd997
 Ichiban update installed.,Actualizare Ichiban instalată.,,site/modules/Ichiban/ProcessIchiban.module.php,f90a08d564b3b3804066a054b3d09358
@@ -583,6 +576,20 @@ LinkedIn Profile,Profil LinkedIn,,site/modules/Ichiban/ProcessIchiban.module.php
 YouTube Channel,Canal YouTube,,site/modules/Ichiban/ProcessIchiban.module.php,960078a66b70f750dc2ac99353dfc7aa
 GitHub Profile,Profil GitHub,,site/modules/Ichiban/ProcessIchiban.module.php,2b379d4e18c7d3b72104978b9d568599
 X/Twitter Profile,Profil X/Twitter,,site/modules/Ichiban/ProcessIchiban.module.php,409f4d6d66f6efc8280043786d3fc79b
+Brand,Marca,,site/modules/Ichiban/ProcessIchiban.module.php,1be6f9eb563f3bf85c78b4219bf09de9
+Brand identity and default visual assets for templates and metadata helpers.,Identitatea mărcii și elementele vizuale implicite pentru șabloane și metadate.,,site/modules/Ichiban/ProcessIchiban.module.php,bffd3dac913f6e776adb2f20da95c8fd
+Contact,Contact,,site/modules/Ichiban/ProcessIchiban.module.php,bbaff12800505b22a853e8b7f4eb6a22
+Public contact details that templates and schema hooks can reuse.,Detalii publice de contact pe care șabloanele și cârligele de schemă le pot reutiliza.,,site/modules/Ichiban/ProcessIchiban.module.php,67d6ed9509d36bccced16d0aa7bb8375
+Address,Adresa,,site/modules/Ichiban/ProcessIchiban.module.php,dd7bf230fde8d4836917806aff6a6b27
+"Postal address values for local business sites, footers, and structured data customization.","Valorile adresei poștale pentru site-urile de afaceri locale, subsolurile și personalizarea datelor structurate.",,site/modules/Ichiban/ProcessIchiban.module.php,5818ece82f911a22ea473b9ee2b27c6a
+Social Profiles,Profiluri sociale,,site/modules/Ichiban/ProcessIchiban.module.php,51f3fc4fe44d76eebd8b865150ee1a6d
+Profile URLs used as sameAs fallbacks when dedicated SEO Identity social fields are empty.,Adresele URL ale profilului sunt folosite ca alternative atunci când câmpurile sociale dedicate Identității SEO sunt goale.,,site/modules/Ichiban/ProcessIchiban.module.php,3a78545ec772c6443e9d47b349870832
+Notes,Note,,site/modules/Ichiban/ProcessIchiban.module.php,f4c6f851b00d5518bf888815de279aba
+Custom Settings,Setări personalizate,,site/modules/Ichiban/ProcessIchiban.module.php,7c31e4534dad7ccfcd03b6a8a9852d88
+Custom JSON,JSON personalizat,,site/modules/Ichiban/ProcessIchiban.module.php,880739752ffb163cd4d1c902158751a7
+Optional JSON object. Keys are available through siteSetting() together with the named fields above.,Obiect JSON opțional. Cheile sunt disponibile prin siteSetting() împreună cu câmpurile denumite de mai sus.,,site/modules/Ichiban/ProcessIchiban.module.php,755234471465857a5f547b6b6c2c93b2
+"Example: {""support_hours"":""Mon-Fri 09:00-17:00""}","Exemplu: {""support_hours"":""Luni-Vineri 09:00-17:00""}",,site/modules/Ichiban/ProcessIchiban.module.php,5d1112d922fa0338531ed70ffc64fc59
+Template API,API șablon,,site/modules/Ichiban/ProcessIchiban.module.php,116f012b6102066b51644624cc86f439
 Score,Scor,,site/modules/Ichiban/ProcessIchiban.module.php,5dd135d1bcfa7f63c3b7f25425c2a4a1
 Missing OG image,Lipsește imaginea OG,,site/modules/Ichiban/ProcessIchiban.module.php,d0cc96dfee8f0a3d92cee158a0808ab3
 Title length outside target,Lungimea titlului în afara țintei,,site/modules/Ichiban/ProcessIchiban.module.php,5adb0ea06c1f6fc3f2a96949597abc05

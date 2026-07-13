@@ -177,13 +177,6 @@ Website Settings,Stillingar vefsíðu,,site/modules/Ichiban/ProcessIchiban.modul
 Custom JSON must be a JSON object.,Sérsniðið JSON verður að vera JSON hlutur.,,site/modules/Ichiban/ProcessIchiban.module.php,bd6488a993170d0cac1da9bc16da5168
 Website settings saved.,Vefsíðustillingar vistaðar.,,site/modules/Ichiban/ProcessIchiban.module.php,6259f56ac984507cecd0ab486e893b46
 "Global website facts for templates, schema fallbacks, reports, and AI prompts. These settings do not replace page-level SEO fields.","Alþjóðlegar vefsíðustaðreyndir fyrir sniðmát, fallbacks skema, skýrslur og gervigreindarupplýsingar. Þessar stillingar koma ekki í stað SEO reita á síðustigi.",,site/modules/Ichiban/ProcessIchiban.module.php,727546d4b20c5f5004e7361d46f347b2
-Brand,Vörumerki,,site/modules/Ichiban/ProcessIchiban.module.php,1be6f9eb563f3bf85c78b4219bf09de9
-Contact,Hafðu samband,,site/modules/Ichiban/ProcessIchiban.module.php,bbaff12800505b22a853e8b7f4eb6a22
-Address,Heimilisfang,,site/modules/Ichiban/ProcessIchiban.module.php,dd7bf230fde8d4836917806aff6a6b27
-Social Profiles,Félagsleg snið,,site/modules/Ichiban/ProcessIchiban.module.php,51f3fc4fe44d76eebd8b865150ee1a6d
-Custom Settings,Sérsniðnar stillingar,,site/modules/Ichiban/ProcessIchiban.module.php,7c31e4534dad7ccfcd03b6a8a9852d88
-Custom JSON,Sérsniðið JSON,,site/modules/Ichiban/ProcessIchiban.module.php,880739752ffb163cd4d1c902158751a7
-Optional JSON object. Keys are available through siteSetting() together with the named fields above.,Valfrjáls JSON hlutur. Lyklar eru fáanlegir í gegnum siteSetting() ásamt nefndum reitum hér að ofan.,,site/modules/Ichiban/ProcessIchiban.module.php,755234471465857a5f547b6b6c2c93b2
 Save Website Settings,Vistaðu stillingar vefsíðu,,site/modules/Ichiban/ProcessIchiban.module.php,5e28d844ad6c2d60de633feb33ff0958
 Update installation is disabled in Ichiban settings.,Uppsetning uppfærslu er óvirk í Ichiban stillingum.,,site/modules/Ichiban/ProcessIchiban.module.php,32663c4cf7725aa2904b1d8dcf9dd997
 Ichiban update installed.,Ichiban uppfærsla sett upp.,,site/modules/Ichiban/ProcessIchiban.module.php,f90a08d564b3b3804066a054b3d09358
@@ -583,6 +576,20 @@ LinkedIn Profile,LinkedIn prófíl,,site/modules/Ichiban/ProcessIchiban.module.p
 YouTube Channel,YouTube rás,,site/modules/Ichiban/ProcessIchiban.module.php,960078a66b70f750dc2ac99353dfc7aa
 GitHub Profile,GitHub prófíl,,site/modules/Ichiban/ProcessIchiban.module.php,2b379d4e18c7d3b72104978b9d568599
 X/Twitter Profile,X/Twitter prófíl,,site/modules/Ichiban/ProcessIchiban.module.php,409f4d6d66f6efc8280043786d3fc79b
+Brand,Vörumerki,,site/modules/Ichiban/ProcessIchiban.module.php,1be6f9eb563f3bf85c78b4219bf09de9
+Brand identity and default visual assets for templates and metadata helpers.,Vörumerki og sjálfgefnar sjónrænar eignir fyrir sniðmát og lýsigagnahjálpar.,,site/modules/Ichiban/ProcessIchiban.module.php,bffd3dac913f6e776adb2f20da95c8fd
+Contact,Hafðu samband,,site/modules/Ichiban/ProcessIchiban.module.php,bbaff12800505b22a853e8b7f4eb6a22
+Public contact details that templates and schema hooks can reuse.,Opinberar tengiliðaupplýsingar sem sniðmát og skemakrókar geta endurnýtt.,,site/modules/Ichiban/ProcessIchiban.module.php,67d6ed9509d36bccced16d0aa7bb8375
+Address,Heimilisfang,,site/modules/Ichiban/ProcessIchiban.module.php,dd7bf230fde8d4836917806aff6a6b27
+"Postal address values for local business sites, footers, and structured data customization.","Póstfangsgildi fyrir staðbundnar fyrirtækjasíður, síðufætur og aðlögun skipulegra gagna.",,site/modules/Ichiban/ProcessIchiban.module.php,5818ece82f911a22ea473b9ee2b27c6a
+Social Profiles,Félagsleg snið,,site/modules/Ichiban/ProcessIchiban.module.php,51f3fc4fe44d76eebd8b865150ee1a6d
+Profile URLs used as sameAs fallbacks when dedicated SEO Identity social fields are empty.,Prófílslóðir notaðar sem samaAs fallbacks þegar sérstakir SEO Identity félagslegir reitir eru tómir.,,site/modules/Ichiban/ProcessIchiban.module.php,3a78545ec772c6443e9d47b349870832
+Notes,Skýringar,,site/modules/Ichiban/ProcessIchiban.module.php,f4c6f851b00d5518bf888815de279aba
+Custom Settings,Sérsniðnar stillingar,,site/modules/Ichiban/ProcessIchiban.module.php,7c31e4534dad7ccfcd03b6a8a9852d88
+Custom JSON,Sérsniðið JSON,,site/modules/Ichiban/ProcessIchiban.module.php,880739752ffb163cd4d1c902158751a7
+Optional JSON object. Keys are available through siteSetting() together with the named fields above.,Valfrjáls JSON hlutur. Lyklar eru fáanlegir í gegnum siteSetting() ásamt nefndum reitum hér að ofan.,,site/modules/Ichiban/ProcessIchiban.module.php,755234471465857a5f547b6b6c2c93b2
+"Example: {""support_hours"":""Mon-Fri 09:00-17:00""}","Dæmi: {""support_hours"":""mán-fös 09:00-17:00""}",,site/modules/Ichiban/ProcessIchiban.module.php,5d1112d922fa0338531ed70ffc64fc59
+Template API,Sniðmáts API,,site/modules/Ichiban/ProcessIchiban.module.php,116f012b6102066b51644624cc86f439
 Score,Skora,,site/modules/Ichiban/ProcessIchiban.module.php,5dd135d1bcfa7f63c3b7f25425c2a4a1
 Missing OG image,Vantar OG mynd,,site/modules/Ichiban/ProcessIchiban.module.php,d0cc96dfee8f0a3d92cee158a0808ab3
 Title length outside target,Lengd titils utan marks,,site/modules/Ichiban/ProcessIchiban.module.php,5adb0ea06c1f6fc3f2a96949597abc05

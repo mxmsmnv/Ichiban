@@ -149,13 +149,9 @@ class ProcessIchiban extends Process {
 		$this->setIchibanBreadcrumb(__('Website'), 'website/');
 		$this->headline(__('Website Settings'));
 
-		$san = $this->wire('sanitizer');
 		$fields = $this->websiteSettingFields();
 		$settings = $this->ichiban->siteSettings();
-		$customJson = '';
-		if (!empty($settings['custom_json'])) {
-			$customJson = (string)$settings['custom_json'];
-		}
+		$san = $this->wire('sanitizer');
 
 		if ($this->wire('input')->post('_ichiban_website_settings')) {
 			$this->wire('session')->CSRF->validate();
@@ -190,29 +186,11 @@ class ProcessIchiban extends Process {
 		}
 
 		$out = $this->renderAdminNav('website') . "<div class='ichiban-website'>\n";
-		$out .= "<div class='ichiban-website-header'><div><p>" . __('Global website facts for templates, schema fallbacks, reports, and AI prompts. These settings do not replace page-level SEO fields.') . "</p></div>"
-			. "<code>\$modules-&gt;get('Ichiban')-&gt;siteSetting('brand_name')</code></div>\n";
-		$out .= "<form method='post' class='ichiban-website-form'>\n" . $this->wire('session')->CSRF->renderInput() . "<input type='hidden' name='_ichiban_website_settings' value='1'>\n";
-
-		$groups = [
-			__('Brand') => ['brand_name', 'legal_name', 'tagline', 'site_url', 'logo_url', 'default_og_image'],
-			__('Contact') => ['email', 'phone'],
-			__('Address') => ['street_address', 'postal_code', 'locality', 'region', 'country'],
-			__('Social Profiles') => ['social_facebook', 'social_instagram', 'social_linkedin', 'social_youtube', 'social_github', 'social_x'],
-		];
-		foreach ($groups as $label => $names) {
-			$out .= "<section class='ichiban-website-section'><h3>{$label}</h3><div class='ichiban-website-grid'>\n";
-			foreach ($names as $name) {
-				$out .= $this->renderWebsiteSettingField($name, $fields[$name], (string)($settings[$name] ?? ''));
-			}
-			$out .= "</div></section>\n";
-		}
-
-		$out .= "<section class='ichiban-website-section'><h3>" . __('Custom Settings') . "</h3>"
-			. "<label class='ichiban-website-field ichiban-website-field-wide'><span>" . __('Custom JSON') . "</span>"
-			. "<textarea name='custom_json' rows='8' placeholder='{\"support_hours\":\"Mon-Fri 09:00-17:00\"}'>" . $san->entities($customJson) . "</textarea>"
-			. "<small>" . __('Optional JSON object. Keys are available through siteSetting() together with the named fields above.') . "</small></label></section>\n";
-		$out .= "<p><button type='submit' class='uk-button uk-button-primary'>" . __('Save Website Settings') . "</button></p></form></div>\n";
+		$out .= "<div class='ichiban-website-header'><p>" . __('Global website facts for templates, schema fallbacks, reports, and AI prompts. These settings do not replace page-level SEO fields.') . "</p></div>\n";
+		$form = $this->buildWebsiteSettingsForm($settings);
+		$form->prepend($this->wire('modules')->get('InputfieldHidden')->attr('name', '_ichiban_website_settings')->attr('value', '1'));
+		$out .= "<form method='post' class='ichiban-website-form'>" . $this->wire('session')->CSRF->renderInput() . $form->render()
+			. "<p><button type='submit' class='uk-button uk-button-primary'>" . __('Save Website Settings') . "</button></p></form></div>\n";
 		return $out;
 	}
 
@@ -2581,11 +2559,99 @@ class ProcessIchiban extends Process {
 		];
 	}
 
-	protected function renderWebsiteSettingField(string $name, array $meta, string $value): string {
-		$san = $this->wire('sanitizer');
-		$type = ($meta['type'] ?? '') === 'email' ? 'email' : ((($meta['type'] ?? '') === 'url') ? 'url' : 'text');
-		return "<label class='ichiban-website-field'><span>" . $san->entities((string)$meta['label']) . "</span>"
-			. "<input type='{$type}' name='" . $san->entities($name) . "' value='" . $san->entities($value) . "'></label>\n";
+	protected function buildWebsiteSettingsForm(array $settings): InputfieldWrapper {
+		$modules = $this->wire('modules');
+		$wrapper = new InputfieldWrapper();
+		$fields = $this->websiteSettingFields();
+		$groups = [
+			__('Brand') => [
+				'note' => __('Brand identity and default visual assets for templates and metadata helpers.'),
+				'fields' => [
+					'brand_name' => 33,
+					'legal_name' => 33,
+					'tagline' => 34,
+					'site_url' => 50,
+					'logo_url' => 50,
+					'default_og_image' => 100,
+				],
+			],
+			__('Contact') => [
+				'note' => __('Public contact details that templates and schema hooks can reuse.'),
+				'fields' => [
+					'email' => 50,
+					'phone' => 50,
+				],
+			],
+			__('Address') => [
+				'note' => __('Postal address values for local business sites, footers, and structured data customization.'),
+				'fields' => [
+					'street_address' => 100,
+					'postal_code' => 25,
+					'locality' => 25,
+					'region' => 25,
+					'country' => 25,
+				],
+			],
+			__('Social Profiles') => [
+				'note' => __('Profile URLs used as sameAs fallbacks when dedicated SEO Identity social fields are empty.'),
+				'fields' => [
+					'social_facebook' => 50,
+					'social_instagram' => 50,
+					'social_linkedin' => 50,
+					'social_youtube' => 50,
+					'social_github' => 50,
+					'social_x' => 50,
+				],
+			],
+		];
+
+		foreach ($groups as $label => $group) {
+			$fs = $modules->get('InputfieldFieldset');
+			$fs->label = $label;
+			$fs->collapsed = Inputfield::collapsedNo;
+			$note = $modules->get('InputfieldMarkup');
+			$note->label = __('Notes');
+			$note->value = "<div class='uk-alert uk-alert-primary uk-margin-small'>" . $this->wire('sanitizer')->entities($group['note']) . "</div>";
+			$note->columnWidth = 100;
+			$fs->add($note);
+			foreach ($group['fields'] as $name => $width) {
+				$fs->add($this->buildWebsiteInputfield($name, $fields[$name], (string)($settings[$name] ?? ''), (int)$width));
+			}
+			$wrapper->add($fs);
+		}
+
+		$fsCustom = $modules->get('InputfieldFieldset');
+		$fsCustom->label = __('Custom Settings');
+		$fsCustom->collapsed = empty($settings['custom_json']) ? Inputfield::collapsedYes : Inputfield::collapsedNo;
+		$f = $modules->get('InputfieldTextarea');
+		$f->name = 'custom_json';
+		$f->label = __('Custom JSON');
+		$f->description = __('Optional JSON object. Keys are available through siteSetting() together with the named fields above.');
+		$f->notes = __('Example: {"support_hours":"Mon-Fri 09:00-17:00"}');
+		$f->value = (string)($settings['custom_json'] ?? '');
+		$f->rows = 8;
+		$f->columnWidth = 100;
+		$fsCustom->add($f);
+		$wrapper->add($fsCustom);
+
+		$api = $modules->get('InputfieldMarkup');
+		$api->label = __('Template API');
+		$api->value = "<div class='uk-alert uk-alert-primary'><code>\$modules-&gt;get('Ichiban')-&gt;siteSetting('brand_name')</code></div>";
+		$api->columnWidth = 100;
+		$wrapper->add($api);
+
+		return $wrapper;
+	}
+
+	protected function buildWebsiteInputfield(string $name, array $meta, string $value, int $width): Inputfield {
+		$type = ($meta['type'] ?? 'text') === 'url' ? 'InputfieldURL' : 'InputfieldText';
+		$f = $this->wire('modules')->get($type);
+		$f->name = $name;
+		$f->label = $meta['label'];
+		$f->value = $value;
+		$f->columnWidth = $width;
+		if (($meta['type'] ?? '') === 'email') $f->attr('type', 'email');
+		return $f;
 	}
 
 	protected function renderSettingsIcon(): string {
