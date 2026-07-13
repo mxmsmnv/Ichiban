@@ -27,6 +27,7 @@ spl_autoload_register(function(string $class): void {
 		'IchibanCrawlCleanup'      => 'src/Cleanup/Cleanup.php',
 		'IchibanSearchCleanup'     => 'src/Cleanup/Cleanup.php',
 		'IchibanSitemap'           => 'src/Sitemap/Sitemap.php',
+		'IchibanUpdater'           => 'src/Updates/Updater.php',
 	];
 
 	$base = dirname(__FILE__) . '/';

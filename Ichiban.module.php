@@ -7,7 +7,7 @@ require_once __DIR__ . '/IchibanAutoload.php';
  *
  * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
- * @version 0.1.5-alpha
+ * @version 0.1.6-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
 
@@ -19,7 +19,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'title'    => 'Ichiban',
 			'summary'  => 'Comprehensive SEO module: meta/OG/schema, audit, redirects, revisions, email reports.',
 			'author'   => 'Maxim Semenov',
-			'version'  => 15,
+			'version'  => 16,
 			'href'     => 'https://smnv.org',
 			'singular' => true,
 			'autoload' => true,
@@ -454,11 +454,11 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		if (!str_contains($format, '{meta_title}')) {
 			$format = '{meta_title}' . $format;
 		}
-		$siteName = (string)($this->get('entity_name') ?: $this->wire('config')->httpHost);
+		$siteName = (string)($this->get('entity_name') ?: $this->siteSetting('brand_name', $this->wire('config')->httpHost));
 		$replacements = [
 			'{meta_title}' => $title,
 			'{site_name}' => $siteName,
-			'{entity_name}' => (string)$this->get('entity_name'),
+			'{entity_name}' => (string)($this->get('entity_name') ?: $this->siteSetting('brand_name', '')),
 			'{host}' => (string)$this->wire('config')->httpHost,
 		];
 		return trim(strtr($format, $replacements));
@@ -575,7 +575,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 	}
 
 	public function renderLlmsTxt(): string {
-		$siteName = $this->get('entity_name') ?: $this->wire('config')->httpHost;
+		$siteName = $this->get('entity_name') ?: $this->siteSetting('brand_name', $this->wire('config')->httpHost);
 		$out = "# {$siteName}\n\n";
 		$mode = $this->get('llms_mode') ?: 'auto';
 		if ($mode === 'manual') {
@@ -605,6 +605,29 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		if ($root) return rtrim($root, '/');
 		$host = (string)$this->wire('config')->httpHost;
 		return $host ? 'https://' . trim($host, '/') : '';
+	}
+
+	public function siteSettings(): array {
+		$settings = $this->get('website_settings') ?: [];
+		if (is_string($settings)) $settings = json_decode($settings, true) ?: [];
+		if (!is_array($settings)) return [];
+		$custom = $settings['custom'] ?? [];
+		if (is_string($custom)) $custom = json_decode($custom, true) ?: [];
+		if (is_array($custom)) {
+			unset($settings['custom']);
+			$settings = array_merge($custom, $settings);
+		}
+		return $settings;
+	}
+
+	public function websiteSettings(): array {
+		return $this->siteSettings();
+	}
+
+	public function siteSetting(string $key, $default = null) {
+		$settings = $this->siteSettings();
+		$value = $settings[$key] ?? null;
+		return ($value === null || $value === '') ? $default : $value;
 	}
 
 	protected function pingIndexNow(string $url, string $apiKey): void {
@@ -716,6 +739,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 	protected ?\IchibanBacklinksMoz $_backlinksMoz = null;
 	protected ?\IchibanSitemap $_sitemap = null;
 	protected ?\IchibanAuditEngine $_auditEngine = null;
+	protected ?\IchibanUpdater $_updater = null;
 
 	public function getSchemaGraph(): \IchibanSchemaGraph {
 		if (!$this->_schemaGraph) $this->_schemaGraph = new \IchibanSchemaGraph($this);
@@ -775,6 +799,11 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 	public function getAuditEngine(): \IchibanAuditEngine {
 		if (!$this->_auditEngine) $this->_auditEngine = new \IchibanAuditEngine($this);
 		return $this->_auditEngine;
+	}
+
+	public function getUpdater(): \IchibanUpdater {
+		if (!$this->_updater) $this->_updater = new \IchibanUpdater($this);
+		return $this->_updater;
 	}
 
 	// -------------------------------------------------------------------------
@@ -1319,6 +1348,45 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$f->columnWidth = 34;
 		$fsPublishing->add($f);
 		$wrapper->add($fsPublishing);
+
+		$fsUpdates = $modules->get('InputfieldFieldset');
+		$fsUpdates->label = __('Updates');
+		$fsUpdates->collapsed = $collapsedFor(['updates_enabled', 'updates_repo', 'updates_channel', 'updates_install_enabled']);
+		$fsUpdates->columnWidth = 100;
+		$addNotes($fsUpdates, __('Dashboard update checks read GitHub releases and show a full-width banner when a newer Ichiban release exists. Installation is always manual, creates a local backup, and requires the ichiban-manage permission.'));
+
+		$f = $modules->get('InputfieldCheckbox');
+		$f->name = 'updates_enabled';
+		$f->label = __('Check GitHub releases for updates');
+		$f->checked = !array_key_exists('updates_enabled', $data) || !empty($data['updates_enabled']);
+		$f->columnWidth = 33;
+		$fsUpdates->add($f);
+
+		$f = $modules->get('InputfieldCheckbox');
+		$f->name = 'updates_install_enabled';
+		$f->label = __('Allow one-click update installation');
+		$f->description = __('When enabled, the Dashboard banner can download the latest release, back up the current module folder, and replace the module files.');
+		$f->checked = !array_key_exists('updates_install_enabled', $data) || !empty($data['updates_install_enabled']);
+		$f->columnWidth = 33;
+		$fsUpdates->add($f);
+
+		$f = $modules->get('InputfieldSelect');
+		$f->name = 'updates_channel';
+		$f->label = __('Update channel');
+		$f->addOption('alpha', __('Alpha / prerelease'));
+		$f->addOption('stable', __('Stable releases only'));
+		$f->value = $data['updates_channel'] ?? 'alpha';
+		$f->columnWidth = 34;
+		$fsUpdates->add($f);
+
+		$f = $modules->get('InputfieldText');
+		$f->name = 'updates_repo';
+		$f->label = __('GitHub repository');
+		$f->description = __('Owner/repository used for release checks and downloads.');
+		$f->value = $data['updates_repo'] ?? 'mxmsmnv/Ichiban';
+		$f->columnWidth = 100;
+		$fsUpdates->add($f);
+		$wrapper->add($fsUpdates);
 
 		$fsSitemap = $modules->get('InputfieldFieldset');
 		$fsSitemap->label = __('Sitemap');

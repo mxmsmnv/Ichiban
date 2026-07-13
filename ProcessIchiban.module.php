@@ -17,7 +17,7 @@ class ProcessIchiban extends Process {
 			'summary'  => 'Admin panel for Ichiban SEO module.',
 			'author'   => 'Maxim Semenov',
 			'href'     => 'https://smnv.org',
-			'version'  => 15,
+			'version'  => 16,
 			
 			'page'     => [
 				'name'   => 'ichiban',
@@ -86,6 +86,7 @@ class ProcessIchiban extends Process {
 
 		$out  = $this->renderAdminNav('dashboard');
 		$out .= "<div class='ichiban-dashboard'>\n";
+		$out .= $this->renderUpdateBanner();
 		$out .= "<div class='ichiban-dashboard-header'><div><p>" . __('A quick overview of metadata health, crawl cleanup activity, redirects, and recent SEO changes.') . "</p></div>"
 			. "<div class='ichiban-dashboard-actions'><a class='uk-button uk-button-default' href='" . $this->adminUrl('audit/') . "'>" . __('Open Audit') . "</a><a class='uk-button uk-button-secondary' href='" . $this->adminUrl('bulk/') . "'>" . __('Edit Metadata') . "</a></div></div>\n";
 		// Score widget
@@ -142,6 +143,100 @@ class ProcessIchiban extends Process {
 			. "</div>\n";
 		$out .= "</div>\n";
 		return $out;
+	}
+
+	public function executeWebsite(): string {
+		$this->setIchibanBreadcrumb(__('Website'), 'website/');
+		$this->headline(__('Website Settings'));
+
+		$san = $this->wire('sanitizer');
+		$fields = $this->websiteSettingFields();
+		$settings = $this->ichiban->siteSettings();
+		$customJson = '';
+		if (!empty($settings['custom_json'])) {
+			$customJson = (string)$settings['custom_json'];
+		}
+
+		if ($this->wire('input')->post('_ichiban_website_settings')) {
+			$this->wire('session')->CSRF->validate();
+			$save = [];
+			foreach ($fields as $name => $meta) {
+				$value = trim((string)$this->wire('input')->post($name));
+				if (($meta['type'] ?? '') === 'url') {
+					$value = $value === '' ? '' : $san->url($value);
+				} elseif (($meta['type'] ?? '') === 'email') {
+					$value = $value === '' ? '' : $san->email($value);
+				} else {
+					$value = $san->text($value);
+				}
+				$save[$name] = $value;
+			}
+			$customJson = trim((string)$this->wire('input')->post('custom_json'));
+			if ($customJson !== '') {
+				$decoded = json_decode($customJson, true);
+				if (!is_array($decoded)) {
+					$this->wire('session')->error(__('Custom JSON must be a JSON object.'));
+					$save['custom_json'] = $customJson;
+				} else {
+					$save['custom_json'] = json_encode($decoded, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+					$save['custom'] = $decoded;
+				}
+			}
+			$config = $this->wire('modules')->getModuleConfigData('Ichiban');
+			$config['website_settings'] = $save;
+			$this->wire('modules')->saveModuleConfigData('Ichiban', $config);
+			$this->wire('session')->message(__('Website settings saved.'));
+			$this->wire('session')->redirect($this->adminUrl('website/'));
+		}
+
+		$out = $this->renderAdminNav('website') . "<div class='ichiban-website'>\n";
+		$out .= "<div class='ichiban-website-header'><div><p>" . __('Global website facts for templates, schema fallbacks, reports, and AI prompts. These settings do not replace page-level SEO fields.') . "</p></div>"
+			. "<code>\$modules-&gt;get('Ichiban')-&gt;siteSetting('brand_name')</code></div>\n";
+		$out .= "<form method='post' class='ichiban-website-form'>\n" . $this->wire('session')->CSRF->renderInput() . "<input type='hidden' name='_ichiban_website_settings' value='1'>\n";
+
+		$groups = [
+			__('Brand') => ['brand_name', 'legal_name', 'tagline', 'site_url', 'logo_url', 'default_og_image'],
+			__('Contact') => ['email', 'phone'],
+			__('Address') => ['street_address', 'postal_code', 'locality', 'region', 'country'],
+			__('Social Profiles') => ['social_facebook', 'social_instagram', 'social_linkedin', 'social_youtube', 'social_github', 'social_x'],
+		];
+		foreach ($groups as $label => $names) {
+			$out .= "<section class='ichiban-website-section'><h3>{$label}</h3><div class='ichiban-website-grid'>\n";
+			foreach ($names as $name) {
+				$out .= $this->renderWebsiteSettingField($name, $fields[$name], (string)($settings[$name] ?? ''));
+			}
+			$out .= "</div></section>\n";
+		}
+
+		$out .= "<section class='ichiban-website-section'><h3>" . __('Custom Settings') . "</h3>"
+			. "<label class='ichiban-website-field ichiban-website-field-wide'><span>" . __('Custom JSON') . "</span>"
+			. "<textarea name='custom_json' rows='8' placeholder='{\"support_hours\":\"Mon-Fri 09:00-17:00\"}'>" . $san->entities($customJson) . "</textarea>"
+			. "<small>" . __('Optional JSON object. Keys are available through siteSetting() together with the named fields above.') . "</small></label></section>\n";
+		$out .= "<p><button type='submit' class='uk-button uk-button-primary'>" . __('Save Website Settings') . "</button></p></form></div>\n";
+		return $out;
+	}
+
+	public function executeUpdatesInstall(): string {
+		$this->wire('session')->CSRF->validate();
+		if (!$this->wire('user')->hasPermission('ichiban-manage')) {
+			throw new WirePermissionException('ichiban-manage');
+		}
+		$installerEnabled = $this->ichiban->get('updates_install_enabled');
+		if ($installerEnabled !== null && !$installerEnabled) {
+			$this->wire('session')->warning(__('Update installation is disabled in Ichiban settings.'));
+			$this->wire('session')->redirect($this->adminUrl());
+		}
+		try {
+			$result = $this->ichiban->getUpdater()->installLatest();
+			$this->wire('session')->message((string)($result['message'] ?? __('Ichiban update installed.')));
+			if (!empty($result['backup_path'])) {
+				$this->wire('session')->message(sprintf(__('Backup created at %s'), $result['backup_path']));
+			}
+		} catch (\Throwable $e) {
+			$this->wire('session')->error(sprintf(__('Update failed: %s'), $e->getMessage()));
+		}
+		$this->wire('session')->redirect($this->adminUrl());
+		return '';
 	}
 
 	public function executeBulk(): string {
@@ -2066,7 +2161,8 @@ class ProcessIchiban extends Process {
 			             'search_cleanup_enabled','search_cleanup_action','search_cleanup_patterns',
 			             'remove_rsd','remove_wlw','remove_shortlink','remove_prev_next','remove_generator',
 			             'ai_provider','ai_api_key','ai_model','ai_max_tokens','ai_temperature','ai_timeout',
-			             'ai_system_prompt','ai_site_url','ai_site_name'];
+			             'ai_system_prompt','ai_site_url','ai_site_name',
+			             'updates_repo','updates_channel'];
 			$save = $existing;
 			foreach ($safeKeys as $key) {
 				$value = $input->post($key);
@@ -2075,7 +2171,8 @@ class ProcessIchiban extends Process {
 			foreach (['robots_enabled','llms_enabled','sitemap_enabled','sitemap_respect_noindex','sitemap_include_hidden',
 			          'sitemap_include_unpublished','sitemap_include_images','sitemap_multilang_hreflang','sitemap_auto_regenerate',
 			          'search_cleanup_enabled','remove_rsd','remove_wlw','remove_shortlink',
-			          'remove_prev_next','remove_generator','auto_render_head','render_hreflang','render_jsonld'] as $key) {
+			          'remove_prev_next','remove_generator','auto_render_head','render_hreflang','render_jsonld',
+			          'updates_enabled','updates_install_enabled'] as $key) {
 				$save[$key] = $input->post($key) !== null ? 1 : 0;
 			}
 			$save['ai_enabled'] = $input->post('ai_enabled') !== null ? 1 : 0;
@@ -2397,6 +2494,7 @@ class ProcessIchiban extends Process {
 	protected function renderAdminNav(string $active): string {
 		$items = [
 			'dashboard' => [__('Dashboard'), ''],
+			'website' => [__('Website'), 'website/'],
 			'bulk' => [__('Bulk Editor'), 'bulk/'],
 			'audit' => [__('Audit'), 'audit/'],
 			'redirects' => [__('Redirects'), 'redirects/'],
@@ -2422,6 +2520,72 @@ class ProcessIchiban extends Process {
 		$settingsClass = $active === 'settings' ? ' is-active' : '';
 		$out .= "</ul><a class='ichiban-settings-link{$settingsClass}' href='" . $this->adminUrl('settings/') . "' title='{$settingsLabel}' aria-label='{$settingsLabel}'>" . $this->renderSettingsIcon() . "</a></div>\n";
 		return $out;
+	}
+
+	protected function renderUpdateBanner(): string {
+		$enabled = $this->ichiban->get('updates_enabled');
+		if ($enabled !== null && !$enabled) return '';
+		try {
+			$status = $this->ichiban->getUpdater()->getStatus((bool)$this->wire('input')->get('check_updates'));
+		} catch (\Throwable $e) {
+			return '';
+		}
+		if (empty($status['update_available'])) return '';
+
+		$san = $this->wire('sanitizer');
+		$current = $san->entities((string)($status['current_version'] ?? ''));
+		$latest = $san->entities((string)($status['latest_version'] ?: $status['tag_name']));
+		$name = $san->entities((string)($status['latest_name'] ?: $status['tag_name']));
+		$releaseUrl = $san->entities((string)($status['release_url'] ?? ''));
+		$out = "<section class='ichiban-update-banner ichiban-dashboard-wide'>"
+			. "<div><strong>" . __('Ichiban update available') . "</strong>"
+			. "<p>" . sprintf(__('Current version: %1$s. Latest release: %2$s.'), "<code>{$current}</code>", "<code>{$latest}</code>") . "</p>"
+			. ($name ? "<small>{$name}</small>" : '') . "</div>"
+			. "<div class='ichiban-update-actions'>";
+		if ($releaseUrl) {
+			$out .= "<a class='uk-button uk-button-default' href='{$releaseUrl}' target='_blank' rel='noopener'>" . __('View Release') . "</a>";
+		}
+		$installerEnabled = $this->ichiban->get('updates_install_enabled');
+		if ($installerEnabled === null || $installerEnabled) {
+			$out .= "<form method='post' action='" . $this->adminUrl('updates-install/') . "'>"
+				. $this->wire('session')->CSRF->renderInput()
+				. "<button type='submit' class='uk-button uk-button-primary'>" . __('Install Update') . "</button></form>";
+		} else {
+			$out .= "<a class='uk-button uk-button-primary' href='" . $this->adminUrl('settings/') . "#wrap_Inputfield_updates_install_enabled'>" . __('Enable Installer') . "</a>";
+		}
+		$out .= "</div></section>\n";
+		return $out;
+	}
+
+	protected function websiteSettingFields(): array {
+		return [
+			'brand_name' => ['label' => __('Brand Name'), 'type' => 'text'],
+			'legal_name' => ['label' => __('Legal Name'), 'type' => 'text'],
+			'tagline' => ['label' => __('Tagline'), 'type' => 'text'],
+			'site_url' => ['label' => __('Site URL'), 'type' => 'url'],
+			'logo_url' => ['label' => __('Logo URL'), 'type' => 'url'],
+			'default_og_image' => ['label' => __('Default Open Graph Image'), 'type' => 'url'],
+			'email' => ['label' => __('Email'), 'type' => 'email'],
+			'phone' => ['label' => __('Phone'), 'type' => 'text'],
+			'street_address' => ['label' => __('Street Address'), 'type' => 'text'],
+			'postal_code' => ['label' => __('Postal Code'), 'type' => 'text'],
+			'locality' => ['label' => __('Locality'), 'type' => 'text'],
+			'region' => ['label' => __('Region'), 'type' => 'text'],
+			'country' => ['label' => __('Country'), 'type' => 'text'],
+			'social_facebook' => ['label' => __('Facebook Profile'), 'type' => 'url'],
+			'social_instagram' => ['label' => __('Instagram Profile'), 'type' => 'url'],
+			'social_linkedin' => ['label' => __('LinkedIn Profile'), 'type' => 'url'],
+			'social_youtube' => ['label' => __('YouTube Channel'), 'type' => 'url'],
+			'social_github' => ['label' => __('GitHub Profile'), 'type' => 'url'],
+			'social_x' => ['label' => __('X/Twitter Profile'), 'type' => 'url'],
+		];
+	}
+
+	protected function renderWebsiteSettingField(string $name, array $meta, string $value): string {
+		$san = $this->wire('sanitizer');
+		$type = ($meta['type'] ?? '') === 'email' ? 'email' : ((($meta['type'] ?? '') === 'url') ? 'url' : 'text');
+		return "<label class='ichiban-website-field'><span>" . $san->entities((string)$meta['label']) . "</span>"
+			. "<input type='{$type}' name='" . $san->entities($name) . "' value='" . $san->entities($value) . "'></label>\n";
 	}
 
 	protected function renderSettingsIcon(): string {

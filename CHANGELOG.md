@@ -4,6 +4,17 @@ All notable changes to Ichiban will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.6-alpha] - 2026-07-12
+
+### Added
+- Added a global Website settings workspace for brand, contact, address, social profile, media, and custom JSON values.
+- Added `Ichiban::siteSettings()`, `Ichiban::websiteSettings()`, and `Ichiban::siteSetting()` helpers for templates and integrations.
+- Added Dashboard release checks with a full-width update banner and a guarded one-click GitHub release installer.
+- Added update settings for GitHub repository, release channel, update checks, and installer availability.
+
+### Changed
+- Site name, llms.txt, and baseline Schema.org identity can now fall back to global Website settings when dedicated SEO Identity fields are empty.
+
 ## [0.1.5-alpha] - 2026-07-07
 
 ### Added

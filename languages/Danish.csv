@@ -82,6 +82,16 @@ URL segments in SEO URLs,URL segmenter i SEO URLs,,site/modules/Ichiban/Ichiban.
 "Controls canonical, og:url, twitter:url, and hreflang on pages that use ProcessWire URL segments.","Styrer kanonisk, og:url, twitter:url og hreflang på sider, der bruger ProcessWire URL-segmenter.",,site/modules/Ichiban/Ichiban.module.php,17b32f4acfd38a4071740901071cc050
 Preserve current URL segments,Bevar nuværende URL-segmenter,,site/modules/Ichiban/Ichiban.module.php,83d8e9e795d8952cd83396209ba9a48f
 Collapse to the page URL,Skjul til siden URL,,site/modules/Ichiban/Ichiban.module.php,fe2bdcd2792e9da25e6ea86d111b4c97
+Updates,Opdateringer,,site/modules/Ichiban/Ichiban.module.php,9ac41b6a577daadd588f0fcde0071e8b
+"Dashboard update checks read GitHub releases and show a full-width banner when a newer Ichiban release exists. Installation is always manual, creates a local backup, and requires the ichiban-manage permission.","Dashboard-opdateringstjek læser GitHub-udgivelser og viser et banner i fuld bredde, når der findes en nyere Ichiban-udgivelse. Installationen er altid manuel, opretter en lokal sikkerhedskopi og kræver ichiban-manage-tilladelsen.",,site/modules/Ichiban/Ichiban.module.php,aff8e95b534b9b42349290ab799cad8c
+Check GitHub releases for updates,Tjek GitHub-udgivelser for opdateringer,,site/modules/Ichiban/Ichiban.module.php,8af20990687a028b2f608d8ee6004a5d
+Allow one-click update installation,Tillad installation af opdatering med et enkelt klik,,site/modules/Ichiban/Ichiban.module.php,aba4539b0399a88c07f916c767c95b59
+"When enabled, the Dashboard banner can download the latest release, back up the current module folder, and replace the module files.","Når det er aktiveret, kan Dashboard-banneret downloade den seneste udgivelse, sikkerhedskopiere den aktuelle modulmappe og erstatte modulfilerne.",,site/modules/Ichiban/Ichiban.module.php,f57c1026974a3a1ab1585d9cd74550a3
+Update channel,Opdater kanal,,site/modules/Ichiban/Ichiban.module.php,224518815caec6dace24684b7bd877e8
+Alpha / prerelease,Alfa / prerelease,,site/modules/Ichiban/Ichiban.module.php,525e2e5deda2a3dcdd20dc0338bbc4e1
+Stable releases only,Kun stabile udgivelser,,site/modules/Ichiban/Ichiban.module.php,22d41cb854c8a5bcc9a6e97c8cbb410d
+GitHub repository,GitHub-depot,,site/modules/Ichiban/Ichiban.module.php,4a6c7893abd7ef92fb09d3359e17324d
+Owner/repository used for release checks and downloads.,Ejer/depot bruges til udgivelsestjek og downloads.,,site/modules/Ichiban/Ichiban.module.php,35c9bc2b3b21d5920bee034405e4aec5
 Sitemap,Sitemap,,site/modules/Ichiban/Ichiban.module.php,5813ce0ec7196c492c97596718f71969
 Public index: %s. Use the Sitemap tab for generation status and manual actions.,Offentligt indeks: %s. Brug fanen Sitemap til genereringsstatus og manuelle handlinger.,,site/modules/Ichiban/Ichiban.module.php,55b9475f53a07c7d5196f4c71a398dbb
 Enable XML sitemap,Aktiver XML sitemap,,site/modules/Ichiban/Ichiban.module.php,569a85acaf40ac1f92443e0decb42c95
@@ -162,6 +172,23 @@ missing OG images,mangler OG billeder,,site/modules/Ichiban/ProcessIchiban.modul
 Activity,Aktivitet,,site/modules/Ichiban/ProcessIchiban.module.php,ecfc2dffe568c10a67dbc6d3724cfde2
 SEO revisions,SEO revisioner,,site/modules/Ichiban/ProcessIchiban.module.php,706f859724b8b0e099e5a827252e1c5d
 blocked searches,blokerede søgninger,,site/modules/Ichiban/ProcessIchiban.module.php,d496583a9ae5fba1751e1b28d90365bc
+Website,Hjemmeside,,site/modules/Ichiban/ProcessIchiban.module.php,15bbb9d0bbf25e8d2978de1168c749dc
+Website Settings,Hjemmesideindstillinger,,site/modules/Ichiban/ProcessIchiban.module.php,214da1f24a3f988f8152522853ab3958
+Custom JSON must be a JSON object.,Tilpasset JSON skal være et JSON-objekt.,,site/modules/Ichiban/ProcessIchiban.module.php,bd6488a993170d0cac1da9bc16da5168
+Website settings saved.,Indstillinger for webstedet er gemt.,,site/modules/Ichiban/ProcessIchiban.module.php,6259f56ac984507cecd0ab486e893b46
+"Global website facts for templates, schema fallbacks, reports, and AI prompts. These settings do not replace page-level SEO fields.","Globale webstedsfakta for skabeloner, skematilbagegange, rapporter og AI-prompter. Disse indstillinger erstatter ikke SEO-felter på sideniveau.",,site/modules/Ichiban/ProcessIchiban.module.php,727546d4b20c5f5004e7361d46f347b2
+Brand,Mærke,,site/modules/Ichiban/ProcessIchiban.module.php,1be6f9eb563f3bf85c78b4219bf09de9
+Contact,Kontakt,,site/modules/Ichiban/ProcessIchiban.module.php,bbaff12800505b22a853e8b7f4eb6a22
+Address,Adresse,,site/modules/Ichiban/ProcessIchiban.module.php,dd7bf230fde8d4836917806aff6a6b27
+Social Profiles,Sociale profiler,,site/modules/Ichiban/ProcessIchiban.module.php,51f3fc4fe44d76eebd8b865150ee1a6d
+Custom Settings,Brugerdefinerede indstillinger,,site/modules/Ichiban/ProcessIchiban.module.php,7c31e4534dad7ccfcd03b6a8a9852d88
+Custom JSON,Brugerdefineret JSON,,site/modules/Ichiban/ProcessIchiban.module.php,880739752ffb163cd4d1c902158751a7
+Optional JSON object. Keys are available through siteSetting() together with the named fields above.,Valgfrit JSON-objekt. Nøgler er tilgængelige via siteSetting() sammen med de navngivne felter ovenfor.,,site/modules/Ichiban/ProcessIchiban.module.php,755234471465857a5f547b6b6c2c93b2
+Save Website Settings,Gem webstedsindstillinger,,site/modules/Ichiban/ProcessIchiban.module.php,5e28d844ad6c2d60de633feb33ff0958
+Update installation is disabled in Ichiban settings.,Opdateringsinstallation er deaktiveret i Ichiban-indstillinger.,,site/modules/Ichiban/ProcessIchiban.module.php,32663c4cf7725aa2904b1d8dcf9dd997
+Ichiban update installed.,Ichiban-opdatering installeret.,,site/modules/Ichiban/ProcessIchiban.module.php,f90a08d564b3b3804066a054b3d09358
+Backup created at %s,Sikkerhedskopiering oprettet på %s,,site/modules/Ichiban/ProcessIchiban.module.php,17b9a82263bdfdc60da46b4ea60f000c
+Update failed: %s,Opdatering mislykkedes: %s,,site/modules/Ichiban/ProcessIchiban.module.php,908a7626432e35c987ed7ac1b1458c13
 Bulk Editor,Bulk Editor,,site/modules/Ichiban/ProcessIchiban.module.php,cc8d2364a9b575d533f8c432813ccc99
 Bulk SEO Editor,Bulk SEO Editor,,site/modules/Ichiban/ProcessIchiban.module.php,5495968a5bfdd8010f0954e3b2a87a7e
 All issue types,Alle problemtyper,,site/modules/Ichiban/ProcessIchiban.module.php,bbb63f7c872069685793027208295a04
@@ -532,6 +559,30 @@ Missing field name.,Manglende feltnavn.,,site/modules/Ichiban/ProcessIchiban.mod
 "Field ""%s"" was not found.","Feltet ""%s"" blev ikke fundet.",,site/modules/Ichiban/ProcessIchiban.module.php,326a81e081d9f0197c9a82f2ae686307
 "Field ""%s"" is not a SeoMaestro field.","Feltet ""%s"" er ikke et SeoMaestro-felt.",,site/modules/Ichiban/ProcessIchiban.module.php,9ecc4264a15d5ee8894b4622e57655e1
 FieldtypeIchiban is not installed.,FieldtypeIchiban er ikke installeret.,,site/modules/Ichiban/ProcessIchiban.module.php,ddf369cb3c27c74e216cc807db87a695
+Ichiban update available,Ichiban-opdatering tilgængelig,,site/modules/Ichiban/ProcessIchiban.module.php,d5d50555a6b134676bfa68b8214f55e7
+Current version: %1$s. Latest release: %2$s.,Nuværende version: %1$s. Seneste udgivelse: %2$s.,,site/modules/Ichiban/ProcessIchiban.module.php,a1264567db4ccd92abab2609f1c5eeb1
+View Release,Se udgivelse,,site/modules/Ichiban/ProcessIchiban.module.php,32bd7c15ef41da577392bafa94bb5e69
+Install Update,Installer opdatering,,site/modules/Ichiban/ProcessIchiban.module.php,e71c710a80f4adca5e6ec5b09260c6b5
+Enable Installer,Aktiver installationsprogrammet,,site/modules/Ichiban/ProcessIchiban.module.php,393d9ef01d115a2489c4d8d9f0495c6f
+Brand Name,Mærkenavn,,site/modules/Ichiban/ProcessIchiban.module.php,3bca44e521736d1aab2b489ee96543dc
+Legal Name,Juridisk navn,,site/modules/Ichiban/ProcessIchiban.module.php,0bf8ec7aacced3ad2fe3760db576c2ef
+Tagline,Tagline,,site/modules/Ichiban/ProcessIchiban.module.php,122a05774113cd494d44a50e17914937
+Site URL,Webstedets URL,,site/modules/Ichiban/ProcessIchiban.module.php,1bacb9caa60813ee730288d7dd95e7fc
+Logo URL,Logo URL,,site/modules/Ichiban/ProcessIchiban.module.php,ff54f6a00ee1ee7da7944f850d9e57f9
+Default Open Graph Image,Standard Åbn grafbillede,,site/modules/Ichiban/ProcessIchiban.module.php,8727779b3e7ed18611f26b857623b271
+Email,E-mail,,site/modules/Ichiban/ProcessIchiban.module.php,ce8ae9da5b7cd6c3df2929543a9af92d
+Phone,Telefon,,site/modules/Ichiban/ProcessIchiban.module.php,bcc254b55c4a1babdf1dcb82c207506b
+Street Address,Gadeadresse,,site/modules/Ichiban/ProcessIchiban.module.php,aaff974958972c1d45d45cb3b77bff79
+Postal Code,Postnummer,,site/modules/Ichiban/ProcessIchiban.module.php,25f75488c91cb6c3bab92672e479619f
+Locality,Lokalitet,,site/modules/Ichiban/ProcessIchiban.module.php,4aaf3af65a7f57e59c6088c1ef86b5e1
+Region,Region,,site/modules/Ichiban/ProcessIchiban.module.php,f447ac856e7e72435904956e3b15f433
+Country,Land,,site/modules/Ichiban/ProcessIchiban.module.php,59716c97497eb9694541f7c3d37b1a4d
+Facebook Profile,Facebook profil,,site/modules/Ichiban/ProcessIchiban.module.php,d208b1fb6ef583247fa9a79a46690e37
+Instagram Profile,Instagram profil,,site/modules/Ichiban/ProcessIchiban.module.php,2efbe96dcba1ed23149b2e8da3e3a165
+LinkedIn Profile,LinkedIn profil,,site/modules/Ichiban/ProcessIchiban.module.php,44f8c1c39170a400538da907f2846b4a
+YouTube Channel,YouTube-kanal,,site/modules/Ichiban/ProcessIchiban.module.php,960078a66b70f750dc2ac99353dfc7aa
+GitHub Profile,GitHub-profil,,site/modules/Ichiban/ProcessIchiban.module.php,2b379d4e18c7d3b72104978b9d568599
+X/Twitter Profile,X/Twitter-profil,,site/modules/Ichiban/ProcessIchiban.module.php,409f4d6d66f6efc8280043786d3fc79b
 Score,Score,,site/modules/Ichiban/ProcessIchiban.module.php,5dd135d1bcfa7f63c3b7f25425c2a4a1
 Missing OG image,Manglende OG-billede,,site/modules/Ichiban/ProcessIchiban.module.php,d0cc96dfee8f0a3d92cee158a0808ab3
 Title length outside target,Titellængde uden for målet,,site/modules/Ichiban/ProcessIchiban.module.php,5adb0ea06c1f6fc3f2a96949597abc05
@@ -559,7 +610,6 @@ n/a,n/a,,site/modules/Ichiban/ProcessIchiban.module.php,274b68192b056e268f128ff6
 Last updated %s,Sidst opdateret %s,,site/modules/Ichiban/ProcessIchiban.module.php,8ce8cbf23b58eb6bd25d8f6656ccb3c7
 Last updated unavailable,Sidst opdateret er ikke tilgængelig,,site/modules/Ichiban/ProcessIchiban.module.php,bcb32f4e876af737c79fdfe0d0604b4e
 Disconnect GSC,Afbryd GSC,,site/modules/Ichiban/ProcessIchiban.module.php,a87147a0aa4632b246a3373c114f35e3
-Country,Land,,site/modules/Ichiban/ProcessIchiban.module.php,59716c97497eb9694541f7c3d37b1a4d
 Device,Enhed,,site/modules/Ichiban/ProcessIchiban.module.php,e0ac20adce6ffee48c7151b070aa5737
 Social,Socialt,,site/modules/Ichiban/InputfieldIchiban.module.php,f431e17ea0081a3c9e51fc240221ee21
 Search result fields,Søgeresultatfelter,,site/modules/Ichiban/InputfieldIchiban.module.php,50ddcee6d670e0f82652c53fe4ee846d

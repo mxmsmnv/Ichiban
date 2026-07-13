@@ -82,6 +82,16 @@ URL segments in SEO URLs,УРЛ сегменти у СЕО УРЛ-овима,,si
 "Controls canonical, og:url, twitter:url, and hreflang on pages that use ProcessWire URL segments.","Контролише канонске, ог:урл, твиттер:урл и хрефланг на страницама које користе ПроцессВире УРЛ сегменте.",,site/modules/Ichiban/Ichiban.module.php,17b32f4acfd38a4071740901071cc050
 Preserve current URL segments,Сачувајте тренутне УРЛ сегменте,,site/modules/Ichiban/Ichiban.module.php,83d8e9e795d8952cd83396209ba9a48f
 Collapse to the page URL,Скупи на УРЛ странице,,site/modules/Ichiban/Ichiban.module.php,fe2bdcd2792e9da25e6ea86d111b4c97
+Updates,Ажурирања,,site/modules/Ichiban/Ichiban.module.php,9ac41b6a577daadd588f0fcde0071e8b
+"Dashboard update checks read GitHub releases and show a full-width banner when a newer Ichiban release exists. Installation is always manual, creates a local backup, and requires the ichiban-manage permission.","Провере ажурирања контролне табле читају ГитХуб издања и приказују банер пуне ширине када постоји новије издање Ицхибана. Инсталација је увек ручна, креира локалну резервну копију и захтева дозволу ицхибан-манаге.",,site/modules/Ichiban/Ichiban.module.php,aff8e95b534b9b42349290ab799cad8c
+Check GitHub releases for updates,Проверите ГитХуб издања за ажурирања,,site/modules/Ichiban/Ichiban.module.php,8af20990687a028b2f608d8ee6004a5d
+Allow one-click update installation,Дозволите инсталацију ажурирања једним кликом,,site/modules/Ichiban/Ichiban.module.php,aba4539b0399a88c07f916c767c95b59
+"When enabled, the Dashboard banner can download the latest release, back up the current module folder, and replace the module files.","Када је омогућен, банер контролне табле може да преузме најновију верзију, направи резервну копију тренутне фасцикле модула и замени датотеке модула.",,site/modules/Ichiban/Ichiban.module.php,f57c1026974a3a1ab1585d9cd74550a3
+Update channel,Ажурирајте канал,,site/modules/Ichiban/Ichiban.module.php,224518815caec6dace24684b7bd877e8
+Alpha / prerelease,Алфа / прелиминарна верзија,,site/modules/Ichiban/Ichiban.module.php,525e2e5deda2a3dcdd20dc0338bbc4e1
+Stable releases only,Само стабилна издања,,site/modules/Ichiban/Ichiban.module.php,22d41cb854c8a5bcc9a6e97c8cbb410d
+GitHub repository,ГитХуб спремиште,,site/modules/Ichiban/Ichiban.module.php,4a6c7893abd7ef92fb09d3359e17324d
+Owner/repository used for release checks and downloads.,Власник/репозиторијум који се користи за провере издања и преузимања.,,site/modules/Ichiban/Ichiban.module.php,35c9bc2b3b21d5920bee034405e4aec5
 Sitemap,Мапа сајта,,site/modules/Ichiban/Ichiban.module.php,5813ce0ec7196c492c97596718f71969
 Public index: %s. Use the Sitemap tab for generation status and manual actions.,Јавни индекс: %s. Користите картицу Ситемап за статус генерисања и ручне мере.,,site/modules/Ichiban/Ichiban.module.php,55b9475f53a07c7d5196f4c71a398dbb
 Enable XML sitemap,Омогући КСМЛ мапу сајта,,site/modules/Ichiban/Ichiban.module.php,569a85acaf40ac1f92443e0decb42c95
@@ -162,6 +172,23 @@ missing OG images,недостају ОГ слике,,site/modules/Ichiban/Proce
 Activity,Активност,,site/modules/Ichiban/ProcessIchiban.module.php,ecfc2dffe568c10a67dbc6d3724cfde2
 SEO revisions,СЕО ревизије,,site/modules/Ichiban/ProcessIchiban.module.php,706f859724b8b0e099e5a827252e1c5d
 blocked searches,блокиране претраге,,site/modules/Ichiban/ProcessIchiban.module.php,d496583a9ae5fba1751e1b28d90365bc
+Website,Вебсите,,site/modules/Ichiban/ProcessIchiban.module.php,15bbb9d0bbf25e8d2978de1168c749dc
+Website Settings,Подешавања веб локације,,site/modules/Ichiban/ProcessIchiban.module.php,214da1f24a3f988f8152522853ab3958
+Custom JSON must be a JSON object.,Прилагођени ЈСОН мора да буде ЈСОН објекат.,,site/modules/Ichiban/ProcessIchiban.module.php,bd6488a993170d0cac1da9bc16da5168
+Website settings saved.,Подешавања веб локације су сачувана.,,site/modules/Ichiban/ProcessIchiban.module.php,6259f56ac984507cecd0ab486e893b46
+"Global website facts for templates, schema fallbacks, reports, and AI prompts. These settings do not replace page-level SEO fields.","Глобалне чињенице о веб локацији за шаблоне, резервне шеме, извештаје и АИ упите. Ова подешавања не замењују СЕО поља на нивоу странице.",,site/modules/Ichiban/ProcessIchiban.module.php,727546d4b20c5f5004e7361d46f347b2
+Brand,Бранд,,site/modules/Ichiban/ProcessIchiban.module.php,1be6f9eb563f3bf85c78b4219bf09de9
+Contact,Контакт,,site/modules/Ichiban/ProcessIchiban.module.php,bbaff12800505b22a853e8b7f4eb6a22
+Address,Адреса,,site/modules/Ichiban/ProcessIchiban.module.php,dd7bf230fde8d4836917806aff6a6b27
+Social Profiles,Друштвени профили,,site/modules/Ichiban/ProcessIchiban.module.php,51f3fc4fe44d76eebd8b865150ee1a6d
+Custom Settings,Прилагођена подешавања,,site/modules/Ichiban/ProcessIchiban.module.php,7c31e4534dad7ccfcd03b6a8a9852d88
+Custom JSON,Прилагођени ЈСОН,,site/modules/Ichiban/ProcessIchiban.module.php,880739752ffb163cd4d1c902158751a7
+Optional JSON object. Keys are available through siteSetting() together with the named fields above.,Опциони ЈСОН објекат. Кључеви су доступни преко ситеСеттинг() заједно са горе наведеним пољима.,,site/modules/Ichiban/ProcessIchiban.module.php,755234471465857a5f547b6b6c2c93b2
+Save Website Settings,Сачувајте подешавања веб локације,,site/modules/Ichiban/ProcessIchiban.module.php,5e28d844ad6c2d60de633feb33ff0958
+Update installation is disabled in Ichiban settings.,Инсталација ажурирања је онемогућена у подешавањима Ицхибана.,,site/modules/Ichiban/ProcessIchiban.module.php,32663c4cf7725aa2904b1d8dcf9dd997
+Ichiban update installed.,Инсталирано је ажурирање за Ицхибан.,,site/modules/Ichiban/ProcessIchiban.module.php,f90a08d564b3b3804066a054b3d09358
+Backup created at %s,Резервна копија је направљена у %s,,site/modules/Ichiban/ProcessIchiban.module.php,17b9a82263bdfdc60da46b4ea60f000c
+Update failed: %s,Ажурирање није успело: %s,,site/modules/Ichiban/ProcessIchiban.module.php,908a7626432e35c987ed7ac1b1458c13
 Bulk Editor,Булк Едитор,,site/modules/Ichiban/ProcessIchiban.module.php,cc8d2364a9b575d533f8c432813ccc99
 Bulk SEO Editor,Булк СЕО Едитор,,site/modules/Ichiban/ProcessIchiban.module.php,5495968a5bfdd8010f0954e3b2a87a7e
 All issue types,Све врсте проблема,,site/modules/Ichiban/ProcessIchiban.module.php,bbb63f7c872069685793027208295a04
@@ -532,6 +559,30 @@ Missing field name.,Недостаје назив поља.,,site/modules/Ichiba
 "Field ""%s"" was not found.",Поље „%s“ није пронађено.,,site/modules/Ichiban/ProcessIchiban.module.php,326a81e081d9f0197c9a82f2ae686307
 "Field ""%s"" is not a SeoMaestro field.",Поље „%s“ није СеоМаестро поље.,,site/modules/Ichiban/ProcessIchiban.module.php,9ecc4264a15d5ee8894b4622e57655e1
 FieldtypeIchiban is not installed.,ФиелдтипеИцхибан није инсталиран.,,site/modules/Ichiban/ProcessIchiban.module.php,ddf369cb3c27c74e216cc807db87a695
+Ichiban update available,Доступно је ажурирање за Ицхибан,,site/modules/Ichiban/ProcessIchiban.module.php,d5d50555a6b134676bfa68b8214f55e7
+Current version: %1$s. Latest release: %2$s.,Тренутна верзија: %1$s. Најновије издање: %2$s.,,site/modules/Ichiban/ProcessIchiban.module.php,a1264567db4ccd92abab2609f1c5eeb1
+View Release,Погледај издање,,site/modules/Ichiban/ProcessIchiban.module.php,32bd7c15ef41da577392bafa94bb5e69
+Install Update,Инсталирајте ажурирање,,site/modules/Ichiban/ProcessIchiban.module.php,e71c710a80f4adca5e6ec5b09260c6b5
+Enable Installer,Омогући Инсталлер,,site/modules/Ichiban/ProcessIchiban.module.php,393d9ef01d115a2489c4d8d9f0495c6f
+Brand Name,Бранд Наме,,site/modules/Ichiban/ProcessIchiban.module.php,3bca44e521736d1aab2b489ee96543dc
+Legal Name,Правни назив,,site/modules/Ichiban/ProcessIchiban.module.php,0bf8ec7aacced3ad2fe3760db576c2ef
+Tagline,Таглине,,site/modules/Ichiban/ProcessIchiban.module.php,122a05774113cd494d44a50e17914937
+Site URL,УРЛ сајта,,site/modules/Ichiban/ProcessIchiban.module.php,1bacb9caa60813ee730288d7dd95e7fc
+Logo URL,УРЛ логотипа,,site/modules/Ichiban/ProcessIchiban.module.php,ff54f6a00ee1ee7da7944f850d9e57f9
+Default Open Graph Image,Подразумевано Опен Грапх Имаге,,site/modules/Ichiban/ProcessIchiban.module.php,8727779b3e7ed18611f26b857623b271
+Email,Емаил,,site/modules/Ichiban/ProcessIchiban.module.php,ce8ae9da5b7cd6c3df2929543a9af92d
+Phone,Телефон,,site/modules/Ichiban/ProcessIchiban.module.php,bcc254b55c4a1babdf1dcb82c207506b
+Street Address,Адреса улице,,site/modules/Ichiban/ProcessIchiban.module.php,aaff974958972c1d45d45cb3b77bff79
+Postal Code,Поштански број,,site/modules/Ichiban/ProcessIchiban.module.php,25f75488c91cb6c3bab92672e479619f
+Locality,Локалитет,,site/modules/Ichiban/ProcessIchiban.module.php,4aaf3af65a7f57e59c6088c1ef86b5e1
+Region,Регион,,site/modules/Ichiban/ProcessIchiban.module.php,f447ac856e7e72435904956e3b15f433
+Country,Држава,,site/modules/Ichiban/ProcessIchiban.module.php,59716c97497eb9694541f7c3d37b1a4d
+Facebook Profile,Фацебоок профил,,site/modules/Ichiban/ProcessIchiban.module.php,d208b1fb6ef583247fa9a79a46690e37
+Instagram Profile,Инстаграм профил,,site/modules/Ichiban/ProcessIchiban.module.php,2efbe96dcba1ed23149b2e8da3e3a165
+LinkedIn Profile,ЛинкедИн профил,,site/modules/Ichiban/ProcessIchiban.module.php,44f8c1c39170a400538da907f2846b4a
+YouTube Channel,ИоуТубе канал,,site/modules/Ichiban/ProcessIchiban.module.php,960078a66b70f750dc2ac99353dfc7aa
+GitHub Profile,ГитХуб профил,,site/modules/Ichiban/ProcessIchiban.module.php,2b379d4e18c7d3b72104978b9d568599
+X/Twitter Profile,Кс/Твиттер профил,,site/modules/Ichiban/ProcessIchiban.module.php,409f4d6d66f6efc8280043786d3fc79b
 Score,Резултат,,site/modules/Ichiban/ProcessIchiban.module.php,5dd135d1bcfa7f63c3b7f25425c2a4a1
 Missing OG image,Недостаје ОГ слика,,site/modules/Ichiban/ProcessIchiban.module.php,d0cc96dfee8f0a3d92cee158a0808ab3
 Title length outside target,Дужина наслова изван циља,,site/modules/Ichiban/ProcessIchiban.module.php,5adb0ea06c1f6fc3f2a96949597abc05
@@ -559,7 +610,6 @@ n/a,н/а,,site/modules/Ichiban/ProcessIchiban.module.php,274b68192b056e268f128f
 Last updated %s,Последње ажурирано %s,,site/modules/Ichiban/ProcessIchiban.module.php,8ce8cbf23b58eb6bd25d8f6656ccb3c7
 Last updated unavailable,Последње ажурирање није доступно,,site/modules/Ichiban/ProcessIchiban.module.php,bcb32f4e876af737c79fdfe0d0604b4e
 Disconnect GSC,Искључите ГСЦ,,site/modules/Ichiban/ProcessIchiban.module.php,a87147a0aa4632b246a3373c114f35e3
-Country,Држава,,site/modules/Ichiban/ProcessIchiban.module.php,59716c97497eb9694541f7c3d37b1a4d
 Device,Уређај,,site/modules/Ichiban/ProcessIchiban.module.php,e0ac20adce6ffee48c7151b070aa5737
 Social,Социал,,site/modules/Ichiban/InputfieldIchiban.module.php,f431e17ea0081a3c9e51fc240221ee21
 Search result fields,Поља резултата претраге,,site/modules/Ichiban/InputfieldIchiban.module.php,50ddcee6d670e0f82652c53fe4ee846d

@@ -82,6 +82,16 @@ URL segments in SEO URLs,URL-segmentit mallissa SEO URLs,,site/modules/Ichiban/I
 "Controls canonical, og:url, twitter:url, and hreflang on pages that use ProcessWire URL segments.","Ohjaa kanonisia, og:url-, twitter:url- ja hreflang-segmenttejä sivuilla, jotka käyttävät ProcessWire URL -segmenttejä.",,site/modules/Ichiban/Ichiban.module.php,17b32f4acfd38a4071740901071cc050
 Preserve current URL segments,Säilytä nykyiset URL-segmentit,,site/modules/Ichiban/Ichiban.module.php,83d8e9e795d8952cd83396209ba9a48f
 Collapse to the page URL,Kutista sivulle URL,,site/modules/Ichiban/Ichiban.module.php,fe2bdcd2792e9da25e6ea86d111b4c97
+Updates,Päivitykset,,site/modules/Ichiban/Ichiban.module.php,9ac41b6a577daadd588f0fcde0071e8b
+"Dashboard update checks read GitHub releases and show a full-width banner when a newer Ichiban release exists. Installation is always manual, creates a local backup, and requires the ichiban-manage permission.","Kojelaudan päivitystarkistukset lukevat GitHub-julkaisut ja näyttävät kokoleveän bannerin, kun uudempi Ichiban-julkaisu on olemassa. Asennus on aina manuaalinen, luo paikallisen varmuuskopion ja vaatii ichiban-hallintaoikeuden.",,site/modules/Ichiban/Ichiban.module.php,aff8e95b534b9b42349290ab799cad8c
+Check GitHub releases for updates,Tarkista päivitykset GitHub-julkaisuista,,site/modules/Ichiban/Ichiban.module.php,8af20990687a028b2f608d8ee6004a5d
+Allow one-click update installation,Salli päivityksen asennus yhdellä napsautuksella,,site/modules/Ichiban/Ichiban.module.php,aba4539b0399a88c07f916c767c95b59
+"When enabled, the Dashboard banner can download the latest release, back up the current module folder, and replace the module files.","Kun tämä on käytössä, Dashboard-banneri voi ladata uusimman julkaisun, varmuuskopioida nykyisen moduulikansion ja korvata moduulitiedostot.",,site/modules/Ichiban/Ichiban.module.php,f57c1026974a3a1ab1585d9cd74550a3
+Update channel,Päivitä kanava,,site/modules/Ichiban/Ichiban.module.php,224518815caec6dace24684b7bd877e8
+Alpha / prerelease,Alfa / ennakkojulkaisu,,site/modules/Ichiban/Ichiban.module.php,525e2e5deda2a3dcdd20dc0338bbc4e1
+Stable releases only,Vain vakaat julkaisut,,site/modules/Ichiban/Ichiban.module.php,22d41cb854c8a5bcc9a6e97c8cbb410d
+GitHub repository,GitHub-arkisto,,site/modules/Ichiban/Ichiban.module.php,4a6c7893abd7ef92fb09d3359e17324d
+Owner/repository used for release checks and downloads.,Julkaisutarkistuksiin ja latauksiin käytetty omistaja/tietovarasto.,,site/modules/Ichiban/Ichiban.module.php,35c9bc2b3b21d5920bee034405e4aec5
 Sitemap,Sivustokartta,,site/modules/Ichiban/Ichiban.module.php,5813ce0ec7196c492c97596718f71969
 Public index: %s. Use the Sitemap tab for generation status and manual actions.,Julkinen indeksi: %s. Käytä Sivustokartta-välilehteä luonnin tilan ja manuaalisten toimien tarkasteluun.,,site/modules/Ichiban/Ichiban.module.php,55b9475f53a07c7d5196f4c71a398dbb
 Enable XML sitemap,Ota XML-sivustokartta käyttöön,,site/modules/Ichiban/Ichiban.module.php,569a85acaf40ac1f92443e0decb42c95
@@ -162,6 +172,23 @@ missing OG images,puuttuvat OG-kuvat,,site/modules/Ichiban/ProcessIchiban.module
 Activity,Toiminta,,site/modules/Ichiban/ProcessIchiban.module.php,ecfc2dffe568c10a67dbc6d3724cfde2
 SEO revisions,SEO versiot,,site/modules/Ichiban/ProcessIchiban.module.php,706f859724b8b0e099e5a827252e1c5d
 blocked searches,estetyt haut,,site/modules/Ichiban/ProcessIchiban.module.php,d496583a9ae5fba1751e1b28d90365bc
+Website,Verkkosivusto,,site/modules/Ichiban/ProcessIchiban.module.php,15bbb9d0bbf25e8d2978de1168c749dc
+Website Settings,Verkkosivuston asetukset,,site/modules/Ichiban/ProcessIchiban.module.php,214da1f24a3f988f8152522853ab3958
+Custom JSON must be a JSON object.,Mukautetun JSON:n on oltava JSON-objekti.,,site/modules/Ichiban/ProcessIchiban.module.php,bd6488a993170d0cac1da9bc16da5168
+Website settings saved.,Verkkosivuston asetukset tallennettu.,,site/modules/Ichiban/ProcessIchiban.module.php,6259f56ac984507cecd0ab486e893b46
+"Global website facts for templates, schema fallbacks, reports, and AI prompts. These settings do not replace page-level SEO fields.","Maailmanlaajuiset verkkosivuston tiedot malleista, skeeman varavaihtoehdoista, raporteista ja tekoälykehotuksista. Nämä asetukset eivät korvaa sivutason hakukoneoptimointikenttiä.",,site/modules/Ichiban/ProcessIchiban.module.php,727546d4b20c5f5004e7361d46f347b2
+Brand,Tuotemerkki,,site/modules/Ichiban/ProcessIchiban.module.php,1be6f9eb563f3bf85c78b4219bf09de9
+Contact,Ota yhteyttä,,site/modules/Ichiban/ProcessIchiban.module.php,bbaff12800505b22a853e8b7f4eb6a22
+Address,Osoite,,site/modules/Ichiban/ProcessIchiban.module.php,dd7bf230fde8d4836917806aff6a6b27
+Social Profiles,Sosiaaliset profiilit,,site/modules/Ichiban/ProcessIchiban.module.php,51f3fc4fe44d76eebd8b865150ee1a6d
+Custom Settings,Mukautetut asetukset,,site/modules/Ichiban/ProcessIchiban.module.php,7c31e4534dad7ccfcd03b6a8a9852d88
+Custom JSON,Muokattu JSON,,site/modules/Ichiban/ProcessIchiban.module.php,880739752ffb163cd4d1c902158751a7
+Optional JSON object. Keys are available through siteSetting() together with the named fields above.,Valinnainen JSON-objekti. Avaimet ovat saatavilla siteSetting():n kautta yllä olevien nimettyjen kenttien kanssa.,,site/modules/Ichiban/ProcessIchiban.module.php,755234471465857a5f547b6b6c2c93b2
+Save Website Settings,Tallenna verkkosivuston asetukset,,site/modules/Ichiban/ProcessIchiban.module.php,5e28d844ad6c2d60de633feb33ff0958
+Update installation is disabled in Ichiban settings.,Päivitysten asennus on poistettu käytöstä Ichibanin asetuksissa.,,site/modules/Ichiban/ProcessIchiban.module.php,32663c4cf7725aa2904b1d8dcf9dd997
+Ichiban update installed.,Ichiban-päivitys asennettu.,,site/modules/Ichiban/ProcessIchiban.module.php,f90a08d564b3b3804066a054b3d09358
+Backup created at %s,Varmuuskopio luotu %s,,site/modules/Ichiban/ProcessIchiban.module.php,17b9a82263bdfdc60da46b4ea60f000c
+Update failed: %s,Päivitys epäonnistui: %s,,site/modules/Ichiban/ProcessIchiban.module.php,908a7626432e35c987ed7ac1b1458c13
 Bulk Editor,Joukkoeditori,,site/modules/Ichiban/ProcessIchiban.module.php,cc8d2364a9b575d533f8c432813ccc99
 Bulk SEO Editor,Bulk SEO -editori,,site/modules/Ichiban/ProcessIchiban.module.php,5495968a5bfdd8010f0954e3b2a87a7e
 All issue types,Kaikki ongelmatyypit,,site/modules/Ichiban/ProcessIchiban.module.php,bbb63f7c872069685793027208295a04
@@ -532,6 +559,30 @@ Missing field name.,Kentän nimi puuttuu.,,site/modules/Ichiban/ProcessIchiban.m
 "Field ""%s"" was not found.","Kenttää ""%s"" ei löytynyt.",,site/modules/Ichiban/ProcessIchiban.module.php,326a81e081d9f0197c9a82f2ae686307
 "Field ""%s"" is not a SeoMaestro field.","Kenttä ""%s"" ei ole SeoMaestro-kenttä.",,site/modules/Ichiban/ProcessIchiban.module.php,9ecc4264a15d5ee8894b4622e57655e1
 FieldtypeIchiban is not installed.,FieldtypeIchiban ei ole asennettu.,,site/modules/Ichiban/ProcessIchiban.module.php,ddf369cb3c27c74e216cc807db87a695
+Ichiban update available,Ichiban-päivitys saatavilla,,site/modules/Ichiban/ProcessIchiban.module.php,d5d50555a6b134676bfa68b8214f55e7
+Current version: %1$s. Latest release: %2$s.,Nykyinen versio: %1$s. Viimeisin julkaisu: %2$s.,,site/modules/Ichiban/ProcessIchiban.module.php,a1264567db4ccd92abab2609f1c5eeb1
+View Release,Näytä julkaisu,,site/modules/Ichiban/ProcessIchiban.module.php,32bd7c15ef41da577392bafa94bb5e69
+Install Update,Asenna päivitys,,site/modules/Ichiban/ProcessIchiban.module.php,e71c710a80f4adca5e6ec5b09260c6b5
+Enable Installer,Ota asennusohjelma käyttöön,,site/modules/Ichiban/ProcessIchiban.module.php,393d9ef01d115a2489c4d8d9f0495c6f
+Brand Name,Tuotemerkki,,site/modules/Ichiban/ProcessIchiban.module.php,3bca44e521736d1aab2b489ee96543dc
+Legal Name,Virallinen nimi,,site/modules/Ichiban/ProcessIchiban.module.php,0bf8ec7aacced3ad2fe3760db576c2ef
+Tagline,Tunnuslause,,site/modules/Ichiban/ProcessIchiban.module.php,122a05774113cd494d44a50e17914937
+Site URL,Sivuston URL-osoite,,site/modules/Ichiban/ProcessIchiban.module.php,1bacb9caa60813ee730288d7dd95e7fc
+Logo URL,Logon URL-osoite,,site/modules/Ichiban/ProcessIchiban.module.php,ff54f6a00ee1ee7da7944f850d9e57f9
+Default Open Graph Image,Avaa kaavion oletuskuva,,site/modules/Ichiban/ProcessIchiban.module.php,8727779b3e7ed18611f26b857623b271
+Email,Sähköposti,,site/modules/Ichiban/ProcessIchiban.module.php,ce8ae9da5b7cd6c3df2929543a9af92d
+Phone,Puhelin,,site/modules/Ichiban/ProcessIchiban.module.php,bcc254b55c4a1babdf1dcb82c207506b
+Street Address,Katuosoite,,site/modules/Ichiban/ProcessIchiban.module.php,aaff974958972c1d45d45cb3b77bff79
+Postal Code,Postinumero,,site/modules/Ichiban/ProcessIchiban.module.php,25f75488c91cb6c3bab92672e479619f
+Locality,Paikkakunta,,site/modules/Ichiban/ProcessIchiban.module.php,4aaf3af65a7f57e59c6088c1ef86b5e1
+Region,Alue,,site/modules/Ichiban/ProcessIchiban.module.php,f447ac856e7e72435904956e3b15f433
+Country,Maa,,site/modules/Ichiban/ProcessIchiban.module.php,59716c97497eb9694541f7c3d37b1a4d
+Facebook Profile,Facebook-profiili,,site/modules/Ichiban/ProcessIchiban.module.php,d208b1fb6ef583247fa9a79a46690e37
+Instagram Profile,Instagram-profiili,,site/modules/Ichiban/ProcessIchiban.module.php,2efbe96dcba1ed23149b2e8da3e3a165
+LinkedIn Profile,LinkedIn profiili,,site/modules/Ichiban/ProcessIchiban.module.php,44f8c1c39170a400538da907f2846b4a
+YouTube Channel,YouTube-kanava,,site/modules/Ichiban/ProcessIchiban.module.php,960078a66b70f750dc2ac99353dfc7aa
+GitHub Profile,GitHub-profiili,,site/modules/Ichiban/ProcessIchiban.module.php,2b379d4e18c7d3b72104978b9d568599
+X/Twitter Profile,X/Twitter-profiili,,site/modules/Ichiban/ProcessIchiban.module.php,409f4d6d66f6efc8280043786d3fc79b
 Score,Pisteet,,site/modules/Ichiban/ProcessIchiban.module.php,5dd135d1bcfa7f63c3b7f25425c2a4a1
 Missing OG image,OG-kuva puuttuu,,site/modules/Ichiban/ProcessIchiban.module.php,d0cc96dfee8f0a3d92cee158a0808ab3
 Title length outside target,Otsikon pituus kohteen ulkopuolella,,site/modules/Ichiban/ProcessIchiban.module.php,5adb0ea06c1f6fc3f2a96949597abc05
@@ -559,7 +610,6 @@ n/a,n/a,,site/modules/Ichiban/ProcessIchiban.module.php,274b68192b056e268f128ff6
 Last updated %s,Viimeksi päivitetty %s,,site/modules/Ichiban/ProcessIchiban.module.php,8ce8cbf23b58eb6bd25d8f6656ccb3c7
 Last updated unavailable,Viimeksi päivitetty ei saatavilla,,site/modules/Ichiban/ProcessIchiban.module.php,bcb32f4e876af737c79fdfe0d0604b4e
 Disconnect GSC,Irrota GSC,,site/modules/Ichiban/ProcessIchiban.module.php,a87147a0aa4632b246a3373c114f35e3
-Country,Maa,,site/modules/Ichiban/ProcessIchiban.module.php,59716c97497eb9694541f7c3d37b1a4d
 Device,Laite,,site/modules/Ichiban/ProcessIchiban.module.php,e0ac20adce6ffee48c7151b070aa5737
 Social,Sosiaalinen,,site/modules/Ichiban/InputfieldIchiban.module.php,f431e17ea0081a3c9e51fc240221ee21
 Search result fields,Hakutuloskentät,,site/modules/Ichiban/InputfieldIchiban.module.php,50ddcee6d670e0f82652c53fe4ee846d

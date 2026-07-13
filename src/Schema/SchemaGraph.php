@@ -67,7 +67,7 @@ class IchibanSchemaGraph {
 			'@type' => 'WebSite',
 			'@id'   => $siteUrl . '/#website',
 			'url'   => $siteUrl . '/',
-			'name'  => $this->ichiban->get('entity_name') ?: $this->ichiban->wire('config')->httpHost,
+			'name'  => $this->ichiban->get('entity_name') ?: $this->ichiban->siteSetting('brand_name', $this->ichiban->wire('config')->httpHost),
 		];
 		// SearchAction
 		$searchPage = $this->ichiban->wire('pages')->find('template=search, limit=1')->first();
@@ -86,24 +86,26 @@ class IchibanSchemaGraph {
 		$node = [
 			'@type' => $type,
 			'@id'   => $siteUrl . '/#' . strtolower($type),
-			'name'  => $this->ichiban->get('entity_name') ?: '',
-			'url'   => $this->ichiban->get('entity_url') ?: $siteUrl . '/',
+			'name'  => $this->ichiban->get('entity_name') ?: $this->ichiban->siteSetting('legal_name', $this->ichiban->siteSetting('brand_name', '')),
+			'url'   => $this->ichiban->get('entity_url') ?: $this->ichiban->siteSetting('site_url', $siteUrl . '/'),
 		];
 		// Logo (Organization only)
-		if ($type === 'Organization' && $this->ichiban->get('entity_logo')) {
+		$logoUrl = $this->ichiban->get('entity_logo') ?: $this->ichiban->siteSetting('logo_url', '');
+		if ($type === 'Organization' && $logoUrl) {
 			$node['logo'] = [
 				'@type' => 'ImageObject',
 				'@id'   => $siteUrl . '/#logo',
-				'url'   => $this->ichiban->get('entity_logo'),
+				'url'   => $logoUrl,
 			];
 		}
 		// sameAs (social profiles)
 		$sameAs = array_filter([
-			$this->ichiban->get('social_twitter'),
-			$this->ichiban->get('social_linkedin'),
-			$this->ichiban->get('social_facebook'),
-			$this->ichiban->get('social_github'),
-			$this->ichiban->get('social_instagram'),
+			$this->ichiban->get('social_twitter') ?: $this->ichiban->siteSetting('social_x', ''),
+			$this->ichiban->get('social_linkedin') ?: $this->ichiban->siteSetting('social_linkedin', ''),
+			$this->ichiban->get('social_facebook') ?: $this->ichiban->siteSetting('social_facebook', ''),
+			$this->ichiban->get('social_github') ?: $this->ichiban->siteSetting('social_github', ''),
+			$this->ichiban->get('social_instagram') ?: $this->ichiban->siteSetting('social_instagram', ''),
+			$this->ichiban->siteSetting('social_youtube', ''),
 		]);
 		if ($sameAs) $node['sameAs'] = array_values($sameAs);
 		return $this->ichiban->buildIdentity($node);

@@ -35,6 +35,7 @@ body.dark-theme {
 .ichiban-cleanup,
 .ichiban-migration,
 .ichiban-reports,
+.ichiban-website,
 .ichiban-ai {
   color: var(--ichiban-text);
 }
@@ -290,6 +291,38 @@ body.dark-theme {
   color: var(--ichiban-muted);
 }
 .ichiban-dashboard-wide { grid-column: 1/-1; }
+.ichiban-update-banner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  padding: 18px 20px;
+  border: 1px solid color-mix(in srgb, var(--ichiban-accent) 42%, var(--ichiban-border));
+  background: color-mix(in srgb, var(--ichiban-accent) 8%, var(--ichiban-surface));
+}
+.ichiban-update-banner strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 18px;
+}
+.ichiban-update-banner p {
+  margin: 0;
+  color: var(--ichiban-muted);
+}
+.ichiban-update-banner small {
+  display: block;
+  margin-top: 6px;
+  color: var(--ichiban-muted);
+}
+.ichiban-update-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+.ichiban-update-actions form {
+  margin: 0;
+}
 .ichiban-dashboard-panels {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, .8fr);
@@ -322,11 +355,84 @@ body.dark-theme {
 }
 @media (max-width: 959px) {
   .ichiban-dashboard-header,
+  .ichiban-update-banner,
   .ichiban-dashboard-panels {
     grid-template-columns: 1fr;
   }
   .ichiban-dashboard-actions {
     justify-content: flex-start;
+  }
+  .ichiban-update-actions {
+    justify-content: flex-start;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Website settings
+   ------------------------------------------------------------------------- */
+.ichiban-website {
+  max-width: 1280px;
+}
+.ichiban-website-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.ichiban-website-header p {
+  margin: 0;
+  color: var(--ichiban-muted);
+}
+.ichiban-website-header code {
+  display: block;
+  padding: 10px 12px;
+  background: var(--ichiban-muted-surface);
+  border: 1px solid var(--ichiban-border);
+  color: var(--ichiban-text);
+  white-space: nowrap;
+}
+.ichiban-website-section {
+  margin-bottom: 18px;
+  padding: 18px;
+  background: var(--ichiban-surface);
+  border: 1px solid var(--ichiban-border);
+}
+.ichiban-website-section h3 {
+  margin: 0 0 14px;
+}
+.ichiban-website-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.ichiban-website-field {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  margin: 0;
+}
+.ichiban-website-field span {
+  font-weight: 700;
+}
+.ichiban-website-field input,
+.ichiban-website-field textarea {
+  box-sizing: border-box;
+  width: 100%;
+}
+.ichiban-website-field small {
+  color: var(--ichiban-muted);
+}
+.ichiban-website-field-wide {
+  width: 100%;
+}
+@media (max-width: 959px) {
+  .ichiban-website-header,
+  .ichiban-website-grid {
+    grid-template-columns: 1fr;
+  }
+  .ichiban-website-header code {
+    white-space: normal;
   }
 }
 
