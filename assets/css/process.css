@@ -1737,7 +1737,17 @@ body.dark-theme .ichiban-severity-info {
 .ichiban-cli {
   display: grid;
   gap: 18px;
+  width: 100%;
   max-width: 1520px;
+  min-width: 0;
+}
+.ichiban-cli-intro,
+.ichiban-cli-commands,
+.ichiban-cli-help,
+.ichiban-cli-help article {
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 0;
 }
 .ichiban-cli-intro,
 .ichiban-cli-commands,
@@ -1764,15 +1774,44 @@ body.dark-theme .ichiban-severity-info {
   color: var(--ichiban-muted);
 }
 .ichiban-cli pre {
+  box-sizing: border-box;
+  max-width: 100%;
   margin: 0;
   padding: 12px;
   overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
   background: var(--ichiban-muted-surface);
   border: 1px solid var(--ichiban-border);
 }
 .ichiban-cli code {
   color: var(--ichiban-text);
   font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.ichiban-cli-commands {
+  overflow-x: auto;
+}
+.ichiban-cli-commands .uk-table {
+  width: 100%;
+  table-layout: fixed;
+}
+.ichiban-cli-commands th,
+.ichiban-cli-commands td {
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+.ichiban-cli-commands code {
+  white-space: normal;
+  word-break: break-word;
+}
+.ichiban-cli-commands th:first-child,
+.ichiban-cli-commands td:first-child {
+  width: 160px;
+}
+.ichiban-cli-commands th:nth-child(3),
+.ichiban-cli-commands td:nth-child(3) {
+  width: 42%;
 }
 .ichiban-cli-help {
   display: grid;
