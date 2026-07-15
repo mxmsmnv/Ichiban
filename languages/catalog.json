@@ -11,6 +11,15 @@
     {
         "file": "site/modules/Ichiban/Ichiban.module.php",
         "textdomain": "site--modules--ichiban--ichiban-module-php",
+        "hash": "db8762334c780531f990a8e530d785bc",
+        "text": "Field expressions must stand alone. Do not write \"field:title - Site Name\"; use \"field:title\" here and add the suffix in Title Format, for example \"{meta_title} - {site_name}\".",
+        "context": "",
+        "plural": "",
+        "line": 984
+    },
+    {
+        "file": "site/modules/Ichiban/Ichiban.module.php",
+        "textdomain": "site--modules--ichiban--ichiban-module-php",
         "hash": "5f31fa0e425153f2d3ecb9c2d7f21a2d",
         "text": "Website & Identity",
         "context": "",

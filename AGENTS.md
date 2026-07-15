@@ -132,6 +132,8 @@ For an Open Graph image, an image field expression can be used. Ichiban will try
 
 Prefer source expressions and defaults before manual page-level values. This keeps the site easier to maintain.
 
+Source expressions are not interpolation templates. A value such as `field:title - Site Name` is invalid because everything after `field:` is parsed as the field specification. Keep the source as `field:title` and add shared title text with Ichiban's Title Format setting, for example `{meta_title} - {site_name}`.
+
 ## Hooks
 
 Use documented hooks for project-specific behavior:
