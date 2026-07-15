@@ -981,7 +981,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			}
 			return Inputfield::collapsedNo;
 		};
-
+		$sourceExpressionWarning = __('Field expressions must stand alone. Do not write "field:title - Site Name"; use "field:title" here and add the suffix in Title Format, for example "{meta_title} - {site_name}".');
 		/** @var InputfieldFieldset $fs */
 		$fs = $modules->get('InputfieldFieldset');
 		$fs->label = __('Website & Identity');
@@ -1011,7 +1011,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			$f->label = $label;
 			$f->description = __('Use typed source values like field:title, field:summary|truncate:160, custom text, or inherit.');
 			$f->value = is_array($data[$name] ?? null) ? json_encode($data[$name], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) : ($data[$name] ?? '');
-			$f->notes = $placeholder;
+			$f->notes = $name === 'global_defaults' ? $sourceExpressionWarning . "\n\n" . $placeholder : $placeholder;
 			$f->rows = 6;
 			$f->columnWidth = 50;
 			$fsDefaults->add($f);
@@ -1036,7 +1036,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$f->name = 'title_format';
 		$f->label = __('Title Format');
 		$f->description = __('Optionally format the rendered <title>. Use {meta_title} for the resolved page title, for example {meta_title} | {site_name}. Leave blank to render the title unchanged.');
-		$f->notes = __('Supported placeholders: {meta_title}, {site_name}, {entity_name}, {host}. Title length checks include this format.');
+		$f->notes = $sourceExpressionWarning . ' ' . __('Supported placeholders: {meta_title}, {site_name}, {entity_name}, {host}. Title length checks include this format.');
 		$f->value = $data['title_format'] ?? '';
 		$f->columnWidth = 100;
 		$fsRendering->add($f);

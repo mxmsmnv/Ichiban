@@ -43,6 +43,8 @@ Global and template defaults can use the same flat keys as Ichiban page data:
 
 The resolver also accepts dot or nested notation such as `meta.title` or `{ "meta": { "title": "field:title" } }`. Empty page-level source fields inherit from template and global defaults.
 
+A field expression must be the complete source value. It cannot be concatenated with literal text. For example, `field:title - Site Name` is invalid because the resolver treats everything after `field:` as a field specification. Use `field:title` as the source and add shared prefixes or suffixes with **Title Format**.
+
 ```text
 title
 title|truncate:70
@@ -91,6 +93,8 @@ Supported placeholders:
 - `{site_name}`
 - `{entity_name}`
 - `{host}`
+
+For example, combine a field-driven title with a site suffix by setting `meta_title` to `field:title` and Title Format to `{meta_title} - {site_name}`. Do not append the suffix directly to the `field:title` source expression.
 
 Audit and Bulk Editor title length checks use the formatted title length. Rebuild the audit index after changing the format.
 
