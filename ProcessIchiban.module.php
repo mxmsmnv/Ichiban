@@ -17,7 +17,7 @@ class ProcessIchiban extends Process {
 			'summary'  => 'Admin panel for Ichiban SEO module.',
 			'author'   => 'Maxim Semenov',
 			'href'     => 'https://smnv.org',
-			'version'  => 16,
+			'version'  => 17,
 			
 			'page'     => [
 				'name'   => 'ichiban',
@@ -388,7 +388,9 @@ class ProcessIchiban extends Process {
 					$template = $san->entities($row['template_name'] ?? '');
 					$pageObj = $this->wire('pages')->get($pid);
 					$editUrl = ($pageObj && $pageObj->id) ? $san->entities($pageObj->editUrl) : '';
-					$renderedTitle = method_exists($this->ichiban, 'formatMetaTitle') ? $this->ichiban->formatMetaTitle($rawTitle) : $rawTitle;
+					$renderedTitle = method_exists($this->ichiban, 'formatMetaTitle')
+						? $this->ichiban->formatMetaTitle($rawTitle, $pageObj && $pageObj->id ? $pageObj : null)
+						: $rawTitle;
 					$renderedTitleHtml = $renderedTitle !== $rawTitle
 						? "<span class='ichiban-bulk-rendered-title'><strong>" . __('Rendered title') . ":</strong> " . $san->entities($renderedTitle) . "</span>"
 						: "";
@@ -1648,7 +1650,7 @@ class ProcessIchiban extends Process {
 			try {
 				$result = $this->migrateSeoMaestroField($this->wire('sanitizer')->fieldName($this->wire('input')->post('field_name')));
 				$notice = "<div class='uk-alert uk-alert-success'>"
-					. sprintf(__('Converted field %s. Backup table: %s. Rows migrated: %d.'), '<code>' . $this->wire('sanitizer')->entities($result['field']) . '</code>', '<code>' . $this->wire('sanitizer')->entities($result['backup']) . '</code>', (int)$result['rows'])
+					. sprintf(__('Converted field %s. Backup table: %s. Rows migrated: %d. Template defaults migrated: %d. Rebuild the audit index from CLI or the Audit screen.'), '<code>' . $this->wire('sanitizer')->entities($result['field']) . '</code>', '<code>' . $this->wire('sanitizer')->entities($result['backup']) . '</code>', (int)$result['rows'], (int)$result['templates'])
 					. "</div>";
 			} catch (\Throwable $e) {
 				$notice = "<div class='uk-alert uk-alert-danger'>" . $this->wire('sanitizer')->entities($e->getMessage()) . "</div>";
@@ -2395,9 +2397,8 @@ class ProcessIchiban extends Process {
 				// Keep the field visible even if the table is missing or unreadable.
 			}
 			$templates = [];
-			foreach ($field->getFieldgroups() as $fieldgroup) {
-				$template = $this->wire('templates')->get('fieldgroup=' . (int)$fieldgroup->id);
-				if ($template && $template->id) $templates[] = $template->name;
+			foreach ($this->wire('templates') as $template) {
+				if ($template->fieldgroup && $template->fieldgroup->hasField($field)) $templates[] = $template->name;
 			}
 			$out[] = [
 				'field' => $field->name,
@@ -2532,6 +2533,7 @@ class ProcessIchiban extends Process {
 		$table = $field->getTable();
 		$backup = $this->backupFieldTable($table);
 		$rows = $db->query("SELECT `pages_id`, `data` FROM `$table`")->fetchAll(\PDO::FETCH_ASSOC);
+		$templateResult = $this->migrateSeoMaestroTemplateDefaults($field, $ichibanFieldtype);
 
 		$this->ensureIchibanFieldColumns($table);
 
@@ -2560,14 +2562,52 @@ class ProcessIchiban extends Process {
 		$field->type = $ichibanFieldtype;
 		$this->wire('fields')->save($field);
 
-		try {
-			$engine = new \IchibanAuditEngine($this->ichiban);
-			$engine->rebuildIndex();
-		} catch (\Throwable $e) {
-			$this->wire('log')->save('ichiban', 'Migration index rebuild failed: ' . $e->getMessage());
+		return [
+			'field' => $field->name,
+			'backup' => $backup,
+			'rows' => $converted,
+			'templates' => $templateResult['templates'],
+		];
+	}
+
+	protected function migrateSeoMaestroTemplateDefaults(Field $field, FieldtypeIchiban $ichibanFieldtype): array {
+		$config = $this->wire('modules')->getModuleConfigData('Ichiban');
+		$defaults = $config['template_defaults'] ?? [];
+		if (is_string($defaults)) $defaults = json_decode($defaults, true) ?: [];
+		if (!is_array($defaults)) $defaults = [];
+		$formats = $config['template_title_formats'] ?? [];
+		if (is_string($formats)) $formats = json_decode($formats, true) ?: [];
+		if (!is_array($formats)) $formats = [];
+
+		$count = 0;
+		foreach ($this->wire('templates') as $template) {
+			if (!$template->fieldgroup || !$template->fieldgroup->hasField($field)) continue;
+			$context = $template->fieldgroup->getFieldContext($field);
+			$legacy = $context ? $context->getArray() : [];
+			unset($legacy['_contextFieldgroup'], $legacy['collapsed']);
+			if (!$legacy) continue;
+
+			$converted = $ichibanFieldtype->convertSeoMaestroData($legacy);
+			unset($converted['schema_type']);
+			if ($converted) {
+				$defaults[$template->name] = array_replace(
+					is_array($defaults[$template->name] ?? null) ? $defaults[$template->name] : [],
+					$converted
+				);
+			}
+			$titleFormat = trim((string)($legacy['meta_title_format'] ?? ''));
+			if ($titleFormat !== '') {
+				$formats[$template->name] = html_entity_decode($titleFormat, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+			}
+			if ($converted || $titleFormat !== '') $count++;
 		}
 
-		return ['field' => $field->name, 'backup' => $backup, 'rows' => $converted];
+		$config['template_defaults'] = json_encode($defaults, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+		$config['template_title_formats'] = json_encode($formats, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+		$this->wire('modules')->saveConfig('Ichiban', $config);
+		$this->ichiban->set('template_defaults', $config['template_defaults']);
+		$this->ichiban->set('template_title_formats', $config['template_title_formats']);
+		return ['templates' => $count];
 	}
 
 	protected function backupFieldTable(string $table): string {

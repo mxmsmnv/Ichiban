@@ -40,7 +40,8 @@ Automatic head injection is available in module settings, but use it only when y
 - Moz backlink snapshots with cached history and quota snapshots.
 - XML sitemap generator with images, hreflang alternates, custom URLs, exclusions, chunks, and LazyCron regeneration.
 - Schema.org mapping builder.
-- SeoMaestro migration tool.
+- SeoMaestro migration tool for page data, template defaults and
+  template-specific title formats.
 - Scheduled report workspace with email tests and DOCX export.
 - Squad-backed AI prompt workspace.
 - CLI commands for audit rebuilds, sitemap maintenance, status checks, and generated text previews.

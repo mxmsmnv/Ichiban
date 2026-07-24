@@ -330,7 +330,7 @@ class IchibanCli {
 			],
 			'seo' => [
 				'title' => (string)($seo->meta->title ?? ''),
-				'rendered_title' => $this->ichiban->formatMetaTitle((string)($seo->meta->title ?? $page->title)),
+				'rendered_title' => $this->ichiban->formatMetaTitle((string)($seo->meta->title ?? $page->title), $page),
 				'description' => (string)($seo->meta->description ?? ''),
 				'canonical' => (string)($seo->meta->canonical ?? ''),
 				'robots' => [

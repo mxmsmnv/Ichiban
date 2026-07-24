@@ -205,7 +205,8 @@ The migration tool:
 - creates backup tables
 - converts stored SeoMaestro JSON to Ichiban data
 - switches the field type to `FieldtypeIchiban`
-- rebuilds the audit index
+- imports template-level metadata defaults and title formats
+- leaves the potentially long audit rebuild as an explicit Audit/CLI step
 
 Mapped fields include meta title, meta description, canonical URL, Open Graph fields, Twitter card, robots flags, and sitemap settings.
 

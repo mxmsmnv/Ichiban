@@ -7,7 +7,7 @@ require_once __DIR__ . '/IchibanAutoload.php';
  *
  * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
- * @version 0.1.6-alpha
+ * @version 0.1.7-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
 
@@ -19,7 +19,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'title'    => 'Ichiban',
 			'summary'  => 'Comprehensive SEO module: meta/OG/schema, audit, redirects, revisions, email reports.',
 			'author'   => 'Maxim Semenov',
-			'version'  => 16,
+			'version'  => 17,
 			'href'     => 'https://smnv.org',
 			'singular' => true,
 			'autoload' => true,
@@ -341,7 +341,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$out .= '<meta charset="utf-8">' . "\n";
 		// Meta title
 		$title = $seo->meta->title;
-		$renderedTitle = $this->formatMetaTitle((string)$title);
+		$renderedTitle = $this->formatMetaTitle((string)$title, $page);
 		$out .= '<title>' . $this->wire('sanitizer')->entities($renderedTitle) . '</title>' . "\n";
 		$out .= '<meta name="description" content="' . $this->wire('sanitizer')->entities($seo->meta->description) . '">' . "\n";
 		// Robots
@@ -449,8 +449,14 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		return $lang->get('locale') ?: str_replace('_', '-', $lang->name);
 	}
 
-	public function formatMetaTitle(string $title): string {
-		$format = trim((string)$this->get('title_format'));
+	public function formatMetaTitle(string $title, ?Page $page = null): string {
+		$format = '';
+		if ($page && $page->template) {
+			$formats = $this->get('template_title_formats') ?: [];
+			if (is_string($formats)) $formats = json_decode($formats, true) ?: [];
+			$format = trim((string)($formats[$page->template->name] ?? ''));
+		}
+		if ($format === '') $format = trim((string)$this->get('title_format'));
 		if ($format === '') return $title;
 		if (!str_contains($format, '{meta_title}')) {
 			$format = '{meta_title}' . $format;
@@ -999,12 +1005,13 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 
 		$fsDefaults = $modules->get('InputfieldFieldset');
 		$fsDefaults->label = __('Defaults');
-		$fsDefaults->collapsed = $collapsedFor(['global_defaults', 'template_defaults']);
+		$fsDefaults->collapsed = $collapsedFor(['global_defaults', 'template_defaults', 'template_title_formats']);
 		$fsDefaults->columnWidth = 50;
 		$addNotes($fsDefaults, __('JSON defaults are resolved before page-level values. Use field:title, field:summary|truncate:160, custom text, or inherit.'));
 		foreach ([
 			['global_defaults', __('Global defaults JSON'), "{\n  \"meta_title\": \"field:title\",\n  \"meta_description\": \"field:summary|truncate:160\"\n}"],
 			['template_defaults', __('Template defaults JSON'), "{\n  \"basic-page\": {\n    \"schema_type\": \"WebPage\"\n  }\n}"],
+			['template_title_formats', __('Template title formats JSON'), "{\n  \"product\": \"{meta_title} — LQRS\"\n}"],
 		] as [$name, $label, $placeholder]) {
 			$f = $modules->get('InputfieldTextarea');
 			$f->name = $name;
@@ -1013,7 +1020,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			$f->value = is_array($data[$name] ?? null) ? json_encode($data[$name], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) : ($data[$name] ?? '');
 			$f->notes = $placeholder;
 			$f->rows = 6;
-			$f->columnWidth = 50;
+			$f->columnWidth = $name === 'template_title_formats' ? 100 : 50;
 			$fsDefaults->add($f);
 		}
 		$wrapper->add($fsDefaults);

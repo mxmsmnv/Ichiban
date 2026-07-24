@@ -45,11 +45,33 @@ class IchibanSourceResolver {
 
 		// custom: prefix (legacy compat)
 		if (str_starts_with($expression, 'custom:')) {
-			return $this->normalizeLiteral(substr($expression, 7), $group, $key);
+			return $this->normalizeLiteral(
+				$this->interpolateFieldTokens($page, substr($expression, 7), $group, $key),
+				$group,
+				$key
+			);
+		}
+
+		// SeoMaestro also allowed composite values such as
+		// "{title} — {parent.title}". Preserve those during migration.
+		if (str_contains($expression, '{')) {
+			return $this->normalizeLiteral(
+				$this->interpolateFieldTokens($page, $expression, $group, $key),
+				$group,
+				$key
+			);
 		}
 
 		// Literal
 		return $this->normalizeLiteral($expression, $group, $key);
+	}
+
+	protected function interpolateFieldTokens(\ProcessWire\Page $page, string $value, string $group, string $key): string {
+		return preg_replace_callback(
+			'/\{([A-Za-z0-9_][A-Za-z0-9_:.]*(?:\|[A-Za-z0-9_:-]+)*)\}/',
+			fn(array $match): string => $this->resolveField($page, $match[1], $group, $key),
+			$value
+		) ?? $value;
 	}
 
 	protected function resolveField(\ProcessWire\Page $page, string $spec, string $group = '', string $key = ''): string {

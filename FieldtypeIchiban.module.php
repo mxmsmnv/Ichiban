@@ -15,7 +15,7 @@ class FieldtypeIchiban extends Fieldtype {
 			'summary' => 'SEO fieldtype for Ichiban module.',
 			'author'  => 'Maxim Semenov',
 			'href'     => 'https://smnv.org',
-			'version' => 16,
+			'version' => 17,
 		];
 	}
 

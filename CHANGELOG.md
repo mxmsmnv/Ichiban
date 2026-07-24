@@ -4,6 +4,19 @@ All notable changes to Ichiban will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.7-alpha] - 2026-07-24
+
+### Added
+- Added page-aware template title formats and composite SeoMaestro field-token
+  interpolation such as `{title} — {parent.title}`.
+
+### Fixed
+- SeoMaestro migration now preserves template-level title, description, Open
+  Graph, robots and sitemap defaults plus template-specific title formats.
+- Migration candidate rows now report actual template assignments.
+- Removed the long synchronous audit rebuild from the browser migration request;
+  the success notice now directs administrators to the Audit screen or CLI.
+
 ## [0.1.6-alpha] - 2026-07-12
 
 ### Added
