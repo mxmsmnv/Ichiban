@@ -67,9 +67,20 @@ class IchibanAuditEngine {
 
 			$stmt = $this->prepareUpsertStatement();
 
-			foreach ($allPages as $page) {
-				$row = $this->buildPageRow($page, $fieldName);
-				if ($row) $stmt->execute($row);
+			$variationsWereEnabled = !method_exists($this->ichiban, 'seoImageVariationsEnabled')
+				|| $this->ichiban->seoImageVariationsEnabled();
+			if (method_exists($this->ichiban, 'setSeoImageVariationsEnabled')) {
+				$this->ichiban->setSeoImageVariationsEnabled(false);
+			}
+			try {
+				foreach ($allPages as $page) {
+					$row = $this->buildPageRow($page, $fieldName);
+					if ($row) $stmt->execute($row);
+				}
+			} finally {
+				if (method_exists($this->ichiban, 'setSeoImageVariationsEnabled')) {
+					$this->ichiban->setSeoImageVariationsEnabled($variationsWereEnabled);
+				}
 			}
 			$db->commit();
 			$log->save('ichiban-audit', "Indexed " . $allPages->count() . " pages.");
@@ -85,7 +96,18 @@ class IchibanAuditEngine {
 		$this->ensureIndexSchema();
 
 		$fieldName = $this->ichiban->getSeoFieldName();
-		$row = $this->buildPageRow($page, $fieldName);
+		$variationsWereEnabled = !method_exists($this->ichiban, 'seoImageVariationsEnabled')
+			|| $this->ichiban->seoImageVariationsEnabled();
+		if (method_exists($this->ichiban, 'setSeoImageVariationsEnabled')) {
+			$this->ichiban->setSeoImageVariationsEnabled(false);
+		}
+		try {
+			$row = $this->buildPageRow($page, $fieldName);
+		} finally {
+			if (method_exists($this->ichiban, 'setSeoImageVariationsEnabled')) {
+				$this->ichiban->setSeoImageVariationsEnabled($variationsWereEnabled);
+			}
+		}
 		if (!$row) {
 			$stmt = $db->prepare("DELETE FROM ichiban_index WHERE page_id=:page_id");
 			$stmt->execute([':page_id' => (int)$page->id]);

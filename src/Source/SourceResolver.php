@@ -79,8 +79,10 @@ class IchibanSourceResolver {
 		$parts    = explode('|', $spec);
 		$fieldName = array_shift($parts);
 		$value     = $this->resolveFieldPath($page, $fieldName);
-		$imageWidth = ($group === 'og' && $key === 'image') ? 1200 : 0;
-		$imageHeight = ($group === 'og' && $key === 'image') ? 630 : 0;
+		$variationsEnabled = !method_exists($this->ichiban, 'seoImageVariationsEnabled')
+			|| $this->ichiban->seoImageVariationsEnabled();
+		$imageWidth = ($variationsEnabled && $group === 'og' && $key === 'image') ? 1200 : 0;
+		$imageHeight = ($variationsEnabled && $group === 'og' && $key === 'image') ? 630 : 0;
 
 		$value = $this->stringValue($value, $imageWidth, $imageHeight);
 		if ($this->shouldResolveAsPlainText($group, $key)) {

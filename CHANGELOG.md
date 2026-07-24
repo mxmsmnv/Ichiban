@@ -4,6 +4,12 @@ All notable changes to Ichiban will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.8-alpha] - 2026-07-24
+
+### Fixed
+- Audit rebuilds and incremental audit refreshes now resolve original OG image
+  URLs without generating 1200×630 frontend image variations for every page.
+
 ## [0.1.7-alpha] - 2026-07-24
 
 ### Added

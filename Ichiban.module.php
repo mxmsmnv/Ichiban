@@ -7,19 +7,20 @@ require_once __DIR__ . '/IchibanAutoload.php';
  *
  * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
- * @version 0.1.7-alpha
+ * @version 0.1.8-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
 
 	protected array $_oldPaths = [];
 	protected array $_oldSeoData = [];
+	protected bool $_seoImageVariationsEnabled = true;
 
 	public static function getModuleInfo(): array {
 		return [
 			'title'    => 'Ichiban',
 			'summary'  => 'Comprehensive SEO module: meta/OG/schema, audit, redirects, revisions, email reports.',
 			'author'   => 'Maxim Semenov',
-			'version'  => 17,
+			'version'  => 18,
 			'href'     => 'https://smnv.org',
 			'singular' => true,
 			'autoload' => true,
@@ -469,6 +470,14 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'{host}' => (string)$this->wire('config')->httpHost,
 		];
 		return trim(strtr($format, $replacements));
+	}
+
+	public function setSeoImageVariationsEnabled(bool $enabled): void {
+		$this->_seoImageVariationsEnabled = $enabled;
+	}
+
+	public function seoImageVariationsEnabled(): bool {
+		return $this->_seoImageVariationsEnabled;
 	}
 
 	public function pageHttpUrl(Page $page, ?Language $language = null, bool $includeSegments = true): string {
