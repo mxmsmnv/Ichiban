@@ -7,7 +7,7 @@ require_once __DIR__ . '/IchibanAutoload.php';
  *
  * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
- * @version 0.2.0-alpha
+ * @version 0.2.1-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
 
@@ -20,7 +20,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'title'    => 'Ichiban',
 			'summary'  => 'Comprehensive SEO module: meta/OG/schema, audit, redirects, revisions, email reports.',
 			'author'   => 'Maxim Semenov',
-			'version'  => 20,
+			'version'  => 21,
 			'href'     => 'https://smnv.org',
 			'singular' => true,
 			'autoload' => true,
@@ -468,8 +468,17 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'{site_name}' => $siteName,
 			'{entity_name}' => (string)($this->get('entity_name') ?: $this->siteSetting('brand_name', '')),
 			'{host}' => (string)$this->wire('config')->httpHost,
+			'{tagline}' => (string)$this->siteSetting('tagline', ''),
+			'{parent_title}' => $page && $page->parent ? (string)$page->parent->title : '',
+			'{template_title}' => $page && $page->template ? (string)($page->template->label ?: $page->template->name) : '',
 		];
-		return trim(strtr($format, $replacements));
+		$maxLength = max(0, (int)$this->get('title_max_length'));
+		if ($maxLength > 0 && str_contains($format, '{meta_title}')) {
+			$withoutTitle = strtr(str_replace('{meta_title}', '', $format), $replacements);
+			$available = max(12, $maxLength - mb_strlen($withoutTitle));
+			$replacements['{meta_title}'] = $this->truncateSeoText($title, $available);
+		}
+		return $this->cleanSeoText(strtr($format, $replacements));
 	}
 
 	public function setSeoImageVariationsEnabled(bool $enabled): void {
@@ -683,7 +692,48 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 	 * @hook Ichiban::resolvedSeoValue
 	 */
 	public function ___resolvedSeoValue(Page $page, string $group, string $key, string $value): string {
+		if ($group === 'meta' && $key === 'description') {
+			$value = $this->cleanSeoText($value);
+			$fallback = trim((string)$this->get('meta_description_fallback'));
+			if ($fallback !== '') {
+				$fallback = $this->cleanSeoText(strtr($fallback, [
+					'{title}' => (string)$page->title,
+					'{site_name}' => (string)($this->get('entity_name') ?: $this->siteSetting('brand_name', $this->wire('config')->httpHost)),
+					'{tagline}' => (string)$this->siteSetting('tagline', ''),
+				]));
+			}
+			$minLength = max(0, (int)$this->get('meta_description_min_length'));
+			if ($value === '') {
+				$value = $fallback;
+			} elseif ($fallback !== '' && $minLength > 0 && mb_strlen($value) < $minLength) {
+				$value = $this->cleanSeoText($value . ' ' . $fallback);
+			}
+			$maxLength = max(0, (int)$this->get('meta_description_max_length'));
+			if ($maxLength > 0) $value = $this->truncateSeoText($value, $maxLength);
+		}
+		if ($group === 'og' && $key === 'image' && trim($value) === '') {
+			$value = trim((string)$this->siteSetting('default_og_image', ''));
+		}
+		if ($group === 'schema' && $key === 'type' && trim($value) === '') {
+			$value = 'WebPage';
+		}
 		return $value;
+	}
+
+	protected function cleanSeoText(string $value): string {
+		$value = html_entity_decode($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+		$value = preg_replace('/<[^>]*>/u', ' ', $value) ?? $value;
+		$value = preg_replace('/\s+/u', ' ', $value) ?? $value;
+		$value = preg_replace('/(?:\\s*[·|—–-]\\s*){2,}/u', ' · ', $value) ?? $value;
+		return trim($value, " \t\n\r\0\x0B·|—–-");
+	}
+
+	protected function truncateSeoText(string $value, int $maxLength): string {
+		$value = $this->cleanSeoText($value);
+		if ($maxLength < 1 || mb_strlen($value) <= $maxLength) return $value;
+		$value = rtrim(mb_substr($value, 0, max(1, $maxLength - 1)));
+		$value = preg_replace('/\s+\S*$/u', '', $value) ?: $value;
+		return rtrim($value, " \t\n\r\0\x0B,.;:·|—–-") . '…';
 	}
 
 	/** Hookable: customize audit rules before report/index checks run. */
@@ -1036,7 +1086,16 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 
 		$fsRendering = $modules->get('InputfieldFieldset');
 		$fsRendering->label = __('Rendering');
-		$fsRendering->collapsed = $collapsedFor(['auto_render_head', 'title_format', 'render_hreflang', 'render_jsonld']);
+		$fsRendering->collapsed = $collapsedFor([
+			'auto_render_head',
+			'title_format',
+			'title_max_length',
+			'meta_description_fallback',
+			'meta_description_min_length',
+			'meta_description_max_length',
+			'render_hreflang',
+			'render_jsonld',
+		]);
 		$fsRendering->columnWidth = 50;
 		$addNotes($fsRendering, __('By default Ichiban only renders tags when your template outputs $page->seo. Automatic injection is opt-in.'));
 
@@ -1052,10 +1111,44 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$f->name = 'title_format';
 		$f->label = __('Title Format');
 		$f->description = __('Optionally format the rendered <title>. Use {meta_title} for the resolved page title, for example {meta_title} | {site_name}. Leave blank to render the title unchanged.');
-		$f->notes = __('Supported placeholders: {meta_title}, {site_name}, {entity_name}, {host}. Title length checks include this format.');
+		$f->notes = __('Supported placeholders: {meta_title}, {site_name}, {entity_name}, {host}, {tagline}, {parent_title}, {template_title}. Title length checks include this format.');
 		$f->value = $data['title_format'] ?? '';
-		$f->columnWidth = 100;
+		$f->columnWidth = 75;
 		$fsRendering->add($f);
+
+		$f = $modules->get('InputfieldInteger');
+		$f->name = 'title_max_length';
+		$f->label = __('Maximum rendered title length');
+		$f->description = __('Keep the complete formatted title within this number of characters while preserving the global suffix. Use 0 to disable.');
+		$f->value = max(0, (int)($data['title_max_length'] ?? 0));
+		$f->min = 0;
+		$f->max = 200;
+		$f->columnWidth = 25;
+		$fsRendering->add($f);
+
+		$f = $modules->get('InputfieldText');
+		$f->name = 'meta_description_fallback';
+		$f->label = __('Meta description fallback');
+		$f->description = __('Used when a page has no description and appended when an existing description is shorter than the configured minimum.');
+		$f->notes = __('Supported placeholders: {title}, {site_name}, {tagline}.');
+		$f->value = $data['meta_description_fallback'] ?? '';
+		$f->columnWidth = 70;
+		$fsRendering->add($f);
+
+		foreach ([
+			['meta_description_min_length', __('Minimum description length'), 50],
+			['meta_description_max_length', __('Maximum description length'), 160],
+		] as [$name, $label, $default]) {
+			$f = $modules->get('InputfieldInteger');
+			$f->name = $name;
+			$f->label = $label;
+			$f->description = __('Use 0 to disable this length guard.');
+			$f->value = max(0, (int)($data[$name] ?? 0));
+			$f->min = 0;
+			$f->max = 500;
+			$f->columnWidth = 15;
+			$fsRendering->add($f);
+		}
 
 		$f = $modules->get('InputfieldCheckbox');
 		$f->name = 'render_hreflang';

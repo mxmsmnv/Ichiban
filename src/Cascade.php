@@ -37,21 +37,27 @@ class IchibanCascade {
 		}
 		if ($pageData !== null && $pageData !== 'inherit') {
 			$value = $this->ichiban->resolveSourceValue($this->page, $group, $key, $pageData);
-			return $this->ichiban->resolvedSeoValue($this->page, $group, $key, $value);
+			if (trim($value) !== '') {
+				return $this->ichiban->resolvedSeoValue($this->page, $group, $key, $value);
+			}
 		}
 
 		// 2. Template-level default
 		$tplData = $this->getTemplateDefault($group, $key);
 		if ($tplData !== null && $tplData !== 'inherit') {
 			$value = $this->ichiban->resolveSourceValue($this->page, $group, $key, $tplData);
-			return $this->ichiban->resolvedSeoValue($this->page, $group, $key, $value);
+			if (trim($value) !== '') {
+				return $this->ichiban->resolvedSeoValue($this->page, $group, $key, $value);
+			}
 		}
 
 		// 3. Global default
 		$globalData = $this->getGlobalDefault($group, $key);
 		if ($globalData !== null) {
 			$value = $this->ichiban->resolveSourceValue($this->page, $group, $key, $globalData);
-			return $this->ichiban->resolvedSeoValue($this->page, $group, $key, $value);
+			if (trim($value) !== '') {
+				return $this->ichiban->resolvedSeoValue($this->page, $group, $key, $value);
+			}
 		}
 
 		// Built-in fallbacks
@@ -137,17 +143,46 @@ class IchibanCascade {
 	protected function builtinFallback(string $group, string $key): string {
 		return match ("{$group}.{$key}") {
 			'meta.title'       => (string)$this->page->get('title'),
-			'meta.description' => $this->plainText((string)($this->page->get('summary') ?: '')),
+			'meta.description' => $this->fallbackDescription(),
 			'meta.canonical'   => $this->page->id && method_exists($this->ichiban, 'pageHttpUrl') ? $this->ichiban->pageHttpUrl($this->page) : ($this->page->id ? $this->page->httpUrl() : ''),
 			'og.title'         => $this->resolve('meta', 'title'),
 			'og.description'   => $this->resolve('meta', 'description'),
+			'og.image'         => (string)$this->ichiban->siteSetting('default_og_image', ''),
+			'og.image_alt'     => (string)$this->page->get('title'),
 			'og.type'          => 'website',
 			'twitter.card'     => 'summary_large_image',
+			'schema.type'      => 'WebPage',
 			'sitemap.include'  => '1',
 			'sitemap.priority' => '0.5',
 			'sitemap.changefreq' => 'weekly',
 			default            => '',
 		};
+	}
+
+	protected function fallbackDescription(): string {
+		$value = '';
+		foreach (['summary', 'intro', 'body', 'content', 'text'] as $fieldName) {
+			if (!$this->page->hasField($fieldName)) continue;
+			$value = $this->plainText((string)$this->page->get($fieldName));
+			if ($value !== '') break;
+		}
+
+		if ($value === '') {
+			$title = trim((string)$this->page->get('title'));
+			$siteName = trim((string)$this->ichiban->siteSetting('brand_name', ''));
+			$tagline = trim((string)$this->ichiban->siteSetting('tagline', ''));
+			$value = trim($title . '. ' . $tagline . ($siteName !== '' ? ' on ' . $siteName . '.' : ''));
+		}
+
+		return $this->truncate($value, 160);
+	}
+
+	protected function truncate(string $value, int $maxLength): string {
+		$value = trim($value);
+		if ($maxLength < 1 || mb_strlen($value) <= $maxLength) return $value;
+		$value = rtrim(mb_substr($value, 0, max(1, $maxLength - 1)));
+		$value = preg_replace('/\s+\S*$/u', '', $value) ?: $value;
+		return rtrim($value, " \t\n\r\0\x0B,.;:–—-") . '…';
 	}
 
 	protected function shouldIgnoreStoredDefaultSchemaType(string $group, string $key, ?string $pageData): bool {

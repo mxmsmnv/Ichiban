@@ -4,6 +4,24 @@ All notable changes to Ichiban will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.2.1-alpha] - 2026-07-29
+
+### Added
+- Added `{tagline}`, `{parent_title}`, and `{template_title}` placeholders to
+  the global Title Format.
+- Added optional title and meta-description length guards plus a configurable
+  meta-description fallback.
+
+### Changed
+- Empty page or template source expressions now continue through the cascade
+  instead of suppressing lower-level defaults.
+- Built-in descriptions now use the first available content field and a
+  page-specific site fallback.
+
+### Fixed
+- Open Graph images now fall back to the Website default social image.
+- Schema type now falls back to `WebPage` when no more specific mapping exists.
+
 ## [0.2.0-alpha] - 2026-07-29
 
 ### Removed

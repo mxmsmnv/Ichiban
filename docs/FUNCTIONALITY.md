@@ -82,7 +82,7 @@ Settings also include separate rendering toggles for frontend hreflang links and
 Settings include a global **Title Format** field for rendered titles:
 
 ```text
-{meta_title} | {site_name}
+{meta_title} · {tagline} · {site_name}
 ```
 
 Supported placeholders:
@@ -91,8 +91,15 @@ Supported placeholders:
 - `{site_name}`
 - `{entity_name}`
 - `{host}`
+- `{tagline}`
+- `{parent_title}`
+- `{template_title}`
 
-Audit and Bulk Editor title length checks use the formatted title length. Rebuild the audit index after changing the format.
+The optional maximum title length trims only the page-specific title while
+preserving the shared suffix. Meta descriptions have independent minimum and
+maximum guards plus a page-aware fallback with `{title}`, `{site_name}`, and
+`{tagline}` placeholders. Audit and Bulk Editor length checks use the rendered
+values. Rebuild the audit index after changing these settings.
 
 ## Admin Workspace
 
