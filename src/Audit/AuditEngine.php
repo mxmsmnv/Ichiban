@@ -33,13 +33,19 @@ class IchibanAuditEngine {
 	// Index rebuild
 	// -------------------------------------------------------------------------
 
-	public function rebuildIndex(): void {
+	public function rebuildIndex(int $batchSize = 250): void {
+		$job = $this->startRebuildJob($batchSize);
+		do {
+			$job = $this->runRebuildBatch($job['id']);
+		} while (empty($job['done']));
+	}
+
+	public function startRebuildJob(int $batchSize = 250): array {
 		$db    = $this->ichiban->wire('database');
 		$pages = $this->ichiban->wire('pages');
-		$log   = $this->ichiban->wire('log');
 		$this->ensureIndexSchema();
+		$batchSize = max(25, min(1000, $batchSize));
 
-		// Find all published pages that have the seo field
 		$fieldName = $this->ichiban->getSeoFieldName();
 		$seoField  = $this->ichiban->wire('fields')->get($fieldName);
 		if (!$seoField) {
@@ -56,39 +62,121 @@ class IchibanAuditEngine {
 		}
 
 		$selector = 'template=' . implode('|', $templates) . ', status<' . \ProcessWire\Page::statusUnpublished . ', include=hidden, limit=0';
-		$allPages  = $pages->find($selector);
-		if (!$allPages->count()) {
+		$pageIds = array_values(array_map('intval', $pages->findIDs($selector)));
+		if (!$pageIds) {
 			throw new \RuntimeException("No published pages found for templates: " . implode(', ', $templates));
+		}
+
+		$id = bin2hex(random_bytes(16));
+		$job = [
+			'id' => $id,
+			'page_ids' => $pageIds,
+			'field_name' => $fieldName,
+			'batch_size' => $batchSize,
+			'processed' => 0,
+			'indexed' => 0,
+			'failed' => 0,
+			'total' => count($pageIds),
+			'started_at' => time(),
+			'done' => false,
+		];
+		$db->exec("DELETE FROM ichiban_index");
+		$this->saveRebuildJob($job);
+		$this->ichiban->wire('log')->save('ichiban-audit', "Started batched rebuild {$id} for {$job['total']} pages.");
+		return $this->publicJobState($job);
+	}
+
+	public function runRebuildBatch(string $jobId): array {
+		$jobId = preg_replace('/[^a-f0-9]/', '', strtolower($jobId));
+		$job = $this->loadRebuildJob($jobId);
+		if (!$job) {
+			throw new \RuntimeException('Audit rebuild job was not found or has expired.');
+		}
+		if (!empty($job['done'])) return $this->publicJobState($job);
+
+		$db = $this->ichiban->wire('database');
+		$pages = $this->ichiban->wire('pages');
+		$ids = array_slice($job['page_ids'], (int)$job['processed'], (int)$job['batch_size']);
+		$stmt = $this->prepareUpsertStatement();
+		$variationsWereEnabled = !method_exists($this->ichiban, 'seoImageVariationsEnabled')
+			|| $this->ichiban->seoImageVariationsEnabled();
+		if (method_exists($this->ichiban, 'setSeoImageVariationsEnabled')) {
+			$this->ichiban->setSeoImageVariationsEnabled(false);
 		}
 
 		$db->beginTransaction();
 		try {
-			$db->exec("DELETE FROM ichiban_index");
-
-			$stmt = $this->prepareUpsertStatement();
-
-			$variationsWereEnabled = !method_exists($this->ichiban, 'seoImageVariationsEnabled')
-				|| $this->ichiban->seoImageVariationsEnabled();
-			if (method_exists($this->ichiban, 'setSeoImageVariationsEnabled')) {
-				$this->ichiban->setSeoImageVariationsEnabled(false);
-			}
-			try {
-				foreach ($allPages as $page) {
-					$row = $this->buildPageRow($page, $fieldName);
-					if ($row) $stmt->execute($row);
-				}
-			} finally {
-				if (method_exists($this->ichiban, 'setSeoImageVariationsEnabled')) {
-					$this->ichiban->setSeoImageVariationsEnabled($variationsWereEnabled);
+			foreach ($ids as $pageId) {
+				$page = $pages->get((int)$pageId);
+				try {
+					$row = $this->buildPageRow($page, (string)$job['field_name']);
+					if ($row) {
+						$stmt->execute($row);
+						$job['indexed']++;
+					}
+				} catch (\Throwable $pageError) {
+					$job['failed']++;
+					$this->ichiban->wire('log')->save('ichiban-audit', "Page {$pageId} failed: " . $pageError->getMessage());
+				} finally {
+					$job['processed']++;
+					if ($page && $page->id) {
+						$pages->uncache($page);
+					}
+					unset($page, $row);
 				}
 			}
 			$db->commit();
-			$log->save('ichiban-audit', "Indexed " . $allPages->count() . " pages.");
 		} catch (\Throwable $ex) {
 			$db->rollBack();
-			$log->save('ichiban-audit', "ERROR: " . $ex->getMessage());
+			$this->ichiban->wire('log')->save('ichiban-audit', "ERROR in rebuild {$jobId}: " . $ex->getMessage());
 			throw $ex;
+		} finally {
+			if (method_exists($this->ichiban, 'setSeoImageVariationsEnabled')) {
+				$this->ichiban->setSeoImageVariationsEnabled($variationsWereEnabled);
+			}
+			if (function_exists('gc_collect_cycles')) gc_collect_cycles();
 		}
+
+		$job['done'] = (int)$job['processed'] >= (int)$job['total'];
+		if ($job['done']) {
+			unset($job['page_ids']);
+			$elapsed = max(0, time() - (int)$job['started_at']);
+			$this->ichiban->wire('log')->save(
+				'ichiban-audit',
+				"Indexed {$job['indexed']} pages in {$elapsed}s ({$job['failed']} failed)."
+			);
+		}
+		$this->saveRebuildJob($job);
+		return $this->publicJobState($job);
+	}
+
+	protected function rebuildJobCacheKey(string $jobId): string {
+		return 'ichiban_audit_rebuild_' . $jobId;
+	}
+
+	protected function saveRebuildJob(array $job): void {
+		$this->ichiban->wire('cache')->save($this->rebuildJobCacheKey((string)$job['id']), $job, 7200);
+	}
+
+	protected function loadRebuildJob(string $jobId): ?array {
+		if ($jobId === '') return null;
+		$job = $this->ichiban->wire('cache')->get($this->rebuildJobCacheKey($jobId));
+		return is_array($job) ? $job : null;
+	}
+
+	protected function publicJobState(array $job): array {
+		$processed = (int)($job['processed'] ?? 0);
+		$total = (int)($job['total'] ?? 0);
+		return [
+			'id' => (string)$job['id'],
+			'processed' => $processed,
+			'indexed' => (int)($job['indexed'] ?? 0),
+			'failed' => (int)($job['failed'] ?? 0),
+			'total' => $total,
+			'remaining' => max(0, $total - $processed),
+			'progress' => $total ? min(100, (int)floor(($processed / $total) * 100)) : 100,
+			'done' => !empty($job['done']),
+		];
 	}
 
 	public function refreshPage(\ProcessWire\Page $page): void {

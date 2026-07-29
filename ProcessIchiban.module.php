@@ -17,7 +17,7 @@ class ProcessIchiban extends Process {
 			'summary'  => 'Admin panel for Ichiban SEO module.',
 			'author'   => 'Maxim Semenov',
 			'href'     => 'https://smnv.org',
-			'version'  => 21,
+			'version'  => 22,
 			
 			'page'     => [
 				'name'   => 'ichiban',
@@ -489,6 +489,37 @@ class ProcessIchiban extends Process {
 		$this->setIchibanBreadcrumb(__('Audit'), 'audit/');
 		$this->headline(__('SEO Audit Report'));
 
+		$rebuildJobId = $this->wire('sanitizer')->text((string)$this->wire('input')->get('rebuild_job'));
+		if ($rebuildJobId !== '') {
+			try {
+				$engine = new \IchibanAuditEngine($this->ichiban);
+				$job = $engine->runRebuildBatch($rebuildJobId);
+				if (!empty($job['done'])) {
+					$this->wire('session')->message(sprintf(
+						__('Audit index rebuilt: %1$d pages indexed, %2$d failed.'),
+						(int)$job['indexed'],
+						(int)$job['failed']
+					));
+					$this->wire('session')->redirect($this->adminUrl('audit/'));
+					return '';
+				}
+				$nextUrl = $this->adminUrl('audit/') . '?rebuild_job=' . rawurlencode((string)$job['id']);
+				$nextJson = json_encode($nextUrl, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
+				$progress = (int)$job['progress'];
+				return $this->renderAdminNav('audit')
+					. "<div class='ichiban-audit'><h2>" . __('Rebuilding audit index') . "</h2>"
+					. "<p>" . sprintf(__('%1$d of %2$d pages processed.'), (int)$job['processed'], (int)$job['total']) . "</p>"
+					. "<progress max='100' value='{$progress}' style='width:100%'>{$progress}%</progress>"
+					. "<p><small>" . __('The rebuild runs in short, resumable batches so the web server is not held by one long request.') . "</small></p></div>"
+					. "<script>window.setTimeout(function(){window.location.replace({$nextJson});},250);</script>";
+			} catch (\Throwable $ex) {
+				$this->wire('log')->save('ichiban-audit', 'ERROR: ' . $ex->getMessage() . ' in ' . $ex->getFile() . ':' . $ex->getLine());
+				$this->wire('session')->warning('Ichiban Audit Error: ' . $ex->getMessage());
+				$this->wire('session')->redirect($this->adminUrl('audit/'));
+				return '';
+			}
+		}
+
 		if ($this->wire('input')->get('rebuild')) {
 			// Verify nonce to prevent CSRF-triggered rebuilds
 			$csrfName     = $this->wire('session')->CSRF->getTokenName();
@@ -500,7 +531,9 @@ class ProcessIchiban extends Process {
 			}
 			try {
 				$engine = new \IchibanAuditEngine($this->ichiban);
-				$engine->rebuildIndex();
+				$job = $engine->startRebuildJob(250);
+				$this->wire('session')->redirect($this->adminUrl('audit/') . '?rebuild_job=' . rawurlencode((string)$job['id']));
+				return '';
 			} catch (\Throwable $ex) {
 				$this->wire('log')->save('ichiban-audit', 'ERROR: ' . $ex->getMessage() . ' in ' . $ex->getFile() . ':' . $ex->getLine());
 				$this->wire('session')->message('Ichiban Audit Error: ' . $ex->getMessage(), \ProcessWire\Notice::warning);
@@ -2323,11 +2356,12 @@ class ProcessIchiban extends Process {
 		ob_start();
 		$this->wire('session')->CSRF->validate();
 		$engine = new \IchibanAuditEngine($this->ichiban);
-		$engine->rebuildIndex();
-		$stats  = $engine->getQuickStats();
+		$jobId = $this->wire('sanitizer')->text((string)$this->wire('input')->post('job_id'));
+		$job = $jobId !== '' ? $engine->runRebuildBatch($jobId) : $engine->startRebuildJob(250);
+		$stats = !empty($job['done']) ? $engine->getQuickStats() : null;
 		ob_end_clean();
 		header('Content-Type: application/json');
-		echo json_encode(['ok' => true, 'stats' => $stats]);
+		echo json_encode(['ok' => true, 'job' => $job, 'stats' => $stats]);
 		exit;
 	}
 

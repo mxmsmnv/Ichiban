@@ -203,6 +203,25 @@ These are generally safe for an agent:
 - export reports, redirects, or audit data when the user asks.
 - run read-only CLI commands such as `--ichiban-help`, `--ichiban-status`, `--ichiban-bulk-list`, `--ichiban-sitemap-status`, `--ichiban-robots`, `--ichiban-llms`, `--ichiban-settings`, or `--ichiban-page=ID`.
 
+## Large-Site Operations
+
+- Never reimplement an audit rebuild by loading an unbounded PageArray in a
+  frontend or admin HTTP request.
+- The Audit screen uses resumable batches. Leave the progress page open until
+  it finishes; reloading the current job URL safely resumes the next batch.
+- For automation or large production sites, prefer the CLI from the ProcessWire
+  root:
+
+```bash
+php -d memory_limit=512M -d max_execution_time=0 index.php --ichiban-audit-rebuild --ichiban-format=json
+```
+
+- Audit indexing intentionally disables SEO image-variation generation. Warm
+  frontend image variants separately with an image pipeline such as Panorama.
+- Rebuild jobs store page IDs, not Page objects, and loaded pages must be
+  uncached after each item. Keep new maintenance features bounded, resumable,
+  idempotent where practical, and observable through progress plus logs.
+
 ## Requires User Approval
 
 Ask for approval before:

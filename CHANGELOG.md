@@ -4,6 +4,20 @@ All notable changes to Ichiban will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.2.2-alpha] - 2026-07-29
+
+### Changed
+- Audit rebuilds now stream page IDs through bounded batches and release loaded
+  pages between iterations instead of retaining every Page object in memory.
+- Browser rebuilds run as short resumable requests with visible progress; the
+  CLI keeps the same command while using the batched engine internally.
+
+### Fixed
+- Large audit indexes no longer depend on a single long Apache/FastCGI request,
+  preventing intermittent 500 responses when sites grow beyond request limits.
+- The AJAX rebuild endpoint now exposes resumable job state instead of blocking
+  until the entire site has been indexed.
+
 ## [0.2.1-alpha] - 2026-07-29
 
 ### Added
