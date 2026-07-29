@@ -80,8 +80,8 @@ class IchibanAuditEngine {
 			'started_at' => time(),
 			'done' => false,
 		];
-		$db->exec("DELETE FROM ichiban_index");
 		$this->saveRebuildJob($job);
+		$this->ichiban->wire('cache')->save('ichiban_audit_active_rebuild', $id, 7200);
 		$this->ichiban->wire('log')->save('ichiban-audit', "Started batched rebuild {$id} for {$job['total']} pages.");
 		return $this->publicJobState($job);
 	}
@@ -111,6 +111,7 @@ class IchibanAuditEngine {
 				try {
 					$row = $this->buildPageRow($page, (string)$job['field_name']);
 					if ($row) {
+						$row[':rebuild_token'] = $jobId;
 						$stmt->execute($row);
 						$job['indexed']++;
 					}
@@ -139,6 +140,11 @@ class IchibanAuditEngine {
 
 		$job['done'] = (int)$job['processed'] >= (int)$job['total'];
 		if ($job['done']) {
+			$cleanup = $db->prepare("DELETE FROM ichiban_index WHERE rebuild_token<>:rebuild_token");
+			$cleanup->execute([':rebuild_token' => $jobId]);
+			if ($this->ichiban->wire('cache')->get('ichiban_audit_active_rebuild') === $jobId) {
+				$this->ichiban->wire('cache')->delete('ichiban_audit_active_rebuild');
+			}
 			unset($job['page_ids']);
 			$elapsed = max(0, time() - (int)$job['started_at']);
 			$this->ichiban->wire('log')->save(
@@ -202,14 +208,15 @@ class IchibanAuditEngine {
 			return;
 		}
 
+		$row[':rebuild_token'] = (string)($this->ichiban->wire('cache')->get('ichiban_audit_active_rebuild') ?: '');
 		$this->prepareUpsertStatement()->execute($row);
 	}
 
 	protected function prepareUpsertStatement(): \PDOStatement {
 		$db = $this->ichiban->wire('database');
 		return $db->prepare("INSERT INTO ichiban_index
-			(page_id, template_name, url, canonical_url, meta_title, meta_description, meta_title_len, meta_desc_len, is_noindex, has_og_image, schema_type, word_count)
-			VALUES (:page_id,:tpl,:url,:canonical,:title,:desc,:title_len,:desc_len,:noindex,:og_image,:schema,:words)
+			(page_id, template_name, url, canonical_url, meta_title, meta_description, meta_title_len, meta_desc_len, is_noindex, has_og_image, schema_type, word_count, rebuild_token)
+			VALUES (:page_id,:tpl,:url,:canonical,:title,:desc,:title_len,:desc_len,:noindex,:og_image,:schema,:words,:rebuild_token)
 			ON DUPLICATE KEY UPDATE
 				template_name=VALUES(template_name),
 				url=VALUES(url),
@@ -221,7 +228,8 @@ class IchibanAuditEngine {
 				is_noindex=VALUES(is_noindex),
 				has_og_image=VALUES(has_og_image),
 				schema_type=VALUES(schema_type),
-				word_count=VALUES(word_count)");
+				word_count=VALUES(word_count),
+				rebuild_token=VALUES(rebuild_token)");
 	}
 
 	protected function buildPageRow(\ProcessWire\Page $page, string $fieldName): ?array {
@@ -259,6 +267,10 @@ class IchibanAuditEngine {
 			$exists = $db->query("SHOW COLUMNS FROM ichiban_index LIKE 'canonical_url'")->fetchColumn();
 			if (!$exists) {
 				$db->exec("ALTER TABLE ichiban_index ADD canonical_url VARCHAR(1024) NOT NULL DEFAULT '' AFTER url");
+			}
+			$tokenExists = $db->query("SHOW COLUMNS FROM ichiban_index LIKE 'rebuild_token'")->fetchColumn();
+			if (!$tokenExists) {
+				$db->exec("ALTER TABLE ichiban_index ADD rebuild_token CHAR(32) NOT NULL DEFAULT '' AFTER word_count");
 			}
 		} catch (\Throwable $e) {
 			// The caller will surface table-level failures during rebuild/report.
