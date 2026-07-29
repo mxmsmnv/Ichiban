@@ -4,6 +4,12 @@ All notable changes to Ichiban will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.2.0-alpha] - 2026-07-29
+
+### Removed
+- Removed the development-only UI Reference destination from Website interface
+  settings so it cannot be exposed through public shell integrations.
+
 ## [0.1.9-alpha] - 2026-07-28
 
 ### Added

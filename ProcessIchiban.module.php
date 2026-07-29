@@ -17,7 +17,7 @@ class ProcessIchiban extends Process {
 			'summary'  => 'Admin panel for Ichiban SEO module.',
 			'author'   => 'Maxim Semenov',
 			'href'     => 'https://smnv.org',
-			'version'  => 19,
+			'version'  => 20,
 			
 			'page'     => [
 				'name'   => 'ichiban',
@@ -2735,7 +2735,6 @@ class ProcessIchiban extends Process {
 			'link_about' => ['label' => __('About URL'), 'type' => 'url', 'description' => __('Optional About page destination used by site navigation.')],
 			'link_documents' => ['label' => __('Documents URL'), 'type' => 'url', 'description' => __('Optional legal, policy, or public documents destination.')],
 			'link_settings' => ['label' => __('Account Settings URL'), 'type' => 'url', 'description' => __('Optional account or preferences destination used by site navigation.')],
-			'link_ui_reference' => ['label' => __('UI Reference URL'), 'type' => 'url', 'description' => __('Optional design-system reference destination for development installations.')],
 		];
 	}
 
@@ -2816,7 +2815,6 @@ class ProcessIchiban extends Process {
 					'link_about' => 50,
 					'link_documents' => 50,
 					'link_settings' => 50,
-					'link_ui_reference' => 50,
 				],
 			],
 		];
@@ -2931,7 +2929,6 @@ class ProcessIchiban extends Process {
 			'link_about',
 			'link_documents',
 			'link_settings',
-			'link_ui_reference',
 		];
 		$keyItems = '';
 		foreach ($keyList as $key) {
