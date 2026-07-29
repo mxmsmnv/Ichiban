@@ -17,7 +17,7 @@ class ProcessIchiban extends Process {
 			'summary'  => 'Admin panel for Ichiban SEO module.',
 			'author'   => 'Maxim Semenov',
 			'href'     => 'https://smnv.org',
-			'version'  => 18,
+			'version'  => 19,
 			
 			'page'     => [
 				'name'   => 'ichiban',
@@ -2728,6 +2728,14 @@ class ProcessIchiban extends Process {
 			'social_youtube' => ['label' => __('YouTube Channel'), 'type' => 'url'],
 			'social_github' => ['label' => __('GitHub Profile'), 'type' => 'url'],
 			'social_x' => ['label' => __('X/Twitter Profile'), 'type' => 'url'],
+			'social_telegram' => ['label' => __('Telegram Channel'), 'type' => 'url'],
+			'social_vk' => ['label' => __('VK Profile'), 'type' => 'url'],
+			'link_community' => ['label' => __('Community URL'), 'type' => 'url', 'description' => __('Optional public community destination used by site navigation.')],
+			'link_help' => ['label' => __('Help URL'), 'type' => 'url', 'description' => __('Optional support or help destination used by site navigation.')],
+			'link_about' => ['label' => __('About URL'), 'type' => 'url', 'description' => __('Optional About page destination used by site navigation.')],
+			'link_documents' => ['label' => __('Documents URL'), 'type' => 'url', 'description' => __('Optional legal, policy, or public documents destination.')],
+			'link_settings' => ['label' => __('Account Settings URL'), 'type' => 'url', 'description' => __('Optional account or preferences destination used by site navigation.')],
+			'link_ui_reference' => ['label' => __('UI Reference URL'), 'type' => 'url', 'description' => __('Optional design-system reference destination for development installations.')],
 		];
 	}
 
@@ -2796,6 +2804,19 @@ class ProcessIchiban extends Process {
 					'social_youtube' => 50,
 					'social_github' => 50,
 					'social_x' => 50,
+					'social_telegram' => 50,
+					'social_vk' => 50,
+				],
+			],
+			__('Interface Links') => [
+				'note' => __('Optional destinations for compact footer and utility navigation. Templates decide which configured links to render.'),
+				'fields' => [
+					'link_community' => 50,
+					'link_help' => 50,
+					'link_about' => 50,
+					'link_documents' => 50,
+					'link_settings' => 50,
+					'link_ui_reference' => 50,
 				],
 			],
 		];
@@ -2903,6 +2924,14 @@ class ProcessIchiban extends Process {
 			'social_youtube',
 			'social_github',
 			'social_x',
+			'social_telegram',
+			'social_vk',
+			'link_community',
+			'link_help',
+			'link_about',
+			'link_documents',
+			'link_settings',
+			'link_ui_reference',
 		];
 		$keyItems = '';
 		foreach ($keyList as $key) {

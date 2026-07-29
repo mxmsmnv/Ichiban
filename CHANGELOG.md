@@ -4,6 +4,14 @@ All notable changes to Ichiban will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.9-alpha] - 2026-07-28
+
+### Added
+- Added Telegram and VK to the Website social profile settings and Schema.org
+  `sameAs` fallbacks.
+- Added reusable Community, Help, About, Documents, Account Settings, and UI
+  Reference destinations to the Website settings workspace.
+
 ## [0.1.8-alpha] - 2026-07-24
 
 ### Fixed

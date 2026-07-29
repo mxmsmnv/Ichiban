@@ -106,6 +106,8 @@ class IchibanSchemaGraph {
 			$this->ichiban->get('social_github') ?: $this->ichiban->siteSetting('social_github', ''),
 			$this->ichiban->get('social_instagram') ?: $this->ichiban->siteSetting('social_instagram', ''),
 			$this->ichiban->siteSetting('social_youtube', ''),
+			$this->ichiban->siteSetting('social_telegram', ''),
+			$this->ichiban->siteSetting('social_vk', ''),
 		]);
 		if ($sameAs) $node['sameAs'] = array_values($sameAs);
 		return $this->ichiban->buildIdentity($node);
