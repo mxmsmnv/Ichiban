@@ -17,7 +17,7 @@ class ProcessIchiban extends Process {
 			'summary'  => 'Admin panel for Ichiban SEO module.',
 			'author'   => 'Maxim Semenov',
 			'href'     => 'https://smnv.org',
-			'version'  => 22,
+			'version'  => 23,
 			
 			'page'     => [
 				'name'   => 'ichiban',
@@ -2377,7 +2377,7 @@ class ProcessIchiban extends Process {
 		$data = ['ok' => false];
 		if ($page->id) {
 			$gsc = new \IchibanSearchStatistics($this->ichiban);
-			$data = ['ok' => true, 'metrics' => $gsc->getPageData($page->httpUrl(), 28)];
+			$data = ['ok' => true, 'metrics' => $gsc->getPageData($this->ichiban->pageHttpUrl($page), 28)];
 		}
 		ob_end_clean();
 		header('Content-Type: application/json');

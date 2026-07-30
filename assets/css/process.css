@@ -964,6 +964,11 @@ body.dark-theme .ichiban-severity-info {
   gap: 18px;
   align-items: start;
 }
+.ichiban-schema-layout > *,
+.ichiban-schema-nav,
+.ichiban-schema-nav-item {
+  min-width: 0;
+}
 .ichiban-schema-list,
 .ichiban-schema-editor-panel {
   padding: 16px;
@@ -993,6 +998,7 @@ body.dark-theme .ichiban-severity-info {
 }
 .ichiban-schema-nav-item {
   width: 100%;
+  max-width: 100%;
   padding: 10px 12px;
   text-align: left;
   color: var(--ichiban-text);

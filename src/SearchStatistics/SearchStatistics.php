@@ -368,7 +368,7 @@ class IchibanSearchStatistics {
 			if (!preg_match('~^https?://~i', $configured)) return 'sc-domain:' . trim($configured, '/');
 			return rtrim($configured, '/') . '/';
 		}
-		return rtrim($this->ichiban->wire('config')->urls->httpRoot, '/') . '/';
+		return rtrim($this->ichiban->siteUrl(), '/') . '/';
 	}
 
 	public function getPropertyId(): string {

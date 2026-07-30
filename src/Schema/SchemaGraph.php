@@ -22,8 +22,7 @@ class IchibanSchemaGraph {
 	 */
 	public function build(\ProcessWire\Page $page): array {
 		$graph = [];
-		$siteUrl = $this->ichiban->wire('config')->urls->httpRoot;
-		$siteUrl = rtrim($siteUrl, '/');
+		$siteUrl = rtrim($this->ichiban->siteUrl(), '/');
 
 		// WebSite (always)
 		$graph[] = $this->buildWebSite($siteUrl);
@@ -74,7 +73,7 @@ class IchibanSchemaGraph {
 		if ($searchPage) {
 			$node['potentialAction'] = [
 				'@type'       => 'SearchAction',
-				'target'      => ['@type' => 'EntryPoint', 'urlTemplate' => $searchPage->httpUrl() . '?q={search_term_string}'],
+				'target'      => ['@type' => 'EntryPoint', 'urlTemplate' => $this->ichiban->pageHttpUrl($searchPage, null, false) . '?q={search_term_string}'],
 				'query-input' => 'required name=search_term_string',
 			];
 		}
@@ -120,7 +119,7 @@ class IchibanSchemaGraph {
 		$node   = [
 			'@type'      => $type,
 			'@id'        => $pageId . '#webpage',
-			'url'        => $page->httpUrl(),
+			'url'        => $this->ichiban->pageHttpUrl($page, null, false),
 			'name'       => $seo ? $seo->meta->title : $page->title,
 			'description'=> $seo ? $seo->meta->description : '',
 			'isPartOf'   => ['@id' => $siteUrl . '/#website'],
@@ -152,18 +151,18 @@ class IchibanSchemaGraph {
 				'@type'    => 'ListItem',
 				'position' => $position++,
 				'name'     => $ancestor->title ?: $ancestor->name,
-				'item'     => $ancestor->httpUrl(),
+				'item'     => $this->ichiban->pageHttpUrl($ancestor, null, false),
 			];
 		}
 		$items[] = [
 			'@type'    => 'ListItem',
 			'position' => $position,
 			'name'     => $page->title ?: $page->name,
-			'item'     => $page->httpUrl(),
+			'item'     => $this->ichiban->pageHttpUrl($page, null, false),
 		];
 		return [
 			'@type'           => 'BreadcrumbList',
-			'@id'             => $page->httpUrl() . '#breadcrumb',
+			'@id'             => $this->ichiban->pageHttpUrl($page, null, false) . '#breadcrumb',
 			'itemListElement' => $items,
 		];
 	}
@@ -195,8 +194,8 @@ class IchibanSchemaGraph {
 
 			$node = [
 				'@type' => $type,
-				'@id' => rtrim($page->httpUrl(), '/') . '#schema-' . $this->schemaSlug((string)($schema['name'] ?? $type), (int)$index),
-				'url' => $page->httpUrl(),
+				'@id' => rtrim($this->ichiban->pageHttpUrl($page, null, false), '/') . '#schema-' . $this->schemaSlug((string)($schema['name'] ?? $type), (int)$index),
+				'url' => $this->ichiban->pageHttpUrl($page, null, false),
 				'isPartOf' => ['@id' => $siteUrl . '/#website'],
 			];
 			foreach ($fields as $property => $expression) {

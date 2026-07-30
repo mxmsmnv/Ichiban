@@ -7,7 +7,7 @@ require_once __DIR__ . '/IchibanAutoload.php';
  *
  * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
- * @version 0.2.3-alpha
+ * @version 0.2.4-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
 
@@ -20,7 +20,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'title'    => 'Ichiban',
 			'summary'  => 'Comprehensive SEO module: meta/OG/schema, audit, redirects, revisions, email reports.',
 			'author'   => 'Maxim Semenov',
-			'version'  => 24,
+			'version'  => 25,
 			'href'     => 'https://smnv.org',
 			'singular' => true,
 			'autoload' => true,
@@ -37,7 +37,6 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 	// -------------------------------------------------------------------------
 
 	public function init(): void {
-		$this->getCli()->dispatch();
 		$this->addHookBefore('ProcessPageView::execute', $this, 'hookUtilityTextFiles');
 		$this->addHookBefore('ProcessPageView::execute', $this, 'hookRedirects');
 		$this->addHookAfter('Fields::getCompatibleFieldtypes', $this, 'hookSeoMaestroCompatibility');
@@ -47,6 +46,9 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$this->addHookBefore('Pages::save', $this, 'hookCaptureOldPath');
 		$this->addHookBefore('Pages::save', $this, 'hookCaptureOldSeoData');
 		$this->addHookAfter('Pages::saved', $this, 'hookAutoRedirect');
+		// Dispatch only after save/revision hooks have been registered so write
+		// commands behave exactly like equivalent admin and API operations.
+		$this->getCli()->dispatch();
 	}
 
 	public function ready(): void {
@@ -301,7 +303,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$templates = $this->get('indexnow_templates') ?: [];
 		if (!is_array($templates)) $templates = [];
 		if ($templates && !in_array($page->template->name, $templates)) return;
-		$this->pingIndexNow($page->httpUrl(), $apiKey);
+		$this->pingIndexNow($this->pageHttpUrl($page), $apiKey);
 	}
 
 	// -------------------------------------------------------------------------
@@ -498,6 +500,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 
 	public function pageHttpUrl(Page $page, ?Language $language = null, bool $includeSegments = true): string {
 		$url = $language ? $this->pageLanguageHttpUrl($page, $language) : $page->httpUrl();
+		$url = $this->canonicalUrl($url);
 		if (!$includeSegments || !$this->shouldPreserveUrlSegments($page)) return $url;
 		$segments = $this->currentUrlSegmentString($page);
 		if ($segments === '') return $url;
@@ -529,6 +532,32 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		}
 
 		return (string)$page->httpUrl();
+	}
+
+	/**
+	 * Convert a local URL to the configured canonical site origin.
+	 *
+	 * ProcessWire's CLI bootstrap can expose httpRoot as http:// even when the
+	 * public site is HTTPS. External absolute URLs are intentionally preserved.
+	 */
+	public function canonicalUrl(string $url): string {
+		$url = trim($url);
+		if ($url === '') return '';
+		$siteUrl = $this->siteUrl();
+		if ($siteUrl === '') return $url;
+		if (!preg_match('{^https?://}i', $url)) {
+			return rtrim($siteUrl, '/') . '/' . ltrim($url, '/');
+		}
+		$urlParts = parse_url($url);
+		$siteParts = parse_url($siteUrl);
+		$urlHost = strtolower((string)($urlParts['host'] ?? ''));
+		$siteHost = strtolower((string)($siteParts['host'] ?? ''));
+		$configHost = strtolower(trim((string)$this->wire('config')->httpHost));
+		if ($urlHost !== '' && $urlHost !== $siteHost && $urlHost !== $configHost) return $url;
+		$path = (string)($urlParts['path'] ?? '/');
+		$query = isset($urlParts['query']) ? '?' . $urlParts['query'] : '';
+		$fragment = isset($urlParts['fragment']) ? '#' . $urlParts['fragment'] : '';
+		return rtrim($siteUrl, '/') . '/' . ltrim($path, '/') . $query . $fragment;
 	}
 
 	protected function shouldPreserveUrlSegments(Page $page): bool {
@@ -624,7 +653,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			foreach ($this->wire('pages')->find($selector) as $page) {
 				if (!$page->viewable()) continue;
 				$title = $page->title ?: $page->name;
-				$out .= "- [{$title}]({$page->httpUrl()})\n";
+				$out .= "- [{$title}]({$this->pageHttpUrl($page, null, false)})\n";
 			}
 		} catch (\Throwable $e) {
 			$out .= "- " . $this->siteUrl() . "/\n";
@@ -633,6 +662,8 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 	}
 
 	public function siteUrl(): string {
+		$configured = trim((string)$this->siteSetting('site_url', ''));
+		if ($configured !== '') return rtrim($configured, '/');
 		$root = (string)($this->wire('config')->urls->httpRoot ?? '');
 		if ($root) return rtrim($root, '/');
 		$host = (string)$this->wire('config')->httpHost;
@@ -1022,7 +1053,19 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		if (!isset($base[$key])) {
 			$page = wire('pages')->get('process=ProcessIchiban, include=all');
 			if ($page && $page->id) {
-				$base[$key] = $http ? $page->httpUrl : $page->url;
+				if ($http) {
+					$config = wire('modules')->getModuleConfigData('Ichiban');
+					$website = $config['website_settings'] ?? [];
+					if (is_string($website)) $website = json_decode($website, true) ?: [];
+					$custom = is_array($website) ? ($website['custom'] ?? []) : [];
+					if (is_string($custom)) $custom = json_decode($custom, true) ?: [];
+					$siteUrl = is_array($website) ? trim((string)($website['site_url'] ?? '')) : '';
+					if ($siteUrl === '' && is_array($custom)) $siteUrl = trim((string)($custom['site_url'] ?? ''));
+					if ($siteUrl === '') $siteUrl = rtrim((string)wire('config')->urls->httpRoot, '/');
+					$base[$key] = rtrim($siteUrl, '/') . '/' . ltrim((string)$page->url, '/');
+				} else {
+					$base[$key] = $page->url;
+				}
 			} else {
 				$adminBase = $http ? wire('config')->urls->httpAdmin : wire('config')->urls->admin;
 				$base[$key] = rtrim($adminBase, '/') . '/ichiban/';

@@ -242,14 +242,15 @@ class IchibanAuditEngine {
 		$desc = $seo ? (string)$seo->meta->description : '';
 		$seoData = $seo && method_exists($seo, 'getData') ? $seo->getData() : [];
 		$schema = $seo ? (string)$seo->schema->type : 'WebPage';
-		$canonical = $seo ? (string)$seo->meta->canonical : $page->httpUrl();
+		$pageUrl = $this->ichiban->pageHttpUrl($page, null, false);
+		$canonical = $seo ? (string)$seo->meta->canonical : $pageUrl;
 		$ogImg = $seo ? (string)$seo->og->image : '';
 
 		return [
 			':page_id'   => (int)$page->id,
 			':tpl'       => (string)$page->template->name,
-			':url'       => (string)$page->httpUrl(),
-			':canonical' => $canonical ?: (string)$page->httpUrl(),
+			':url'       => $pageUrl,
+			':canonical' => $canonical ?: $pageUrl,
 			':title'     => $title,
 			':desc'      => $desc,
 			':title_len' => mb_strlen($renderedTitle),

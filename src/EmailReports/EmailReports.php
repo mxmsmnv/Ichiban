@@ -92,7 +92,7 @@ class IchibanEmailReports {
 			'frequency' => (string)($this->ichiban->get('email_reports_frequency') ?: 'weekly'),
 			'site' => [
 				'name' => (string)($this->ichiban->get('entity_name') ?: $this->ichiban->wire('config')->httpHost),
-				'url' => rtrim((string)$this->ichiban->wire('config')->urls->httpRoot, '/') . '/',
+				'url' => rtrim($this->ichiban->siteUrl(), '/') . '/',
 			],
 			'audit' => [
 				'score' => (int)($report['score'] ?? ($quick['score'] ?? 0)),
