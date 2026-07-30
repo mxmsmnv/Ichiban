@@ -96,6 +96,16 @@ class IchibanAuditEngine {
 
 		$db = $this->ichiban->wire('database');
 		$pages = $this->ichiban->wire('pages');
+		$lockName = 'ichiban_audit_' . $jobId;
+		$lock = $db->prepare('SELECT GET_LOCK(:lock_name, 0)');
+		$lock->execute([':lock_name' => $lockName]);
+		if ((int)$lock->fetchColumn() !== 1) {
+			$state = $this->publicJobState($job);
+			$state['busy'] = true;
+			return $state;
+		}
+
+		try {
 		$ids = array_slice($job['page_ids'], (int)$job['processed'], (int)$job['batch_size']);
 		$stmt = $this->prepareUpsertStatement();
 		$variationsWereEnabled = !method_exists($this->ichiban, 'seoImageVariationsEnabled')
@@ -154,6 +164,14 @@ class IchibanAuditEngine {
 		}
 		$this->saveRebuildJob($job);
 		return $this->publicJobState($job);
+		} finally {
+			try {
+				$release = $db->prepare('SELECT RELEASE_LOCK(:lock_name)');
+				$release->execute([':lock_name' => $lockName]);
+			} catch (\Throwable $lockError) {
+				$this->ichiban->wire('log')->save('ichiban-audit', "Could not release rebuild lock {$lockName}: " . $lockError->getMessage());
+			}
+		}
 	}
 
 	protected function rebuildJobCacheKey(string $jobId): string {

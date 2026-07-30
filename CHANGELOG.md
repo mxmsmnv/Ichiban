@@ -16,6 +16,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   keep the configured HTTPS site origin when ProcessWire runs from CLI.
 - Schema Builder navigation items no longer exceed their grid column or
   overlap the editor when schema names and template lists are long.
+- Concurrent requests for the same resumable audit job no longer execute the
+  same database batch or block each other until the FastCGI timeout.
 
 ## [0.2.3-alpha] - 2026-07-30
 
