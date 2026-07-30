@@ -17,7 +17,8 @@ class ProcessIchiban extends Process {
 			'summary'  => 'Admin panel for Ichiban SEO module.',
 			'author'   => 'Maxim Semenov',
 			'href'     => 'https://smnv.org',
-			'version'  => 23,
+			'version'  => 24,
+			'requires' => 'Ichiban',
 			
 			'page'     => [
 				'name'   => 'ichiban',

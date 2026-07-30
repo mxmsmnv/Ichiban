@@ -12,7 +12,8 @@ class InputfieldIchiban extends Inputfield {
 			'summary' => 'Admin UI for Ichiban SEO fieldtype.',
 			'author'  => 'Maxim Semenov',
 			'href'     => 'https://smnv.org',
-			'version' => 19,
+			'version' => 20,
+			'requires' => 'Ichiban',
 		];
 	}
 

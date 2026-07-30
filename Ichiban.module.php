@@ -7,7 +7,7 @@ require_once __DIR__ . '/IchibanAutoload.php';
  *
  * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
- * @version 0.2.5-alpha
+ * @version 0.2.6-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
 
@@ -20,7 +20,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'title'    => 'Ichiban',
 			'summary'  => 'Comprehensive SEO module: meta/OG/schema, audit, redirects, revisions, email reports.',
 			'author'   => 'Maxim Semenov',
-			'version'  => 26,
+			'version'  => 27,
 			'href'     => 'https://smnv.org',
 			'singular' => true,
 			'autoload' => true,

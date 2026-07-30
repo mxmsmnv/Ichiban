@@ -4,6 +4,14 @@ All notable changes to Ichiban will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.2.6-alpha] - 2026-07-30
+
+### Fixed
+
+- FieldtypeIchiban, InputfieldIchiban, and ProcessIchiban now explicitly
+  require the main Ichiban module, preventing the satellite modules from
+  remaining installed without the autoloader and services they depend on.
+
 ## [0.2.5-alpha] - 2026-07-30
 
 ### Fixed
