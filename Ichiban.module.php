@@ -45,6 +45,8 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$this->addHookAfter('Pages::saved', $this, 'hookPageSaved');
 		$this->addHookBefore('Pages::save', $this, 'hookCaptureOldPath');
 		$this->addHookBefore('Pages::save', $this, 'hookCaptureOldSeoData');
+		$this->addHookBefore('Pages::saveFieldReady', $this, 'hookCaptureOldSeoFieldData');
+		$this->addHookAfter('Pages::savedField', $this, 'hookSeoFieldSaved');
 		$this->addHookAfter('Pages::saved', $this, 'hookAutoRedirect');
 		// Dispatch only after save/revision hooks have been registered so write
 		// commands behave exactly like equivalent admin and API operations.
@@ -144,6 +146,21 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		unset($this->_oldSeoData[$page->id]);
 		$this->getSeoRevisions()->saveDiffWithSnapshot($page, $oldData);
 		$this->refreshAuditIndexForPage($page);
+	}
+
+	/** Capture and finalize revisions for Page::save('seo') operations. */
+	protected function hookCaptureOldSeoFieldData(HookEvent $e): void {
+		$field = $e->arguments(1);
+		$fieldName = $field instanceof Field ? (string)$field->name : (string)$field;
+		if ($fieldName !== $this->getSeoFieldName()) return;
+		$this->hookCaptureOldSeoData($e);
+	}
+
+	protected function hookSeoFieldSaved(HookEvent $e): void {
+		$field = $e->arguments(1);
+		$fieldName = $field instanceof Field ? (string)$field->name : (string)$field;
+		if ($fieldName !== $this->getSeoFieldName()) return;
+		$this->hookPageSaved($e);
 	}
 
 	/**
