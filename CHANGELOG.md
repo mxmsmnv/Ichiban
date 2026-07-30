@@ -20,6 +20,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   same database batch or block each other until the FastCGI timeout.
 - Saved report snapshots are immediately readable in the same request, and
   report identity now falls back to the Website brand name.
+- Automatic slug-change redirects now capture the persisted path instead of
+  the already-mutated in-memory page path.
 
 ### Added
 

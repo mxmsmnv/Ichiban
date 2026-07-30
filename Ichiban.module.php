@@ -285,8 +285,14 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		/** @var Page $page */
 		$page = $e->arguments(0);
 		if ($page->isNew() || !$page->id || !$page->isChanged('name')) return;
-		// Store old path keyed by page ID before PW changes it
-		$this->_oldPaths[$page->id] = $page->path;
+		// The Page object already exposes the pending path in saveReady. Read
+		// the persisted slug and combine it with the unchanged parent path.
+		$stmt = $this->wire('database')->prepare('SELECT name FROM pages WHERE id=:id');
+		$stmt->execute([':id' => (int)$page->id]);
+		$oldName = trim((string)$stmt->fetchColumn());
+		if ($oldName === '') return;
+		$parentPath = $page->parent && $page->parent->id ? (string)$page->parent->path : '/';
+		$this->_oldPaths[$page->id] = rtrim($parentPath, '/') . '/' . $oldName . '/';
 	}
 
 	/** After page saved: create 301 if slug changed. */
