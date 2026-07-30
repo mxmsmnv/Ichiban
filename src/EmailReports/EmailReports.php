@@ -91,7 +91,7 @@ class IchibanEmailReports {
 			'generated_at' => date('c'),
 			'frequency' => (string)($this->ichiban->get('email_reports_frequency') ?: 'weekly'),
 			'site' => [
-				'name' => (string)($this->ichiban->get('entity_name') ?: $this->ichiban->wire('config')->httpHost),
+				'name' => (string)($this->ichiban->get('entity_name') ?: $this->ichiban->siteSetting('brand_name', $this->ichiban->wire('config')->httpHost)),
 				'url' => rtrim($this->ichiban->siteUrl(), '/') . '/',
 			],
 			'audit' => [
@@ -113,9 +113,15 @@ class IchibanEmailReports {
 	public function saveLastReport(array $report): void {
 		$modules = $this->ichiban->wire('modules');
 		$config = $modules->getModuleConfigData('Ichiban');
-		$config['email_reports_last_json'] = json_encode($report, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-		$config['email_reports_last_generated'] = time();
+		$json = json_encode($report, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+		$generated = time();
+		$config['email_reports_last_json'] = $json;
+		$config['email_reports_last_generated'] = $generated;
 		$modules->saveModuleConfigData('Ichiban', $config);
+		// Keep the current module instance consistent with the persisted config
+		// for API consumers that save and read within the same request.
+		$this->ichiban->set('email_reports_last_json', $json);
+		$this->ichiban->set('email_reports_last_generated', $generated);
 	}
 
 	public function getLastReport(): array {

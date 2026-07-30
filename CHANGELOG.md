@@ -18,6 +18,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   overlap the editor when schema names and template lists are long.
 - Concurrent requests for the same resumable audit job no longer execute the
   same database batch or block each other until the FastCGI timeout.
+- Saved report snapshots are immediately readable in the same request, and
+  report identity now falls back to the Website brand name.
 
 ### Added
 
