@@ -256,7 +256,11 @@ class IchibanSitemap {
 
 	protected function matchesExcludePattern(string $url, string $patterns): bool {
 		foreach (array_filter(array_map('trim', preg_split('/\R+/', $patterns) ?: [])) as $pattern) {
-			if (strlen($pattern) > 2 && @preg_match($pattern, '') !== false && preg_match($pattern, $url)) return true;
+			if (str_starts_with($pattern, 'regex:')) {
+				$regex = trim(substr($pattern, 6));
+				if ($regex !== '' && @preg_match($regex, '') !== false && preg_match($regex, $url)) return true;
+				continue;
+			}
 			if (str_contains($url, $pattern)) return true;
 		}
 		return false;

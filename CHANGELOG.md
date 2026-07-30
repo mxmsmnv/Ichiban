@@ -4,6 +4,15 @@ All notable changes to Ichiban will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.2.5-alpha] - 2026-07-30
+
+### Fixed
+
+- Sitemap URL exclusions now treat ordinary entries as literal substrings.
+  Regular expressions require an explicit `regex:` prefix, preventing path
+  entries such as `/ai/` from accidentally excluding unrelated URLs that
+  contain matching character sequences such as `paid`.
+
 ## [0.2.4-alpha] - 2026-07-30
 
 ### Fixed

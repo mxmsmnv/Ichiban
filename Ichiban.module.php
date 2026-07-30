@@ -7,7 +7,7 @@ require_once __DIR__ . '/IchibanAutoload.php';
  *
  * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
- * @version 0.2.4-alpha
+ * @version 0.2.5-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
 
@@ -20,7 +20,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'title'    => 'Ichiban',
 			'summary'  => 'Comprehensive SEO module: meta/OG/schema, audit, redirects, revisions, email reports.',
 			'author'   => 'Maxim Semenov',
-			'version'  => 25,
+			'version'  => 26,
 			'href'     => 'https://smnv.org',
 			'singular' => true,
 			'autoload' => true,
@@ -1646,7 +1646,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$f = $modules->get('InputfieldTextarea');
 		$f->name = 'sitemap_exclude_url_patterns';
 		$f->label = __('Exclude URL patterns');
-		$f->description = __('One substring or regex per line.');
+		$f->description = __('One URL substring per line. Prefix regular expressions with regex: (for example regex:~^/private/).');
 		$f->value = $data['sitemap_exclude_url_patterns'] ?? $sitemapDefaults['exclude_url_patterns'];
 		$f->columnWidth = 50;
 		$fsSitemap->add($f);

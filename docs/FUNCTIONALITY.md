@@ -185,6 +185,10 @@ Supported sitemap features:
 - manual generation
 - LazyCron regeneration
 
+Sitemap exclusion entries are literal URL substrings by default. Prefix an
+entry with `regex:` to use an explicit regular expression, for example
+`regex:~^/private(?:/|$)~`.
+
 Ichiban also appends the configured sitemap URL when serving dynamic `robots.txt`.
 
 ## Search Console
