@@ -1249,6 +1249,17 @@ class ProcessIchiban extends Process {
 	public function executeRevisions(): string {
 		$this->setIchibanBreadcrumb(__('Revisions'), 'revisions/');
 		$this->headline(__('SEO Revisions'));
+		if ((string)$this->wire('input')->post('action') === 'restore_revision') {
+			$this->wire('session')->CSRF->validate();
+			$revisionId = (int)$this->wire('input')->post('revision_id');
+			if ($revisionId > 0 && $this->ichiban->getSeoRevisions()->restore($revisionId)) {
+				$this->wire('session')->message(__('SEO revision restored.'));
+			} else {
+				$this->wire('session')->warning(__('The SEO revision could not be restored.'));
+			}
+			$this->wire('session')->redirect($this->adminUrl('revisions/'));
+			return '';
+		}
 		$revs = $this->ichiban->getSeoRevisions()->getAllRevisions(100);
 		$pageIds = [];
 		$totalChanges = 0;
@@ -1266,7 +1277,7 @@ class ProcessIchiban extends Process {
 			return $out;
 		}
 		$out .= "<div class='ichiban-revisions-table-panel'><div class='uk-overflow-auto'><table class='AdminDataTable uk-table uk-table-divider uk-table-hover ichiban-revisions-table'><thead><tr>"
-			. "<th>" . __('Date') . "</th><th>" . __('Page') . "</th><th>" . __('User') . "</th><th>" . __('Changes') . "</th>"
+			. "<th>" . __('Date') . "</th><th>" . __('Page') . "</th><th>" . __('User') . "</th><th>" . __('Changes') . "</th><th>" . __('Actions') . "</th>"
 			. "</tr></thead><tbody>\n";
 		foreach ($revs as $rev) {
 			$changes = json_decode($rev['changes'], true) ?: [];
@@ -1283,11 +1294,18 @@ class ProcessIchiban extends Process {
 			$summary .= "</div>";
 			$page    = $this->wire('pages')->get((int)$rev['page_id']);
 			$user    = $this->wire('users')->get((int)$rev['user_id']);
+			$restore = "<form class='uk-margin-remove' method='post'>"
+				. $this->wire('session')->CSRF->renderInput()
+				. "<input type='hidden' name='action' value='restore_revision'>"
+				. "<input type='hidden' name='revision_id' value='" . (int)$rev['id'] . "'>"
+				. "<button class='uk-button uk-button-default uk-button-small' type='submit' onclick=\"return confirm('" . $this->wire('sanitizer')->entities(__('Restore the values from before this revision?')) . "');\">" . __('Restore') . "</button>"
+				. "</form>";
 			$out .= "<tr>"
 				. "<td>" . $this->wire('sanitizer')->entities($rev['created_at']) . "</td>"
 				. "<td>" . ($page->id ? "<a href='{$page->editUrl}'>" . $this->wire('sanitizer')->entities($page->title) . "</a>" : "#{$rev['page_id']}") . "</td>"
 				. "<td>" . ($user && $user->id ? $this->wire('sanitizer')->entities($user->name) : '—') . "</td>"
 				. "<td>{$summary}</td>"
+				. "<td>{$restore}</td>"
 				. "</tr>\n";
 		}
 		$out .= "</tbody></table></div></div>\n</div>\n";

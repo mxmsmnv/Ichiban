@@ -19,6 +19,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Concurrent requests for the same resumable audit job no longer execute the
   same database batch or block each other until the FastCGI timeout.
 
+### Added
+
+- The Revisions table now exposes a CSRF-protected Restore action with a
+  confirmation step, making the existing revision restore service accessible
+  from the admin interface.
+
 ## [0.2.3-alpha] - 2026-07-30
 
 ### Added
