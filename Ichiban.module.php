@@ -7,7 +7,7 @@ require_once __DIR__ . '/IchibanAutoload.php';
  *
  * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
- * @version 0.2.7-alpha
+ * @version 0.2.8-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
 
@@ -20,7 +20,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'title'    => 'Ichiban',
 			'summary'  => 'Comprehensive SEO module: meta/OG/schema, audit, redirects, revisions, email reports.',
 			'author'   => 'Maxim Semenov',
-			'version'  => 28,
+			'version'  => 29,
 			'href'     => 'https://smnv.org',
 			'singular' => true,
 			'autoload' => true,
@@ -532,6 +532,14 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 
 	public function seoImageVariationsEnabled(): bool {
 		return $this->_seoImageVariationsEnabled;
+	}
+
+	public function seoImageVariationMode(): string {
+		if (!$this->_seoImageVariationsEnabled) return 'original';
+		$mode = (string)$this->get('seo_image_variation_mode');
+		return in_array($mode, ['existing', 'on_demand', 'original'], true)
+			? $mode
+			: 'existing';
 	}
 
 	public function pageHttpUrl(Page $page, ?Language $language = null, bool $includeSegments = true): string {
@@ -1191,6 +1199,21 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$f->label = __('Automatically inject SEO tags into page <head>');
 		$f->description = __('Enable only if your templates do not output $page->seo.');
 		$f->checked = !empty($data['auto_render_head']);
+		$f->columnWidth = 100;
+		$fsRendering->add($f);
+
+		$f = $modules->get('InputfieldSelect');
+		$f->name = 'seo_image_variation_mode';
+		$f->label = __('Open Graph image variation mode');
+		$f->description = __('Controls whether resolving an image source may create the 1200×630 Open Graph variation during the current request.');
+		$f->notes = __('Use existing only on public sites and pre-generate the required variation through a bounded media warmup job. On demand preserves the legacy behavior but can make the first page request slow.');
+		$f->addOptions([
+			'existing' => __('Use an existing variation, otherwise use the original (recommended)'),
+			'on_demand' => __('Generate the variation on demand (legacy behavior)'),
+			'original' => __('Always use the original image'),
+		]);
+		$mode = (string)($data['seo_image_variation_mode'] ?? 'existing');
+		$f->value = in_array($mode, ['existing', 'on_demand', 'original'], true) ? $mode : 'existing';
 		$f->columnWidth = 100;
 		$fsRendering->add($f);
 

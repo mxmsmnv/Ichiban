@@ -63,7 +63,17 @@ field:blocks.hero.image
 field:prices.*.image
 ```
 
-Image expressions resolve image fields to URLs. For Open Graph images, Ichiban creates a `1200x630` variation when possible. Nested ProFields paths use dot notation.
+Image expressions resolve image fields to URLs. For Open Graph images, Ichiban
+uses the configured variation mode:
+
+- `existing` reuses a prepared `1200×630` file and otherwise returns the
+  original image without resizing during the request;
+- `on_demand` creates the variation during resolution (legacy behavior);
+- `original` always returns the original image.
+
+Use `existing` on public sites and generate social-image variations through a
+bounded, resumable media warmup process. Nested ProFields paths use dot
+notation.
 
 ## Rendering
 

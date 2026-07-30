@@ -139,7 +139,11 @@ field:blocks.hero.image
 field:prices.*.image
 ```
 
-For an Open Graph image, an image field expression can be used. Ichiban will try to create a `1200x630` variation when possible.
+For an Open Graph image, an image field expression can be used. Prefer the
+`existing` variation mode on public sites: Ichiban will reuse a prepared
+`1200×630` image and otherwise return the original without generating files in
+the frontend request. The `on_demand` mode preserves the legacy behavior and
+must be chosen explicitly when request-time generation is acceptable.
 
 Prefer source expressions and defaults before manual page-level values. This keeps the site easier to maintain.
 

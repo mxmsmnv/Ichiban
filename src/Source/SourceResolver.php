@@ -81,10 +81,13 @@ class IchibanSourceResolver {
 		$value     = $this->resolveFieldPath($page, $fieldName);
 		$variationsEnabled = !method_exists($this->ichiban, 'seoImageVariationsEnabled')
 			|| $this->ichiban->seoImageVariationsEnabled();
-		$imageWidth = ($variationsEnabled && $group === 'og' && $key === 'image') ? 1200 : 0;
-		$imageHeight = ($variationsEnabled && $group === 'og' && $key === 'image') ? 630 : 0;
+		$variationMode = method_exists($this->ichiban, 'seoImageVariationMode')
+			? $this->ichiban->seoImageVariationMode()
+			: ($variationsEnabled ? 'on_demand' : 'original');
+		$imageWidth = ($variationMode !== 'original' && $group === 'og' && $key === 'image') ? 1200 : 0;
+		$imageHeight = ($variationMode !== 'original' && $group === 'og' && $key === 'image') ? 630 : 0;
 
-		$value = $this->stringValue($value, $imageWidth, $imageHeight);
+		$value = $this->stringValue($value, $imageWidth, $imageHeight, $variationMode);
 		if ($this->shouldResolveAsPlainText($group, $key)) {
 			$value = $this->plainText($value);
 		}
@@ -236,12 +239,17 @@ class IchibanSourceResolver {
 		return null;
 	}
 
-	protected function stringValue(mixed $value, int $imageWidth = 0, int $imageHeight = 0): string {
+	protected function stringValue(
+		mixed $value,
+		int $imageWidth = 0,
+		int $imageHeight = 0,
+		string $imageVariationMode = 'on_demand'
+	): string {
 		if ($value instanceof \ProcessWire\Pageimage) {
-			return $this->imageUrl($value, $imageWidth, $imageHeight);
+			return $this->imageUrl($value, $imageWidth, $imageHeight, $imageVariationMode);
 		}
 		if ($value instanceof \ProcessWire\Pageimages) {
-			return $value->first() ? $this->imageUrl($value->first(), $imageWidth, $imageHeight) : '';
+			return $value->first() ? $this->imageUrl($value->first(), $imageWidth, $imageHeight, $imageVariationMode) : '';
 		}
 		if ($value instanceof \ProcessWire\Page) {
 			return (string)($value->title ?: $value->name);
@@ -252,11 +260,11 @@ class IchibanSourceResolver {
 		}
 		if ($value instanceof \ProcessWire\WireArray) {
 			$first = $value->first();
-			return $first ? $this->stringValue($first, $imageWidth, $imageHeight) : '';
+			return $first ? $this->stringValue($first, $imageWidth, $imageHeight, $imageVariationMode) : '';
 		}
 		if (is_array($value)) {
 			$first = reset($value);
-			return $first === false ? '' : $this->stringValue($first, $imageWidth, $imageHeight);
+			return $first === false ? '' : $this->stringValue($first, $imageWidth, $imageHeight, $imageVariationMode);
 		}
 		if (is_object($value)) return '';
 		return (string)($value ?? '');
@@ -315,18 +323,48 @@ class IchibanSourceResolver {
 		return '';
 	}
 
-	protected function imageUrl(\ProcessWire\Pageimage $image, int $width = 0, int $height = 0): string {
+	protected function imageUrl(
+		\ProcessWire\Pageimage $image,
+		int $width = 0,
+		int $height = 0,
+		string $variationMode = 'on_demand'
+	): string {
 		if ($width > 0 && $height > 0) {
-			try {
-				$image = $image->size($width, $height);
-			} catch (\Throwable $e) {
-				// Fall back to original image if variation generation fails.
+			if ($variationMode === 'existing') {
+				$existingUrl = $this->existingImageVariationUrl($image, $width, $height);
+				if ($existingUrl !== '') return $this->ichiban->canonicalUrl($existingUrl);
+			} elseif ($variationMode === 'on_demand') {
+				try {
+					$image = $image->size($width, $height);
+				} catch (\Throwable $e) {
+					// Fall back to original image if variation generation fails.
+				}
 			}
 		}
 		$url = (string)($image->httpUrl ?? '');
 		if ($url !== '') return $this->ichiban->canonicalUrl($url);
 		$url = (string)($image->url ?? '');
 		return $this->ichiban->canonicalUrl($url);
+	}
+
+	protected function existingImageVariationUrl(
+		\ProcessWire\Pageimage $image,
+		int $width,
+		int $height
+	): string {
+		$filename = (string)($image->filename ?? '');
+		$url = (string)($image->url ?? '');
+		if ($filename === '' || $url === '') return '';
+
+		$extension = pathinfo($filename, PATHINFO_EXTENSION);
+		$basename = pathinfo($filename, PATHINFO_FILENAME);
+		if ($extension === '' || $basename === '') return '';
+
+		$variationName = $basename . ".{$width}x{$height}." . $extension;
+		$variationPath = dirname($filename) . DIRECTORY_SEPARATOR . $variationName;
+		if (!is_file($variationPath)) return '';
+
+		return rtrim(str_replace('\\', '/', dirname($url)), '/') . '/' . rawurlencode($variationName);
 	}
 
 	protected function truncate(string $text, int $maxLen): string {

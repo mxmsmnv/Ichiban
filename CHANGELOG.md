@@ -4,6 +4,16 @@ All notable changes to Ichiban will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.2.8-alpha] - 2026-07-30
+
+### Added
+
+- Added a configurable Open Graph image variation mode. The recommended
+  `existing` mode reuses a prepared `1200×630` file and falls back to the
+  original image without running an image resize in a frontend request.
+- Kept explicit `on_demand` and `original` modes for backwards compatibility
+  and sites with different media pipelines.
+
 ## [0.2.7-alpha] - 2026-07-30
 
 ### Changed

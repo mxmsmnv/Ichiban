@@ -27,6 +27,11 @@ echo $page->seo;
 
 Automatic head injection is available in module settings, but use it only when your templates do not already output SEO tags.
 
+For large sites, set **Open Graph image variation mode** to **Use an existing
+variation**. Ichiban will reuse a prepared `1200×630` file and fall back to the
+original without running GD or ImageMagick in the frontend request. Generate
+the required social-image variants separately with a bounded media warmup job.
+
 ## Main Features
 
 - Page-level SEO field with Meta, Social, Schema, Sitemap, and Advanced tabs.
