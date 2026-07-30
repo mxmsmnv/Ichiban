@@ -245,9 +245,21 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$page = $e->arguments(0);
 		$fn   = $this->getSeoFieldName();
 		if (!$page->hasField($fn) || !$page->id) return;
-		$seo = $page->getUnformatted($fn);
-		if ($seo instanceof \IchibanPageFieldValue) {
-			$this->_oldSeoData[$page->id] = $seo->getData();
+		$field = $this->wire('fields')->get($fn);
+		if (!$field || !$field->type instanceof FieldtypeIchiban) return;
+		try {
+			// The Page object already contains the pending value at this point.
+			// Load the persisted row explicitly so revisions compare old storage
+			// with the value that is about to be saved.
+			$stored = $field->type->loadPageField($page, $field);
+			$oldValue = $field->type->wakeupValue($page, $field, $stored);
+			$this->_oldSeoData[$page->id] = $oldValue instanceof \IchibanPageFieldValue
+				? $oldValue->getData()
+				: [];
+		} catch (\Throwable $ex) {
+			// Leave no misleading snapshot; SeoRevisions can fall back to its
+			// cumulative revision state when storage cannot be read.
+			unset($this->_oldSeoData[$page->id]);
 		}
 	}
 

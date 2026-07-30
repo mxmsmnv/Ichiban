@@ -8,8 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Fixed
 
-- CLI write commands now register the normal page-save hooks before dispatch,
-  so Bulk Editor fixes and imports create restorable SEO revisions.
+- Page saves now compare pending SEO values with the persisted field row, and
+  CLI write commands register the normal hooks before dispatch, so page edits,
+  Bulk Editor fixes, and imports create accurate restorable SEO revisions.
 - Canonical page, sitemap, report, admin, Schema.org, and `llms.txt` URLs now
   keep the configured HTTPS site origin when ProcessWire runs from CLI.
 - Schema Builder navigation items no longer exceed their grid column or
