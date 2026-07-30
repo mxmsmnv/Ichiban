@@ -324,10 +324,9 @@ class IchibanSourceResolver {
 			}
 		}
 		$url = (string)($image->httpUrl ?? '');
-		if ($url !== '') return $url;
+		if ($url !== '') return $this->ichiban->canonicalUrl($url);
 		$url = (string)($image->url ?? '');
-		if (preg_match('!^https?://!i', $url)) return $url;
-		return rtrim((string)\ProcessWire\wire('config')->urls->httpRoot, '/') . '/' . ltrim($url, '/');
+		return $this->ichiban->canonicalUrl($url);
 	}
 
 	protected function truncate(string $text, int $maxLen): string {

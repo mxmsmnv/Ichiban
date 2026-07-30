@@ -22,6 +22,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   report identity now falls back to the Website brand name.
 - Automatic slug-change redirects now capture the persisted path instead of
   the already-mutated in-memory page path.
+- Local Open Graph, Twitter, and Schema.org image URLs now keep the configured
+  HTTPS origin in CLI rendering, and `ImageObject` uses the resolved image
+  value rather than a raw source expression.
 
 ### Added
 

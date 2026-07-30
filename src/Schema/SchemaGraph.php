@@ -32,8 +32,6 @@ class IchibanSchemaGraph {
 
 		// WebPage / Article / BlogPosting
 		$fn      = $this->ichiban->getSeoFieldName();
-		$seoRaw  = $page->hasField($fn) ? $page->getUnformatted($fn) : null;
-		$seoData = ($seoRaw instanceof \IchibanPageFieldValue) ? $seoRaw->getData() : [];
 		$seo = $page->hasField($fn) ? $page->get($fn) : null;
 		$schemaType = $seo instanceof \IchibanPageFieldValue ? (string)$seo->schema->type : 'WebPage';
 		$selectedBuilderSchemaId = $this->selectedBuilderSchemaId((string)$schemaType);
@@ -51,7 +49,7 @@ class IchibanSchemaGraph {
 		}
 
 		// ImageObject (if OG image set)
-		$ogImage = $seoData['og_image'] ?? '';
+		$ogImage = $seo instanceof \IchibanPageFieldValue ? (string)$seo->og->image : '';
 		if ($page->hasField($fn) && $ogImage) {
 			$graph[] = $this->buildImageObject($page, $siteUrl, $ogImage);
 		}
@@ -94,7 +92,7 @@ class IchibanSchemaGraph {
 			$node['logo'] = [
 				'@type' => 'ImageObject',
 				'@id'   => $siteUrl . '/#logo',
-				'url'   => $logoUrl,
+				'url'   => $this->ichiban->canonicalUrl((string)$logoUrl),
 			];
 		}
 		// sameAs (social profiles)
@@ -170,6 +168,7 @@ class IchibanSchemaGraph {
 	protected function buildImageObject(\ProcessWire\Page $page, string $siteUrl, string $imgUrl = ''): array {
 		$pageUrl = rtrim($siteUrl, '/') . '/' . ltrim($page->url, '/');
 		if (!$imgUrl) $imgUrl = $page->get($this->ichiban->getSeoFieldName())->og->image;
+		$imgUrl = $this->ichiban->canonicalUrl((string)$imgUrl);
 		return [
 			'@type'      => 'ImageObject',
 			'@id'        => $pageUrl . '#primaryimage',
@@ -204,7 +203,7 @@ class IchibanSchemaGraph {
 				$value = $this->ichiban->resolveSourceValue($page, 'schema', $property, (string)$expression);
 				if ($value === '') continue;
 				if (in_array($property, ['image', 'logo', 'photo'], true)) {
-					$node[$property] = preg_match('!^https?://!i', $value) ? $value : rtrim($siteUrl, '/') . '/' . ltrim($value, '/');
+					$node[$property] = $this->ichiban->canonicalUrl($value);
 				} else {
 					$node[$property] = $value;
 				}

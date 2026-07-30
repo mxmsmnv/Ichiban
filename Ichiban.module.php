@@ -400,13 +400,14 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$out .= '<meta property="og:description" content="' . $this->wire('sanitizer')->entities($seo->og->description ?: $seo->meta->description) . '">' . "\n";
 		$out .= '<meta property="og:url" content="' . $this->wire('sanitizer')->entities($canonical) . '">' . "\n";
 		$out .= '<meta property="og:type" content="' . $this->wire('sanitizer')->entities($seo->og->type ?: 'website') . '">' . "\n";
+		$ogImage = $this->canonicalUrl((string)$seo->og->image);
 		$userLang = $this->wire('user')->language ?? null;
 		$locale = $userLang instanceof Language ? $this->localeForLanguage($userLang) : '';
 		if ($locale) {
 			$out .= '<meta property="og:locale" content="' . $this->wire('sanitizer')->entities(str_replace('-', '_', $locale)) . '">' . "\n";
 		}
-		if ($seo->og->image) {
-			$out .= '<meta property="og:image" content="' . $this->wire('sanitizer')->entities($seo->og->image) . '">' . "\n";
+		if ($ogImage !== '') {
+			$out .= '<meta property="og:image" content="' . $this->wire('sanitizer')->entities($ogImage) . '">' . "\n";
 			if ($seo->og->image_alt) {
 				$out .= '<meta property="og:image:alt" content="' . $this->wire('sanitizer')->entities($seo->og->image_alt) . '">' . "\n";
 			}
@@ -421,8 +422,8 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$out .= '<meta name="twitter:url" content="' . $this->wire('sanitizer')->entities($canonical) . '">' . "\n";
 		$out .= '<meta name="twitter:title" content="' . $this->wire('sanitizer')->entities($seo->og->title ?: $title) . '">' . "\n";
 		$out .= '<meta name="twitter:description" content="' . $this->wire('sanitizer')->entities($seo->og->description ?: $seo->meta->description) . '">' . "\n";
-		if ($seo->og->image) {
-			$out .= '<meta name="twitter:image" content="' . $this->wire('sanitizer')->entities($seo->og->image) . '">' . "\n";
+		if ($ogImage !== '') {
+			$out .= '<meta name="twitter:image" content="' . $this->wire('sanitizer')->entities($ogImage) . '">' . "\n";
 			if ($seo->og->image_alt) {
 				$out .= '<meta name="twitter:image:alt" content="' . $this->wire('sanitizer')->entities($seo->og->image_alt) . '">' . "\n";
 			}
