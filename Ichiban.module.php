@@ -7,7 +7,7 @@ require_once __DIR__ . '/IchibanAutoload.php';
  *
  * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
- * @version 0.2.2-alpha
+ * @version 0.2.3-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
 
@@ -20,7 +20,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'title'    => 'Ichiban',
 			'summary'  => 'Comprehensive SEO module: meta/OG/schema, audit, redirects, revisions, email reports.',
 			'author'   => 'Maxim Semenov',
-			'version'  => 22,
+			'version'  => 24,
 			'href'     => 'https://smnv.org',
 			'singular' => true,
 			'autoload' => true,
@@ -339,7 +339,6 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		/** @var \IchibanPageFieldValue $seo */
 		$seo = $page->get($fn);
 		$out = "\n<!-- Ichiban SEO -->\n";
-		$out .= '<meta charset="utf-8">' . "\n";
 		// Meta title
 		$title = $seo->meta->title;
 		$renderedTitle = $this->formatMetaTitle((string)$title, $page);
@@ -383,6 +382,14 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$twitterCard = $seo->twitter->card ?: 'summary_large_image';
 		$out .= '<meta name="twitter:card" content="' . $this->wire('sanitizer')->entities($twitterCard) . '">' . "\n";
 		$out .= '<meta name="twitter:url" content="' . $this->wire('sanitizer')->entities($canonical) . '">' . "\n";
+		$out .= '<meta name="twitter:title" content="' . $this->wire('sanitizer')->entities($seo->og->title ?: $title) . '">' . "\n";
+		$out .= '<meta name="twitter:description" content="' . $this->wire('sanitizer')->entities($seo->og->description ?: $seo->meta->description) . '">' . "\n";
+		if ($seo->og->image) {
+			$out .= '<meta name="twitter:image" content="' . $this->wire('sanitizer')->entities($seo->og->image) . '">' . "\n";
+			if ($seo->og->image_alt) {
+				$out .= '<meta name="twitter:image:alt" content="' . $this->wire('sanitizer')->entities($seo->og->image_alt) . '">' . "\n";
+			}
+		}
 		$twitterSite = $seo->twitter->site ?: $this->get('twitter_site');
 		if ($twitterSite) {
 			$out .= '<meta name="twitter:site" content="' . $this->wire('sanitizer')->entities($twitterSite) . '">' . "\n";

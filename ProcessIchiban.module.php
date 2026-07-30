@@ -1807,36 +1807,28 @@ class ProcessIchiban extends Process {
 		$this->migrateConfigSchemasToTable();
 		if ($this->wire('input')->post('_ichiban_schemas')) {
 			$this->wire('session')->CSRF->validate();
-			$db = $this->wire('database');
 			$payload = (string)$this->wire('input')->post('schemas_payload');
 			$post = $payload !== '' ? json_decode($payload, true) : null;
 			if (!is_array($post)) {
 				$post = $this->wire('input')->post('schemas');
 				$post = is_array($post) ? $post : [];
 			}
-			$db->beginTransaction();
 			try {
-				$db->exec("DELETE FROM `ichiban_schemas`");
-				$stmt = $db->prepare("INSERT INTO `ichiban_schemas` (name, schema_type, templates, fields_json, enabled, sort) VALUES (:name, :type, :templates, :fields, :enabled, :sort)");
-				$sort = 0;
+				$schemas = [];
 				foreach ($post as $row) {
 					$name = $san->text((string)($row['name'] ?? ''));
 					$type = preg_replace('/[^A-Za-z0-9_]/', '', (string)($row['custom_type'] ?? '')) ?: preg_replace('/[^A-Za-z0-9_]/', '', (string)($row['type'] ?? '')) ?: 'Thing';
-					$templates = trim((string)($row['templates'] ?? ''));
-					$fields = $this->schemaFieldsFromPost($row['fields'] ?? []);
-					$stmt->execute([
-						':name' => $name ?: $type,
-						':type' => $type,
-						':templates' => $templates,
-						':fields' => json_encode($fields, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-						':enabled' => !empty($row['enabled']) ? 1 : 0,
-						':sort' => $sort++,
-					]);
+					$schemas[] = [
+						'name' => $name ?: $type,
+						'type' => $type,
+						'templates' => trim((string)($row['templates'] ?? '')),
+						'fields' => $this->schemaFieldsFromPost($row['fields'] ?? []),
+						'enabled' => !empty($row['enabled']) ? 1 : 0,
+					];
 				}
-				$db->commit();
-				$this->wire('session')->message(__('Schema builder mappings saved.'));
+				$count = $this->ichiban->getSchemaGraph()->replaceMappings($schemas);
+				$this->wire('session')->message(sprintf(__('Saved %d Schema Builder mappings.'), $count));
 			} catch (\Throwable $e) {
-				$db->rollBack();
 				$this->wire('session')->warning($e->getMessage());
 			}
 			$this->wire('session')->redirect($this->adminUrl('schemas/'));
@@ -3004,30 +2996,10 @@ class ProcessIchiban extends Process {
 
 	protected function getSchemaMappings(): array {
 		try {
-			$this->ensureSchemaTable();
-			$rows = $this->wire('database')->query("SELECT * FROM `ichiban_schemas` ORDER BY sort ASC, id ASC")->fetchAll(\PDO::FETCH_ASSOC);
+			return $this->ichiban->getSchemaGraph()->getMappings(false);
 		} catch (\Throwable $e) {
-			$rows = [];
+			return [];
 		}
-		if ($rows) {
-			return array_map(static function(array $row): array {
-				return [
-					'name' => (string)$row['name'],
-					'type' => (string)$row['schema_type'],
-					'templates' => (string)$row['templates'],
-					'fields' => json_decode((string)$row['fields_json'], true) ?: [],
-					'enabled' => (int)($row['enabled'] ?? 1),
-				];
-			}, $rows);
-		}
-		$schemas = $this->ichiban->get('schema_mappings') ?: [];
-		if (is_string($schemas)) $schemas = json_decode($schemas, true) ?: [];
-		if (!is_array($schemas)) return [];
-		foreach ($schemas as &$schema) {
-			if (is_array($schema) && !array_key_exists('enabled', $schema)) $schema['enabled'] = 1;
-		}
-		unset($schema);
-		return $schemas;
 	}
 
 	protected function adminUrl(string $path = ''): string {

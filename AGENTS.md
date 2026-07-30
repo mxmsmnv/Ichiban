@@ -111,6 +111,17 @@ $ichiban->getEmailReports();
 $ichiban->getSquadBridge();
 ```
 
+Schema Builder mappings are available through the schema service:
+
+```php
+$schemaGraph = $ichiban->getSchemaGraph();
+$mappings = $schemaGraph->getMappings();
+$schemaGraph->replaceMappings($mappings);
+```
+
+Use `replaceMappings()` for repeatable project configuration instead of
+writing directly to `ichiban_schemas`.
+
 Do not use protected methods, internal table details, or admin controller methods as stable APIs unless the task is to develop Ichiban itself.
 
 ## Source Expressions

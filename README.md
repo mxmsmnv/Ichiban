@@ -62,6 +62,14 @@ php index.php --ichiban-sitemap-generate
 
 Use `--ichiban-help=command` for command-specific help and `--ichiban-format=json` where structured output is useful.
 
+Schema Builder mappings can also be managed through the public service API:
+
+```php
+$schemaGraph = $modules->get('Ichiban')->getSchemaGraph();
+$mappings = $schemaGraph->getMappings();
+$schemaGraph->replaceMappings($mappings);
+```
+
 ## Documentation
 
 See [docs/FUNCTIONALITY.md](docs/FUNCTIONALITY.md) for the functional overview, examples, hooks, and integration notes.
