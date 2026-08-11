@@ -7,7 +7,7 @@ require_once __DIR__ . '/IchibanAutoload.php';
  *
  * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
- * @version 0.2.9-alpha
+ * @version 0.3.0-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
 
@@ -1339,7 +1339,8 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$fsCustomCode->columnWidth = 100;
 		$addNotes(
 			$fsCustomCode,
-			__('<strong>Trusted administrators only.</strong> This markup is rendered without sanitizing so analytics, consent, verification, and integration scripts can work. Invalid or malicious code can break the public site or execute in visitors’ browsers.')
+			'<strong>' . __('Trusted administrators only.') . '</strong> '
+			. __('This markup is rendered without sanitizing so analytics, consent, verification, and integration scripts can work. Invalid or malicious code can break the public site or execute in visitors’ browsers.')
 		);
 
 		$f = $modules->get('InputfieldTextarea');

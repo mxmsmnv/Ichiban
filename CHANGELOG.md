@@ -4,7 +4,7 @@ All notable changes to Ichiban will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [0.2.9-alpha] - 2026-08-11
+## [0.3.0-alpha] - 2026-08-11
 
 ### Added
 
