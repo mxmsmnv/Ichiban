@@ -85,6 +85,8 @@ Treat these methods as the practical public surface:
 $ichiban = $modules->get('Ichiban');
 
 $ichiban->renderHead($page);
+$ichiban->renderCustomHeadCode();
+$ichiban->renderBodyEnd();
 $ichiban->renderMetaTags($page);
 $ichiban->renderSchemaGraph($page);
 $ichiban->formatMetaTitle($title);
@@ -365,6 +367,12 @@ Ichiban includes a migration path from SeoMaestro data. Do not run migration aut
 ## Integrations
 
 Search Console requires OAuth settings. Moz backlinks require a token or legacy credentials. Squad AI prompts require provider credentials. Email reports require working mail settings and recipients.
+
+Custom head and body code is rendered without sanitizing so analytics and
+integration scripts can execute. Treat it as trusted-administrator input. Use
+`renderHead()` or `$page->seo` for head code and call `renderBodyEnd()` before
+`</body>` for body-end code, unless the corresponding automatic injection is
+enabled. Never render the same placement both manually and automatically.
 
 Do not invent credentials, property IDs, or API availability. Inspect configuration or ask the user.
 

@@ -7,7 +7,7 @@ require_once __DIR__ . '/IchibanAutoload.php';
  *
  * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
- * @version 0.2.8-alpha
+ * @version 0.2.9-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
 
@@ -20,7 +20,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'title'    => 'Ichiban',
 			'summary'  => 'Comprehensive SEO module: meta/OG/schema, audit, redirects, revisions, email reports.',
 			'author'   => 'Maxim Semenov',
-			'version'  => 29,
+			'version'  => 30,
 			'href'     => 'https://smnv.org',
 			'singular' => true,
 			'autoload' => true,
@@ -56,7 +56,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 	public function ready(): void {
 		// Optional head output hook (only on front-end).
 		if (!$this->wire('page') || !$this->wire('page')->template || $this->wire('page')->template->name === 'admin') return;
-		if ($this->get('auto_render_head')) {
+		if ($this->get('auto_render_head') || $this->get('auto_render_body_end')) {
 			$this->addHookAfter('Page::render', $this, 'hookInjectHead');
 		}
 		// Crawl/Search cleanup
@@ -319,11 +319,29 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 	 */
 	protected function hookInjectHead(HookEvent $e): void {
 		$html = $e->return;
-		if (!is_string($html) || stripos($html, '</head>') === false || str_contains($html, '<!-- Ichiban SEO -->')) return;
+		if (!is_string($html)) return;
 		$page = $e->object;
-		$meta = $this->renderHead($page);
-		if ($meta === '') return;
-		$e->return = preg_replace('~</head>~i', $meta . "\n</head>", $html, 1) ?? $html;
+
+		if ($this->get('auto_render_head')
+			&& stripos($html, '</head>') !== false
+			&& !str_contains($html, '<!-- Ichiban SEO -->')
+			&& !str_contains($html, '<!-- Ichiban Custom Head Code -->')) {
+			$head = $this->renderHead($page);
+			if ($head !== '') {
+				$html = preg_replace('~</head>~i', $head . "\n</head>", $html, 1) ?? $html;
+			}
+		}
+
+		if ($this->get('auto_render_body_end')
+			&& stripos($html, '</body>') !== false
+			&& !str_contains($html, '<!-- Ichiban Custom Body Code -->')) {
+			$bodyEnd = $this->renderBodyEnd();
+			if ($bodyEnd !== '') {
+				$html = preg_replace('~</body>~i', $bodyEnd . "\n</body>", $html, 1) ?? $html;
+			}
+		}
+
+		$e->return = $html;
 	}
 
 	/**
@@ -362,7 +380,41 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			$out .= $this->renderVerificationTags();
 			$out .= $this->renderFacebookPixel();
 		}
+		$out .= $this->renderCustomHeadCode();
 		return $out;
+	}
+
+	/**
+	 * Render trusted global markup configured for the document <head>.
+	 *
+	 * The value is intentionally not sanitized because analytics and verification
+	 * snippets commonly contain executable JavaScript. Restrict module settings
+	 * access to trusted administrators.
+	 */
+	public function renderCustomHeadCode(): string {
+		return $this->renderTrustedCustomCode(
+			(string)$this->get('custom_head_markup'),
+			'Ichiban Custom Head Code'
+		);
+	}
+
+	/**
+	 * Render trusted global markup configured for the end of the document body.
+	 *
+	 * Templates using manual rendering should output this immediately before
+	 * </body>. Automatic injection is available as a separate opt-in setting.
+	 */
+	public function renderBodyEnd(): string {
+		return $this->renderTrustedCustomCode(
+			(string)$this->get('custom_body_end_markup'),
+			'Ichiban Custom Body Code'
+		);
+	}
+
+	protected function renderTrustedCustomCode(string $code, string $marker): string {
+		$code = trim(str_replace("\0", '', $code));
+		if ($code === '') return '';
+		return "\n<!-- {$marker} -->\n{$code}\n";
 	}
 
 	/**
@@ -1276,6 +1328,48 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$f->columnWidth = 50;
 		$fsRendering->add($f);
 		$wrapper->add($fsRendering);
+
+		$fsCustomCode = $modules->get('InputfieldFieldset');
+		$fsCustomCode->label = __('Custom Code');
+		$fsCustomCode->collapsed = $collapsedFor([
+			'custom_head_markup',
+			'custom_body_end_markup',
+			'auto_render_body_end',
+		]);
+		$fsCustomCode->columnWidth = 100;
+		$addNotes(
+			$fsCustomCode,
+			__('<strong>Trusted administrators only.</strong> This markup is rendered without sanitizing so analytics, consent, verification, and integration scripts can work. Invalid or malicious code can break the public site or execute in visitors’ browsers.')
+		);
+
+		$f = $modules->get('InputfieldTextarea');
+		$f->name = 'custom_head_markup';
+		$f->label = __('Custom <head> code');
+		$f->description = __('Rendered globally by renderHead(), including when templates output $page->seo. Suitable for analytics loaders, verification scripts, and consent integrations.');
+		$f->notes = __('Paste complete markup such as <script>, <link>, <meta>, or <noscript> elements. The value is output exactly as saved.');
+		$f->value = $data['custom_head_markup'] ?? '';
+		$f->rows = 9;
+		$f->columnWidth = 50;
+		$fsCustomCode->add($f);
+
+		$f = $modules->get('InputfieldTextarea');
+		$f->name = 'custom_body_end_markup';
+		$f->label = __('Custom end-of-body code');
+		$f->description = __('Optional markup for templates to output immediately before </body> with $modules->get("Ichiban")->renderBodyEnd().');
+		$f->notes = __('Enable automatic body injection below only when the template does not call renderBodyEnd() itself.');
+		$f->value = $data['custom_body_end_markup'] ?? '';
+		$f->rows = 9;
+		$f->columnWidth = 50;
+		$fsCustomCode->add($f);
+
+		$f = $modules->get('InputfieldCheckbox');
+		$f->name = 'auto_render_body_end';
+		$f->label = __('Automatically inject custom end-of-body code');
+		$f->description = __('Insert the configured end-of-body markup before </body> on frontend HTML responses. Leave disabled when templates render it manually.');
+		$f->checked = !empty($data['auto_render_body_end']);
+		$f->columnWidth = 100;
+		$fsCustomCode->add($f);
+		$wrapper->add($fsCustomCode);
 
 		// Webmaster verification
 		$fsVerify = $modules->get('InputfieldFieldset');

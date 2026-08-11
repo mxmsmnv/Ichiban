@@ -4,6 +4,16 @@ All notable changes to Ichiban will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.2.9-alpha] - 2026-08-11
+
+### Added
+
+- Added trusted custom markup settings for the document `<head>` and the end
+  of `<body>`, suitable for analytics, consent, verification, and integration
+  snippets.
+- Added `renderCustomHeadCode()` and `renderBodyEnd()` public methods, plus an
+  independent opt-in automatic body-end injection setting.
+
 ## [0.2.8-alpha] - 2026-07-30
 
 ### Added

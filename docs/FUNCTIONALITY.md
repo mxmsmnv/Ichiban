@@ -88,8 +88,30 @@ Ichiban can output:
 - hreflang alternates
 - optional Meta Pixel
 - JSON-LD schema graph
+- trusted custom `<head>` and end-of-body markup
 
 Manual rendering is recommended unless your templates do not already output SEO tags. Automatic injection can be enabled in settings.
+
+### Custom Code
+
+The **Custom Code** settings accept complete trusted markup for analytics,
+consent, verification, and other global integrations. Head code is appended by
+`renderHead()`, so it is also included when a template renders `$page->seo`:
+
+```php
+echo $page->seo;
+```
+
+Templates can render body-end code immediately before `</body>`:
+
+```php
+echo $modules->get('Ichiban')->renderBodyEnd();
+```
+
+Alternatively, enable the independent automatic body-end injection setting.
+Do not enable automatic injection when the template already calls the method.
+Both fields are output without sanitizing so JavaScript can execute. Access to
+these settings must be restricted to trusted administrators.
 
 Settings also include separate rendering toggles for frontend hreflang links and JSON-LD schema. Disable hreflang when ProcessWire languages are used internally but the public site should not advertise alternate language URLs. Disable JSON-LD when templates or another SEO layer already generates structured data.
 
@@ -139,7 +161,7 @@ The Process module adds an SEO workspace with these sections:
 - **Migration**: SeoMaestro to Ichiban converter with backup tables.
 - **AI**: Squad-backed SEO prompt test workspace.
 - **CLI**: command reference for audit, sitemap, status, robots/llms, settings, and page SEO inspection.
-- **Settings**: identity, defaults, rendering, verification, Search Console, Moz, sitemap, robots/llms, reports, cleanup, and AI.
+- **Settings**: identity, defaults, rendering, custom code, verification, Search Console, Moz, sitemap, robots/llms, reports, cleanup, and AI.
 
 ## CLI
 

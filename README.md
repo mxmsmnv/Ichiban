@@ -51,6 +51,24 @@ the required social-image variants separately with a bounded media warmup job.
 - Squad-backed AI prompt workspace.
 - CLI commands for audit rebuilds, sitemap maintenance, status checks, and generated text previews.
 - Hook API for custom source resolution, final SEO values, audit rules, rendering, redirects, and identity schema.
+- Trusted custom `<head>` and end-of-body markup for analytics, consent,
+  verification, and other site-wide integrations.
+
+## Custom Code
+
+Trusted administrators can save complete analytics or integration snippets in
+**Modules > Ichiban > Custom Code**. Head markup is included whenever templates
+render `echo $page->seo;` or call `renderHead()`. End-of-body markup can be
+rendered explicitly:
+
+```php
+echo $modules->get('Ichiban')->renderBodyEnd();
+```
+
+Automatic end-of-body injection is a separate opt-in setting. Do not combine
+manual and automatic rendering for the same placement. Custom code is output
+without sanitizing so executable JavaScript can work; only trusted
+administrators should be allowed to edit module settings.
 
 ## CLI
 
