@@ -4,6 +4,15 @@ All notable changes to Ichiban will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.3.1-alpha] - 2026-08-24
+
+### Added
+
+- Added the hookable `Ichiban::collectSitemapUrlSegments` provider for
+  application-defined URL segments on included Pages.
+- Segment entries inherit Page sitemap metadata and pass through URL
+  validation, exclusion rules, and final deduplication.
+
 ## [0.3.0-alpha] - 2026-08-11
 
 ### Added

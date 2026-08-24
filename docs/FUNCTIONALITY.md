@@ -223,6 +223,7 @@ Supported sitemap features:
 - image sitemap entries
 - multilingual hreflang alternates
 - custom URLs
+- application-defined URL segments through `Ichiban::collectSitemapUrlSegments`
 - noindex and page-level sitemap settings
 - template and pattern exclusions
 - manual generation
@@ -233,6 +234,32 @@ entry with `regex:` to use an explicit regular expression, for example
 `regex:~^/private(?:/|$)~`.
 
 Ichiban also appends the configured sitemap URL when serving dynamic `robots.txt`.
+
+ProcessWire records whether a template accepts URL segments, but it does not
+store the application-defined segment values. Provide enumerable segments from
+site code for pages whose templates have URL segments enabled:
+
+```php
+$wire->addHookAfter('Ichiban::collectSitemapUrlSegments', function(HookEvent $event) {
+    /** @var Page $page */
+    $page = $event->arguments(0);
+    if ($page->template->name !== 'article') return;
+
+    $event->return = array_merge((array)$event->return, [
+        'print/',
+        [
+            'segment' => 'comments/',
+            'changefreq' => 'daily',
+            'priority' => '0.4',
+        ],
+    ]);
+});
+```
+
+Each returned item may be a relative segment string or an array containing
+`segment` (or an absolute `loc`) with optional `lastmod`, `changefreq`,
+`priority`, and `template` overrides. Segment entries inherit the base Page
+metadata and pass through sitemap exclusions, validation, and deduplication.
 
 ## Search Console
 

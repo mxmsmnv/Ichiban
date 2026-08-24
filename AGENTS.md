@@ -184,6 +184,18 @@ Other hookable methods:
 - `Ichiban::renderSchemaGraph`
 - `Ichiban::redirectMatch`
 - `Ichiban::buildIdentity`
+- `Ichiban::collectSitemapUrlSegments`
+
+URL segment values are application-defined and cannot be inferred from the
+template's `urlSegments` flag. Provide enumerable sitemap segments through:
+
+```php
+wire()->addHookAfter('Ichiban::collectSitemapUrlSegments', function(HookEvent $event) {
+    $page = $event->arguments(0);
+    if ($page->template->name !== 'article') return;
+    $event->return = array_merge((array)$event->return, ['print/', 'comments/']);
+});
+```
 
 Use hooks for project-specific behavior instead of editing module internals.
 

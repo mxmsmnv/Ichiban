@@ -193,6 +193,15 @@ class IchibanSitemap {
 				if ($s['include_images']) $entry['images'] = $this->collectPageImages($page);
 				if ($s['multilang_hreflang']) $entry['hreflang'] = $this->collectHreflang($page);
 				$urls[] = $entry;
+
+				if ($page->template->urlSegments) {
+					foreach ((array)$this->ichiban->collectSitemapUrlSegments($page) as $segment) {
+						$segmentEntry = $this->buildUrlSegmentEntry($pageUrl, $entry, $segment);
+						if (!$segmentEntry) continue;
+						if ($this->matchesExcludePattern($segmentEntry['loc'], (string)$s['exclude_url_patterns'])) continue;
+						$urls[] = $segmentEntry;
+					}
+				}
 			}
 
 			$count = $chunk->count();
@@ -213,7 +222,40 @@ class IchibanSitemap {
 			];
 		}
 
-		return $urls;
+		$unique = [];
+		foreach ($urls as $entry) $unique[(string)$entry['loc']] = $entry;
+		return array_values($unique);
+	}
+
+	protected function buildUrlSegmentEntry(string $pageUrl, array $pageEntry, mixed $segment): ?array {
+		if (is_string($segment)) {
+			$data = ['segment' => $segment];
+		} elseif (is_array($segment)) {
+			$data = $segment;
+		} else {
+			return null;
+		}
+
+		if (!empty($data['loc'])) {
+			$loc = trim((string)$data['loc']);
+			if (!preg_match('{^https?://}i', $loc)) return null;
+			$loc = $this->ichiban->canonicalUrl($loc);
+		} else {
+			$path = trim((string)($data['segment'] ?? ''));
+			if ($path === '') return null;
+			$loc = rtrim($pageUrl, '/') . '/' . ltrim($path, '/');
+		}
+
+		$loc = filter_var($loc, FILTER_VALIDATE_URL);
+		if (!$loc || !in_array(parse_url($loc, PHP_URL_SCHEME), ['http', 'https'], true)) return null;
+
+		return [
+			'loc'        => $loc,
+			'lastmod'    => $data['lastmod'] ?? $pageEntry['lastmod'],
+			'changefreq' => $data['changefreq'] ?? $pageEntry['changefreq'],
+			'priority'   => number_format(max(0, min(1, (float)($data['priority'] ?? $pageEntry['priority']))), 1),
+			'template'   => $this->wire('sanitizer')->name((string)($data['template'] ?? $pageEntry['template'])) ?: 'url-segments',
+		];
 	}
 
 	protected function pageIncludedInSitemap(\ProcessWire\Page $page): bool {

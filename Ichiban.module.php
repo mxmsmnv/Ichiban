@@ -7,7 +7,7 @@ require_once __DIR__ . '/IchibanAutoload.php';
  *
  * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
- * @version 0.3.0-alpha
+ * @version 0.3.1-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
 
@@ -20,7 +20,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'title'    => 'Ichiban',
 			'summary'  => 'Comprehensive SEO module: meta/OG/schema, audit, redirects, revisions, email reports.',
 			'author'   => 'Maxim Semenov',
-			'version'  => 30,
+			'version'  => 31,
 			'href'     => 'https://smnv.org',
 			'singular' => true,
 			'autoload' => true,
@@ -883,6 +883,16 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 	/** Hookable: customize JSON-LD Identity node. */
 	public function ___buildIdentity(array $identity): array {
 		return $identity;
+	}
+
+	/**
+	 * Hookable: provide enumerable URL segments for one sitemap Page.
+	 *
+	 * ProcessWire records whether the Page template accepts URL segments, but
+	 * the actual values are application-defined and cannot be discovered.
+	 */
+	public function ___collectSitemapUrlSegments(Page $page): array {
+		return [];
 	}
 
 	/**
