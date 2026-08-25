@@ -194,7 +194,7 @@ class IchibanSitemap {
 				if ($s['multilang_hreflang']) $entry['hreflang'] = $this->collectHreflang($page);
 				$urls[] = $entry;
 
-				if ($page->template->urlSegments) {
+				if ($page->template->urlSegments || $page->template->allowPageNum) {
 					foreach ((array)$this->ichiban->collectSitemapUrlSegments($page) as $segment) {
 						$segmentEntry = $this->buildUrlSegmentEntry($pageUrl, $entry, $segment);
 						if (!$segmentEntry) continue;

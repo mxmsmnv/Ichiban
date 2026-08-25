@@ -43,7 +43,7 @@ the required social-image variants separately with a bounded media warmup job.
 - Redirect manager with manual redirects, regex rules, status codes, hit counts, CSV import/export, and automatic redirects after path changes.
 - Google Search Console insights and URL Inspection sampling.
 - Moz backlink snapshots with cached history and quota snapshots.
-- XML sitemap generator with images, hreflang alternates, custom URLs, hookable URL segments, exclusions, chunks, and LazyCron regeneration.
+- XML sitemap generator with images, hreflang alternates, custom URLs, hookable dynamic routes and pagination, exclusions, chunks, and LazyCron regeneration.
 - Schema.org mapping builder.
 - SeoMaestro migration tool for page data, template defaults and
   template-specific title formats.

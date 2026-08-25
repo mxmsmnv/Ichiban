@@ -4,6 +4,16 @@ All notable changes to Ichiban will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.3.3-alpha] - 2026-08-25
+
+### Fixed
+
+- Invoke `Ichiban::collectSitemapUrlSegments` for included Pages whose
+  templates enable either URL segments or page numbers, covering dynamic
+  author routes and pagination such as `page2/`.
+- Document runtime-derived provider results rather than implying that segment
+  values must be hardcoded.
+
 ## [0.3.2-alpha] - 2026-08-25
 
 ### Added

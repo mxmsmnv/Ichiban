@@ -8,7 +8,7 @@ require_once __DIR__ . '/src/McpProviderTrait.php';
  *
  * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
- * @version 0.3.2-alpha
+ * @version 0.3.3-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
 	use IchibanMcpProviderTrait;
@@ -22,7 +22,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'title'    => 'Ichiban',
 			'summary'  => 'Comprehensive SEO module: meta/OG/schema, audit, redirects, revisions, email reports.',
 			'author'   => 'Maxim Semenov',
-			'version'  => 32,
+			'version'  => 33,
 			'href'     => 'https://smnv.org',
 			'singular' => true,
 			'autoload' => true,
@@ -889,10 +889,10 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 	}
 
 	/**
-	 * Hookable: provide enumerable URL segments for one sitemap Page.
+	 * Hookable: provide enumerable virtual routes for one sitemap Page.
 	 *
-	 * ProcessWire records whether the Page template accepts URL segments, but
-	 * the actual values are application-defined and cannot be discovered.
+	 * ProcessWire records whether the Page template accepts URL segments or page
+	 * numbers, but the actual values and result counts are application-defined.
 	 */
 	public function ___collectSitemapUrlSegments(Page $page): array {
 		return [];

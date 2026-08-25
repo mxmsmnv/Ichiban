@@ -235,24 +235,34 @@ entry with `regex:` to use an explicit regular expression, for example
 
 Ichiban also appends the configured sitemap URL when serving dynamic `robots.txt`.
 
-ProcessWire records whether a template accepts URL segments, but it does not
-store the application-defined segment values. Provide enumerable segments from
-site code for pages whose templates have URL segments enabled:
+ProcessWire records whether a template accepts URL segments or page numbers,
+but it does not store the application-defined routes or result counts. Provide
+enumerable routes from site code for Pages whose templates enable URL segments
+or pagination. Provider results may be calculated dynamically during sitemap
+generation:
 
 ```php
 $wire->addHookAfter('Ichiban::collectSitemapUrlSegments', function(HookEvent $event) {
     /** @var Page $page */
     $page = $event->arguments(0);
-    if ($page->template->name !== 'article') return;
+    $routes = (array)$event->return;
 
-    $event->return = array_merge((array)$event->return, [
-        'print/',
-        [
-            'segment' => 'comments/',
-            'changefreq' => 'daily',
-            'priority' => '0.4',
-        ],
-    ]);
+    if ($page->template->name === 'blog-authors') {
+        $authorRole = wire('roles')->get('blog-author');
+        foreach (wire('users')->find("roles=$authorRole, sort=title") as $author) {
+            $slug = wire('sanitizer')->pageName($author->title);
+            if ($slug) $routes[] = ['segment' => $slug . '/', 'lastmod' => date('c', $author->modified)];
+        }
+    }
+
+    if ($page->template->name === 'blog-posts') {
+        $totalPages = (int)ceil(wire('pages')->count('template=blog-post') / 8);
+        for ($n = 2; $n <= $totalPages; $n++) {
+            $routes[] = wire('config')->pageNumUrlPrefix . $n . '/';
+        }
+    }
+
+    $event->return = $routes;
 });
 ```
 

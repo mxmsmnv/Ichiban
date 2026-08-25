@@ -186,14 +186,20 @@ Other hookable methods:
 - `Ichiban::buildIdentity`
 - `Ichiban::collectSitemapUrlSegments`
 
-URL segment values are application-defined and cannot be inferred from the
-template's `urlSegments` flag. Provide enumerable sitemap segments through:
+Dynamic route values and pagination counts are application-defined and cannot
+be inferred from the template's `urlSegments` or `allowPageNum` flags. Provide
+enumerable sitemap routes through:
 
 ```php
 wire()->addHookAfter('Ichiban::collectSitemapUrlSegments', function(HookEvent $event) {
     $page = $event->arguments(0);
-    if ($page->template->name !== 'article') return;
-    $event->return = array_merge((array)$event->return, ['print/', 'comments/']);
+    if ($page->template->name !== 'blog-posts') return;
+    $routes = (array)$event->return;
+    $totalPages = (int)ceil(wire('pages')->count('template=blog-post') / 8);
+    for ($n = 2; $n <= $totalPages; $n++) {
+        $routes[] = wire('config')->pageNumUrlPrefix . $n . '/';
+    }
+    $event->return = $routes;
 });
 ```
 
