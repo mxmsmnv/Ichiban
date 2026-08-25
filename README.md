@@ -93,6 +93,13 @@ $mappings = $schemaGraph->getMappings();
 $schemaGraph->replaceMappings($mappings);
 ```
 
+## MCP Server integration
+
+When the optional first-party MCP Server is installed, Ichiban contributes the
+read-only `ichiban_seo_preview` tool. It accepts one page ID and renders only
+the SEO metadata of a public page viewable to the current request; unpublished,
+trashed, or inaccessible pages fail closed.
+
 ## Documentation
 
 See [docs/FUNCTIONALITY.md](docs/FUNCTIONALITY.md) for the functional overview, examples, hooks, and integration notes.

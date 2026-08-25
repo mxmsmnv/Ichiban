@@ -1,15 +1,17 @@
 <?php namespace ProcessWire;
 
 require_once __DIR__ . '/IchibanAutoload.php';
+require_once __DIR__ . '/src/McpProviderTrait.php';
 
 /**
  * Ichiban (一番) — ProcessWire SEO Module
  *
  * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
- * @version 0.3.1-alpha
+ * @version 0.3.2-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
+	use IchibanMcpProviderTrait;
 
 	protected array $_oldPaths = [];
 	protected array $_oldSeoData = [];
@@ -20,10 +22,11 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'title'    => 'Ichiban',
 			'summary'  => 'Comprehensive SEO module: meta/OG/schema, audit, redirects, revisions, email reports.',
 			'author'   => 'Maxim Semenov',
-			'version'  => 31,
+			'version'  => 32,
 			'href'     => 'https://smnv.org',
 			'singular' => true,
 			'autoload' => true,
+			'mcpProvider' => true,
 			'installs' => [
 				'FieldtypeIchiban',
 				'InputfieldIchiban',
