@@ -4,6 +4,12 @@ All notable changes to Ichiban will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.3.6-alpha] - 2026-09-26
+
+### Fixed
+
+- Made Search Console cache expiry checks database-independent so cached dashboard reads work on MySQL/MariaDB, SQLite, and PostgreSQL, with consistent cached CTR formatting across drivers.
+
 ## [0.3.5-alpha] - 2026-09-26
 
 ### Fixed

@@ -438,20 +438,25 @@ class IchibanSearchStatistics {
 
 	protected function getCache(string $pageUrl, string $cacheKey): ?array {
 		$db   = $this->ichiban->wire('database');
-		$stmt = $db->prepare("SELECT * FROM ichiban_gsc_cache WHERE page_url=:url AND `query`=:q AND TIMESTAMPDIFF(SECOND, cached_at, NOW()) < :ttl LIMIT 1");
+		$stmt = $db->prepare("SELECT * FROM ichiban_gsc_cache WHERE page_url=:url AND `query`=:q LIMIT 1");
 		$stmt->bindValue(':url', $pageUrl);
 		$stmt->bindValue(':q', $cacheKey);
-		$stmt->bindValue(':ttl', self::CACHE_TTL, \PDO::PARAM_INT);
 		$stmt->execute();
 		$row = $stmt->fetch(\PDO::FETCH_ASSOC);
-		if (!$row) return null;
+		if (!$row || !$this->isCacheRowFresh($row)) return null;
 		// clicks/impressions/ctr/position stored as columns — reassemble array
 		return [
 			'clicks'      => (int)$row['clicks'],
 			'impressions' => (int)$row['impressions'],
-			'ctr'         => $row['ctr'] . '%',
+			'ctr'         => (float)$row['ctr'] . '%',
 			'position'    => (float)$row['position'],
 		];
+	}
+
+	protected function isCacheRowFresh(array $row, ?int $now = null): bool {
+		$cachedAt = strtotime((string)($row['cached_at'] ?? ''));
+		if ($cachedAt === false) return false;
+		return (($now ?? time()) - $cachedAt) < self::CACHE_TTL;
 	}
 
 	public function getLastCacheTime(): int {
