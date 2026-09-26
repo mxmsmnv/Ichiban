@@ -17,7 +17,7 @@ class ProcessIchiban extends Process {
 			'summary'  => 'Admin panel for Ichiban SEO module.',
 			'author'   => 'Maxim Semenov',
 			'href'     => 'https://smnv.org',
-			'version'  => 24,
+			'version'  => 25,
 			'requires' => 'Ichiban',
 			
 			'page'     => [
@@ -2661,8 +2661,7 @@ class ProcessIchiban extends Process {
 		if (!preg_match('/^[A-Za-z0-9_]+$/', $table)) throw new WireException(__('Unsafe table name.'));
 		$db = $this->wire('database');
 		$backup = $table . '_ichiban_backup_' . date('Ymd_His');
-		$db->exec("CREATE TABLE `$backup` LIKE `$table`");
-		$db->exec("INSERT INTO `$backup` SELECT * FROM `$table`");
+		$db->exec("CREATE TABLE `$backup` AS SELECT * FROM `$table`");
 		return $backup;
 	}
 

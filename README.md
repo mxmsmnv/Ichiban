@@ -8,9 +8,9 @@ Ichiban adds a page SEO field and a full SEO workspace to the ProcessWire admin.
 
 ## Requirements
 
-- ProcessWire 3.0.200+
+- ProcessWire 3.0.274+
 - PHP 8.1+
-- MySQL 5.7+ or MariaDB 10.3+
+- MySQL/MariaDB, SQLite, or PostgreSQL
 
 ## Installation
 
