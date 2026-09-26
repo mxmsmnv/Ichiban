@@ -247,7 +247,8 @@ class IchibanAuditEngine {
 				has_og_image=VALUES(has_og_image),
 				schema_type=VALUES(schema_type),
 				word_count=VALUES(word_count),
-				rebuild_token=VALUES(rebuild_token)");
+				rebuild_token=VALUES(rebuild_token),
+				indexed_at=UTC_TIMESTAMP()");
 	}
 
 	protected function buildPageRow(\ProcessWire\Page $page, string $fieldName): ?array {
