@@ -1,0 +1,24 @@
+/* Ichiban module configuration page containment. */
+
+#ModuleEditForm,
+#ModuleEditForm .Inputfields,
+#ModuleEditForm .Inputfield,
+#ModuleEditForm .InputfieldContent,
+#ModuleEditForm .InputfieldMarkup {
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 0;
+}
+
+#ModuleEditForm code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Tracy remains third-party; contain its bar from this page-owned stylesheet. */
+#tracy-debug-bar {
+  box-sizing: border-box;
+  max-width: 100vw;
+  overflow-x: auto;
+}

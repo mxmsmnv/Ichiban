@@ -4,6 +4,12 @@ All notable changes to Ichiban will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.3.7-alpha] - 2026-09-30
+
+### Fixed
+
+- Contained configuration code, dashboard grids, data tables, and the optional Tracy toolbar within narrow admin viewports so Ichiban no longer creates horizontal page overflow on phones.
+
 ## [0.3.6-alpha] - 2026-09-26
 
 ### Fixed

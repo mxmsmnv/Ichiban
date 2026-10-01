@@ -8,7 +8,7 @@ require_once __DIR__ . '/src/McpProviderTrait.php';
  *
  * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
- * @version 0.3.6-alpha
+ * @version 0.3.7-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
 	use IchibanMcpProviderTrait;
@@ -22,7 +22,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'title'    => 'Ichiban',
 			'summary'  => 'Comprehensive SEO module: meta/OG/schema, audit, redirects, revisions, email reports.',
 			'author'   => 'Maxim Semenov',
-			'version'  => 36,
+			'version'  => 37,
 			'href'     => 'https://smnv.org',
 			'singular' => true,
 			'autoload' => true,
@@ -1189,6 +1189,9 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 
 	public static function getModuleConfigInputfields(array $data): InputfieldWrapper {
 		$modules = wire('modules');
+		$config = wire('config');
+		$configCss = $config->paths->Ichiban . 'assets/css/config.css';
+		$config->styles->add($config->urls->Ichiban . 'assets/css/config.css?v=' . (int) @filemtime($configCss));
 		$wrapper = new InputfieldWrapper();
 		$addNotes = static function(InputfieldWrapper $target, string $text) use ($modules): void {
 			$f = $modules->get('InputfieldMarkup');

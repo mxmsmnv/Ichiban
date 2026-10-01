@@ -39,6 +39,53 @@ body.dark-theme {
 .ichiban-cli,
 .ichiban-ai {
   color: var(--ichiban-text);
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.ichiban-dashboard > *,
+.ichiban-dashboard-header > *,
+.ichiban-dashboard-panels > *,
+.ichiban-quick-stats > * {
+  min-width: 0;
+}
+
+.ichiban-bulk-table-wrap,
+.ichiban-audit-table-panel,
+.ichiban-redirect-list,
+.ichiban-gsc-table,
+.ichiban-revisions-table-panel,
+.ichiban-cleanup-table-panel,
+.ichiban-migration-table-panel,
+.ichiban-backlinks-table-panel {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Tracy remains third-party; contain its bar from this page-owned stylesheet. */
+#tracy-debug-bar {
+  box-sizing: border-box;
+  max-width: 100vw;
+  overflow-x: auto;
+}
+
+.ichiban-dashboard code,
+.ichiban-bulk code,
+.ichiban-audit code,
+.ichiban-redirects code,
+.ichiban-gsc-page code,
+.ichiban-backlinks code,
+.ichiban-revisions code,
+.ichiban-cleanup code,
+.ichiban-migration code,
+.ichiban-reports code,
+.ichiban-website code,
+.ichiban-cli code,
+.ichiban-ai code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .ichiban-dashboard .uk-table,
@@ -155,6 +202,22 @@ body.dark-theme {
 @media (max-width: 639px) {
   .ichiban-dashboard {
     grid-template-columns: 1fr;
+  }
+
+  .ichiban-dashboard-header,
+  .ichiban-dashboard-actions,
+  .ichiban-score-widget,
+  .ichiban-battery-score,
+  .ichiban-quick-stats {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .ichiban-dashboard-actions .uk-button {
+    max-width: 100%;
+    white-space: normal;
   }
 }
 

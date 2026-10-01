@@ -17,7 +17,7 @@ class ProcessIchiban extends Process {
 			'summary'  => 'Admin panel for Ichiban SEO module.',
 			'author'   => 'Maxim Semenov',
 			'href'     => 'https://smnv.org',
-			'version'  => 25,
+			'version'  => 26,
 			'requires' => 'Ichiban',
 			
 			'page'     => [
@@ -39,7 +39,8 @@ class ProcessIchiban extends Process {
 		parent::init();
 		$this->ichiban = $this->wire('modules')->get('Ichiban');
 		$url = $this->wire('config')->urls->Ichiban;
-		$this->wire('config')->styles->add($url . 'assets/css/process.css');
+		$cssPath = $this->wire('config')->paths->Ichiban . 'assets/css/process.css';
+		$this->wire('config')->styles->add($url . 'assets/css/process.css?v=' . (int) @filemtime($cssPath));
 		$this->wire('config')->scripts->add($url . 'assets/js/process.js');
 	}
 

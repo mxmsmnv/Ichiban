@@ -25,7 +25,7 @@ $checks = [
 	'fresh Search Console cache rows remain usable' => $cacheProbe->cacheRowIsFresh(['cached_at' => '2026-09-26 11:59:59'], $now),
 	'expired Search Console cache rows are rejected at the TTL boundary' => !$cacheProbe->cacheRowIsFresh(['cached_at' => '2026-09-26 06:00:00'], $now),
 	'invalid Search Console cache timestamps are rejected' => !$cacheProbe->cacheRowIsFresh(['cached_at' => 'not-a-date'], $now),
-	'release version is synchronized' => str_contains($module, "'version'  => 36") && str_contains($module, '@version 0.3.6-alpha'),
+	'release version is synchronized' => str_contains($module, "'version'  => 37") && str_contains($module, '@version 0.3.7-alpha'),
 ];
 
 $failed = [];
