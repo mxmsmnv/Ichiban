@@ -115,6 +115,20 @@ these settings must be restricted to trusted administrators.
 
 Settings also include separate rendering toggles for frontend hreflang links and JSON-LD schema. Disable hreflang when ProcessWire languages are used internally but the public site should not advertise alternate language URLs. Disable JSON-LD when templates or another SEO layer already generates structured data.
 
+### ProcessWire Languages
+
+Ichiban resolves ProcessWire fields in the active user/page language, so
+localized fields used by source expressions automatically provide localized
+titles, descriptions, social copy, and image alt text. Localized page names
+are used for canonical and social URLs when `LanguageSupportPageNames` is
+installed. Frontend head output and sitemap entries can include localized
+`hreflang` alternates.
+
+Ichiban's own custom per-page override payload and global/template defaults are
+language-neutral. Use multilingual ProcessWire fields plus source expressions
+for language-specific SEO copy instead of duplicating the Ichiban field's
+storage. Confirm that translated pages are public before enabling hreflang.
+
 ### Title Format
 
 Settings include a global **Title Format** field for rendered titles:

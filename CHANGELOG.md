@@ -4,6 +4,14 @@ All notable changes to Ichiban will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+
+### Documentation
+
+- Documented ProcessWire Languages support, localized source-field behavior,
+  localized canonical/hreflang output, and the shared-language boundary for
+  direct Ichiban overrides and defaults.
+
 ## [0.3.7-alpha] - 2026-09-30
 
 ### Fixed

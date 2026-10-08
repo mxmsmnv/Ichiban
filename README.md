@@ -54,6 +54,23 @@ the required social-image variants separately with a bounded media warmup job.
 - Trusted custom `<head>` and end-of-body markup for analytics, consent,
   verification, and other site-wide integrations.
 
+## Multilingual Sites
+
+Ichiban works with ProcessWire Languages and `LanguageSupportPageNames`:
+
+- source expressions such as `field:title` and `field:summary` resolve the
+  localized value for the active ProcessWire language;
+- canonical, Open Graph, and Twitter URLs follow the active localized page URL;
+- `og:locale` follows the active language locale;
+- frontend head output and XML sitemaps can publish localized `hreflang`
+  alternates, including `x-default` for the default language.
+
+Page-level custom Ichiban overrides and module/template defaults are shared
+across languages. When SEO copy must differ by language, store it in a
+multilingual ProcessWire field and select that field through an Ichiban source
+expression. Disable hreflang output for languages that are internal-only, and
+verify that every advertised language has a public page URL.
+
 ## Custom Code
 
 Trusted administrators can save complete analytics or integration snippets in
