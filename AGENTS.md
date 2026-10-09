@@ -147,7 +147,7 @@ For an Open Graph image, an image field expression can be used. Prefer the
 the frontend request. The `on_demand` mode preserves the legacy behavior and
 must be chosen explicitly when request-time generation is acceptable.
 
-Prefer source expressions and defaults before manual page-level values. This keeps the site easier to maintain.
+Prefer source expressions and defaults before manual page-level values. This keeps the site easier to maintain. Page-level content overrides are language-aware; robots, schema type, sitemap, and other structural controls remain shared.
 
 Source expressions are not interpolation templates. A value such as
 `field:title - Site Name` is invalid because everything after `field:` is

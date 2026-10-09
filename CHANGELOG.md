@@ -6,11 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Documentation
+## [0.3.8-alpha] - 2026-10-09
 
-- Documented ProcessWire Languages support, localized source-field behavior,
-  localized canonical/hreflang output, and the shared-language boundary for
-  direct Ichiban overrides and defaults.
+### Added
+
+- Added backward-compatible per-language page overrides for SEO title and
+  description sources, canonical URL, Open Graph copy/image/image alt, and raw
+  JSON-LD, stored by ProcessWire language ID inside the existing JSON field.
+- Added language-aware page editing, Bulk Editor writes, CLI inspection/import/
+  fix options, and revision restore coverage while keeping structural controls
+  language-neutral.
+
+### Changed
+
+- Existing top-level page values now act as default-language values and remain
+  the fallback for untranslated languages, requiring no destructive migration.
 
 ## [0.3.7-alpha] - 2026-09-30
 

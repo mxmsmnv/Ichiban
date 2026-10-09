@@ -8,7 +8,7 @@ require_once __DIR__ . '/src/McpProviderTrait.php';
  *
  * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
- * @version 0.3.7-alpha
+ * @version 0.3.8-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
 	use IchibanMcpProviderTrait;
@@ -22,7 +22,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'title'    => 'Ichiban',
 			'summary'  => 'Comprehensive SEO module: meta/OG/schema, audit, redirects, revisions, email reports.',
 			'author'   => 'Maxim Semenov',
-			'version'  => 37,
+			'version'  => 38,
 			'href'     => 'https://smnv.org',
 			'singular' => true,
 			'autoload' => true,
@@ -211,6 +211,8 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 
 	protected function dataFromPageEditPost(array $data, array $post): array {
 		$san = $this->wire('sanitizer');
+		$languages = $this->wire('languages');
+		$defaultId = \IchibanLocalizedPageData::defaultLanguageId($languages);
 		foreach (['meta_title', 'meta_description', 'og_title', 'og_description'] as $key) {
 			$source = null;
 			if (isset($post[$key]) && is_array($post[$key])) {
@@ -226,6 +228,24 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 				'mode' => in_array($source['mode'] ?? '', ['inherit', 'field', 'custom'], true) ? $source['mode'] : 'field',
 				'value' => $san->text($source['value'] ?? ''),
 			];
+		}
+		if ($languages) foreach ($languages as $language) {
+			$languageId = (int)($language->id ?? 0);
+			if ($languageId <= 0 || $languageId === $defaultId) continue;
+			foreach (['meta_title', 'meta_description', 'og_title', 'og_description'] as $key) {
+				$modeKey = "{$key}__{$languageId}_mode";
+				$valueKey = "{$key}__{$languageId}_value";
+				if (!array_key_exists($modeKey, $post) && !array_key_exists($valueKey, $post)) continue;
+				$mode = (string)($post[$modeKey] ?? 'default');
+				if ($mode === 'default') {
+					\IchibanLocalizedPageData::remove($data, $key, $languageId, $defaultId);
+					continue;
+				}
+				\IchibanLocalizedPageData::write($data, $key, [
+					'mode' => in_array($mode, ['inherit', 'field', 'custom'], true) ? $mode : 'inherit',
+					'value' => $san->text($post[$valueKey] ?? ''),
+				], $languageId, $defaultId);
+			}
 		}
 
 		foreach (['og_image_alt', 'og_type', 'twitter_card',
@@ -243,6 +263,26 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		}
 		if (array_key_exists('jsonld_override', $post)) {
 			$data['jsonld_override'] = $san->textarea($post['jsonld_override']);
+		}
+		if ($languages) foreach ($languages as $language) {
+			$languageId = (int)($language->id ?? 0);
+			if ($languageId <= 0 || $languageId === $defaultId) continue;
+			foreach (['canonical_url', 'og_image', 'og_image_alt', 'jsonld_override'] as $key) {
+				$modeKey = "{$key}_localized__{$languageId}";
+				$valueKey = "{$key}__{$languageId}";
+				if (!array_key_exists($modeKey, $post)) continue;
+				if ($post[$modeKey] !== 'specific') {
+					\IchibanLocalizedPageData::remove($data, $key, $languageId, $defaultId);
+					continue;
+				}
+				$value = match ($key) {
+					'canonical_url' => $san->url($post[$valueKey] ?? '', ['allowRelative' => true, 'allowSchemes' => ['http', 'https']]),
+					'og_image' => $this->sanitizeUrlOrSourceExpression($post[$valueKey] ?? ''),
+					'jsonld_override' => $san->textarea($post[$valueKey] ?? ''),
+					default => $san->text($post[$valueKey] ?? ''),
+				};
+				\IchibanLocalizedPageData::write($data, $key, $value, $languageId, $defaultId);
+			}
 		}
 		return $data;
 	}

@@ -320,6 +320,10 @@ class ProcessIchiban extends Process {
 		$bulkSaveUrl = $this->adminUrl('bulk-save/') . ($currentQuery ? '?' . http_build_query($currentQuery) : '');
 		$filterSummary = $issue !== '' ? sprintf(__('Filtered to %s.'), $issueFilters[$issue]) : __('Showing all indexed pages.');
 
+		$languages = $this->wire('languages');
+		$activeLanguageId = \IchibanLocalizedPageData::activeLanguageId($languages, $this->wire('user'));
+		$activeLanguage = $languages ? $languages->get($activeLanguageId) : null;
+		$activeLanguageLabel = $activeLanguage && $activeLanguage->id ? (string)($activeLanguage->title ?: $activeLanguage->name) : __('Default');
 		$out  = $this->renderAdminNav('bulk');
 		$out .= "<div class='ichiban-bulk'>\n";
 		$out .= "<div class='ichiban-bulk-header'>"
@@ -346,6 +350,10 @@ class ProcessIchiban extends Process {
 			. "</form>\n";
 		$out .= "<form method='post' action='" . $san->entities($bulkSaveUrl) . "' class='ichiban-bulk-form'>\n";
 		$out .= $this->wire('session')->CSRF->renderInput();
+		$out .= "<input type='hidden' name='ichiban_language_id' value='{$activeLanguageId}'>\n";
+		if ($languages && count($languages) > 1) {
+			$out .= "<div class='uk-alert-primary' uk-alert>" . sprintf(__('Editing SEO values for language: %s.'), $san->entities($activeLanguageLabel)) . "</div>\n";
+		}
 		$out .= "<div class='ichiban-bulk-actionbar'><span>" . __('Changes are saved as custom SEO values for each page.') . "</span><button type='submit' class='uk-button uk-button-primary'>" . __('Save Changes') . "</button></div>\n";
 		if (!$rows) {
 			$out .= "<div class='ichiban-bulk-empty'><h3>" . __('No indexed pages match this filter') . "</h3><p>" . __('Try a different template name or rebuild the audit index if pages were recently added.') . "</p></div>\n";
@@ -434,6 +442,10 @@ class ProcessIchiban extends Process {
 		$titles = is_array($titles) ? $titles : [];
 		$descs  = is_array($descs) ? $descs : [];
 		$san    = $this->wire('sanitizer');
+		$languages = $this->wire('languages');
+		$defaultLanguageId = \IchibanLocalizedPageData::defaultLanguageId($languages);
+		$languageId = (int)$this->wire('input')->post('ichiban_language_id');
+		if ($languages && (!$languages->get($languageId) || !$languages->get($languageId)->id)) $languageId = $defaultLanguageId;
 		$saved  = 0;
 		$skipped = 0;
 
@@ -454,12 +466,14 @@ class ProcessIchiban extends Process {
 			$data = $seo->getData();
 			$title = $san->text($title);
 			$desc = $san->text($descs[$pageId] ?? '');
-			$data['meta_title'] = $title === ''
+			$titleValue = $title === ''
 				? ['mode' => 'inherit', 'value' => '']
 				: ['mode' => 'custom', 'value' => $title];
-			$data['meta_description'] = $desc === ''
+			$descriptionValue = $desc === ''
 				? ['mode' => 'inherit', 'value' => '']
 				: ['mode' => 'custom', 'value' => $desc];
+			\IchibanLocalizedPageData::write($data, 'meta_title', $titleValue, $languageId, $defaultLanguageId);
+			\IchibanLocalizedPageData::write($data, 'meta_description', $descriptionValue, $languageId, $defaultLanguageId);
 			$seo->setData($data);
 			$p->set($fn, $seo);
 			$p->trackChange($fn);

@@ -3,7 +3,7 @@
 /** MCP tools for public, viewable SEO output only. */
 trait IchibanMcpProviderTrait {
     public function mcpProviderInfo(): array {
-        return ['name' => 'ichiban', 'title' => 'Ichiban', 'version' => '0.3.2-alpha'];
+        return ['name' => 'ichiban', 'title' => 'Ichiban', 'version' => '0.3.8-alpha'];
     }
 
     public function mcpTools(): array {

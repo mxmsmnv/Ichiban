@@ -243,14 +243,16 @@
   }
 
   function getSeoValue(wrap, key) {
-    const sourceInput = wrap.querySelector(`[name$="[${key}_value]"], [name$="[${key}][value]"]`);
+    const sourceInput = wrap.querySelector(`.ichiban-source-value[data-key="${key}"][data-language-active="1"]`)
+                     || wrap.querySelector(`[name$="[${key}_value]"], [name$="[${key}][value]"]`);
     if (sourceInput) {
       const field = sourceInput.closest('.ichiban-source-field');
       const mode = field ? field.querySelector('.ichiban-source-mode')?.value : '';
       if (mode === 'custom') return sourceInput.value.trim();
       return (sourceInput.dataset.resolved || sourceInput.value || '').trim();
     }
-    const el = wrap.querySelector(`[name$="[${key}]"]`);
+    const el = wrap.querySelector(`[data-key="${key}"][data-language-active="1"]`)
+            || wrap.querySelector(`[name$="[${key}]"]`);
     if (!el) return '';
     const value = el.value.trim();
     if (el.dataset.resolved && isSourceExpression(value)) {

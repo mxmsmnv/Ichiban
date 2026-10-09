@@ -13,6 +13,7 @@ spl_autoload_register(function(string $class): void {
 	$map = [
 		'IchibanPageFieldValue'    => 'src/PageFieldValue.php',
 		'IchibanSeoGroup'          => 'src/PageFieldValue.php',
+		'IchibanLocalizedPageData' => 'src/LocalizedPageData.php',
 		'IchibanCascade'           => 'src/Cascade.php',
 		'IchibanSourceResolver'    => 'src/Source/SourceResolver.php',
 		'IchibanCli'               => 'src/Cli/Cli.php',

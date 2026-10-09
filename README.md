@@ -65,11 +65,14 @@ Ichiban works with ProcessWire Languages and `LanguageSupportPageNames`:
 - frontend head output and XML sitemaps can publish localized `hreflang`
   alternates, including `x-default` for the default language.
 
-Page-level custom Ichiban overrides and module/template defaults are shared
-across languages. When SEO copy must differ by language, store it in a
-multilingual ProcessWire field and select that field through an Ichiban source
-expression. Disable hreflang output for languages that are internal-only, and
-verify that every advertised language has a public page URL.
+Page-level title, description, canonical, Open Graph copy/image, image alt, and
+raw JSON-LD overrides can be edited per ProcessWire language in the Ichiban
+field. Existing page data remains the default-language value, and languages
+without their own value continue to fall back to it. Source expressions still
+resolve multilingual ProcessWire fields in the active language. Structural
+controls such as robots flags, schema type, and sitemap inclusion remain shared
+intentionally. The Bulk Editor edits the active admin language; CLI writes can
+target a language with `--ichiban-language=NAME|ID`.
 
 ## Custom Code
 

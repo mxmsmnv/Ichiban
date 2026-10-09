@@ -21,6 +21,7 @@ class IchibanSeoRevisions {
 		'twitter_card', 'twitter_creator',
 		'schema_type', 'sitemap_include', 'sitemap_priority', 'sitemap_changefreq',
 		'robots_meta', 'jsonld_override',
+		'_languages',
 	];
 
 	public function __construct(object $ichiban) {
@@ -79,6 +80,12 @@ class IchibanSeoRevisions {
 		$flat = [];
 		foreach ($this->trackedKeys as $key) {
 			$val = $data[$key] ?? null;
+			if ($key === IchibanLocalizedPageData::STORAGE_KEY) {
+				$flat[$key] = is_array($val)
+					? json_encode($this->sortRecursive($val), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
+					: '';
+				continue;
+			}
 			if (is_array($val)) {
 				$flat[$key] = ($val['mode'] ?? '') . ':' . ($val['value'] ?? '');
 			} else {
@@ -86,6 +93,13 @@ class IchibanSeoRevisions {
 			}
 		}
 		return $flat;
+	}
+
+	protected function sortRecursive(array $value): array {
+		foreach ($value as &$item) if (is_array($item)) $item = $this->sortRecursive($item);
+		unset($item);
+		ksort($value, SORT_STRING);
+		return $value;
 	}
 
 	protected function getLastRevisionData(int $pageId): array {
@@ -165,7 +179,12 @@ class IchibanSeoRevisions {
 
 		foreach ($changes as $c) {
 			// Restore old_value
-			$data[$c['field']] = $this->expandStoredValue($c['field'], $c['old_value']);
+			$restored = $this->expandStoredValue($c['field'], $c['old_value']);
+			if ($c['field'] === IchibanLocalizedPageData::STORAGE_KEY && $restored === []) {
+				unset($data[$c['field']]);
+			} else {
+				$data[$c['field']] = $restored;
+			}
 		}
 		$seo->setData($data);
 		$this->restoring = true;
@@ -178,6 +197,11 @@ class IchibanSeoRevisions {
 	}
 
 	protected function expandStoredValue(string $field, mixed $value): mixed {
+		if ($field === IchibanLocalizedPageData::STORAGE_KEY) {
+			if (!is_string($value) || trim($value) === '') return [];
+			$decoded = json_decode($value, true);
+			return is_array($decoded) ? $decoded : [];
+		}
 		if (in_array($field, ['meta_title', 'meta_description', 'og_title', 'og_description'], true) && is_string($value)) {
 			$parts = explode(':', $value, 2);
 			if (count($parts) === 2 && in_array($parts[0], ['inherit', 'field', 'custom'], true)) {

@@ -73,7 +73,7 @@ class InputfieldIchiban extends Inputfield {
 		$out .= "<div class='ichiban-panel'><div class='ichiban-panel-heading'><h3>" . __('Search result fields') . "</h3><p>" . __('Control the title, description, canonical URL, and robots directives shown to search engines.') . "</p></div>\n";
 		$out .= $this->renderSourceField($name, 'meta_title',       __('Meta Title'),       $data['meta_title']       ?? [], 60,  70, $resolved['meta_title'], __('Recommended: 30–70 characters. Use a field name like title, an expression like title|truncate:70, or a token like {headline}.'), __('title'));
 		$out .= $this->renderSourceField($name, 'meta_description', __('Meta Description'), $data['meta_description'] ?? [], 120, 160, $resolved['meta_description'], __('Recommended: 50–160 characters. Use summary, summary|truncate:160, or a token like {intro}.'), __('summary|truncate:160'));
-		$out .= $this->renderTextInput($name, 'canonical_url', __('Canonical URL'), $data['canonical_url'] ?? '', __('Leave empty to use the current page URL.'), $resolved['canonical_url']);
+		$out .= $this->renderTextInput($name, 'canonical_url', __('Canonical URL'), $data['canonical_url'] ?? '', __('Leave empty to use the current page URL.'), $resolved['canonical_url'], '', '', true);
 		$out .= "<div class='ichiban-toggle-row'>"
 			. $this->renderCheckbox($name, 'meta_noindex',  __('Noindex'),  !empty($data['meta_noindex']), __('Ask search engines not to index this page.'))
 			. $this->renderCheckbox($name, 'meta_nofollow', __('Nofollow'), !empty($data['meta_nofollow']), __('Ask search engines not to follow links from this page.'))
@@ -90,8 +90,8 @@ class InputfieldIchiban extends Inputfield {
 			['website' => 'website', 'article' => 'article', 'product' => 'product'], __('Controls the Open Graph object type shared to social networks.'));
 		$out .= $this->renderSourceField($name, 'og_title',       __('OG Title'),       $data['og_title']       ?? [], 60,  80, $resolved['og_title'], __('Falls back to the meta title when empty. You can also use title, headline, or {headline}.'), __('title'));
 		$out .= $this->renderSourceField($name, 'og_description', __('OG Description'), $data['og_description'] ?? [], 120, 200, $resolved['og_description'], __('Falls back to the meta description when empty. You can also use summary|truncate:200.'), __('summary|truncate:200'));
-		$out .= $this->renderTextInput($name, 'og_image',     __('OG Image URL'), $data['og_image']     ?? '', __('Use an absolute image URL, field expression like field:splash, or ProFields dot notation like field:combo.image, field:matrix.type.image, or {combo.image}. Image fields are cropped to 1200×630 for Open Graph.'), '', 'og_image', $resolved['og_image']);
-		$out .= $this->renderTextInput($name, 'og_image_alt', __('OG Image Alt'), $data['og_image_alt'] ?? '', __('Short accessible description of the social image.'));
+		$out .= $this->renderTextInput($name, 'og_image',     __('OG Image URL'), $data['og_image']     ?? '', __('Use an absolute image URL, field expression like field:splash, or ProFields dot notation like field:combo.image, field:matrix.type.image, or {combo.image}. Image fields are cropped to 1200×630 for Open Graph.'), '', 'og_image', $resolved['og_image'], true);
+		$out .= $this->renderTextInput($name, 'og_image_alt', __('OG Image Alt'), $data['og_image_alt'] ?? '', __('Short accessible description of the social image.'), '', '', '', true);
 		$out .= "</div>\n";
 		$out .= "<div class='ichiban-panel'><div class='ichiban-panel-heading'><h3>" . __('Twitter / X') . "</h3><p>" . __('Choose the card format and optional creator attribution.') . "</p></div>\n";
 		$out .= $this->renderSelectInput($name, 'twitter_card', __('Card Type'), $data['twitter_card'] ?? 'summary_large_image',
@@ -128,7 +128,7 @@ class InputfieldIchiban extends Inputfield {
 		$out .= "<li>\n";
 		$out .= "<div class='ichiban-panel'><div class='ichiban-panel-heading'><h3>" . __('Advanced overrides') . "</h3><p>" . __('Use only when this page needs precise robots or JSON-LD output beyond the standard controls.') . "</p></div>\n";
 		$out .= $this->renderTextInput($name, 'robots_meta', __('Custom robots meta value'), $data['robots_meta'] ?? '', __('Example: max-snippet:-1, max-image-preview:large'));
-		$out .= $this->renderTextarea($name, 'jsonld_override', __('JSON-LD Override (raw)'), $data['jsonld_override'] ?? '', __('Replaces generated JSON-LD for this page. Must be valid JSON-LD.'));
+		$out .= $this->renderTextarea($name, 'jsonld_override', __('JSON-LD Override (raw)'), $data['jsonld_override'] ?? '', __('Replaces generated JSON-LD for this page. Must be valid JSON-LD.'), true);
 		$out .= "</div>\n";
 		$out .= $this->renderRevisionHistory();
 		$out .= $this->renderGscWidget();
@@ -143,6 +143,28 @@ class InputfieldIchiban extends Inputfield {
 	// -------------------------------------------------------------------------
 
 	protected function renderSourceField(string $name, string $key, string $label, $fieldData, int $warnAt, int $maxAt, string $resolved = '', string $help = '', string $placeholder = ''): string {
+		$contexts = $this->languageContexts();
+		if (count($contexts) < 2) return $this->renderSourceFieldControl($name, $key, $label, $fieldData, $warnAt, $maxAt, $resolved, $help, $placeholder, false, $key, true);
+
+		$out = "<div class='ichiban-localized-field'>\n";
+		$data = $this->value instanceof \IchibanPageFieldValue ? $this->value->getData() : [];
+		$activeId = \IchibanLocalizedPageData::activeLanguageId($this->wire('languages'), $this->wire('user'));
+		foreach ($contexts as $context) {
+			$id = $context['id'];
+			$isDefault = $context['default'];
+			$controlKey = $isDefault ? $key : $key . '__' . $id;
+			$entry = $fieldData;
+			if (!$isDefault) {
+				[$exists, $entry] = \IchibanLocalizedPageData::read($data, $key, $id, $context['default_id'], false);
+				if (!$exists) $entry = ['mode' => 'default', 'value' => ''];
+			}
+			$languageLabel = $isDefault ? sprintf(__('%s — default language'), $context['label']) : $context['label'];
+			$out .= $this->renderSourceFieldControl($name, $controlKey, $label . ' (' . $languageLabel . ')', $entry, $warnAt, $maxAt, $id === $activeId ? $resolved : '', $help, $placeholder, !$isDefault, $key, $id === $activeId);
+		}
+		return $out . "</div>\n";
+	}
+
+	protected function renderSourceFieldControl(string $name, string $key, string $label, $fieldData, int $warnAt, int $maxAt, string $resolved = '', string $help = '', string $placeholder = '', bool $allowDefault = false, string $logicalKey = '', bool $languageActive = false): string {
 		$mode = is_array($fieldData) ? ($fieldData['mode']  ?? 'field') : 'field';
 		$val  = is_array($fieldData) ? ($fieldData['value'] ?? '')       : '';
 		$san  = $this->wire('sanitizer');
@@ -151,14 +173,16 @@ class InputfieldIchiban extends Inputfield {
 		if ($help !== '') $out .= "<p class='ichiban-field-help'>" . $san->entities($help) . "</p>\n";
 		$out .= "<div class='uk-form-controls'><div class='ichiban-source-grid'>\n";
 		$out .= "<select name='{$name}[{$key}_mode]' class='uk-select ichiban-source-mode' data-source-key='{$key}'>\n";
-		foreach (['inherit' => __('Inherit'), 'field' => __('From field'), 'custom' => __('Custom')] as $m => $ml) {
+		$modes = ['inherit' => __('Inherit settings'), 'field' => __('From field'), 'custom' => __('Custom')];
+		if ($allowDefault) $modes = ['default' => __('Use default-language value')] + $modes;
+		foreach ($modes as $m => $ml) {
 			$sel  = $mode === $m ? ' selected' : '';
 			$out .= "<option value='{$m}'{$sel}>{$ml}</option>\n";
 		}
 		$out .= "</select>\n";
 		$out .= "<div><input type='text' name='{$name}[{$key}_value]'"
 			. " value='" . $san->entities($val) . "' class='uk-input ichiban-source-value'"
-			. " placeholder='" . $san->entities($placeholder) . "' data-key='{$key}' data-resolved='" . $san->entities($resolved) . "' data-warn-at='{$warnAt}' data-max-at='{$maxAt}'>"
+			. " placeholder='" . $san->entities($placeholder) . "' data-key='" . $san->entities($logicalKey ?: $key) . "' data-language-active='" . ($languageActive ? '1' : '0') . "' data-resolved='" . $san->entities($resolved) . "' data-warn-at='{$warnAt}' data-max-at='{$maxAt}'>"
 			. "<div class='ichiban-resolved-value'" . ($resolved === '' ? " hidden" : "") . "><span>" . __('Resolved value:') . "</span> <code>" . $san->entities($resolved) . "</code></div>"
 			. "<div class='ichiban-counter-row'>"
 			. "<div class='ichiban-len-bar'><div class='ichiban-len-fill' data-warn='{$warnAt}' data-max='{$maxAt}'></div></div>"
@@ -214,11 +238,32 @@ class InputfieldIchiban extends Inputfield {
 			. "</pre></details>\n";
 	}
 
-	protected function renderTextInput(string $name, string $key, string $label, string $value, string $help = '', string $placeholder = '', string $dataKey = '', string $resolved = ''): string {
+	protected function renderTextInput(string $name, string $key, string $label, string $value, string $help = '', string $placeholder = '', string $dataKey = '', string $resolved = '', bool $localized = false, bool $languageActive = false): string {
+		if ($localized && count($this->languageContexts()) > 1) {
+			$out = "<div class='ichiban-localized-field'>\n";
+			$data = $this->value instanceof \IchibanPageFieldValue ? $this->value->getData() : [];
+			$activeId = \IchibanLocalizedPageData::activeLanguageId($this->wire('languages'), $this->wire('user'));
+			foreach ($this->languageContexts() as $context) {
+				$id = $context['id'];
+				$isDefault = $context['default'];
+				$controlKey = $isDefault ? $key : $key . '__' . $id;
+				$entry = $value;
+				$use = true;
+				if (!$isDefault) {
+					[$use, $entry] = \IchibanLocalizedPageData::read($data, $key, $id, $context['default_id'], false);
+					$entry = is_scalar($entry) ? (string)$entry : '';
+				}
+				$languageLabel = $isDefault ? sprintf(__('%s — default language'), $context['label']) : $context['label'];
+				if (!$isDefault) $out .= $this->renderLocalizedValueMode($name, $key, $id, $use);
+				$out .= $this->renderTextInput($name, $controlKey, $label . ' (' . $languageLabel . ')', (string)$entry, $help, $placeholder, $dataKey ?: $key, $id === $activeId ? $resolved : '', false, $id === $activeId);
+			}
+			return $out . "</div>\n";
+		}
 		$san = $this->wire('sanitizer');
 		$attrs = '';
 		if ($dataKey !== '') {
 			$attrs .= " data-key='" . $san->entities($dataKey) . "'";
+			$attrs .= " data-language-active='" . ($languageActive ? '1' : '0') . "'";
 			$attrs .= " data-resolved='" . $san->entities($resolved) . "'";
 		}
 		$resolvedHint = '';
@@ -311,11 +356,56 @@ class InputfieldIchiban extends Inputfield {
 		return $name . ' / ' . $type;
 	}
 
-	protected function renderTextarea(string $name, string $key, string $label, string $value, string $help = ''): string {
+	protected function renderTextarea(string $name, string $key, string $label, string $value, string $help = '', bool $localized = false): string {
+		if ($localized && count($this->languageContexts()) > 1) {
+			$out = "<div class='ichiban-localized-field'>\n";
+			$data = $this->value instanceof \IchibanPageFieldValue ? $this->value->getData() : [];
+			foreach ($this->languageContexts() as $context) {
+				$id = $context['id'];
+				$isDefault = $context['default'];
+				$entry = $value;
+				$use = true;
+				if (!$isDefault) {
+					[$use, $entry] = \IchibanLocalizedPageData::read($data, $key, $id, $context['default_id'], false);
+					$entry = is_scalar($entry) ? (string)$entry : '';
+					$out .= $this->renderLocalizedValueMode($name, $key, $id, $use);
+				}
+				$languageLabel = $isDefault ? sprintf(__('%s — default language'), $context['label']) : $context['label'];
+				$out .= $this->renderTextarea($name, $isDefault ? $key : $key . '__' . $id, $label . ' (' . $languageLabel . ')', (string)$entry, $help, false);
+			}
+			return $out . "</div>\n";
+		}
 		return "<div class='uk-margin'>\n<label class='uk-form-label'>{$label}</label>\n"
 			. ($help !== '' ? "<p class='ichiban-field-help'>" . $this->wire('sanitizer')->entities($help) . "</p>\n" : '')
 			. "<div class='uk-form-controls'><textarea name='{$name}[{$key}]' class='uk-textarea' rows='5'>"
 			. $this->wire('sanitizer')->entities($value) . "</textarea></div>\n</div>\n";
+	}
+
+	protected function renderLocalizedValueMode(string $name, string $key, int $languageId, bool $specific): string {
+		$defaultSelected = $specific ? '' : ' selected';
+		$specificSelected = $specific ? ' selected' : '';
+		return "<div class='uk-margin-small'><select class='uk-select' name='{$name}[{$key}_localized__{$languageId}]'>"
+			. "<option value='default'{$defaultSelected}>" . __('Use default-language value') . "</option>"
+			. "<option value='specific'{$specificSelected}>" . __('Use language-specific value') . "</option>"
+			. "</select></div>\n";
+	}
+
+	protected function languageContexts(): array {
+		$languages = $this->wire('languages');
+		if (!$languages) return [['id' => 0, 'label' => __('Default'), 'default' => true, 'default_id' => 0]];
+		$defaultId = \IchibanLocalizedPageData::defaultLanguageId($languages);
+		$out = [];
+		foreach ($languages as $language) {
+			$id = (int)($language->id ?? 0);
+			$out[] = [
+				'id' => $id,
+				'label' => (string)($language->title ?: $language->name ?: $id),
+				'default' => $id === $defaultId,
+				'default_id' => $defaultId,
+			];
+		}
+		usort($out, static fn(array $a, array $b): int => ($b['default'] <=> $a['default']));
+		return $out ?: [['id' => 0, 'label' => __('Default'), 'default' => true, 'default_id' => 0]];
 	}
 
 	protected function renderSerpPreview(string $name, array $resolved = []): string {
@@ -496,6 +586,26 @@ class InputfieldIchiban extends Inputfield {
 				'value' => $san->text($source['value'] ?? ''),
 			];
 		}
+		$contexts = $this->languageContexts();
+		$defaultId = (int)($contexts[0]['default_id'] ?? 0);
+		foreach ($contexts as $context) {
+			$languageId = (int)$context['id'];
+			if (!empty($context['default'])) continue;
+			foreach (['meta_title', 'meta_description', 'og_title', 'og_description'] as $key) {
+				$modeKey = "{$key}__{$languageId}_mode";
+				$valueKey = "{$key}__{$languageId}_value";
+				if (!array_key_exists($modeKey, $post) && !array_key_exists($valueKey, $post)) continue;
+				$mode = (string)($post[$modeKey] ?? 'default');
+				if ($mode === 'default') {
+					\IchibanLocalizedPageData::remove($data, $key, $languageId, $defaultId);
+					continue;
+				}
+				\IchibanLocalizedPageData::write($data, $key, [
+					'mode' => in_array($mode, ['inherit', 'field', 'custom'], true) ? $mode : 'inherit',
+					'value' => $san->text($post[$valueKey] ?? ''),
+				], $languageId, $defaultId);
+			}
+		}
 		if ($this->debugEnabled()) {
 			$debug['saved_data'] = $data;
 			$this->wire('log')->save('ichiban-debug', json_encode($debug, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
@@ -519,6 +629,26 @@ class InputfieldIchiban extends Inputfield {
 
 		if (array_key_exists('jsonld_override', $post)) {
 			$data['jsonld_override'] = $san->textarea($post['jsonld_override']);
+		}
+		foreach ($contexts as $context) {
+			$languageId = (int)$context['id'];
+			if (!empty($context['default'])) continue;
+			foreach (['canonical_url', 'og_image', 'og_image_alt', 'jsonld_override'] as $key) {
+				$modeKey = "{$key}_localized__{$languageId}";
+				$valueKey = "{$key}__{$languageId}";
+				if (!array_key_exists($modeKey, $post)) continue;
+				if ($post[$modeKey] !== 'specific') {
+					\IchibanLocalizedPageData::remove($data, $key, $languageId, $defaultId);
+					continue;
+				}
+				$value = match ($key) {
+					'canonical_url' => $san->url($post[$valueKey] ?? '', ['allowRelative' => true, 'allowSchemes' => ['http', 'https']]),
+					'og_image' => $this->sanitizeUrlOrSourceExpression($post[$valueKey] ?? ''),
+					'jsonld_override' => $san->textarea($post[$valueKey] ?? ''),
+					default => $san->text($post[$valueKey] ?? ''),
+				};
+				\IchibanLocalizedPageData::write($data, $key, $value, $languageId, $defaultId);
+			}
 		}
 
 		$value->setData($data);

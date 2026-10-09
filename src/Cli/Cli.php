@@ -29,6 +29,7 @@ class IchibanCli {
 			'ichiban-limit:',
 			'ichiban-title:',
 			'ichiban-description:',
+			'ichiban-language:',
 			'ichiban-inherit-title',
 			'ichiban-inherit-description',
 			'ichiban-no-rebuild',
@@ -78,16 +79,16 @@ class IchibanCli {
 			],
 			'bulk-fix' => [
 				'title' => 'Fix one Bulk Editor row',
-				'usage' => "{$root} --ichiban-bulk-fix=PAGE_ID [--ichiban-title=TEXT] [--ichiban-description=TEXT] [--ichiban-inherit-title] [--ichiban-inherit-description]",
+				'usage' => "{$root} --ichiban-bulk-fix=PAGE_ID [--ichiban-language=NAME|ID] [--ichiban-title=TEXT] [--ichiban-description=TEXT] [--ichiban-inherit-title] [--ichiban-inherit-description]",
 				'description' => 'Save custom or inherited meta title and description values for one page through the Ichiban field API.',
-				'options' => ['--ichiban-title=TEXT', '--ichiban-description=TEXT', '--ichiban-inherit-title', '--ichiban-inherit-description', '--ichiban-no-rebuild', '--ichiban-format=json'],
+				'options' => ['--ichiban-language=NAME|ID (default language when omitted)', '--ichiban-title=TEXT', '--ichiban-description=TEXT', '--ichiban-inherit-title', '--ichiban-inherit-description', '--ichiban-no-rebuild', '--ichiban-format=json'],
 				'examples' => ["{$root} --ichiban-bulk-fix=123 --ichiban-title='New SEO title' --ichiban-description='Search snippet.'", "{$root} --ichiban-bulk-fix=123 --ichiban-inherit-title"],
 			],
 			'bulk-import' => [
 				'title' => 'Apply Bulk Editor fixes from a file',
 				'usage' => "{$root} --ichiban-bulk-import=/path/to/fixes.csv [--ichiban-no-rebuild] [--ichiban-format=json]",
-				'description' => 'Apply multiple meta title/description fixes from CSV or JSON. CSV columns: page_id,title,description,inherit_title,inherit_description.',
-				'options' => ['--ichiban-no-rebuild', '--ichiban-format=json'],
+				'description' => 'Apply multiple meta title/description fixes from CSV or JSON. Rows may include a language name or ID.',
+				'options' => ['--ichiban-language=NAME|ID (fallback for rows without language)', '--ichiban-no-rebuild', '--ichiban-format=json'],
 				'examples' => ["{$root} --ichiban-bulk-import=/tmp/ichiban-fixes.csv", "{$root} --ichiban-bulk-import=/tmp/ichiban-fixes.json --ichiban-format=json"],
 			],
 			'audit-rebuild' => [
@@ -141,9 +142,9 @@ class IchibanCli {
 			],
 			'page' => [
 				'title' => 'Inspect one page SEO value',
-				'usage' => "{$root} --ichiban-page=ID [--ichiban-format=json]",
+				'usage' => "{$root} --ichiban-page=ID [--ichiban-language=NAME|ID] [--ichiban-format=json]",
 				'description' => 'Print resolved page SEO data for a page that has the Ichiban SEO field.',
-				'options' => ['--ichiban-format=json'],
+				'options' => ['--ichiban-language=NAME|ID', '--ichiban-format=json'],
 				'examples' => ["{$root} --ichiban-page=123", "{$root} --ichiban-page=123 --ichiban-format=json"],
 			],
 		];
@@ -175,7 +176,7 @@ class IchibanCli {
 		if (array_key_exists('ichiban-robots', $options)) return $this->ichiban->renderRobotsTxt();
 		if (array_key_exists('ichiban-llms', $options)) return $this->ichiban->renderLlmsTxt();
 		if (array_key_exists('ichiban-settings', $options)) return ['ok' => true, 'settings' => $this->ichiban->siteSettings()];
-		if (array_key_exists('ichiban-page', $options)) return $this->page((int)$options['ichiban-page']);
+		if (array_key_exists('ichiban-page', $options)) return $this->page((int)$options['ichiban-page'], (string)($options['ichiban-language'] ?? ''));
 		return $this->help();
 	}
 
@@ -253,6 +254,7 @@ class IchibanCli {
 			'description' => $hasDescription ? (string)$options['ichiban-description'] : null,
 			'inherit_title' => $inheritTitle,
 			'inherit_description' => $inheritDescription,
+			'language' => (string)($options['ichiban-language'] ?? ''),
 		]);
 		$this->afterBulkSave(!array_key_exists('ichiban-no-rebuild', $options), [$pageId]);
 		return ['ok' => true, 'message' => 'Bulk SEO fix saved.', 'saved' => 1, 'skipped' => 0, 'pages' => [$result]];
@@ -279,6 +281,7 @@ class IchibanCli {
 					'description' => array_key_exists('description', $row) ? (string)$row['description'] : (array_key_exists('meta_description', $row) ? (string)$row['meta_description'] : null),
 					'inherit_title' => $this->truthy($row['inherit_title'] ?? false),
 					'inherit_description' => $this->truthy($row['inherit_description'] ?? false),
+					'language' => (string)($row['language'] ?? $options['ichiban-language'] ?? ''),
 				]);
 				$saved++;
 				$pageIds[] = $pageId;
@@ -313,14 +316,18 @@ class IchibanCli {
 		return ['ok' => true, 'message' => 'Sitemap files deleted.', 'deleted' => $deleted];
 	}
 
-	protected function page(int $id): array {
+	protected function page(int $id, string $language = ''): array {
 		if ($id < 1) throw new \InvalidArgumentException('Page ID must be a positive integer.');
 		$page = $this->ichiban->wire('pages')->get($id);
 		if (!$page || !$page->id) throw new \InvalidArgumentException("Page not found: {$id}");
 		$fieldName = $this->ichiban->getSeoFieldName();
 		if (!$page->hasField($fieldName)) throw new \InvalidArgumentException("Page {$id} does not have Ichiban field '{$fieldName}'.");
+		$user = $this->ichiban->wire('user');
+		$oldLanguage = $user && isset($user->language) ? $user->language : null;
+		$selectedLanguage = $this->language($language);
+		if ($selectedLanguage && $user) $user->language = $selectedLanguage;
 		$seo = $page->get($fieldName);
-		return [
+		$result = [
 			'ok' => true,
 			'page' => [
 				'id' => (int)$page->id,
@@ -341,6 +348,9 @@ class IchibanCli {
 				'schema_type' => (string)($seo->schema->type ?? ''),
 			],
 		];
+		if ($selectedLanguage) $result['language'] = ['id' => (int)$selectedLanguage->id, 'name' => (string)$selectedLanguage->name];
+		if ($user && $oldLanguage) $user->language = $oldLanguage;
+		return $result;
 	}
 
 	protected function saveBulkPage(int $pageId, array $changes): array {
@@ -354,23 +364,26 @@ class IchibanCli {
 		if (!$seo instanceof \IchibanPageFieldValue) throw new \RuntimeException("Page {$pageId} has no writable Ichiban value.");
 		$data = $seo->getData();
 		$san = $this->ichiban->wire('sanitizer');
+		$selectedLanguage = $this->language((string)($changes['language'] ?? ''));
+		$defaultLanguageId = \IchibanLocalizedPageData::defaultLanguageId($this->ichiban->wire('languages'));
+		$languageId = $selectedLanguage ? (int)$selectedLanguage->id : $defaultLanguageId;
 
 		$changed = [];
 		if (!empty($changes['inherit_title'])) {
-			$data['meta_title'] = ['mode' => 'inherit', 'value' => ''];
+			\IchibanLocalizedPageData::write($data, 'meta_title', ['mode' => 'inherit', 'value' => ''], $languageId, $defaultLanguageId);
 			$changed[] = 'meta_title';
 		} elseif (array_key_exists('title', $changes) && $changes['title'] !== null) {
 			$title = $san->text((string)$changes['title']);
-			$data['meta_title'] = $title === '' ? ['mode' => 'inherit', 'value' => ''] : ['mode' => 'custom', 'value' => $title];
+			\IchibanLocalizedPageData::write($data, 'meta_title', $title === '' ? ['mode' => 'inherit', 'value' => ''] : ['mode' => 'custom', 'value' => $title], $languageId, $defaultLanguageId);
 			$changed[] = 'meta_title';
 		}
 
 		if (!empty($changes['inherit_description'])) {
-			$data['meta_description'] = ['mode' => 'inherit', 'value' => ''];
+			\IchibanLocalizedPageData::write($data, 'meta_description', ['mode' => 'inherit', 'value' => ''], $languageId, $defaultLanguageId);
 			$changed[] = 'meta_description';
 		} elseif (array_key_exists('description', $changes) && $changes['description'] !== null) {
 			$description = $san->text((string)$changes['description']);
-			$data['meta_description'] = $description === '' ? ['mode' => 'inherit', 'value' => ''] : ['mode' => 'custom', 'value' => $description];
+			\IchibanLocalizedPageData::write($data, 'meta_description', $description === '' ? ['mode' => 'inherit', 'value' => ''] : ['mode' => 'custom', 'value' => $description], $languageId, $defaultLanguageId);
 			$changed[] = 'meta_description';
 		}
 
@@ -386,7 +399,18 @@ class IchibanCli {
 			'title' => (string)$page->title,
 			'url' => method_exists($this->ichiban, 'pageHttpUrl') ? $this->ichiban->pageHttpUrl($page) : $page->httpUrl(),
 			'changed' => array_values(array_unique($changed)),
+			'language' => $selectedLanguage ? (string)$selectedLanguage->name : 'default',
 		];
+	}
+
+	protected function language(string $value): mixed {
+		$value = trim($value);
+		$languages = $this->ichiban->wire('languages');
+		if (!$languages) return null;
+		if ($value === '') return method_exists($languages, 'getDefault') ? $languages->getDefault() : null;
+		$language = $languages->get(ctype_digit($value) ? (int)$value : $value);
+		if (!$language || !$language->id) throw new \InvalidArgumentException("Unknown ProcessWire language: {$value}");
+		return $language;
 	}
 
 	protected function afterBulkSave(bool $rebuild, array $pageIds): void {

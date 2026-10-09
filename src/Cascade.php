@@ -17,11 +17,16 @@ class IchibanCascade {
 	protected object $ichiban;
 	protected \ProcessWire\Page $page;
 	protected ?array $rawData;
+	protected int $languageId;
+	protected int $defaultLanguageId;
 
-	public function __construct(object $ichiban, \ProcessWire\Page $page, ?array $rawData = null) {
+	public function __construct(object $ichiban, \ProcessWire\Page $page, ?array $rawData = null, ?int $languageId = null, ?int $defaultLanguageId = null) {
 		$this->ichiban = $ichiban;
 		$this->page    = $page;
 		$this->rawData = $rawData;
+		$languages = \ProcessWire\wire('languages');
+		$this->defaultLanguageId = $defaultLanguageId ?? IchibanLocalizedPageData::defaultLanguageId($languages);
+		$this->languageId = $languageId ?? IchibanLocalizedPageData::activeLanguageId($languages, \ProcessWire\wire('user'));
 	}
 
 	/**
@@ -78,8 +83,9 @@ class IchibanCascade {
 		}
 		$fieldKey = "{$group}_{$key}";
 		$fieldKey = $this->aliasFieldKey($group, $key, $fieldKey);
-		if (!isset($data[$fieldKey])) return null;
-		$entry = $this->normalizeSourceEntry($data[$fieldKey], $group, $key);
+		[$exists, $stored] = IchibanLocalizedPageData::read($data, $fieldKey, $this->languageId, $this->defaultLanguageId);
+		if (!$exists) return null;
+		$entry = $this->normalizeSourceEntry($stored, $group, $key);
 		if ($entry === 'inherit') return 'inherit';
 		if ($entry === null) return null;
 		return $entry;

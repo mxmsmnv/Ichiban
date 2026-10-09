@@ -124,10 +124,19 @@ are used for canonical and social URLs when `LanguageSupportPageNames` is
 installed. Frontend head output and sitemap entries can include localized
 `hreflang` alternates.
 
-Ichiban's own custom per-page override payload and global/template defaults are
-language-neutral. Use multilingual ProcessWire fields plus source expressions
-for language-specific SEO copy instead of duplicating the Ichiban field's
-storage. Confirm that translated pages are public before enabling hreflang.
+Ichiban stores per-language page overrides inside the field's existing JSON
+payload. The legacy top-level value is the default-language value; non-default
+language values are keyed by ProcessWire language ID and fall back to the
+default-language value when absent. Editors can override title/description
+sources, canonical URL, Open Graph title/description/image/image alt, and raw
+JSON-LD separately. Robots directives, social/schema types, Twitter creator,
+and sitemap controls remain language-neutral because they describe shared page
+behavior. Revisions capture and restore the complete language map.
+
+The Bulk Editor writes the active administrator language. CLI `bulk-fix`,
+`bulk-import`, and `page` commands accept `--ichiban-language=NAME|ID`; import
+rows may contain a `language` column. Omitting the option preserves the
+default-language behavior used before multilingual overrides were added.
 
 ### Title Format
 
@@ -198,7 +207,7 @@ php index.php --ichiban-sitemap-status
 php index.php --ichiban-page=123 --ichiban-format=json
 ```
 
-Use `--ichiban-help=command` for detailed help and `--ichiban-format=json` for machine-readable output. Bulk import CSV columns are `page_id,title,description,inherit_title,inherit_description`. Destructive sitemap cleanup requires `--ichiban-force`.
+Use `--ichiban-help=command` for detailed help and `--ichiban-format=json` for machine-readable output. Bulk import CSV columns are `page_id,title,description,inherit_title,inherit_description,language`; `language` is optional. Destructive sitemap cleanup requires `--ichiban-force`.
 
 ## Audit
 
