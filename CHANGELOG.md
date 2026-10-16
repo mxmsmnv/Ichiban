@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [0.3.9-alpha] - 2026-10-16
+
+### Added
+
+- Added a read-only PocketWire provider for rendered SEO metadata on published,
+  viewable pages while preserving the no-image-generation preview boundary.
+
 ## [0.3.8-alpha] - 2026-10-09
 
 ### Added
