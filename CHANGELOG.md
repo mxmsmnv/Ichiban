@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+- Load Search Insights from saved data, refresh Google reports in the background, and keep the last successful results when a refresh fails. Bound detail tables and load audit data only for the displayed pages.
+
 - Show progress for the current notification queue, the next scheduled batch capacity, and saved Google URL inspection totals in Indexing Log.
 
 - Save the image variation setting and restrict custom markup settings to superusers.

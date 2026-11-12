@@ -41,7 +41,8 @@ class ProcessIchiban extends Process {
 		$url = $this->wire('config')->urls->Ichiban;
 		$cssPath = $this->wire('config')->paths->Ichiban . 'assets/css/process.css';
 		$this->wire('config')->styles->add($url . 'assets/css/process.css?v=' . (int) @filemtime($cssPath));
-		$this->wire('config')->scripts->add($url . 'assets/js/process.js');
+		$jsPath = $this->wire('config')->paths->Ichiban . 'assets/js/process.js';
+		$this->wire('config')->scripts->add($url . 'assets/js/process.js?v=' . (int) @filemtime($jsPath));
 	}
 
 	// -------------------------------------------------------------------------
@@ -885,49 +886,75 @@ class ProcessIchiban extends Process {
 			}
 			$this->wire('session')->redirect($this->gscUrl($view, $days));
 		}
-		$rowLimit = $view === 'overview' ? 10 : 0;
-		$data = $gsc->getDashboardData($days);
-		$out  = $this->renderAdminNav('search-statistics');
-		$out .= "<div class='ichiban-gsc-page'>\n";
-		$out .= "<div class='ichiban-gsc-page-header'><div><p>" . __('Review Google Search Console performance, page indexing checks, and search breakdowns from cached API data.') . "</p></div>"
-			. "<a class='uk-button uk-button-default' target='_blank' rel='noopener' href='https://search.google.com/search-console'>" . __('Open Search Console') . "</a></div>\n";
-		$out .= $this->renderIntegrationStatus($gsc->isConnected(), __('Connected'), __('Not connected'));
-		$out .= $this->renderGscToolbar($days, $view);
-		$out .= "<div class='ichiban-gsc-stats'>\n";
-		// Metrics overview
-		foreach (['clicks' => __('Clicks'), 'impressions' => __('Impressions'), 'ctr' => __('CTR'), 'position' => __('Avg Position')] as $key => $label) {
-			$val  = $data[$key] ?? '—';
-			$out .= "<div class='ichiban-gsc-metric'><span class='ichiban-gsc-value'>{$val}</span><span class='ichiban-gsc-label'>{$label}</span></div>\n";
-		}
-		$out .= "</div>\n";
-		$disconnectUrl = $this->adminUrl('search-statistics/');
-		$out .= $this->renderGscTrendChart($gsc->getDailyRows($days));
-		if ($view === 'pages') {
-			$out .= $this->renderGscTable(__('Top Pages'), $gsc->getTopPages($days, $rowLimit), __('Page'));
-		} elseif ($view === 'queries') {
-			$out .= $this->renderGscTable(__('Top Queries'), $gsc->getTopQueries($days, $rowLimit), __('Query'));
+		$refresh = (string)$input->post('gsc_refresh');
+		if (in_array($refresh, ['manual', 'auto'], true)) {
+			$this->wire('session')->CSRF->validate();
 		} else {
-			$out .= $this->renderGscIndexingSection($gsc, $days, $view);
-			$out .= "<div class='ichiban-gsc-primary-grid'>\n";
-			$out .= $this->renderGscTable(__('Top Pages'), $gsc->getTopPages($days, 10), __('Page'), $this->gscUrl('pages', $days));
-			$out .= $this->renderGscTable(__('Top Queries'), $gsc->getTopQueries($days, 10), __('Query'), $this->gscUrl('queries', $days));
-			$out .= "</div>\n";
-			$out .= "<div class='ichiban-gsc-breakdowns'>\n";
-			$out .= $this->renderGscTable(__('Countries'), $gsc->getTopCountries($days, 10), __('Country'));
-			$out .= $this->renderGscTable(__('Devices'), $gsc->getTopDevices($days, 10), __('Device'));
-			$out .= $this->renderGscTable(__('Search Appearance'), $gsc->getSearchAppearances($days, 10), __('Appearance'));
-			$out .= "</div>\n";
+			$refresh = '';
 		}
-		if ($gsc->getAnalyticsError() !== '') {
+		if ($refresh !== '' && $input->post('gsc_fragment') === '1') {
+			$session = $this->wire('session');
+			$tokenInput = $session->CSRF->renderInput();
+			$session->close();
+			header('Content-Type: text/html; charset=UTF-8');
+			header('Cache-Control: no-store');
+			echo $this->renderGscPerformance($gsc->getInsightsData($days, $view, $refresh), $days, $view, $tokenInput);
+			exit;
+		}
+		$snapshot = $gsc->getInsightsData($days, $view, $refresh);
+		$out  = $this->renderAdminNav('search-statistics');
+		$out .= "<div class='ichiban-gsc-page'>";
+		$out .= "<div class='ichiban-gsc-page-header'><div><p>" . __('Review Google Search Console performance, page indexing checks, and search breakdowns.') . "</p></div>"
+			. "<a class='uk-button uk-button-default' target='_blank' rel='noopener' href='https://search.google.com/search-console'>" . __('Open Search Console') . "</a></div>";
+		$out .= $this->renderIntegrationStatus(true, __('Connected'), __('Not connected'));
+		$out .= $this->renderGscToolbar($days, $view);
+		$out .= $this->renderGscPerformance($snapshot, $days, $view);
+		if ($view === 'overview') $out .= $this->renderGscIndexingSection($gsc, $days, $view);
+		$out .= $this->renderGscFooter($this->adminUrl('search-statistics/'));
+		return $out . '</div>';
+	}
+
+	protected function renderGscPerformance(array $snapshot, int $days, string $view, ?string $tokenInput = null): string {
+		$san = $this->wire('sanitizer');
+		$data = $snapshot['data'];
+		$auto = $snapshot['auto'] ? '1' : '0';
+		$status = $snapshot['updated']
+			? sprintf(__('Performance data updated %s'), $this->wire('datetime')->date('Y-m-d H:i', $snapshot['updated']))
+			: __('Performance data has not been saved for this view yet.');
+		if ($snapshot['updated'] && $snapshot['stale']) $status .= ' ' . __('Some data needs refreshing.');
+		$out = "<div id='ichiban-gsc-performance' data-auto-refresh='{$auto}'>";
+		$out .= "<form class='ichiban-gsc-refresh uk-margin-small' method='post' action='" . $san->entities($this->gscUrl($view, $days)) . "'>"
+			. ($tokenInput ?? $this->wire('session')->CSRF->renderInput())
+			. "<input type='hidden' name='gsc_refresh' value='manual'>"
+			. "<button class='uk-button uk-button-default uk-button-small' type='submit'>" . __('Refresh performance data') . "</button> "
+			. "<span role='status' data-gsc-status data-loading='" . $san->entities(__('Updating performance data…'))
+			. "' data-failed='" . $san->entities(__('Refresh failed. Try again.')) . "'>" . $san->entities($status) . "</span></form>";
+		if ($snapshot['error'] !== '') {
 			$out .= "<p class='uk-alert uk-alert-warning' role='status'>"
-				. $this->wire('sanitizer')->entities(sprintf(
-					__('Search Console statistics are unavailable. %s'),
-					$gsc->getAnalyticsError()
-				)) . '</p>';
+				. $san->entities(sprintf(__('Could not refresh all Search Console data. %s'), $snapshot['error'])) . '</p>';
 		}
-		$out .= $this->renderGscFooter($gsc, $disconnectUrl);
-		$out .= "</div>\n";
-		return $out;
+		$out .= "<div class='ichiban-gsc-stats'>";
+		foreach (['clicks' => __('Clicks'), 'impressions' => __('Impressions'), 'ctr' => __('CTR'), 'position' => __('Avg Position')] as $key => $label) {
+			$value = $san->entities((string)($data['metrics'][$key] ?? '—'));
+			$out .= "<div class='ichiban-gsc-metric'><span class='ichiban-gsc-value'>{$value}</span><span class='ichiban-gsc-label'>{$label}</span></div>";
+		}
+		$out .= "</div>" . $this->renderGscTrendChart($data['trend'] ?? []);
+		if ($view === 'pages' || $view === 'queries') {
+			$label = $view === 'pages' ? __('Page') : __('Query');
+			$title = $view === 'pages' ? __('Top Pages') : __('Top Queries');
+			$out .= '<p>' . $san->entities(sprintf(__('Showing up to %d rows. Open Search Console for the full report.'), \IchibanSearchStatistics::INSIGHTS_ROW_LIMIT)) . '</p>';
+			$out .= $this->renderGscTable($title, $data[$view] ?? [], $label);
+		} else {
+			$out .= "<div class='ichiban-gsc-primary-grid'>";
+			$out .= $this->renderGscTable(__('Top Pages'), $data['pages'] ?? [], __('Page'), $this->gscUrl('pages', $days));
+			$out .= $this->renderGscTable(__('Top Queries'), $data['queries'] ?? [], __('Query'), $this->gscUrl('queries', $days));
+			$out .= "</div><div class='ichiban-gsc-breakdowns'>";
+			$out .= $this->renderGscTable(__('Countries'), $data['countries'] ?? [], __('Country'));
+			$out .= $this->renderGscTable(__('Devices'), $data['devices'] ?? [], __('Device'));
+			$out .= $this->renderGscTable(__('Search Appearance'), $data['appearance'] ?? [], __('Appearance'));
+			$out .= '</div>';
+		}
+		return $out . '</div>';
 	}
 
 	public function executeBacklinks(): string {
@@ -3457,18 +3484,33 @@ class ProcessIchiban extends Process {
 
 	protected function enrichGscPageRows(array $rows): array {
 		if (!$rows) return $rows;
+		$urls = [];
+		foreach ($rows as $row) {
+			$url = rtrim((string)($row['key'] ?? ''), '/');
+			if ($url !== '') {
+				$urls[$url] = $url;
+				$urls[$url . '/'] = $url . '/';
+			}
+		}
+		if (!$urls) return $rows;
 		try {
-			$indexRows = $this->wire('database')->query("SELECT * FROM `ichiban_index`")->fetchAll(\PDO::FETCH_ASSOC);
+			$placeholders = implode(',', array_fill(0, count($urls), '?'));
+			$stmt = $this->wire('database')->prepare("SELECT * FROM `ichiban_index` WHERE url IN ($placeholders)");
+			$stmt->execute(array_values($urls));
+			$indexRows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 		} catch (\Throwable $e) {
 			return $rows;
 		}
+		$pageIds = array_values(array_unique(array_filter(array_map('intval', array_column($indexRows, 'page_id')))));
+		$editUrls = [];
+		if ($pageIds) {
+			foreach ($this->wire('pages')->getById($pageIds) as $page) $editUrls[$page->id] = $page->editUrl;
+		}
 		$index = [];
 		foreach ($indexRows as $row) {
-			$url = rtrim((string)($row['url'] ?? ''), '/');
-			if ($url === '') continue;
-			$page = $this->wire('pages')->get((int)($row['page_id'] ?? 0));
+			$url = rtrim((string)$row['url'], '/');
 			$row['audit_score'] = $this->rowScore($row);
-			$row['edit_url'] = ($page && $page->id) ? $page->editUrl : '';
+			$row['edit_url'] = $editUrls[(int)$row['page_id']] ?? '';
 			$index[$url] = $row;
 		}
 		foreach ($rows as &$row) {
@@ -3482,12 +3524,8 @@ class ProcessIchiban extends Process {
 		return $rows;
 	}
 
-	protected function renderGscFooter(\IchibanSearchStatistics $gsc, string $disconnectUrl): string {
-		$lastUpdated = $gsc->getLastCacheTime();
-		$updatedText = $lastUpdated
-			? sprintf(__('Last updated %s'), $this->wire('datetime')->date('Y-m-d H:i', $lastUpdated))
-			: __('Last updated unavailable');
-		return "<div class='ichiban-gsc-footer'><span>{$updatedText}</span><form method='post' action='{$disconnectUrl}' class='uk-margin-remove'>"
+	protected function renderGscFooter(string $disconnectUrl): string {
+		return "<div class='ichiban-gsc-footer'><form method='post' action='{$disconnectUrl}' class='uk-margin-remove'>"
 			. $this->wire('session')->CSRF->renderInput()
 			. "<input type='hidden' name='disconnect' value='1'>"
 			. "<button class='uk-button uk-button-default uk-button-small' type='submit'>" . __('Disconnect GSC') . "</button>"

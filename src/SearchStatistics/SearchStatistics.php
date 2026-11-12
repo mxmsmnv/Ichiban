@@ -10,10 +10,14 @@
 class IchibanSearchStatistics {
 
 	const CACHE_TTL = 21600; // 6 hours in seconds
+	const INSIGHTS_ROW_LIMIT = 250;
+	private const INSIGHTS_CACHE = 'IchibanSearchInsights';
 
 	protected object $ichiban;
 	protected string $lastError = '';
 	protected string $analyticsError = '';
+	private ?float $insightsDeadline = null;
+	private ?string $refreshedAccessToken = null;
 
 	public function __construct(object $ichiban) {
 		$this->ichiban = $ichiban;
@@ -90,12 +94,84 @@ class IchibanSearchStatistics {
 			'gsc_token_expiry'  => 0,
 		]));
 		$this->ichiban->wire('database')->exec("DELETE FROM ichiban_gsc_cache");
+		$this->ichiban->wire('cache')->deleteFor(self::INSIGHTS_CACHE);
 		$this->ensureIndexingCacheTable();
 		$this->ichiban->wire('database')->exec("DELETE FROM ichiban_gsc_indexing_cache");
 	}
 
 	protected function getRedirectUri(): string {
 		return \ProcessWire\Ichiban::adminPageUrl(true, 'search-statistics/');
+	}
+
+	/** Serve saved analytics immediately and fetch only during an explicit refresh. */
+	public function getInsightsData(int $days, string $view, string $refresh = ''): array {
+		$cache = $this->ichiban->wire('cache');
+		$key = hash('sha256', $this->getSiteUrl() . '|' . $days . '|' . $view . '|' . $this->ichiban->get('gsc_refresh_token'));
+		$snapshot = $cache->getFor(self::INSIGHTS_CACHE, $key) ?: [];
+		$loaders = [
+			'metrics' => fn() => $this->getDashboardData($days),
+			'trend' => fn() => $this->getDailyRows($days),
+		];
+		if ($view !== 'queries') $loaders['pages'] = fn() => $this->getTopPages($days, $view === 'pages' ? self::INSIGHTS_ROW_LIMIT : 10);
+		if ($view !== 'pages') $loaders['queries'] = fn() => $this->getTopQueries($days, $view === 'queries' ? self::INSIGHTS_ROW_LIMIT : 10);
+		if ($view === 'overview') {
+			$loaders['countries'] = fn() => $this->getTopCountries($days, 10);
+			$loaders['devices'] = fn() => $this->getTopDevices($days, 10);
+			$loaders['appearance'] = fn() => $this->getSearchAppearances($days, 10);
+		}
+		$now = time();
+		$due = static fn(array $entry): bool => ($entry['at'] ?? 0) <= $now - self::CACHE_TTL;
+		$entries = $snapshot['entries'] ?? [];
+		$stale = static fn(array $entries): bool => (bool)array_diff_key($loaders, $entries)
+			|| (bool)array_filter($entries, $due);
+		$auto = $stale($entries) && ($snapshot['attempted'] ?? 0) <= $now - 300;
+		if ($refresh === 'manual' || ($refresh === 'auto' && $auto)) {
+			$path = $this->ichiban->wire('config')->paths->cache . 'IchibanInsights-' . $key . '.lock';
+			$lock = @fopen($path, 'c');
+			if ($lock) {
+				try {
+					if (flock($lock, LOCK_EX | LOCK_NB)) {
+						$snapshot = $cache->getFor(self::INSIGHTS_CACHE, $key) ?: [];
+						$entries = $snapshot['entries'] ?? [];
+						if ($refresh === 'manual' || ($stale($entries) && ($snapshot['attempted'] ?? 0) <= $now - 300)) {
+							$snapshot = $this->refreshInsightsData($entries, $loaders, $due, $refresh === 'manual');
+							$entries = $snapshot['entries'];
+							$cache->saveFor(self::INSIGHTS_CACHE, $key, $snapshot, 2592000);
+						}
+					}
+				} finally {
+					fclose($lock);
+				}
+			} else {
+				$snapshot['error'] = 'Search Insights cache is unavailable for refreshing.';
+			}
+			$auto = false;
+		}
+		$data = array_map(static fn(array $entry): array => $entry['data'], $entries);
+		if (!isset($data['metrics'])) $data['metrics'] = $this->getCache($this->getSiteUrl(), "dashboard_v2_{$days}") ?? [];
+		return [
+			'data' => $data,
+			'updated' => $entries ? max(array_column($entries, 'at')) : 0,
+			'stale' => $stale($entries),
+			'auto' => $auto,
+			'error' => (string)($snapshot['error'] ?? ''),
+		];
+	}
+
+	private function refreshInsightsData(array $entries, array $loaders, callable $due, bool $force): array {
+		$this->analyticsError = '';
+		$this->insightsDeadline = microtime(true) + 12;
+		try {
+			foreach ($loaders as $name => $load) {
+				if (!$force && !$due($entries[$name] ?? [])) continue;
+				$data = $load();
+				if ($this->analyticsError !== '') break;
+				$entries[$name] = ['at' => time(), 'data' => $data];
+			}
+		} finally {
+			$this->insightsDeadline = null;
+		}
+		return ['entries' => $entries, 'attempted' => time(), 'error' => $this->analyticsError];
 	}
 
 	// -------------------------------------------------------------------------
@@ -108,7 +184,7 @@ class IchibanSearchStatistics {
 		$startDate = date('Y-m-d', strtotime("-{$days} days"));
 
 		$cacheKey  = "dashboard_v2_{$days}";
-		$cached    = $this->getCache($siteUrl, $cacheKey);
+		$cached    = $this->insightsDeadline === null ? $this->getCache($siteUrl, $cacheKey) : null;
 		if ($cached) return $cached;
 
 		$token    = $this->getAccessToken();
@@ -424,10 +500,11 @@ class IchibanSearchStatistics {
 	// -------------------------------------------------------------------------
 
 	protected function getAccessToken(): ?string {
+		if ($this->refreshedAccessToken !== null) return $this->refreshedAccessToken;
 		$token   = $this->ichiban->get('gsc_access_token');
 		$expiry  = (int)$this->ichiban->get('gsc_token_expiry');
 		if (!$token && $this->ichiban->get('gsc_refresh_token')) {
-			$token = $this->refreshToken();
+			return $this->refreshToken();
 		}
 		if (!$token) return null;
 		if ($expiry && $expiry < time() + 60) {
@@ -457,6 +534,7 @@ class IchibanSearchStatistics {
 		if (!$refreshToken) return null;
 
 		$http     = $this->ichiban->wire(new \ProcessWire\WireHttp());
+		if ($this->insightsDeadline !== null) $http->setTimeout(4);
 		$response = $http->post('https://oauth2.googleapis.com/token', [
 			'client_id'     => $clientId,
 			'client_secret' => $clientSecret,
@@ -467,11 +545,12 @@ class IchibanSearchStatistics {
 		if (empty($data['access_token'])) return null;
 
 		$existing = $this->ichiban->wire('modules')->getModuleConfigData('Ichiban');
+		if (($existing['gsc_refresh_token'] ?? '') !== $refreshToken) return null;
 		$this->ichiban->wire('modules')->saveModuleConfigData('Ichiban', array_merge($existing, [
 			'gsc_access_token' => $data['access_token'],
 			'gsc_token_expiry' => time() + (int)($data['expires_in'] ?? 3600),
 		]));
-		return $data['access_token'];
+		return $this->refreshedAccessToken = $data['access_token'];
 	}
 
 	protected function apiRequest(string $url, string $token, string $body = ''): string {
@@ -479,13 +558,19 @@ class IchibanSearchStatistics {
 			$this->lastError = 'PHP cURL is not available.';
 			return '';
 		}
+		$timeout = $this->insightsDeadline === null ? 20.0 : $this->insightsDeadline - microtime(true);
+		if ($timeout <= 0) {
+			$this->lastError = 'Search Console refresh exceeded its time budget.';
+			return '';
+		}
+		$timeoutMs = (int)ceil($timeout * 1000);
 		$ch = curl_init($url);
 		curl_setopt_array($ch, [
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_POST           => true,
 			CURLOPT_POSTFIELDS     => $body,
-			CURLOPT_CONNECTTIMEOUT => 10,
-			CURLOPT_TIMEOUT        => 20,
+			CURLOPT_CONNECTTIMEOUT_MS => min(10000, $timeoutMs),
+			CURLOPT_TIMEOUT_MS     => $timeoutMs,
 			CURLOPT_HTTPHEADER     => [
 				'Authorization: Bearer ' . $token,
 				'Content-Type: application/json',

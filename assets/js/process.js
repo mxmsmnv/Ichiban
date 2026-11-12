@@ -10,6 +10,7 @@
     initScoreBadges();
     initGscCharts();
     initSortableTables();
+    initGscRefresh();
     initSchemaBuilder();
     initAiWorkspace();
   });
@@ -47,8 +48,49 @@
     };
   }
 
-  function initGscCharts() {
-    const charts = Array.from(document.querySelectorAll('.ichiban-gsc-chart-canvas'));
+  function initGscRefresh(root = document.querySelector('#ichiban-gsc-performance'), auto = true) {
+    if (!root) return;
+    const form = root.querySelector('.ichiban-gsc-refresh');
+    const status = form.querySelector('[data-gsc-status]');
+    const button = form.querySelector('button[type="submit"]');
+    async function refresh(mode) {
+      if (button.disabled) return;
+      const fields = new URLSearchParams(new FormData(form));
+      fields.set('gsc_refresh', mode);
+      fields.set('gsc_fragment', '1');
+      button.disabled = true;
+      status.textContent = status.dataset.loading;
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: fields,
+          credentials: 'same-origin'
+        });
+        if (!response.ok) throw new Error('Search Insights refresh failed');
+        const updated = new DOMParser().parseFromString(await response.text(), 'text/html')
+          .querySelector('#ichiban-gsc-performance');
+        if (!updated) throw new Error('Missing Search Insights response');
+        const restoreFocus = mode === 'manual' && form.contains(document.activeElement);
+        root.replaceWith(updated);
+        initGscCharts(updated);
+        initSortableTables(updated);
+        initGscRefresh(updated, false);
+        if (restoreFocus) updated.querySelector('button[type="submit"]').focus();
+      } catch {
+        status.textContent = status.dataset.failed;
+      } finally {
+        button.disabled = false;
+      }
+    }
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      refresh('manual');
+    });
+    if (auto && root.dataset.autoRefresh === '1') refresh('auto');
+  }
+
+  function initGscCharts(root = document) {
+    const charts = Array.from(root.querySelectorAll('.ichiban-gsc-chart-canvas'));
     if (!charts.length) return;
     charts.forEach(canvas => {
       const wrap = canvas.closest('.ichiban-gsc-chart-canvas-wrap');
@@ -203,8 +245,8 @@
     }[char]));
   }
 
-  function initSortableTables() {
-    document.querySelectorAll('.ichiban-sortable-table').forEach(table => {
+  function initSortableTables(root = document) {
+    root.querySelectorAll('.ichiban-sortable-table').forEach(table => {
       const headers = Array.from(table.querySelectorAll('thead th'));
       headers.forEach((th, index) => {
         const button = th.querySelector('button[data-sort-type]');

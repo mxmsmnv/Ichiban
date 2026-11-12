@@ -296,6 +296,12 @@ metadata and pass through sitemap exclusions, validation, and deduplication.
 
 ## Search Console
 
+Search Insights opens using saved performance data and refreshes missing or
+older data in the background. Results are cached by property, date range, and
+view. The page shows when performance data was last updated and keeps the
+previous results if Google cannot refresh them. Use **Refresh performance data**
+for an immediate refresh. Top Pages and Top Queries show up to 250 rows each.
+
 The Insights section connects to Google Search Console with OAuth. It caches Search Analytics data and shows date ranges for 7, 28, 90, 180, and 365 days.
 
 Page Indexing counts the URLs checked through URL Inspection. It shows
