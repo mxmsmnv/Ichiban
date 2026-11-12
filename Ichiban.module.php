@@ -8,7 +8,7 @@ require_once __DIR__ . '/src/McpProviderTrait.php';
  *
  * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
- * @version 0.4.1-alpha
+ * @version 0.4.2-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
 	use IchibanMcpProviderTrait;
@@ -22,7 +22,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'title'    => 'Ichiban',
 			'summary'  => 'Comprehensive SEO module: meta/OG/schema, audit, redirects, revisions, email reports.',
 			'author'   => 'Maxim Semenov',
-			'version'  => 41,
+			'version'  => 42,
 			'href'     => 'https://smnv.org',
 			'singular' => true,
 			'autoload' => true,
@@ -52,9 +52,12 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$this->addHookBefore('Pages::saveFieldReady', $this, 'hookCaptureOldSeoFieldData');
 		$this->addHookAfter('Pages::savedField', $this, 'hookSeoFieldSaved');
 		$this->addHookAfter('Pages::saved', $this, 'hookAutoRedirect');
-		// Dispatch only after save/revision hooks have been registered so write
-		// commands behave exactly like equivalent admin and API operations.
-		$this->getCli()->dispatch();
+		if (PHP_SAPI === 'cli') {
+			// External execution loads site/ready.php before returning.
+			$this->addHookAfter('ProcessPageView::executeExternal', function (): void {
+				$this->getCli()->dispatch();
+			});
+		}
 	}
 
 	public function ready(): void {

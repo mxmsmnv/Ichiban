@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Run CLI commands after site lifecycle hooks have loaded.
+
 ### Added
 
 - Added bounded CLI batches for public URL inspection, Indexing API eligibility
