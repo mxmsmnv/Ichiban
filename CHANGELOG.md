@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- Added bounded CLI batches for public URL inspection, Indexing API eligibility
+  previews, and explicit Google notifications across all supported content types.
+- Added a sitemap hook for application-specific publication and expiry rules.
+
 ## [0.4.0-alpha] - 2026-11-12
 
 ### Added

@@ -17,6 +17,11 @@ final class IchibanSearchStatisticsPortabilityProbe extends IchibanSearchStatist
 $cacheProbe = new IchibanSearchStatisticsPortabilityProbe(new stdClass());
 $now = strtotime('2026-09-26 12:00:00');
 
+preg_match('/@version (\d+)\.(\d+)\.(\d+)-alpha/', $module, $semanticVersion);
+preg_match("/'version'\s*=>\s*(\d+)/", $module, $moduleVersion);
+$versionIsSynchronized = $semanticVersion && $moduleVersion
+	&& (int)$moduleVersion[1] === (int)implode('', array_slice($semanticVersion, 1));
+
 $checks = [
 	'migration backup uses portable create-as-select' => str_contains($process, 'CREATE TABLE `$backup` AS SELECT * FROM `$table`'),
 	'migration backup does not use MySQL CREATE TABLE LIKE' => !str_contains($process, 'CREATE TABLE `$backup` LIKE `$table`'),
@@ -25,7 +30,7 @@ $checks = [
 	'fresh Search Console cache rows remain usable' => $cacheProbe->cacheRowIsFresh(['cached_at' => '2026-09-26 11:59:59'], $now),
 	'expired Search Console cache rows are rejected at the TTL boundary' => !$cacheProbe->cacheRowIsFresh(['cached_at' => '2026-09-26 06:00:00'], $now),
 	'invalid Search Console cache timestamps are rejected' => !$cacheProbe->cacheRowIsFresh(['cached_at' => 'not-a-date'], $now),
-	'release version is synchronized' => str_contains($module, "'version'  => 39") && str_contains($module, '@version 0.3.9-alpha'),
+	'release version is synchronized' => $versionIsSynchronized,
 ];
 
 $failed = [];

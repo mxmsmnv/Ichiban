@@ -328,6 +328,32 @@ status** to check the index independently.
 [Google Indexing API prerequisites](https://developers.google.com/search/apis/indexing-api/v3/prereqs)
 and [Page indexing report](https://support.google.com/webmasters/answer/7440203).
 
+### URL batches and sitemap eligibility
+
+Use a deduplicated UTF-8 text file with one canonical public URL per line.
+
+```sh
+php index.php --ichiban-indexing=inspect --ichiban-url-file=urls.txt --ichiban-format=json
+php index.php --ichiban-indexing=preview --ichiban-url-file=urls.txt --ichiban-format=json
+php index.php --ichiban-indexing=notify --ichiban-url-file=eligible-urls.txt --ichiban-format=json
+```
+
+Each invocation reads up to 25 lines. Keep the file unchanged and resume with
+`--ichiban-offset` set to the previous response's `next_offset`. The response
+records errors per URL. Retry failed URLs from a separate input file.
+Inspection supports public canonical ProcessWire pages across templates and
+stores results in the existing Insights cache. Preview validates the public
+markup without sending a notification. Notify revalidates each URL and sends
+an update for eligible pages. Run notifications within the property's available
+Google quota. Discover other indexable content through the XML sitemap and
+use the Search Console inspection link for manual requests.
+
+`Ichiban::isSitemapPageEligible(Page $page): bool` lets applications veto
+inclusion using their content lifecycle. Return false after the hook to omit
+the page and its generated URL segments. The default permits the page subject
+to the existing sitemap settings. Content-specific publication rules belong
+in the application hook.
+
 ## Moz Backlinks
 
 Backlinks uses Moz Links API data and stores every refresh as a database snapshot. Ordinary page reloads use cached rows instead of spending API quota. Quota checks are manual.

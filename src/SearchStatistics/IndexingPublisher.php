@@ -57,7 +57,7 @@ class IchibanIndexingPublisher {
 		}
 	}
 
-	private function assertEligible(string $url): void {
+	public function assertEligible(string $url): void {
 		$site = parse_url($this->ichiban->siteUrl());
 		$parts = parse_url($url);
 		if (($site['scheme'] ?? '') !== 'https' || ($parts['scheme'] ?? '') !== 'https'

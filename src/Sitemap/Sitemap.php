@@ -173,6 +173,7 @@ class IchibanSitemap {
 				if ($page->rootParent->id === $this->wire('config')->adminRootPageID) continue;
 				if ($s['respect_noindex'] && $this->pageHasNoindex($page)) continue;
 				if (!$this->pageIncludedInSitemap($page)) continue;
+				if (!$this->ichiban->isSitemapPageEligible($page)) continue;
 
 				$pageUrl = method_exists($this->ichiban, 'pageHttpUrl') ? $this->ichiban->pageHttpUrl($page, null, false) : $page->httpUrl();
 				if (!$pageUrl) continue;

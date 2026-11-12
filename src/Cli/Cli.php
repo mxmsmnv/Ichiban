@@ -41,6 +41,9 @@ class IchibanCli {
 			'ichiban-llms',
 			'ichiban-settings',
 			'ichiban-page:',
+			'ichiban-indexing:',
+			'ichiban-url-file:',
+			'ichiban-offset:',
 		]);
 
 		try {
@@ -104,6 +107,13 @@ class IchibanCli {
 				'description' => 'Force-generate sitemap.xml and template sitemap files using current sitemap settings.',
 				'options' => ['--ichiban-format=json'],
 				'examples' => ["{$root} --ichiban-sitemap-generate"],
+			],
+			'indexing' => [
+				'title' => 'Check indexing or notify Google for a list of public URLs',
+				'usage' => "{$root} --ichiban-indexing=inspect|preview|notify --ichiban-url-file=PATH [--ichiban-offset=0] [--ichiban-limit=25] [--ichiban-format=json]",
+				'description' => 'Read one URL per line. Inspect any public canonical page, preview Indexing API eligibility, or explicitly send eligible notifications.',
+				'options' => ['--ichiban-url-file=PATH', '--ichiban-offset=N', '--ichiban-limit=1–25', '--ichiban-format=json'],
+				'examples' => ["{$root} --ichiban-indexing=inspect --ichiban-url-file=urls.txt --ichiban-format=json"],
 			],
 			'sitemap-status' => [
 				'title' => 'Show sitemap status',
@@ -170,6 +180,7 @@ class IchibanCli {
 		if (array_key_exists('ichiban-bulk-fix', $options)) return $this->bulkFix((int)$options['ichiban-bulk-fix'], $options);
 		if (array_key_exists('ichiban-bulk-import', $options)) return $this->bulkImport((string)$options['ichiban-bulk-import'], $options);
 		if (array_key_exists('ichiban-audit-rebuild', $options)) return $this->auditRebuild();
+		if (array_key_exists('ichiban-indexing', $options)) return $this->indexing($options);
 		if (array_key_exists('ichiban-sitemap-generate', $options)) return $this->sitemapGenerate();
 		if (array_key_exists('ichiban-sitemap-status', $options)) return $this->sitemapStatus();
 		if (array_key_exists('ichiban-sitemap-delete', $options)) return $this->sitemapDelete(!empty($options['ichiban-force']));
@@ -293,6 +304,56 @@ class IchibanCli {
 		}
 		$this->afterBulkSave(!array_key_exists('ichiban-no-rebuild', $options), $pageIds);
 		return ['ok' => true, 'message' => 'Bulk SEO fixes imported.', 'saved' => $saved, 'skipped' => $skipped, 'pages' => $pages];
+	}
+
+	protected function indexing(array $options): array {
+		$mode = $options['ichiban-indexing'];
+		$path = $options['ichiban-url-file'] ?? '';
+		$offset = filter_var($options['ichiban-offset'] ?? 0, FILTER_VALIDATE_INT, ['options' => ['min_range' => 0]]);
+		$limit = filter_var($options['ichiban-limit'] ?? 25, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1, 'max_range' => 25]]);
+		if (!in_array($mode, ['inspect', 'preview', 'notify'], true) || $offset === false || $limit === false) {
+			throw new InvalidArgumentException('Choose inspect, preview, or notify, a non-negative offset, and a limit of 1 to 25.');
+		}
+		if (!is_string($path) || !is_file($path) || !is_readable($path)) {
+			throw new InvalidArgumentException('Provide a readable local file with one public URL per line.');
+		}
+		$gsc = $this->ichiban->getSearchStatistics();
+		$publisher = new IchibanIndexingPublisher($this->ichiban);
+		if ($mode === 'inspect' && !$gsc->isConnected()) throw new RuntimeException('Connect Google Search Console first.');
+		if ($mode === 'notify' && !$publisher->isConfigured()) throw new RuntimeException('Configure the Google Indexing API first.');
+
+		$file = new SplFileObject($path);
+		$file->seek($offset);
+		$rows = [];
+		$seen = [];
+		for ($n = 0; $n < $limit && !$file->eof(); $n++) {
+			$url = trim($file->fgets());
+			if ($url === '' || isset($seen[$url])) continue;
+			$seen[$url] = true;
+			$row = ['url' => $url];
+			try {
+				if (strlen($url) > 1024) throw new RuntimeException('The URL exceeds 1024 bytes.');
+				if ($mode === 'inspect') {
+					$result = $gsc->inspectPublicPage($url);
+					if (!$result) throw new RuntimeException($gsc->getLastError() ?: 'Use a public canonical URL on this site.');
+					$row += $result;
+				} elseif ($mode === 'preview') {
+					$publisher->assertEligible($url);
+				} else {
+					$publisher->publish($url);
+				}
+				$row['status'] = match ($mode) {
+					'inspect' => 'inspected',
+					'preview' => 'eligible',
+					'notify' => 'notified',
+				};
+			} catch (RuntimeException $error) {
+				$row['status'] = 'error';
+				$row['error'] = $error->getMessage();
+			}
+			$rows[] = $row;
+		}
+		return ['ok' => true, 'mode' => $mode, 'results' => $rows, 'next_offset' => $file->ftell() < $file->getSize() ? $offset + $n : null];
 	}
 
 	protected function sitemapGenerate(): array {
