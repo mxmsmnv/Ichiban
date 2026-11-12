@@ -298,7 +298,35 @@ metadata and pass through sitemap exclusions, validation, and deduplication.
 
 The Insights section connects to Google Search Console with OAuth. It caches Search Analytics data and shows date ranges for 7, 28, 90, 180, and 365 days.
 
-Google does not expose the full Page indexing report through the Search Analytics API, so Ichiban provides a cached URL Inspection sample scan for practical indexing checks.
+Page Indexing counts the URLs checked through URL Inspection. It shows
+coverage, whether indexing is allowed, the last crawl, and both canonical URLs.
+Use **Open Page Indexing** for the property-wide totals in Google Search
+Console. Use **Check URL status** to inspect one public ProcessWire page, then
+**Inspect in Google** to open its Search Console result and request indexing
+manually.
+
+To enable **Notify Google**, enable the Google Indexing API on a dedicated
+Google Cloud project and authorize a dedicated service account as a delegated
+owner of the appropriate Search Console property. Store its JSON credentials
+outside the web root and source control. Set
+`$config->ichibanGoogleIndexingCredentialsFile` in the local ProcessWire
+configuration to the absolute path of the file, readable by PHP. The module
+uses the credential only for the separate Indexing API, with the
+`https://www.googleapis.com/auth/indexing` scope.
+
+The action validates the public page and its eligible JSON-LD. By default
+it checks the live HTTP response. A site can hook
+`Ichiban::indexingEligibilityHead` to supply the same public canonical,
+robots, and JSON-LD head from its trusted rendering code. Return null to
+use HTTP, or an empty string to refuse a URL. Use this hook for sites
+where outbound server requests to their own public host are filtered.
+Confirm crawler reachability independently in Search Console. Eligible pages are individual job postings
+with `JobPosting` or livestreams with `BroadcastEvent` in `VideoObject`.
+Google's acceptance confirms receipt of the notification. Use **Check URL
+status** to check the index independently.
+
+[Google Indexing API prerequisites](https://developers.google.com/search/apis/indexing-api/v3/prereqs)
+and [Page indexing report](https://support.google.com/webmasters/answer/7440203).
 
 ## Moz Backlinks
 

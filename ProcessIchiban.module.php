@@ -829,14 +829,40 @@ class ProcessIchiban extends Process {
 			$this->wire('session')->redirect($this->adminUrl('search-statistics/'));
 		}
 
-		if (!$gsc->isConnected()) {
-			return $this->renderAdminNav('search-statistics') . $this->renderGscEmptyState();
-		}
-
 		$days = (int)$this->wire('input')->get('days');
 		if (!in_array($days, [7, 28, 90, 180, 365], true)) $days = 28;
 		$view = $this->wire('sanitizer')->name((string)$this->wire('input')->get('gsc_view'));
 		if (!in_array($view, ['overview', 'pages', 'queries'], true)) $view = 'overview';
+		$indexingAction = (string)$this->wire('input')->post('indexing_action');
+		if (in_array($indexingAction, ['inspect', 'publish'], true)) {
+			$session = $this->wire('session');
+			if (!$session->CSRF->hasValidToken()) {
+				$session->warning(__('Security token expired. Reload the page and try again.'));
+				$session->redirect($this->gscUrl($view, $days));
+			}
+			$url = trim((string)$this->wire('input')->post('indexing_url'));
+			try {
+				if ($url === '' || strlen($url) > 1024) throw new \RuntimeException('Enter a public page URL.');
+				if ($indexingAction === 'publish') {
+					(new \IchibanIndexingPublisher($this->ichiban))->publish($url);
+					$session->message(__('Google accepted the notification for crawling. Check URL status to see whether the page is indexed.'));
+				} else {
+					if (!$gsc->inspectPublicPage($url)) {
+						throw new \RuntimeException($gsc->getLastError() ?: 'Enter the exact URL of a public page on this site.');
+					}
+					$session->message(__('URL checked. See the result in Recent URL inspections.'));
+				}
+			} catch (\RuntimeException | \JsonException $error) {
+				$session->warning($error->getMessage());
+			}
+			$session->redirect($this->gscUrl('overview', $days) . '#ichiban-page-indexing');
+		}
+		if (!$gsc->isConnected()) {
+			return $this->renderAdminNav('search-statistics') . $this->renderGscEmptyState()
+				. "<section id='ichiban-page-indexing' class='ichiban-gsc-indexing'>"
+				. $this->renderIndexingUrlForm($gsc, $view, $days) . "</section>";
+		}
+
 		if ($this->wire('input')->post('refresh_indexing') || $this->wire('input')->get('refresh_indexing')) {
 			if ($this->wire('session')->CSRF->hasValidToken()) {
 				$count = $gsc->refreshIndexingIssues(10);
@@ -3136,7 +3162,7 @@ class ProcessIchiban extends Process {
 		$issueCount = (int)($summary['issues'] ?? 0);
 		$indexedCount = (int)($summary['indexed'] ?? 0);
 		$totalCount = (int)($summary['total'] ?? 0);
-		$out = "<section class='ichiban-gsc-indexing'>"
+		$out = "<section class='ichiban-gsc-indexing' id='ichiban-page-indexing'>"
 			. "<div class='ichiban-gsc-indexing-head'><div><h3 class='uk-h4'>" . __('Page Indexing') . "</h3>"
 			. "<p>" . __('Checks a URL sample with Google URL Inspection API and groups non-indexed / problematic pages by coverage reason. Ichiban first uses Top Pages from Search Console for the last 28 days, then fills the sample with public ProcessWire pages sorted by path. This is a cached site scan, not Google’s full Page indexing aggregate report.') . "</p>"
 			. "<code>" . $san->entities($property) . "</code></div>"
@@ -3150,10 +3176,39 @@ class ProcessIchiban extends Process {
 			. "</div></div>"
 			. "<div class='ichiban-gsc-indexing-metrics'>"
 			. "<div><strong>" . $issueCount . "</strong><span>" . __('Issues') . "</span></div>"
-			. "<div><strong>" . $indexedCount . "</strong><span>" . __('Indexed') . "</span></div>"
+			. "<div><strong>" . $indexedCount . "</strong><span>" . __('Indexed in checked URLs') . "</span></div>"
+			. "<div><strong>" . (int)($summary['unknown_to_google'] ?? 0) . "</strong><span>" . __('Unknown to Google') . "</span></div>"
 			. "<div><strong>" . $totalCount . "</strong><span>" . __('Checked URLs') . "</span></div>"
 			. "<div><strong>" . $san->entities($checkedText) . "</strong><span>" . __('Last scan') . "</span></div>"
 			. "</div>";
+
+		$out .= $this->renderIndexingUrlForm($gsc, $view, $days);
+
+		if (!empty($summary['recent_rows'])) {
+			$out .= "<h4>" . __('Recent URL inspections') . "</h4><div class='uk-overflow-auto'><table class='uk-table uk-table-small uk-table-divider'><thead><tr>";
+			foreach ([__('Page'), __('Coverage'), __('Indexing allowed'), __('Last crawl'), __('Google canonical'), __('Declared canonical')] as $column) {
+				$out .= "<th scope='col'>" . $san->entities($column) . "</th>";
+			}
+			$out .= "</tr></thead><tbody>";
+			foreach ($summary['recent_rows'] as $row) {
+				$inspect = (string)$row['inspection_link'];
+				$out .= "<tr><th scope='row'>" . $san->entities($row['url']);
+				if (str_starts_with($inspect, 'https://search.google.com/search-console/')) {
+					$out .= "<br><a target='_blank' rel='noopener' href='" . $san->entities($inspect) . "'>" . __('Inspect in Google') . "</a>";
+				}
+				$out .= "</th>";
+				$allowed = match ($row['indexing_state']) {
+					'INDEXING_ALLOWED' => __('Yes'),
+					'BLOCKED_BY_META_TAG', 'BLOCKED_BY_HTTP_HEADER', 'BLOCKED_BY_ROBOTS_TXT' => __('No'),
+					default => __('Unknown'),
+				};
+				foreach ([$row['coverage_state'], $allowed, $row['last_crawl_time'], $row['google_canonical'], $row['user_canonical']] as $value) {
+					$out .= "<td>" . $san->entities($value ?: '—') . "</td>";
+				}
+				$out .= "</tr>";
+			}
+			$out .= "</tbody></table></div>";
+		}
 
 		if (!$totalCount) {
 			return $out . "<div class='uk-alert uk-alert-primary'>" . __('No indexing scan yet. Click Scan indexing issues to inspect Top Pages from Search Console first, then public ProcessWire pages if more URLs are needed.') . "</div></section>\n";
@@ -3171,6 +3226,21 @@ class ProcessIchiban extends Process {
 			$out .= "</div>";
 		}
 		return $out . "</div></section>\n";
+	}
+
+	protected function renderIndexingUrlForm(\IchibanSearchStatistics $gsc, string $view, int $days): string {
+		$san = $this->wire('sanitizer');
+		$publisher = new \IchibanIndexingPublisher($this->ichiban);
+		return "<form method='post' action='" . $san->entities($this->gscUrl($view, $days)) . "' class='uk-margin'>"
+			. $this->wire('session')->CSRF->renderInput()
+			. "<label class='uk-form-label' for='ichiban-indexing-url'>" . __('Public page URL') . "</label>"
+			. "<input id='ichiban-indexing-url' class='uk-input' type='url' name='indexing_url' maxlength='1024' required>"
+			. "<div class='ichiban-gsc-indexing-actions uk-margin-small-top'>"
+			. ($gsc->isConnected() ? "<button class='uk-button uk-button-default uk-button-small' name='indexing_action' value='inspect' type='submit'>" . __('Check URL status') . "</button>" : '')
+			. ($publisher->isConfigured()
+				? "<button class='uk-button uk-button-primary uk-button-small' name='indexing_action' value='publish' type='submit'>" . __('Notify Google') . "</button>"
+				: "<span>" . __('Automatic notification requires a configured Google Indexing API service account.') . "</span>")
+			. "</div><p>" . __('Google accepts API notifications for eligible job postings and livestreams. For other pages, open the inspection result in Search Console to request indexing.') . "</p></form>";
 	}
 
 	protected function renderGscTable(string $title, array $rows, string $keyLabel = '', string $moreUrl = ''): string {

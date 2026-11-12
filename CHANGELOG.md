@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [0.4.0-alpha] - 2026-11-12
+
+### Added
+
+- Inspect a specific public URL from Insights and show recent coverage results,
+  crawl dates, and canonical URLs. The indexed count describes checked URLs.
+- Notify Google about eligible public job postings and livestreams with a
+  separately configured Indexing API service account.
+
 ## [0.3.9-alpha] - 2026-10-16
 
 ### Added

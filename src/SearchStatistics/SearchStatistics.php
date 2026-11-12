@@ -173,6 +173,24 @@ class IchibanSearchStatistics {
 		return $count;
 	}
 
+	public function inspectPublicPage(string $url): array {
+		$this->lastError = '';
+		$site = parse_url($this->ichiban->siteUrl());
+		$parts = parse_url($url);
+		if (empty($site['host']) || ($parts['host'] ?? '') !== $site['host'] || empty($parts['path'])) return [];
+		$page = $this->ichiban->wire('pages')->get($parts['path']);
+		if (!$page->id || !$page->isPublic() || $this->ichiban->pageHttpUrl($page, null, false) !== $url) return [];
+
+		$token = $this->getAccessToken();
+		if (!$token) return [];
+		$result = $this->inspectUrl($url, $token);
+		if ($result) {
+			$this->ensureIndexingCacheTable();
+			$this->setIndexingCache($url, $result);
+		}
+		return $result;
+	}
+
 	public function getLastError(): string {
 		return $this->lastError;
 	}
@@ -185,9 +203,11 @@ class IchibanSearchStatistics {
 			'total' => 0,
 			'indexed' => 0,
 			'issues' => 0,
+			'unknown_to_google' => 0,
 			'checked_at' => 0,
 			'groups' => [],
 			'rows' => [],
+			'recent_rows' => [],
 		];
 		foreach ($rows as $row) {
 			$summary['total']++;
@@ -196,6 +216,18 @@ class IchibanSearchStatistics {
 			$verdict = strtoupper((string)($row['verdict'] ?? ''));
 			$coverage = trim((string)($row['coverage_state'] ?? ''));
 			$isIndexed = $this->isIndexedVerdict($verdict, $coverage);
+			if (strcasecmp($coverage, 'URL is unknown to Google') === 0) $summary['unknown_to_google']++;
+			if (count($summary['recent_rows']) < $limit) {
+				$summary['recent_rows'][] = [
+					'url' => (string)$row['url'],
+					'coverage_state' => $coverage,
+					'indexing_state' => (string)$row['indexing_state'],
+					'last_crawl_time' => (string)$row['last_crawl_time'],
+					'google_canonical' => (string)$row['google_canonical'],
+					'user_canonical' => (string)$row['user_canonical'],
+					'inspection_link' => (string)$row['inspection_link'],
+				];
+			}
 			if ($isIndexed) {
 				$summary['indexed']++;
 				continue;
@@ -214,8 +246,8 @@ class IchibanSearchStatistics {
 					'url' => (string)$row['url'],
 					'verdict' => $verdict,
 					'coverage_state' => $coverage,
-					'last_crawl_time' => (string)($row['last_crawl_time'] ?? ''),
-					'inspection_link' => (string)($row['inspection_link'] ?? ''),
+					'last_crawl_time' => (string)$row['last_crawl_time'],
+					'inspection_link' => (string)$row['inspection_link'],
 				];
 			}
 		}

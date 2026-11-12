@@ -8,7 +8,7 @@ require_once __DIR__ . '/src/McpProviderTrait.php';
  *
  * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
- * @version 0.3.9-alpha
+ * @version 0.4.0-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
 	use IchibanMcpProviderTrait;
@@ -22,7 +22,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'title'    => 'Ichiban',
 			'summary'  => 'Comprehensive SEO module: meta/OG/schema, audit, redirects, revisions, email reports.',
 			'author'   => 'Maxim Semenov',
-			'version'  => 39,
+			'version'  => 40,
 			'href'     => 'https://smnv.org',
 			'singular' => true,
 			'autoload' => true,
@@ -532,6 +532,14 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			$out .= '<meta name="twitter:creator" content="' . $this->wire('sanitizer')->entities($seo->twitter->creator) . '">' . "\n";
 		}
 		return $out;
+	}
+
+	/**
+	 * Return the public page head for Indexing API validation when a site can
+	 * build the same head directly from trusted page data. Null uses HTTP.
+	 */
+	public function ___indexingEligibilityHead(Page $page): ?string {
+		return null;
 	}
 
 	/**
