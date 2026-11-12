@@ -13,6 +13,7 @@ class IchibanSearchStatistics {
 
 	protected object $ichiban;
 	protected string $lastError = '';
+	protected string $analyticsError = '';
 
 	public function __construct(object $ichiban) {
 		$this->ichiban = $ichiban;
@@ -29,17 +30,33 @@ class IchibanSearchStatistics {
 	public function getAuthUrl(): string {
 		$clientId    = $this->ichiban->get('gsc_client_id') ?: '';
 		$redirectUri = $this->getRedirectUri();
+		$state = bin2hex(random_bytes(32));
+		$this->ichiban->wire('session')->set('ichiban_gsc_oauth', [
+			'state' => $state,
+			'expires' => time() + 900,
+			'client_id' => $clientId,
+		]);
 		$scope       = urlencode('https://www.googleapis.com/auth/webmasters.readonly');
 		return "https://accounts.google.com/o/oauth2/v2/auth"
 			. "?client_id=" . urlencode($clientId)
 			. "&redirect_uri=" . urlencode($redirectUri)
 			. "&response_type=code"
+			. "&state=" . $state
 			. "&scope={$scope}"
 			. "&access_type=offline"
 			. "&prompt=consent";
 	}
 
-	public function handleCallback(string $code): bool {
+	public function handleCallback(string $code, string $state = ''): bool {
+		$session = $this->ichiban->wire('session');
+		$pending = $session->get('ichiban_gsc_oauth');
+		if (!is_array($pending) || !is_string($pending['state'] ?? null)
+			|| ($pending['expires'] ?? 0) <= time()
+			|| ($pending['client_id'] ?? null) !== $this->ichiban->get('gsc_client_id')
+			|| !hash_equals($pending['state'], $state)) return false;
+		$session->remove('ichiban_gsc_oauth');
+		if ($code === '') return false;
+
 		$clientId     = $this->ichiban->get('gsc_client_id') ?: '';
 		$clientSecret = $this->ichiban->get('gsc_client_secret') ?: '';
 		$redirectUri  = $this->getRedirectUri();
@@ -52,16 +69,17 @@ class IchibanSearchStatistics {
 			'redirect_uri'  => $redirectUri,
 			'grant_type'    => 'authorization_code',
 		]);
-		$data = json_decode($response, true);
-		if (empty($data['access_token'])) return false;
+		$data = is_string($response) ? json_decode($response, true) : null;
+		// Require a refresh token from this grant so accounts cannot be mixed.
+		if (!is_string($data['access_token'] ?? null) || $data['access_token'] === ''
+			|| !is_string($data['refresh_token'] ?? null) || $data['refresh_token'] === '') return false;
 
 		$existing = $this->ichiban->wire('modules')->getModuleConfigData('Ichiban');
-		$this->ichiban->wire('modules')->saveModuleConfigData('Ichiban', array_merge($existing, [
+		return $this->ichiban->wire('modules')->saveModuleConfigData('Ichiban', array_replace($existing, [
 			'gsc_access_token'  => $data['access_token'],
-			'gsc_refresh_token' => $data['refresh_token'] ?? '',
+			'gsc_refresh_token' => $data['refresh_token'],
 			'gsc_token_expiry'  => time() + (int)($data['expires_in'] ?? 3600),
 		]));
-		return true;
 	}
 
 	public function disconnect(): void {
@@ -89,20 +107,23 @@ class IchibanSearchStatistics {
 		$endDate  = date('Y-m-d');
 		$startDate = date('Y-m-d', strtotime("-{$days} days"));
 
-		$cacheKey  = "dashboard_{$days}";
+		$cacheKey  = "dashboard_v2_{$days}";
 		$cached    = $this->getCache($siteUrl, $cacheKey);
 		if ($cached) return $cached;
 
 		$token    = $this->getAccessToken();
-		if (!$token) return [];
+		if (!$token) {
+			$this->analyticsError = 'Search Console access token is unavailable.';
+			return [];
+		}
 
 		$payload  = json_encode([
 			'startDate'  => $startDate,
 			'endDate'    => $endDate,
 			'dimensions' => [],
 		]);
-		$response = $this->apiRequest("https://searchconsole.googleapis.com/webmasters/v3/sites/" . urlencode($siteUrl) . "/searchAnalytics/query", $token, $payload);
-		$data     = json_decode($response, true);
+		$data = $this->queryAnalytics($siteUrl, $token, $payload);
+		if ($data === null) return [];
 		$row      = $data['rows'][0] ?? [];
 		$result   = [
 			'clicks'      => $row['clicks']      ?? 0,
@@ -124,7 +145,7 @@ class IchibanSearchStatistics {
 
 	public function getDailyRows(int $days = 28): array {
 		$rows = $this->getDimensionRows(['date'], $days, $days + 2, "dates_{$days}");
-		return $this->fillDailyRows($rows, $days);
+		return $this->analyticsError === '' ? $this->fillDailyRows($rows, $days) : [];
 	}
 
 	public function getTopCountries(int $days = 28, int $limit = 25): array {
@@ -143,6 +164,7 @@ class IchibanSearchStatistics {
 		$rows = $this->getDimensionRows(['page'], $days, 1, 'page_' . md5($pageUrl), [
 			['dimension' => 'page', 'operator' => 'equals', 'expression' => $pageUrl],
 		]);
+		if ($this->analyticsError !== '') return [];
 		return $rows[0] ?? ['clicks' => 0, 'impressions' => 0, 'ctr' => '0%', 'position' => 0];
 	}
 
@@ -256,9 +278,13 @@ class IchibanSearchStatistics {
 	}
 
 	protected function getDimensionRows(array $dimensions, int $days, int $limit, string $cacheKey, array $dimensionFilterGroups = []): array {
+		if ($this->analyticsError !== '') return [];
 		$siteUrl  = $this->getSiteUrl();
 		$token = $this->getAccessToken();
-		if (!$token) return [];
+		if (!$token) {
+			$this->analyticsError = 'Search Console access token is unavailable.';
+			return [];
+		}
 
 		$rows = [];
 		$rowLimit = $limit > 0 ? $limit : 25000;
@@ -276,8 +302,8 @@ class IchibanSearchStatistics {
 					'filters' => $dimensionFilterGroups,
 				]];
 			}
-			$response = $this->apiRequest("https://searchconsole.googleapis.com/webmasters/v3/sites/" . urlencode($siteUrl) . "/searchAnalytics/query", $token, json_encode($payload));
-			$data = json_decode($response, true);
+			$data = $this->queryAnalytics($siteUrl, $token, json_encode($payload));
+			if ($data === null) return [];
 			$batch = $data['rows'] ?? [];
 			foreach ($batch as $row) {
 				$key = $row['keys'][0] ?? '';
@@ -294,6 +320,23 @@ class IchibanSearchStatistics {
 		} while (count($batch) > 0);
 
 		return $rows;
+	}
+
+	public function getAnalyticsError(): string {
+		return $this->analyticsError;
+	}
+
+	private function queryAnalytics(string $siteUrl, string $token, string $payload): ?array {
+		$this->lastError = '';
+		$response = $this->apiRequest('https://searchconsole.googleapis.com/webmasters/v3/sites/'
+			. urlencode($siteUrl) . '/searchAnalytics/query', $token, $payload);
+		$data = json_decode($response, true);
+		if ($this->lastError !== '' || !is_array($data) || isset($data['error'])
+			|| (isset($data['rows']) && !is_array($data['rows']))) {
+			$this->analyticsError = $this->lastError ?: 'Google Search Console returned an invalid analytics response.';
+			return null;
+		}
+		return $data;
 	}
 
 	protected function inspectUrl(string $url, string $token): array {

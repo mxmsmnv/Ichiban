@@ -824,9 +824,17 @@ class ProcessIchiban extends Process {
 			}
 			$this->wire('session')->redirect($this->adminUrl('search-statistics/'));
 		}
-		if ($code = $this->wire('input')->get('code')) {
-			$gsc->handleCallback($this->wire('sanitizer')->text($code));
-			$this->wire('session')->redirect($this->adminUrl('search-statistics/'));
+		$input = $this->wire('input');
+		if ($input->get('code') !== null || $input->get('error') !== null) {
+			$code = $input->get('code');
+			$state = $input->get('state');
+			$session = $this->wire('session');
+			if ($gsc->handleCallback(is_string($code) ? $code : '', is_string($state) ? $state : '')) {
+				$session->message(__('Google Search Console connected.'));
+			} else {
+				$session->warning(__('Google Search Console authorization could not be completed. Start a new connection from Insights.'));
+			}
+			$session->redirect($this->adminUrl('search-statistics/'));
 		}
 
 		$days = (int)$this->wire('input')->get('days');
@@ -888,7 +896,7 @@ class ProcessIchiban extends Process {
 		$out .= "<div class='ichiban-gsc-stats'>\n";
 		// Metrics overview
 		foreach (['clicks' => __('Clicks'), 'impressions' => __('Impressions'), 'ctr' => __('CTR'), 'position' => __('Avg Position')] as $key => $label) {
-			$val  = $data[$key] ?? 0;
+			$val  = $data[$key] ?? '—';
 			$out .= "<div class='ichiban-gsc-metric'><span class='ichiban-gsc-value'>{$val}</span><span class='ichiban-gsc-label'>{$label}</span></div>\n";
 		}
 		$out .= "</div>\n";
@@ -909,6 +917,13 @@ class ProcessIchiban extends Process {
 			$out .= $this->renderGscTable(__('Devices'), $gsc->getTopDevices($days, 10), __('Device'));
 			$out .= $this->renderGscTable(__('Search Appearance'), $gsc->getSearchAppearances($days, 10), __('Appearance'));
 			$out .= "</div>\n";
+		}
+		if ($gsc->getAnalyticsError() !== '') {
+			$out .= "<p class='uk-alert uk-alert-warning' role='status'>"
+				. $this->wire('sanitizer')->entities(sprintf(
+					__('Search Console statistics are unavailable. %s'),
+					$gsc->getAnalyticsError()
+				)) . '</p>';
 		}
 		$out .= $this->renderGscFooter($gsc, $disconnectUrl);
 		$out .= "</div>\n";
@@ -2432,6 +2447,17 @@ class ProcessIchiban extends Process {
 			          'updates_enabled','updates_install_enabled'] as $key) {
 				$save[$key] = $input->post($key) !== null ? 1 : 0;
 			}
+			$imageMode = $input->post('seo_image_variation_mode');
+			if (in_array($imageMode, ['existing', 'on_demand', 'original'], true)) {
+				$save['seo_image_variation_mode'] = $imageMode;
+			}
+			if ($this->wire('user')->isSuperuser()) {
+				foreach (['custom_head_markup', 'custom_body_end_markup'] as $key) {
+					$markup = $input->post($key);
+					if (is_string($markup)) $save[$key] = $markup;
+				}
+				$save['auto_render_body_end'] = $input->post('auto_render_body_end') !== null ? 1 : 0;
+			}
 			$save['indexing_queue_enabled'] = $input->post('indexing_queue_enabled') !== null ? 1 : 0;
 			$queueUrls = $input->post('indexing_queue_urls');
 			if (is_string($queueUrls) && strlen($queueUrls) <= 262144) {
@@ -2505,7 +2531,10 @@ class ProcessIchiban extends Process {
 		$data = ['ok' => false];
 		if ($page->id) {
 			$gsc = new \IchibanSearchStatistics($this->ichiban);
-			$data = ['ok' => true, 'metrics' => $gsc->getPageData($this->ichiban->pageHttpUrl($page), 28)];
+			$metrics = $gsc->getPageData($this->ichiban->pageHttpUrl($page), 28);
+			$data = $gsc->getAnalyticsError() === ''
+				? ['ok' => true, 'metrics' => $metrics]
+				: ['ok' => false, 'error' => $gsc->getAnalyticsError()];
 		}
 		ob_end_clean();
 		header('Content-Type: application/json');

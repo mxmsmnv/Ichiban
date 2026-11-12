@@ -328,6 +328,13 @@ status** to check the index independently.
 [Google Indexing API prerequisites](https://developers.google.com/search/apis/indexing-api/v3/prereqs)
 and [Page indexing report](https://support.google.com/webmasters/answer/7440203).
 
+Insights reports Search Console request failures without recording them as
+zero traffic. Reconnecting Google uses a single-use session state. If the
+authorization fails, the existing connection is preserved.
+
+The image variation mode is editable in SEO Settings. The custom code fields
+and automatic end-of-body injection are editable by superusers.
+
 ### Daily Indexing API budget
 
 Insights shows the remaining budget for notifications submitted by this

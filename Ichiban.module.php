@@ -8,7 +8,7 @@ require_once __DIR__ . '/src/McpProviderTrait.php';
  *
  * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
- * @version 0.4.5-alpha
+ * @version 0.4.6-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
 	use IchibanMcpProviderTrait;
@@ -22,7 +22,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'title'    => 'Ichiban',
 			'summary'  => 'Comprehensive SEO module: meta/OG/schema, audit, redirects, revisions, email reports.',
 			'author'   => 'Maxim Semenov',
-			'version'  => 45,
+			'version'  => 46,
 			'href'     => 'https://smnv.org',
 			'singular' => true,
 			'autoload' => true,
@@ -1402,48 +1402,50 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 		$fsRendering->add($f);
 		$wrapper->add($fsRendering);
 
-		$fsCustomCode = $modules->get('InputfieldFieldset');
-		$fsCustomCode->label = __('Custom Code');
-		$fsCustomCode->collapsed = $collapsedFor([
-			'custom_head_markup',
-			'custom_body_end_markup',
-			'auto_render_body_end',
-		]);
-		$fsCustomCode->columnWidth = 100;
-		$addNotes(
-			$fsCustomCode,
-			'<strong>' . __('Trusted administrators only.') . '</strong> '
-			. __('This markup is rendered without sanitizing so analytics, consent, verification, and integration scripts can work. Invalid or malicious code can break the public site or execute in visitors’ browsers.')
-		);
+		if (wire('user')->isSuperuser()) {
+			$fsCustomCode = $modules->get('InputfieldFieldset');
+			$fsCustomCode->label = __('Custom Code');
+			$fsCustomCode->collapsed = $collapsedFor([
+				'custom_head_markup',
+				'custom_body_end_markup',
+				'auto_render_body_end',
+			]);
+			$fsCustomCode->columnWidth = 100;
+			$addNotes(
+				$fsCustomCode,
+				'<strong>' . __('Trusted administrators only.') . '</strong> '
+				. __('This markup is rendered without sanitizing so analytics, consent, verification, and integration scripts can work. Invalid or malicious code can break the public site or execute in visitors’ browsers.')
+			);
 
-		$f = $modules->get('InputfieldTextarea');
-		$f->name = 'custom_head_markup';
-		$f->label = __('Custom <head> code');
-		$f->description = __('Rendered globally by renderHead(), including when templates output $page->seo. Suitable for analytics loaders, verification scripts, and consent integrations.');
-		$f->notes = __('Paste complete markup such as <script>, <link>, <meta>, or <noscript> elements. The value is output exactly as saved.');
-		$f->value = $data['custom_head_markup'] ?? '';
-		$f->rows = 9;
-		$f->columnWidth = 50;
-		$fsCustomCode->add($f);
+			$f = $modules->get('InputfieldTextarea');
+			$f->name = 'custom_head_markup';
+			$f->label = __('Custom <head> code');
+			$f->description = __('Rendered globally by renderHead(), including when templates output $page->seo. Suitable for analytics loaders, verification scripts, and consent integrations.');
+			$f->notes = __('Paste complete markup such as <script>, <link>, <meta>, or <noscript> elements. The value is output exactly as saved.');
+			$f->value = $data['custom_head_markup'] ?? '';
+			$f->rows = 9;
+			$f->columnWidth = 50;
+			$fsCustomCode->add($f);
 
-		$f = $modules->get('InputfieldTextarea');
-		$f->name = 'custom_body_end_markup';
-		$f->label = __('Custom end-of-body code');
-		$f->description = __('Optional markup for templates to output immediately before </body> with $modules->get("Ichiban")->renderBodyEnd().');
-		$f->notes = __('Enable automatic body injection below only when the template does not call renderBodyEnd() itself.');
-		$f->value = $data['custom_body_end_markup'] ?? '';
-		$f->rows = 9;
-		$f->columnWidth = 50;
-		$fsCustomCode->add($f);
+			$f = $modules->get('InputfieldTextarea');
+			$f->name = 'custom_body_end_markup';
+			$f->label = __('Custom end-of-body code');
+			$f->description = __('Optional markup for templates to output immediately before </body> with $modules->get("Ichiban")->renderBodyEnd().');
+			$f->notes = __('Enable automatic body injection below only when the template does not call renderBodyEnd() itself.');
+			$f->value = $data['custom_body_end_markup'] ?? '';
+			$f->rows = 9;
+			$f->columnWidth = 50;
+			$fsCustomCode->add($f);
 
-		$f = $modules->get('InputfieldCheckbox');
-		$f->name = 'auto_render_body_end';
-		$f->label = __('Automatically inject custom end-of-body code');
-		$f->description = __('Insert the configured end-of-body markup before </body> on frontend HTML responses. Leave disabled when templates render it manually.');
-		$f->checked = !empty($data['auto_render_body_end']);
-		$f->columnWidth = 100;
-		$fsCustomCode->add($f);
-		$wrapper->add($fsCustomCode);
+			$f = $modules->get('InputfieldCheckbox');
+			$f->name = 'auto_render_body_end';
+			$f->label = __('Automatically inject custom end-of-body code');
+			$f->description = __('Insert the configured end-of-body markup before </body> on frontend HTML responses. Leave disabled when templates render it manually.');
+			$f->checked = !empty($data['auto_render_body_end']);
+			$f->columnWidth = 100;
+			$fsCustomCode->add($f);
+			$wrapper->add($fsCustomCode);
+		}
 
 		// Webmaster verification
 		$fsVerify = $modules->get('InputfieldFieldset');

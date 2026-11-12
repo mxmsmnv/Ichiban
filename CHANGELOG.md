@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+- Save the image variation setting and restrict custom markup settings to superusers.
+- Report failed Search Console requests without caching zero metrics.
+- Bind Search Console authorization to a single-use session state and preserve the previous credentials when the exchange fails.
+
 - Add an Indexing Log with pending URLs, accepted notifications, errors, and attempt timestamps.
 
 - Manage the Google notification queue and daily budget in SEO Settings, with a native cron command.
