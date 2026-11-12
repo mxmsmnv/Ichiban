@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+- Add an Indexing Log with pending URLs, accepted notifications, errors, and attempt timestamps.
+
 - Manage the Google notification queue and daily budget in SEO Settings, with a native cron command.
 
 - Show the local Google Indexing API budget in Insights and the CLI, and enforce it across concurrent notification requests.

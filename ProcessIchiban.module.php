@@ -1354,6 +1354,65 @@ class ProcessIchiban extends Process {
 		return $out;
 	}
 
+	public function executeIndexingLog(): string {
+		$this->setIchibanBreadcrumb(__('Indexing Log'), 'indexing-log/');
+		$this->headline(__('Google Indexing Log'));
+		$san = $this->wire('sanitizer');
+		$labels = [
+			'all' => __('All URLs'),
+			'pending' => __('Pending'),
+			'notified' => __('Accepted by Google'),
+			'review' => __('Needs review'),
+		];
+		$filter = $san->name((string)$this->wire('input')->get('state'));
+		if (!isset($labels[$filter])) $filter = 'all';
+		$page = (int)$this->wire('input')->get('p');
+		$out = $this->renderAdminNav('indexing-log');
+		try {
+			$report = (new \IchibanIndexingQueue($this->ichiban))->report($filter, $page);
+		} catch (\RuntimeException | \JsonException $error) {
+			return $out . "<p class='uk-alert uk-alert-warning'>" . $san->entities($error->getMessage()) . '</p>';
+		}
+
+		$base = $this->adminUrl('indexing-log/');
+		$out .= "<p>" . $san->entities(sprintf(
+			__('%1$d of %2$d notifications remain today.'),
+			$report['quota']['remaining'], $report['quota']['limit']
+		)) . "</p><ul class='uk-subnav uk-subnav-pill'>";
+		foreach ($labels as $key => $label) {
+			$count = $key === 'all' ? array_sum($report['counts']) : $report['counts'][$key];
+			$class = $key === $filter ? " class='uk-active'" : '';
+			$out .= "<li{$class}><a href='" . $san->entities($base . '?state=' . $key) . "'>"
+				. $san->entities($label . ' (' . $count . ')') . '</a></li>';
+		}
+		$out .= '</ul>';
+		if (!$report['rows']) return $out . '<p>' . __('No URLs in this view.') . '</p>';
+
+		$out .= "<div class='uk-overflow-auto'><table class='uk-table uk-table-divider uk-table-small'><thead><tr>";
+		foreach ([__('URL'), __('Status'), __('Attempt (UTC)'), __('Details')] as $heading) {
+			$out .= '<th scope="col">' . $san->entities($heading) . '</th>';
+		}
+		$out .= '</tr></thead><tbody>';
+		foreach ($report['rows'] as $url => $row) {
+			$out .= '<tr><td>' . $san->entities($url) . '</td><td>'
+				. $san->entities($labels[$row['status']] ?? $row['status']) . '</td><td>'
+				. $san->entities($row['attempted_at'] ?? '—') . '</td><td>'
+				. $san->entities($row['error'] ?? '—') . '</td></tr>';
+		}
+		$out .= '</tbody></table></div>';
+		if ($report['pages'] > 1) {
+			$out .= "<nav aria-label='" . $san->entities(__('Log pages')) . "'><ul class='uk-subnav'>";
+			foreach ([-1 => __('Previous'), 1 => __('Next')] as $step => $label) {
+				$target = $report['page'] + $step;
+				if ($target < 1 || $target > $report['pages']) continue;
+				$url = $base . '?' . http_build_query(['state' => $filter, 'p' => $target]);
+				$out .= "<li><a href='" . $san->entities($url) . "'>" . $san->entities($label) . '</a></li>';
+			}
+			$out .= '<li>' . $san->entities(sprintf(__('Page %1$d of %2$d'), $report['page'], $report['pages'])) . '</li></ul></nav>';
+		}
+		return $out;
+	}
+
 	public function executeReports(): string {
 		$this->setIchibanBreadcrumb(__('Reports'), 'reports/');
 		$this->headline(__('SEO Reports'));
@@ -2751,6 +2810,7 @@ class ProcessIchiban extends Process {
 			'cleanup' => [__('Cleanup'), 'cleanup/'],
 			'migration' => [__('Migration'), 'migration/'],
 			'reports' => [__('Reports'), 'reports/'],
+			'indexing-log' => [__('Indexing Log'), 'indexing-log/'],
 			'ai' => [__('AI'), 'ai/'],
 			'cli' => [__('CLI'), 'cli/'],
 		];
