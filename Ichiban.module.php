@@ -8,7 +8,7 @@ require_once __DIR__ . '/src/McpProviderTrait.php';
  *
  * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
- * @version 0.4.3-alpha
+ * @version 0.4.4-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
 	use IchibanMcpProviderTrait;
@@ -22,7 +22,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'title'    => 'Ichiban',
 			'summary'  => 'Comprehensive SEO module: meta/OG/schema, audit, redirects, revisions, email reports.',
 			'author'   => 'Maxim Semenov',
-			'version'  => 43,
+			'version'  => 44,
 			'href'     => 'https://smnv.org',
 			'singular' => true,
 			'autoload' => true,
@@ -1542,6 +1542,59 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			$fsGsc->add($f);
 		}
 		$wrapper->add($fsGsc);
+
+		$indexing = $modules->get('InputfieldFieldset');
+		$indexing->label = __('Google Indexing Queue');
+		$addNotes($indexing, __('Run the queue from cron with:') . ' <code>php index.php --ichiban-indexing-queue=run --ichiban-format=json</code>');
+
+		$queue = new \IchibanIndexingQueue($modules->get('Ichiban'));
+		try {
+			$status = $queue->status();
+			$summary = $status['status'] === 'running'
+				? __('An indexing batch is running.')
+				: sprintf(
+					__('Pending: %1$d. Notified: %2$d. Needs review: %3$d. Daily budget remaining: %4$d of %5$d.'),
+					$status['pending'], $status['notified'], $status['review'],
+					$status['quota']['remaining'], $status['quota']['limit']
+				);
+			$addNotes($indexing, wire('sanitizer')->entities($summary));
+			foreach (array_slice($status['issues'] ?? [], 0, 5, true) as $url => $issue) {
+				$addNotes($indexing, wire('sanitizer')->entities($url . ' — ' . $issue['error']));
+			}
+		} catch (\RuntimeException | \JsonException $error) {
+			$addNotes($indexing, wire('sanitizer')->entities($error->getMessage()));
+		}
+
+		$f = $modules->get('InputfieldCheckbox');
+		$f->name = 'indexing_queue_enabled';
+		$f->label = __('Enable scheduled notifications');
+		$f->attr('value', 1);
+		$f->checked = !empty($data['indexing_queue_enabled']);
+		$indexing->add($f);
+
+		foreach ([
+			['indexing_daily_limit', __('Daily notification limit'), 200, 200],
+			['indexing_queue_batch', __('URLs per cron run'), 25, 25],
+		] as [$name, $label, $default, $max]) {
+			$f = $modules->get('InputfieldInteger');
+			$f->name = $name;
+			$f->label = $label;
+			$f->min = 1;
+			$f->max = $max;
+			$f->value = $data[$name] ?? $default;
+			$f->columnWidth = 50;
+			$indexing->add($f);
+		}
+
+		$f = $modules->get('InputfieldTextarea');
+		$f->name = 'indexing_queue_urls';
+		$f->label = __('URLs to notify');
+		$f->description = __('Enter one canonical URL per line. Previously processed URLs retain their results.');
+		$f->rows = 10;
+		$f->maxlength = 262144;
+		$f->value = $data['indexing_queue_urls'] ?? '';
+		$indexing->add($f);
+		$wrapper->add($indexing);
 
 		$fsMoz = $modules->get('InputfieldFieldset');
 		$fsMoz->label = __('Backlinks / Moz API');

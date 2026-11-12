@@ -2373,6 +2373,15 @@ class ProcessIchiban extends Process {
 			          'updates_enabled','updates_install_enabled'] as $key) {
 				$save[$key] = $input->post($key) !== null ? 1 : 0;
 			}
+			$save['indexing_queue_enabled'] = $input->post('indexing_queue_enabled') !== null ? 1 : 0;
+			$queueUrls = $input->post('indexing_queue_urls');
+			if (is_string($queueUrls) && strlen($queueUrls) <= 262144) {
+				$save['indexing_queue_urls'] = trim($queueUrls);
+			}
+			foreach (['indexing_daily_limit' => 200, 'indexing_queue_batch' => 25] as $key => $max) {
+				$value = filter_var($input->post($key), FILTER_VALIDATE_INT, ['options' => ['min_range' => 1, 'max_range' => $max]]);
+				if ($value !== false) $save[$key] = $value;
+			}
 			$save['ai_enabled'] = $input->post('ai_enabled') !== null ? 1 : 0;
 			if ($this->wire('input')->post('ichiban_generate_indexnow')) {
 				$save['indexnow_key'] = $this->ichiban->generateIndexNowKey();

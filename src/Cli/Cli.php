@@ -43,6 +43,7 @@ class IchibanCli {
 			'ichiban-page:',
 			'ichiban-indexing:',
 			'ichiban-indexing-quota',
+			'ichiban-indexing-queue:',
 			'ichiban-url-file:',
 			'ichiban-offset:',
 		]);
@@ -108,6 +109,11 @@ class IchibanCli {
 				'description' => 'Force-generate sitemap.xml and template sitemap files using current sitemap settings.',
 				'options' => ['--ichiban-format=json'],
 				'examples' => ["{$root} --ichiban-sitemap-generate"],
+			],
+			'indexing-queue' => [
+				'title' => 'Process the indexing queue configured in Ichiban Settings',
+				'usage' => "{$root} --ichiban-indexing-queue=status|run [--ichiban-format=json]",
+				'options' => ['--ichiban-format=json'],
 			],
 			'indexing-quota' => [
 				'title' => 'Show the local Google Indexing API quota',
@@ -187,6 +193,15 @@ class IchibanCli {
 		if (array_key_exists('ichiban-bulk-fix', $options)) return $this->bulkFix((int)$options['ichiban-bulk-fix'], $options);
 		if (array_key_exists('ichiban-bulk-import', $options)) return $this->bulkImport((string)$options['ichiban-bulk-import'], $options);
 		if (array_key_exists('ichiban-audit-rebuild', $options)) return $this->auditRebuild();
+		if (array_key_exists('ichiban-indexing-queue', $options)) {
+			$queue = new IchibanIndexingQueue($this->ichiban);
+			$result = match ($options['ichiban-indexing-queue']) {
+				'status' => $queue->status(),
+				'run' => $queue->run(),
+				default => throw new InvalidArgumentException('Choose status or run for the indexing queue.'),
+			};
+			return ['ok' => true] + $result;
+		}
 		if (array_key_exists('ichiban-indexing-quota', $options)) {
 			return ['ok' => true] + (new IchibanIndexingPublisher($this->ichiban))->quotaStatus();
 		}

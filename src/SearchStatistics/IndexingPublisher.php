@@ -26,19 +26,31 @@ class IchibanIndexingPublisher {
 		return $this->quota($path, $account['project_id'] ?? null)->status();
 	}
 
+	public function queueStatePath(): string {
+		$credentials = $this->credentialsPath();
+		if ($credentials === '') throw new RuntimeException('The Indexing API service account is not configured.');
+		return $this->stateDirectory($credentials) . '/ichiban-indexing-queue-'
+			. hash('sha256', $this->ichiban->siteUrl()) . '.json';
+	}
+
 	private function quota(string $credentialsPath, mixed $project): IchibanIndexingQuota {
 		if (!is_string($project) || $project === '') {
 			throw new RuntimeException('The Indexing API service account has no Google Cloud project ID.');
 		}
 		$config = $this->ichiban->wire('config');
-		$limit = filter_var($config->ichibanGoogleIndexingDailyLimit ?? 200, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+		$limit = filter_var($config->ichibanGoogleIndexingDailyLimit ?? ($this->ichiban->get('indexing_daily_limit') ?: 200), FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
 		if ($limit === false) throw new RuntimeException('Set a positive daily Indexing API limit.');
+		return new IchibanIndexingQuota($this->stateDirectory($credentialsPath) . '/ichiban-indexing-quota-' . hash('sha256', $project) . '.json', $limit);
+	}
+
+	private function stateDirectory(string $credentialsPath): string {
+		$config = $this->ichiban->wire('config');
 		$dir = realpath((string)($config->ichibanGoogleIndexingQuotaDirectory ?? dirname($credentialsPath)));
 		$root = realpath((string)$config->paths->root);
 		if (!$dir || !$root || $dir === $root || str_starts_with($dir, $root . DIRECTORY_SEPARATOR) || !is_dir($dir)) {
 			throw new RuntimeException('Use an existing indexing quota directory outside the web root.');
 		}
-		return new IchibanIndexingQuota($dir . '/ichiban-indexing-quota-' . hash('sha256', $project) . '.json', $limit);
+		return $dir;
 	}
 
 	public function publish(string $url): void {

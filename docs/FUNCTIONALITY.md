@@ -360,6 +360,24 @@ A cron caller can resume at that offset after `resets_at`. This budget
 covers Ichiban only. Google Cloud Monitoring quota metrics arrive with a
 delay, and the Google API still enforces its project-wide quota.
 
+### Manage the notification queue in Settings
+
+Open **SEO Settings → Google Indexing Queue** to set the daily budget,
+choose a batch size, paste one public canonical URL per line, and enable
+scheduled notifications. The section shows pending, notified, and review
+counts. The server configuration can override the daily budget.
+
+```sh
+php index.php --ichiban-indexing-queue=status --ichiban-format=json
+php index.php --ichiban-indexing-queue=run --ichiban-format=json
+```
+
+Use the second command in the server's cron. The queue persists results by
+URL and prevents overlapping runs. If a run is interrupted after recording
+a notification attempt, the URL remains available for review. Check the
+result before retrying it manually. Google accepting a notification means it
+received the request. Use URL Inspection to check indexing.
+
 ### URL batches and sitemap eligibility
 
 Use a deduplicated UTF-8 text file with one canonical public URL per line.

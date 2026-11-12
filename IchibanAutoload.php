@@ -22,6 +22,7 @@ spl_autoload_register(function(string $class): void {
 		'IchibanRedirectManager'   => 'src/Redirects/RedirectManager.php',
 		'IchibanSeoRevisions'      => 'src/Revisions/SeoRevisions.php',
 		'IchibanBacklinks'         => 'src/Backlinks/Backlinks.php',
+		'IchibanIndexingQueue' => 'src/SearchStatistics/IndexingQueue.php',
 		'IchibanIndexingQuota' => 'src/SearchStatistics/IndexingQuota.php',
 		'IchibanIndexingPublisher' => 'src/SearchStatistics/IndexingPublisher.php',
 		'IchibanSearchStatistics'  => 'src/SearchStatistics/SearchStatistics.php',
