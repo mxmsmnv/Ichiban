@@ -42,6 +42,7 @@ class IchibanCli {
 			'ichiban-settings',
 			'ichiban-page:',
 			'ichiban-indexing:',
+			'ichiban-indexing-quota',
 			'ichiban-url-file:',
 			'ichiban-offset:',
 		]);
@@ -107,6 +108,12 @@ class IchibanCli {
 				'description' => 'Force-generate sitemap.xml and template sitemap files using current sitemap settings.',
 				'options' => ['--ichiban-format=json'],
 				'examples' => ["{$root} --ichiban-sitemap-generate"],
+			],
+			'indexing-quota' => [
+				'title' => 'Show the local Google Indexing API quota',
+				'usage' => "{$root} --ichiban-indexing-quota [--ichiban-format=json]",
+				'options' => ['--ichiban-format=json'],
+				'examples' => ["{$root} --ichiban-indexing-quota --ichiban-format=json"],
 			],
 			'indexing' => [
 				'title' => 'Check indexing or notify Google for a list of public URLs',
@@ -180,6 +187,9 @@ class IchibanCli {
 		if (array_key_exists('ichiban-bulk-fix', $options)) return $this->bulkFix((int)$options['ichiban-bulk-fix'], $options);
 		if (array_key_exists('ichiban-bulk-import', $options)) return $this->bulkImport((string)$options['ichiban-bulk-import'], $options);
 		if (array_key_exists('ichiban-audit-rebuild', $options)) return $this->auditRebuild();
+		if (array_key_exists('ichiban-indexing-quota', $options)) {
+			return ['ok' => true] + (new IchibanIndexingPublisher($this->ichiban))->quotaStatus();
+		}
 		if (array_key_exists('ichiban-indexing', $options)) return $this->indexing($options);
 		if (array_key_exists('ichiban-sitemap-generate', $options)) return $this->sitemapGenerate();
 		if (array_key_exists('ichiban-sitemap-status', $options)) return $this->sitemapStatus();
@@ -347,6 +357,12 @@ class IchibanCli {
 					'preview' => 'eligible',
 					'notify' => 'notified',
 				};
+			} catch (IchibanIndexingQuotaExceeded $error) {
+				return [
+					'ok' => true, 'mode' => $mode, 'results' => $rows,
+					'next_offset' => $offset + $n, 'quota_exhausted' => true,
+					'quota' => $publisher->quotaStatus(),
+				];
 			} catch (RuntimeException $error) {
 				$row['status'] = 'error';
 				$row['error'] = $error->getMessage();

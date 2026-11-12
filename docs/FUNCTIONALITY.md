@@ -328,6 +328,38 @@ status** to check the index independently.
 [Google Indexing API prerequisites](https://developers.google.com/search/apis/indexing-api/v3/prereqs)
 and [Page indexing report](https://support.google.com/webmasters/answer/7440203).
 
+### Daily Indexing API budget
+
+Insights shows the remaining budget for notifications submitted by this
+Ichiban installation. Read the same values from cron with:
+
+```sh
+php index.php --ichiban-indexing-quota --ichiban-format=json
+```
+
+The command reports `limit`, `used`, `remaining`, and `resets_at`.
+The default budget is 200. Set `$config->ichibanGoogleIndexingDailyLimit`
+to match the project's quota or to keep a lower budget. It resets at
+midnight in `America/Los_Angeles`. Every publish attempt reserves a unit
+before contacting Google, including attempts with an uncertain outcome.
+Preview and URL Inspection use separate APIs and do not reserve units.
+
+The ledger starts counting when enabled. Enable it after the daily reset
+or lower the first day's budget to account for requests already sent.
+It uses the service account's project ID and a shared file lock. The
+credential's directory is the default ledger directory. Use
+`$config->ichibanGoogleIndexingQuotaDirectory` to provide a writable
+directory outside the web root. The web process and cron must share this
+directory and be able to read and write the ledger. Deploy multiple
+instances with a common directory only when its filesystem supports
+locking and atomic renames.
+
+When a notification batch reaches the local limit it returns
+`quota_exhausted: true` and leaves `next_offset` at the first unsent line.
+A cron caller can resume at that offset after `resets_at`. This budget
+covers Ichiban only. Google Cloud Monitoring quota metrics arrive with a
+delay, and the Google API still enforces its project-wide quota.
+
 ### URL batches and sitemap eligibility
 
 Use a deduplicated UTF-8 text file with one canonical public URL per line.

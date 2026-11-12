@@ -19,12 +19,38 @@ class IchibanIndexingPublisher {
 		return $this->credentialsPath() !== '' && function_exists('curl_init') && function_exists('openssl_sign') && class_exists('DOMDocument');
 	}
 
+	public function quotaStatus(): array {
+		$path = $this->credentialsPath();
+		if ($path === '') throw new RuntimeException('The Indexing API service account is not configured.');
+		$account = json_decode((string)file_get_contents($path), true);
+		return $this->quota($path, $account['project_id'] ?? null)->status();
+	}
+
+	private function quota(string $credentialsPath, mixed $project): IchibanIndexingQuota {
+		if (!is_string($project) || $project === '') {
+			throw new RuntimeException('The Indexing API service account has no Google Cloud project ID.');
+		}
+		$config = $this->ichiban->wire('config');
+		$limit = filter_var($config->ichibanGoogleIndexingDailyLimit ?? 200, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+		if ($limit === false) throw new RuntimeException('Set a positive daily Indexing API limit.');
+		$dir = realpath((string)($config->ichibanGoogleIndexingQuotaDirectory ?? dirname($credentialsPath)));
+		$root = realpath((string)$config->paths->root);
+		if (!$dir || !$root || $dir === $root || str_starts_with($dir, $root . DIRECTORY_SEPARATOR) || !is_dir($dir)) {
+			throw new RuntimeException('Use an existing indexing quota directory outside the web root.');
+		}
+		return new IchibanIndexingQuota($dir . '/ichiban-indexing-quota-' . hash('sha256', $project) . '.json', $limit);
+	}
+
 	public function publish(string $url): void {
 		if (!$this->isConfigured()) throw new RuntimeException('The Indexing API service account is not configured.');
 		$this->assertEligible($url);
 		$account = json_decode((string)file_get_contents($this->credentialsPath()), true);
 		if (($account['type'] ?? '') !== 'service_account' || empty($account['client_email']) || empty($account['private_key'])) {
 			throw new RuntimeException('Invalid Indexing API service account file.');
+		}
+		$quota = $this->quota($this->credentialsPath(), $account['project_id'] ?? null);
+		if ($quota->status()['remaining'] === 0) {
+			throw new IchibanIndexingQuotaExceeded('Ichiban reached its daily Indexing API limit.');
 		}
 		$encode = static fn(string $data): string => rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
 		$now = time();
@@ -48,6 +74,7 @@ class IchibanIndexingPublisher {
 		if (!is_string($accessToken) || !preg_match('/^[A-Za-z0-9._~-]+$/D', $accessToken)) {
 			throw new RuntimeException('Google did not return an Indexing API access token.');
 		}
+		$quota->reserve();
 		$notification = $this->request('https://indexing.googleapis.com/v3/urlNotifications:publish', json_encode([
 			'url' => $url,
 			'type' => 'URL_UPDATED',

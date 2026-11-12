@@ -3231,14 +3231,31 @@ class ProcessIchiban extends Process {
 	protected function renderIndexingUrlForm(\IchibanSearchStatistics $gsc, string $view, int $days): string {
 		$san = $this->wire('sanitizer');
 		$publisher = new \IchibanIndexingPublisher($this->ichiban);
-		return "<form method='post' action='" . $san->entities($this->gscUrl($view, $days)) . "' class='uk-margin'>"
+		$configured = $publisher->isConfigured();
+		$quotaMessage = '';
+		$canNotify = false;
+		if ($configured) {
+			try {
+				$quota = $publisher->quotaStatus();
+				$canNotify = $quota['remaining'] > 0;
+				$quotaMessage = sprintf(
+					__('Ichiban daily budget: %1$d remaining of %2$d. Resets at midnight Pacific time. Requests sent outside Ichiban are excluded.'),
+					$quota['remaining'],
+					$quota['limit']
+				);
+			} catch (\RuntimeException $error) {
+				$quotaMessage = $error->getMessage();
+			}
+		}
+		return ($quotaMessage !== '' ? "<p>" . $san->entities($quotaMessage) . "</p>" : '')
+			. "<form method='post' action='" . $san->entities($this->gscUrl($view, $days)) . "' class='uk-margin'>"
 			. $this->wire('session')->CSRF->renderInput()
 			. "<label class='uk-form-label' for='ichiban-indexing-url'>" . __('Public page URL') . "</label>"
 			. "<input id='ichiban-indexing-url' class='uk-input' type='url' name='indexing_url' maxlength='1024' required>"
 			. "<div class='ichiban-gsc-indexing-actions uk-margin-small-top'>"
 			. ($gsc->isConnected() ? "<button class='uk-button uk-button-default uk-button-small' name='indexing_action' value='inspect' type='submit'>" . __('Check URL status') . "</button>" : '')
-			. ($publisher->isConfigured()
-				? "<button class='uk-button uk-button-primary uk-button-small' name='indexing_action' value='publish' type='submit'>" . __('Notify Google') . "</button>"
+			. ($configured
+				? "<button class='uk-button uk-button-primary uk-button-small' name='indexing_action' value='publish' type='submit'" . ($canNotify ? '' : ' disabled') . ">" . __('Notify Google') . "</button>"
 				: "<span>" . __('Automatic notification requires a configured Google Indexing API service account.') . "</span>")
 			. "</div><p>" . __('Google accepts API notifications for eligible job postings and livestreams. For other pages, open the inspection result in Search Console to request indexing.') . "</p></form>";
 	}
