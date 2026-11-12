@@ -1390,10 +1390,7 @@ class ProcessIchiban extends Process {
 		}
 
 		$base = $this->adminUrl('indexing-log/');
-		$out .= "<p>" . $san->entities(sprintf(
-			__('%1$d of %2$d notifications remain today.'),
-			$report['quota']['remaining'], $report['quota']['limit']
-		)) . "</p><ul class='uk-subnav uk-subnav-pill'>";
+		$out .= $this->renderIndexingProgress($report) . "<ul class='uk-subnav uk-subnav-pill'>";
 		foreach ($labels as $key => $label) {
 			$count = $key === 'all' ? array_sum($report['counts']) : $report['counts'][$key];
 			$class = $key === $filter ? " class='uk-active'" : '';
@@ -1425,6 +1422,48 @@ class ProcessIchiban extends Process {
 			}
 			$out .= '<li>' . $san->entities(sprintf(__('Page %1$d of %2$d'), $report['page'], $report['pages'])) . '</li></ul></nav>';
 		}
+		return $out;
+	}
+
+	protected function renderIndexingProgress(array $report): string {
+		$san = $this->wire('sanitizer');
+		$escape = static fn(string $value): string => $san->entities($value);
+		$current = $report['current'];
+		$total = array_sum($current);
+		$processed = $current['notified'] + $current['review'];
+		$quota = $report['quota'];
+		$progress = $escape(sprintf(__('%1$d of %2$d URLs processed'), $processed, $total));
+		$out = "<section class='uk-card uk-card-default uk-card-body uk-card-small uk-margin-bottom' aria-labelledby='ichiban-queue-progress'>";
+		$out .= "<h3 id='ichiban-queue-progress'>" . $escape(__('Current notification queue')) . '</h3>';
+		$out .= '<p><strong>' . $progress . '</strong></p>';
+		if ($total > 0) {
+			$out .= "<progress class='uk-progress' aria-label='{$progress}' value='{$processed}' max='{$total}'></progress>";
+		}
+		$out .= '<p>' . $escape(sprintf(__('%1$d accepted by Google · %2$d pending · %3$d need review'),
+			$current['notified'], $current['pending'], $current['review'])) . '</p>';
+		$out .= '<p>' . $escape(sprintf(__('%1$d of %2$d notifications remain today. Budget resets at %3$s.'),
+			$quota['remaining'], $quota['limit'], $quota['resets_at'])) . '</p>';
+		$nextBatch = $report['enabled'] ? min($report['batch'], $current['pending'], $quota['remaining']) : 0;
+		$batchLabel = $report['enabled']
+			? sprintf(__('Up to %1$d URLs per scheduled run. The next run can process %2$d with the current budget.'), $report['batch'], $nextBatch)
+			: __('Scheduled sending is paused.');
+		$out .= '<p>' . $escape($batchLabel) . ' <a href="' . $escape($this->adminUrl('settings/')) . '">'
+			. $escape(__('Queue settings')) . '</a></p></section>';
+
+		$gsc = $this->ichiban->getSearchStatistics();
+		$out .= "<section class='uk-margin-bottom' aria-labelledby='ichiban-inspection-summary'><h3 id='ichiban-inspection-summary'>"
+			. $escape(__('Google URL inspections')) . '</h3>';
+		if ($gsc->isConnected()) {
+			try {
+				$summary = $gsc->getIndexingIssues(0);
+				$out .= '<p>' . $escape(sprintf(__('%1$d URLs checked · %2$d indexed · %3$d with other outcomes in the saved sample'),
+					$summary['total'], $summary['indexed'], $summary['issues'])) . '</p>';
+			} catch (\RuntimeException) {
+				$out .= '<p>' . $escape(__('Saved URL inspections are temporarily unavailable.')) . '</p>';
+			}
+		}
+		$out .= '<p><a href="' . $escape($this->gscUrl('overview', 28) . '#ichiban-page-indexing') . '">'
+			. $escape(__('Open URL inspections and coverage reasons')) . '</a></p></section>';
 		return $out;
 	}
 

@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+- Show progress for the current notification queue, the next scheduled batch capacity, and saved Google URL inspection totals in Indexing Log.
+
 - Save the image variation setting and restrict custom markup settings to superusers.
 - Report failed Search Console requests without caching zero metrics.
 - Bind Search Console authorization to a single-use session state and preserve the previous credentials when the exchange fails.

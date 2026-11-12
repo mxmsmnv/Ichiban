@@ -19,6 +19,10 @@ class IchibanIndexingQueue {
 		$urls = $this->urls();
 		$pending = array_diff($urls, array_keys($results));
 		$counts = ['pending' => count($pending), 'notified' => 0, 'review' => 0];
+		$current = $counts;
+		foreach (array_intersect_key($results, array_fill_keys($urls, true)) as $result) {
+			$current[$result['status']]++;
+		}
 		foreach ($results as $result) {
 			$counts[$result['status']]++;
 		}
@@ -32,6 +36,9 @@ class IchibanIndexingQueue {
 		$page = min($pages, max(1, $page));
 		return [
 			'counts' => $counts,
+			'current' => $current,
+			'enabled' => (bool)$this->ichiban->get('indexing_queue_enabled'),
+			'batch' => $this->batchSize(),
 			'quota' => $publisher->quotaStatus(),
 			'page' => $page,
 			'pages' => $pages,
@@ -51,14 +58,19 @@ class IchibanIndexingQueue {
 		return $results;
 	}
 
-	private function process(bool $send): array {
-		$enabled = (bool)$this->ichiban->get('indexing_queue_enabled');
-		$urls = $this->urls();
-		if (count($urls) > 2000) throw new RuntimeException('Use at most 2,000 URLs in the indexing queue.');
+	private function batchSize(): int {
 		$batch = filter_var($this->ichiban->get('indexing_queue_batch') ?: 25, FILTER_VALIDATE_INT, [
 			'options' => ['min_range' => 1, 'max_range' => 25],
 		]);
 		if ($batch === false) throw new RuntimeException('Set an indexing queue batch size from 1 to 25.');
+		return $batch;
+	}
+
+	private function process(bool $send): array {
+		$enabled = (bool)$this->ichiban->get('indexing_queue_enabled');
+		$urls = $this->urls();
+		if (count($urls) > 2000) throw new RuntimeException('Use at most 2,000 URLs in the indexing queue.');
+		$batch = $this->batchSize();
 		$publisher = new IchibanIndexingPublisher($this->ichiban);
 		$path = $publisher->queueStatePath();
 		$lock = @fopen($path . '.lock', 'c');

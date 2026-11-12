@@ -387,9 +387,13 @@ received the request. Use URL Inspection to check indexing.
 
 ### Indexing Log
 
-Open **Indexing Log** to see the remaining budget and filter by pending,
+Open **Indexing Log** to see progress for the currently configured URLs,
+the remaining daily budget, its reset time, and how many URLs the next
+scheduled run can process within that budget. Filter the log by pending,
 accepted, or review status. The log uses the queue's stored results.
 Completed entries remain visible after their URLs are removed from Settings.
+The URL inspection summary uses the saved sample in Insights, which can
+include pages outside the notification queue.
 The attempt time is recorded in UTC for new requests. Google accepting a
 notification records receipt, and URL Inspection shows indexing status.
 
