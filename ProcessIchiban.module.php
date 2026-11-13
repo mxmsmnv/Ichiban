@@ -2891,36 +2891,63 @@ class ProcessIchiban extends Process {
 	}
 
 	protected function renderAdminNav(string $active): string {
-		$items = [
-			'dashboard' => [__('Dashboard'), ''],
-			'website' => [__('Website'), 'website/'],
-			'bulk' => [__('Bulk Editor'), 'bulk/'],
-			'audit' => [__('Audit'), 'audit/'],
-			'redirects' => [__('Redirects'), 'redirects/'],
-			'search-statistics' => [__('Insights'), 'search-statistics/'],
-			'backlinks' => [__('Backlinks'), 'backlinks/'],
-			'sitemap' => [__('Sitemap'), 'sitemap/'],
-			'schemas' => [__('Schemas'), 'schemas/'],
-			'revisions' => [__('Revisions'), 'revisions/'],
-			'cleanup' => [__('Cleanup'), 'cleanup/'],
-			'migration' => [__('Migration'), 'migration/'],
-			'reports' => [__('Reports'), 'reports/'],
-			'indexing-log' => [__('Indexing Log'), 'indexing-log/'],
-			'ai' => [__('AI'), 'ai/'],
-			'cli' => [__('CLI'), 'cli/'],
+		$groups = [
+			[__('Dashboard'), ['dashboard' => __('Dashboard')]],
+			[__('Website'), [
+				'website' => __('Website'),
+				'bulk' => __('Bulk Editor'),
+				'redirects' => __('Redirects'),
+				'sitemap' => __('Sitemap'),
+				'schemas' => __('Schemas'),
+				'revisions' => __('Revisions'),
+			]],
+			[__('Insights'), [
+				'search-statistics' => __('Search Insights'),
+				'indexing-log' => __('Indexing Log'),
+				'audit' => __('Audit'),
+				'backlinks' => __('Backlinks'),
+				'reports' => __('Reports'),
+			]],
+			[__('Tools'), [
+				'cleanup' => __('Cleanup'),
+				'migration' => __('Migration'),
+				'cli' => __('CLI'),
+			]],
+			[__('AI'), ['ai' => __('AI')]],
 		];
-		$out = "<div class='ichiban-admin-nav uk-margin-medium-bottom'><ul class='uk-subnav uk-subnav-pill'>\n";
-		foreach ($items as $key => $item) {
-			$label = $item[0];
-			$path = $item[1];
-			$class = $key === $active ? " class='uk-active'" : '';
-			$url = $this->adminUrl($path);
-			$out .= "<li{$class}><a href='{$url}'>{$label}</a></li>\n";
+		$san = $this->wire('sanitizer');
+		$activeItems = [];
+		$out = "<nav class='ichiban-admin-nav uk-margin-medium-bottom' aria-label='" . $san->entities(__('Ichiban navigation')) . "'>"
+			. "<div class='ichiban-admin-nav-links'><ul class='uk-subnav uk-subnav-pill'>";
+		foreach ($groups as [$label, $items]) {
+			$primary = array_key_first($items);
+			$isActive = isset($items[$active]);
+			$hasChildren = count($items) > 1;
+			if ($isActive && $hasChildren) $activeItems = $items;
+			$out .= $this->renderAdminNavLink($primary, $label, $isActive, $isActive && !$hasChildren);
 		}
-		$settingsLabel = __('Settings');
+		$out .= '</ul>';
+		if ($activeItems) {
+			$out .= "<ul class='uk-subnav uk-subnav-pill ichiban-admin-subnav' aria-label='" . $san->entities(__('Current section')) . "'>";
+			foreach ($activeItems as $route => $label) {
+				$out .= $this->renderAdminNavLink($route, $label, $route === $active, $route === $active);
+			}
+			$out .= '</ul>';
+		}
+		$settingsLabel = $san->entities(__('Settings'));
+		$settingsUrl = $san->entities($this->adminUrl('settings/'));
 		$settingsClass = $active === 'settings' ? ' is-active' : '';
-		$out .= "</ul><a class='ichiban-settings-link{$settingsClass}' href='" . $this->adminUrl('settings/') . "' title='{$settingsLabel}' aria-label='{$settingsLabel}'>" . $this->renderSettingsIcon() . "</a></div>\n";
-		return $out;
+		$current = $active === 'settings' ? " aria-current='page'" : '';
+		return $out . "</div><a class='ichiban-settings-link{$settingsClass}' href='{$settingsUrl}' title='{$settingsLabel}' aria-label='{$settingsLabel}'{$current}>"
+			. $this->renderSettingsIcon() . '</a></nav>';
+	}
+
+	protected function renderAdminNavLink(string $route, string $label, bool $active, bool $current): string {
+		$san = $this->wire('sanitizer');
+		$url = $san->entities($this->adminUrl($route === 'dashboard' ? '' : $route . '/'));
+		$class = $active ? " class='uk-active'" : '';
+		$ariaCurrent = $current ? " aria-current='page'" : '';
+		return "<li{$class}><a href='{$url}'{$ariaCurrent}>" . $san->entities($label) . '</a></li>';
 	}
 
 	protected function renderUpdateBanner(): string {

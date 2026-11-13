@@ -8,7 +8,7 @@ require_once __DIR__ . '/src/McpProviderTrait.php';
  *
  * @author Maxim Semenov <maxim@smnv.org> (smnv.org)
  * @license MIT
- * @version 0.4.8-alpha
+ * @version 0.4.9-alpha
  */
 class Ichiban extends WireData implements Module, ConfigurableModule {
 	use IchibanMcpProviderTrait;
@@ -22,7 +22,7 @@ class Ichiban extends WireData implements Module, ConfigurableModule {
 			'title'    => 'Ichiban',
 			'summary'  => 'Comprehensive SEO module: meta/OG/schema, audit, redirects, revisions, email reports.',
 			'author'   => 'Maxim Semenov',
-			'version'  => 48,
+			'version'  => 49,
 			'href'     => 'https://smnv.org',
 			'singular' => true,
 			'autoload' => true,

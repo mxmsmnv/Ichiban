@@ -144,11 +144,10 @@ body.dark-theme {
 }
 
 .ichiban-admin-nav {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 12px;
-  align-items: center;
-  justify-content: space-between;
+  align-items: start;
 }
 .ichiban-admin-nav .uk-subnav {
   margin-bottom: 0;
@@ -157,6 +156,9 @@ body.dark-theme {
 }
 .ichiban-admin-nav .uk-subnav > * {
   padding-left: 13px;
+}
+.ichiban-admin-nav .ichiban-admin-subnav {
+  margin-top: 10px;
 }
 .ichiban-admin-nav .uk-subnav-pill > .uk-active > a {
   background: var(--ichiban-accent);
